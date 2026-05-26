@@ -1,0 +1,53 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+build/
+dist/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# ===== Virtual environments =====
+.venv/
+venv/
+env/
+ENV/
+.conda/
+
+# ===== ML caches & large artifacts (regenerable) =====
+cache/                 # split.npz, forecast_full.npz, preds_*.npz
+*.npz
+*.pt
+*.pth
+*.h5
+*.ckpt
+*.joblib
+*.pkl
+
+# ===== Slide QA renders (regenerable PNG dumps from PowerPoint) =====
+slide_render/
+slide_render0529/
+**/slide_render*/
+
+# ===== OS / editor =====
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*~
+
+# ===== Optional: dataset (public UCI; uncomment to exclude) =====
+# Dataset lives in ../dataset/ relative to this folder.
+# ../dataset/
+# *.csv
+
+# ===== Kept on purpose (do NOT ignore) =====
+# results/        -> metrics CSVs (small, paper deliverables)
+# figures/        -> paper figures (PNG)
+# slide_assets/   -> slide figures (PNG)
+# docs/, src/, experiments/, reports/, *.md, requirements.txt

@@ -1,0 +1,15 @@
+experiment,model,DR,granularity,split,features,MAE,RMSE,R2,R2_std
+E4_candanedo_protocol,linear_regression,none,raw,random,env,46.697,75.51,0.1841,
+E4_candanedo_protocol,svr,none,raw,random,env,40.02,65.083,0.3939,
+E4_candanedo_protocol,random_forest,none,raw,random,env,27.692,53.176,0.5954,
+E4_candanedo_protocol,gbm,none,raw,random,env,36.213,63.098,0.4303,
+E4_candanedo_protocol,xgboost,none,raw,random,env,30.247,55.479,0.5596,
+E4_candanedo_protocol,lstm,none,raw,random,env,24.313,49.939,0.6424,
+E4_candanedo_protocol,cnn_lstm,none,raw,random,env,24.427,49.887,0.6426,0.0024
+E4_honest_chrono,linear_regression,none,raw,chronological,env,46.969,72.13,0.1045,
+E4_honest_chrono,svr,none,raw,chronological,env,77.994,101.019,-0.7564,
+E4_honest_chrono,random_forest,none,raw,chronological,env,93.443,113.279,-1.0,
+E4_honest_chrono,gbm,none,raw,chronological,env,175.059,213.63,-1.0,
+E4_honest_chrono,xgboost,none,raw,chronological,env,133.265,155.302,-1.0,
+E4_honest_chrono,lstm,none,raw,chronological,env,23.673,48.604,0.5934,
+E4_honest_chrono,cnn_lstm,none,raw,chronological,env,25.483,49.95,0.5706,0.0328

@@ -1,0 +1,7 @@
+variant,ma6,raw
+CNN-LSTM (Huber loss),0.8796,0.6285
+CNN-LSTM (log target),0.8409,0.6164
+CNN-LSTM (single),0.8691,0.6274
+CNN-LSTM + ensemble,0.88,0.6435
+"LSTM (tuned: h128, lb36, 60ep)",0.8756,0.6444
+"LSTM (weak: h32, lb12, 15ep)",0.8656,0.6112

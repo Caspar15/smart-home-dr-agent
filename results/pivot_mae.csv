@@ -1,0 +1,9 @@
+model,behavioral_dr,load_leveling,load_shifting,peak_clipping,price_based,tou_optimization,valley_filling
+ets,56.36,51.6,94.28,40.04,60.31,59.07,55.68
+knn,31.07,9.26,23.8,17.62,31.43,31.44,31.49
+linear_regression,44.25,18.51,34.88,26.94,45.44,45.29,47.22
+lstm,23.52,7.56,17.88,11.95,23.7,23.7,23.65
+persistence,26.4,47.73,66.41,29.63,28.89,27.86,25.0
+random_forest,26.42,8.49,20.29,15.06,26.59,26.61,26.85
+seasonal_naive,54.82,55.19,87.3,43.05,56.69,55.97,53.61
+svr,41.4,14.38,32.65,26.76,42.57,42.37,38.8

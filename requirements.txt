@@ -1,0 +1,16 @@
+# Phase 1 — reproduction & forecasting
+numpy
+pandas
+scikit-learn
+statsmodels
+matplotlib
+seaborn
+torch
+
+# Reporting (deck generation)
+python-pptx
+Pillow
+
+# Phase 2 — single-household agent (add when building the RL controller)
+# gymnasium
+# stable-baselines3

@@ -1,0 +1,15 @@
+experiment,model,R2,MAE,RMSE
+E4_candanedo_protocol,linear_regression,0.1841,46.697,75.51
+E4_candanedo_protocol,svr,0.3939,40.02,65.083
+E4_candanedo_protocol,random_forest,0.5954,27.692,53.176
+E4_candanedo_protocol,gbm,0.4303,36.213,63.098
+E4_candanedo_protocol,xgboost,0.5596,30.247,55.479
+E4_candanedo_protocol,lstm,0.6424,24.313,49.939
+E4_candanedo_protocol,cnn_lstm,0.6426,24.427,49.887
+E4_honest_chrono,linear_regression,0.1045,46.969,72.13
+E4_honest_chrono,svr,-0.7564,77.994,101.019
+E4_honest_chrono,random_forest,-1.0,93.443,113.279
+E4_honest_chrono,gbm,-1.0,175.059,213.63
+E4_honest_chrono,xgboost,-1.0,133.265,155.302
+E4_honest_chrono,lstm,0.5934,23.673,48.604
+E4_honest_chrono,cnn_lstm,0.5706,25.483,49.95

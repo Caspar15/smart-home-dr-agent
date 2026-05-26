@@ -1,0 +1,2 @@
+model,MAE,RMSE,R2
+lstm,33.592,53.724,0.423

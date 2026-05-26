@@ -1,0 +1,5 @@
+model,env,env_lags,full
+gbm,0.43,0.647,0.65
+linear_regression,0.184,0.594,0.598
+lstm,0.642,0.644,0.642
+random_forest,0.595,0.642,0.642

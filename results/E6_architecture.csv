@@ -1,0 +1,13 @@
+experiment,step,variant,granularity,MAE,RMSE,R2
+E6,1,"LSTM (weak: h32, lb12, 15ep)",raw,25.2795,52.1223,0.6112
+E6,1,"LSTM (weak: h32, lb12, 15ep)",ma6,13.3247,20.7736,0.8656
+E6,2,"LSTM (tuned: h128, lb36, 60ep)",raw,24.3718,49.7952,0.6444
+E6,2,"LSTM (tuned: h128, lb36, 60ep)",ma6,12.8631,19.9796,0.8756
+E6,3,CNN-LSTM (single),raw,24.1424,50.9363,0.6274
+E6,3,CNN-LSTM (single),ma6,12.8048,20.4959,0.8691
+E6,4,CNN-LSTM + ensemble,raw,24.5464,49.8267,0.6435
+E6,4,CNN-LSTM + ensemble,ma6,13.0648,19.6254,0.88
+E6,5,CNN-LSTM (Huber loss),raw,25.4604,50.8622,0.6285
+E6,5,CNN-LSTM (Huber loss),ma6,13.0762,19.6601,0.8796
+E6,6,CNN-LSTM (log target),raw,23.8774,51.6794,0.6164
+E6,6,CNN-LSTM (log target),ma6,13.5898,22.5979,0.8409

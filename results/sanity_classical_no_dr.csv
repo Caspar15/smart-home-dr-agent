@@ -1,0 +1,8 @@
+model,MAE,RMSE,R2
+linear_regression,26.679,53.302,0.593
+random_forest,24.433,50.015,0.642
+svr,34.881,58.043,0.518
+knn,30.002,59.437,0.494
+persistence,24.791,56.91,0.537
+seasonal_naive,54.878,101.91,-0.486
+ets,55.759,84.204,-0.015
