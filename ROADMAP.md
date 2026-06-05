@@ -44,8 +44,11 @@ transforms we already have.
       high price + forecast peak, auto-release off-peak. **Loop validated.** ✅
 - [x] **Evaluation** (`experiments/run_agent.py`): baseline vs agent — cost
       −2.6%, peak-window −5.6%, 95th-pctile load −10.3%, energy conserved ✅
+- [x] **Step 1b — MPC baseline** (`src/agent/mpc.py`): LP receding-horizon
+      (perfect-foresight upper bound). Beats the rule on peak-shaving:
+      95th-pctile −13.3% vs −10.3%, cost −2.8% vs −2.6% ✅
 - [ ] **Step 1c — RL agent** (`src/agent/rl_agent.py`): PPO/DQN in the env,
-      compare to rule-based  ◀ next
+      must beat MPC to be worth it  ◀ next (optional)
 
 **Forecast cache:** `src/agent/forecast.py` → `cache/forecast_full.npz`
 **Load curve:** `figures/figF_agent_loadcurve.png`

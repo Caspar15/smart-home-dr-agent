@@ -13,10 +13,11 @@ import matplotlib.pyplot as plt
 
 from src.agent.env import HouseholdEnv, EnvConfig
 from src.agent.rule_based import decide
+from src.agent.mpc import MPCController
 
 FIGS = Path(__file__).resolve().parents[1] / "figures"
 FIGS.mkdir(exist_ok=True)
-NAVY = "#124163"; ACCENT = "#E07A5F"; GREY = "#9AA7AD"
+NAVY = "#124163"; ACCENT = "#E07A5F"; GREY = "#9AA7AD"; GREEN = "#75BDA7"
 
 
 def rollout(env, policy):
@@ -55,34 +56,43 @@ def metrics(served, demand, price, hours, leftover):
     )
 
 
+def _report(name, s, d, p, h, leftover):
+    m = metrics(s, d, p, h, leftover)
+    print(f"\n[{name}]")
+    print(f"  electricity cost     : saving {m['cost_saving_pct']:.1f}%")
+    print(f"  peak-window avg       : reduction {m['peakwin_reduction_pct']:.1f}%  [17-22]")
+    print(f"  95th-pctile (shaving) : reduction {m['p95_reduction_pct']:.1f}%")
+    print(f"  PAR (peak/avg)        : {m['PAR_baseline']:.2f} -> {m['PAR_agent']:.2f}")
+    print(f"  energy served/demand  : {m['energy_served']:.0f}/{m['energy_demand']:.0f}"
+          f"  (undelivered {m['undelivered_buffer']:.0f} Wh)")
+    return m
+
+
 def main():
+    import time
     env = HouseholdEnv(EnvConfig())
-    s_b, d_b, p_b, h_b, leftover_b = rollout(env, None)
-    s_a, d_a, p_a, h_a, leftover_a = rollout(env, lambda obs, e: decide(obs, e))
+    s_b, d_b, p_b, h_b, lb = rollout(env, None)
+    s_r, d_r, p_r, h_r, lr = rollout(env, lambda obs, e: decide(obs, e))
+    mpc = MPCController()
+    t0 = time.time()
+    s_m, d_m, p_m, h_m, lm = rollout(env, lambda obs, e: mpc.decide(obs, e))
+    mpc_t = time.time() - t0
 
-    m = metrics(s_a, d_a, p_a, h_a, leftover_a)
-    print("\n=== Single-household agent vs no-DR baseline (test period) ===")
-    print(f"  electricity cost     : {m['cost_baseline']:.0f} -> {m['cost_agent']:.0f}"
-          f"   (saving {m['cost_saving_pct']:.1f}%)")
-    print(f"  peak-window avg (Wh) : {m['peakwin_baseline']:.1f} -> {m['peakwin_agent']:.1f}"
-          f"   (reduction {m['peakwin_reduction_pct']:.1f}%)   [17:00-22:00]")
-    print(f"  95th-pctile load (Wh): {m['p95_baseline']:.0f} -> {m['p95_agent']:.0f}"
-          f"   (reduction {m['p95_reduction_pct']:.1f}%)")
-    print(f"  PAR (peak/avg)       : {m['PAR_baseline']:.2f} -> {m['PAR_agent']:.2f}")
-    print(f"  energy served        : {m['energy_served']:.0f} vs demand "
-          f"{m['energy_demand']:.0f}   (undelivered: {m['undelivered_buffer']:.0f} Wh)")
+    print("\n=== Single-household controllers vs no-DR baseline (test period) ===")
+    _report("Rule-based", s_r, d_r, p_r, h_r, lr)
+    _report(f"MPC (perfect-foresight upper bound, {mpc_t:.0f}s)", s_m, d_m, p_m, h_m, lm)
 
-    # plot first 3 days (432 steps @ 10-min)
-    w = min(432, len(d_a))
+    # plot first 3 days (432 steps @ 10-min): baseline vs rule vs MPC
+    w = min(432, len(d_b))
     fig, ax = plt.subplots(figsize=(11, 4))
-    ax.plot(d_b[:w], color=GREY, lw=1.0, label="Baseline demand (no DR)")
-    ax.plot(s_a[:w], color=NAVY, lw=1.2, label="Agent served load")
+    ax.plot(d_b[:w], color=GREY, lw=1.0, label="Baseline (no DR)")
+    ax.plot(s_r[:w], color=GREEN, lw=1.0, label="Rule-based", alpha=0.85)
+    ax.plot(s_m[:w], color=NAVY, lw=1.2, label="MPC")
     ax.axhline(env.cfg.peak_threshold_wh, ls="--", color=ACCENT, lw=1,
                label=f"peak threshold {env.cfg.peak_threshold_wh:.0f} Wh")
-    ax.set_title("Single-household agent: load shifting (first 3 days)",
+    ax.set_title("Single-household load shifting: baseline vs rule-based vs MPC (first 3 days)",
                  fontsize=12, fontweight="bold")
-    ax.set_xlabel("10-min step"); ax.set_ylabel("Load (Wh)")
-    ax.legend(fontsize=9)
+    ax.set_xlabel("10-min step"); ax.set_ylabel("Load (Wh)"); ax.legend(fontsize=9)
     fig.tight_layout(); fig.savefig(FIGS / "figF_agent_loadcurve.png", dpi=150)
     plt.close(fig)
     print(f"\n  load curve -> {FIGS / 'figF_agent_loadcurve.png'}")
