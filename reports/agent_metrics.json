@@ -1,0 +1,51 @@
+{
+  "household_id": "UCI-Appliances (single-household sim)",
+  "horizon_steps": 3946,
+  "horizon_days": 27.4,
+  "price_schedule": {
+    "peak": 0.3,
+    "offpeak": 0.08,
+    "mid": 0.15,
+    "peak_hours": [
+      17,
+      22
+    ],
+    "offpeak_hours": [
+      0,
+      7
+    ]
+  },
+  "rule_based": {
+    "cost_baseline": 66198.02466996349,
+    "cost_agent": 64460.00648757347,
+    "cost_saving_pct": 2.62548345068463,
+    "peakwin_baseline": 126.14448257803251,
+    "peakwin_agent": 119.14329303476053,
+    "peakwin_reduction_pct": 5.550135368735662,
+    "p95_baseline": 290.0,
+    "p95_agent": 260.0,
+    "p95_reduction_pct": 10.344827586206897,
+    "PAR_baseline": 4.342871111996235,
+    "PAR_agent": 4.349958924268769,
+    "energy_demand": 368234.2666827487,
+    "energy_served": 367634.2666827487,
+    "undelivered_buffer": 600.0
+  },
+  "mpc": {
+    "cost_baseline": 66198.02466996349,
+    "cost_agent": 64319.59066330246,
+    "cost_saving_pct": 2.8375982758188654,
+    "peakwin_baseline": 126.14448257803251,
+    "peakwin_agent": 120.48775953911245,
+    "peakwin_reduction_pct": 4.484320616576183,
+    "p95_baseline": 290.0,
+    "p95_agent": 251.5,
+    "p95_reduction_pct": 13.275862068965518,
+    "PAR_baseline": 4.342871111996235,
+    "PAR_agent": 4.349853393231501,
+    "energy_demand": 368234.2666827487,
+    "energy_served": 367643.1857938062,
+    "undelivered_buffer": 591.0808889424957
+  },
+  "mpc_solve_time_s": 2.9
+}

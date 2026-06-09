@@ -28,8 +28,8 @@ cache/                 # split.npz, forecast_full.npz, preds_*.npz
 *.pkl
 
 # ===== Slide QA renders (regenerable PNG dumps from PowerPoint) =====
-slide_render/
-slide_render0529/
+# we don't track slide previews — re-render from the build scripts
+slides/render_*/
 **/slide_render*/
 
 # ===== OS / editor =====
@@ -47,7 +47,8 @@ desktop.ini
 # *.csv
 
 # ===== Kept on purpose (do NOT ignore) =====
-# results/        -> metrics CSVs (small, paper deliverables)
-# figures/        -> paper figures (PNG)
-# slide_assets/   -> slide figures (PNG)
-# docs/, src/, experiments/, reports/, *.md, requirements.txt
+# results/         -> metrics CSVs (small, paper deliverables)
+# figures/         -> paper figures (PNG)
+# slides/assets/   -> source slide figures (PNG, hand-made)
+# reports/         -> LLM advisory + metrics outputs
+# docs/, src/, experiments/, *.md, requirements.txt

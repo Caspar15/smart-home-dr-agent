@@ -1,0 +1,22 @@
+{
+  "summary_zh": "本系統使用規則式控制器 (rule-based) 進行家戶級需量反應 (DR)。根據 27.4 天的預測時間軸 (horizon_days) 和 3946 步的時間步數 (horizon_steps)，系統在 27.4 天內成功削減 65 步峰值事件 (n_peak_steps_shaved)，削減率達 32.7% (shave_rate)。系統預測明日 (tomorrow) 峰值時段 (peak_hour) 會達到 412.4 kWh，需特別注意第 17 小時 (worst_unshaved_hour) 的潛在風險。",
+  "forecast_diagnosis": {
+    "worst_hour": 17,
+    "worst_hour_mae_wh": 36.6,
+    "interpretation_zh": "預測模型在第 17 小時的預測誤差最大 (MAE 36.6 kWh)，此小時為系統削減峰值的關鍵時段，需加強預測準確性以避免未削減事件。"
+  },
+  "agent_behavior_note": {
+    "most_active_defer_hour": 17,
+    "interpretation_zh": "系統在第 17 小時 (most_active_defer_hour) 有 43 次延遲操作 (most_active_defer_count)，顯示此小時為削減峰值的高活動時段，需關注此時段的預測準確性。"
+  },
+  "user_advisory": {
+    "action_type": "shift_load_off_peak",
+    "target_hour": 17,
+    "reason_zh": "第 17 小時 (worst_unshaved_hour) 預測峰值為 412.4 kWh，系統已削減 65 步峰值事件，但仍有 134 步未削減 (n_peak_steps - n_peak_steps_shaved = 199 - 65 = 134)。需將負載從峰值時段 (17) 移至非峰值時段以避免過高需量。"
+  },
+  "tuning_suggestion": {
+    "parameter": "peak_threshold_wh",
+    "direction": "increase",
+    "rationale_zh": "當前峰值門檻 (peak_threshold_wh) 設定為 200 kWh，但第 17 小時預測峰值為 412.4 kWh，顯示系統需更高門檻以區分更嚴格的峰值事件。"
+  }
+}
