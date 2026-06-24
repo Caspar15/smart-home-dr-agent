@@ -1,0 +1,78 @@
+{
+  "forecast": [
+    {
+      "tag": "forecast=lstm",
+      "user_saving": -0.14,
+      "p95_reduction": 1.93,
+      "peak_kw": 34.14,
+      "rebound_mean": 0.033,
+      "rebound_p95": 1.324,
+      "total_recs": 2767,
+      "fairness": 0.5817,
+      "defer_mean_min": 280.0,
+      "n_defers": 2436
+    },
+    {
+      "tag": "forecast=persistence",
+      "user_saving": -0.09,
+      "p95_reduction": 1.36,
+      "peak_kw": 34.14,
+      "rebound_mean": 0.08,
+      "rebound_p95": 1.513,
+      "total_recs": 2916,
+      "fairness": 0.5882,
+      "defer_mean_min": 289.0,
+      "n_defers": 2345
+    }
+  ],
+  "accept_rate": [
+    {
+      "tag": "accept=0.00",
+      "user_saving": 0.0,
+      "p95_reduction": 0.0,
+      "peak_kw": 34.2,
+      "rebound_mean": 0.0,
+      "rebound_p95": 0.0,
+      "total_recs": 279,
+      "fairness": 0.5649,
+      "defer_mean_min": 0.0,
+      "n_defers": 0
+    },
+    {
+      "tag": "accept=0.50",
+      "user_saving": -0.18,
+      "p95_reduction": 0.39,
+      "peak_kw": 34.11,
+      "rebound_mean": -0.011,
+      "rebound_p95": 0.341,
+      "total_recs": 1728,
+      "fairness": 0.6104,
+      "defer_mean_min": 281.8,
+      "n_defers": 1408
+    },
+    {
+      "tag": "accept=0.85",
+      "user_saving": -0.07,
+      "p95_reduction": 0.72,
+      "peak_kw": 34.14,
+      "rebound_mean": 0.046,
+      "rebound_p95": 1.287,
+      "total_recs": 2665,
+      "fairness": 0.5956,
+      "defer_mean_min": 283.5,
+      "n_defers": 2237
+    },
+    {
+      "tag": "accept=1.00",
+      "user_saving": -0.13,
+      "p95_reduction": 1.46,
+      "peak_kw": 34.14,
+      "rebound_mean": 0.041,
+      "rebound_p95": 1.512,
+      "total_recs": 3110,
+      "fairness": 0.5749,
+      "defer_mean_min": 283.5,
+      "n_defers": 2690
+    }
+  ]
+}

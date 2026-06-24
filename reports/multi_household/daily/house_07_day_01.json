@@ -1,0 +1,22 @@
+{
+  "facts": {
+    "household_id": 7,
+    "date": "2015-03-05",
+    "horizon_steps": 144,
+    "controller": "rule-based + appliance-aware (multi-house)",
+    "cost_baseline_gbp": 2.194,
+    "cost_after_gbp": 2.194,
+    "cost_saving_gbp": 0.0,
+    "cost_saving_pct": 0.0,
+    "recommendations_total": 0,
+    "recommendations_accepted": 0,
+    "peak_window_mean_demand_w": 652.4,
+    "peak_window_mean_served_w": 652.4,
+    "peak_window_reduction_pct": 0.0
+  },
+  "summary": {
+    "summary_zh": "今日省電費 0.0 GBP，削尖峰 0 個。",
+    "highlight_zh": "今日無省電成效，尖峰電力需求維持不變。",
+    "next_day_advice_zh": "明日請檢查電器使用時間，避免集中高電力需求時段操作。"
+  }
+}

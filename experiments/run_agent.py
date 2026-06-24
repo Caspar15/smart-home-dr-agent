@@ -97,6 +97,18 @@ def main():
     plt.close(fig)
     print(f"\n  load curve -> {FIGS / 'figF_agent_loadcurve.png'}")
 
+    fig, ax = plt.subplots(figsize=(11, 4))
+    ax.plot(d_b[:w], color=GREY, lw=1.0, label="Baseline (no DR)")
+    ax.plot(s_r[:w], color=NAVY, lw=1.2, label="Rule-based agent")
+    ax.axhline(env.cfg.peak_threshold_wh, ls="--", color=ACCENT, lw=1,
+               label=f"peak threshold {env.cfg.peak_threshold_wh:.0f} Wh")
+    ax.set_title("Single-household load shifting: baseline vs rule-based agent (first 3 days)",
+                 fontsize=12, fontweight="bold")
+    ax.set_xlabel("10-min step"); ax.set_ylabel("Load (Wh)"); ax.legend(fontsize=9)
+    fig.tight_layout(); fig.savefig(FIGS / "figF_agent_loadcurve_paper.png", dpi=150)
+    plt.close(fig)
+    print(f"  load curve (paper) -> {FIGS / 'figF_agent_loadcurve_paper.png'}")
+
 
 if __name__ == "__main__":
     main()

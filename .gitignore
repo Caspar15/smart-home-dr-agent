@@ -18,10 +18,15 @@ ENV/
 .conda/
 
 # ===== ML caches & large artifacts (regenerable) =====
-cache/                 # split.npz, forecast_full.npz, preds_*.npz
+# NOTE: gitignore does NOT support inline comments — keep patterns on their own line.
+# Regenerate via: pre_cache (parquet) / train_all (.pt) / rollout (.npz)
+cache/
+multi_household/cache/
+multi_household/models/
 *.npz
 *.pt
 *.pth
+*.parquet
 *.h5
 *.ckpt
 *.joblib

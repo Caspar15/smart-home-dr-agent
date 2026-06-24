@@ -1,0 +1,162 @@
+{
+  "facts": {
+    "household_id": 7,
+    "date": "2015-03-21",
+    "horizon_steps": 144,
+    "controller": "rule-based + appliance-aware (multi-house)",
+    "cost_baseline_gbp": 7.312,
+    "cost_after_gbp": 7.311,
+    "cost_saving_gbp": 0.001,
+    "cost_saving_pct": 0.01,
+    "recommendations_total": 1,
+    "recommendations_accepted": 1,
+    "peak_window_mean_demand_w": 2007.3,
+    "peak_window_mean_served_w": 2007.3,
+    "peak_window_reduction_pct": 0.0,
+    "tomorrow_forecast": {
+      "source": "LSTM recursive multi-step",
+      "horizon_steps": 144,
+      "peak_hour_idx": 0,
+      "peak_value_w": 1834.0,
+      "mean_w": 996.6,
+      "min_w": 975.3,
+      "note": "recursive — error compounds; treat as guidance"
+    }
+  },
+  "history": {
+    "n_recommendations": 274,
+    "n_accepted": 273,
+    "accept_rate": 0.996,
+    "per_appliance": {
+      "washing_machine": {
+        "total": 153,
+        "accepted": 153,
+        "rate": 1.0
+      },
+      "dishwasher": {
+        "total": 70,
+        "accepted": 69,
+        "rate": 0.986
+      },
+      "tumble_dryer": {
+        "total": 51,
+        "accepted": 51,
+        "rate": 1.0
+      }
+    },
+    "recent_decisions": [
+      {
+        "accepted": true,
+        "appliance": "tumble_dryer",
+        "hour": 20,
+        "source": "sim"
+      },
+      {
+        "accepted": true,
+        "appliance": "tumble_dryer",
+        "hour": 20,
+        "source": "sim"
+      },
+      {
+        "accepted": true,
+        "appliance": "tumble_dryer",
+        "hour": 21,
+        "source": "sim"
+      },
+      {
+        "accepted": true,
+        "appliance": "tumble_dryer",
+        "hour": 21,
+        "source": "sim"
+      },
+      {
+        "accepted": true,
+        "appliance": "tumble_dryer",
+        "hour": 21,
+        "source": "sim"
+      }
+    ],
+    "real_overrides_total": 4,
+    "real_accepted": 1,
+    "real_rejected": 2,
+    "real_modified": 1,
+    "real_reject_by_appliance": {
+      "washing_machine": 2
+    },
+    "real_total_by_appliance": {
+      "washing_machine": 4
+    },
+    "real_recent_overrides": [
+      {
+        "user_choice": 1,
+        "appliance": "washing_machine",
+        "action": "deferred",
+        "source": "real"
+      },
+      {
+        "user_choice": 2,
+        "appliance": "washing_machine",
+        "action": "rejected",
+        "source": "real"
+      },
+      {
+        "user_choice": 3,
+        "appliance": "washing_machine",
+        "action": "modified",
+        "source": "real"
+      },
+      {
+        "user_choice": 2,
+        "appliance": "washing_machine",
+        "action": "rejected",
+        "source": "real"
+      }
+    ]
+  },
+  "recommendation": {
+    "house_id": 7,
+    "timestep": 2303,
+    "hour": 2,
+    "headline": "Peak alert: defer Washing Machine to save £0.00",
+    "body": "This morning 02:00 is a peak event (grid forecast 8.2 kW, 0% over capacity). Price is now £0.08/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
+  },
+  "llm_advice": {
+    "greeting_zh": "您好！今天有 1 個節能建議，可以省下 1 分錢，但您上次拒絕過洗衣機的建議。",
+    "personal_note_zh": "我注意到您上次拒絕了洗衣機的建議，所以這次建議只針對洗衣機，避免重複提醒。",
+    "predicted_accept_prob": 0.45,
+    "rationale_zh": "您過去拒絕了洗衣機 2 次，所以預測接受率降低到 45%。",
+    "fact_citations": [
+      "2"
+    ],
+    "_unit_validation_issues": []
+  },
+  "user_choice": 2,
+  "consequence": {
+    "choice": 2,
+    "appliance": "washing_machine",
+    "action": "rejected",
+    "new_time_zh": "02:00 (照常運轉)",
+    "impact_gbp": 0.0,
+    "explanation": "washing_machine 維持在 02:00 啟動。放棄省下的 £0.000。系統會記錄這次拒絕,未來推薦類似情境的頻率會降低。"
+  },
+  "validation": {
+    "unit_issues": [],
+    "cited": [
+      "2"
+    ],
+    "cited_unverified": [],
+    "numbers_in_text": [
+      "1",
+      "1",
+      "2",
+      "45%"
+    ],
+    "numbers_unknown": [
+      "45%"
+    ],
+    "all_ok": false
+  }
+}

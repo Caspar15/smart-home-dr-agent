@@ -1,0 +1,92 @@
+[
+  {
+    "house": 7,
+    "day": 15,
+    "timestamp_logged": "2026-06-18 14:27:01.401393",
+    "rec_step": 2303,
+    "rec_appliance": "washing_machine",
+    "user_choice": 1,
+    "modified_hour": null,
+    "consequence": {
+      "choice": 1,
+      "appliance": "washing_machine",
+      "action": "deferred",
+      "new_time_zh": "下一個離峰時段 (預設 22:00 後)",
+      "impact_gbp": -0.0,
+      "explanation": "系統會把 washing_machine 排程到下一個離峰時段。預估電費省 £0.000。設備會在離峰時段自動執行。"
+    },
+    "llm_predicted_accept_prob": 0.996
+  },
+  {
+    "house": 7,
+    "day": 15,
+    "timestamp_logged": "2026-06-18 16:22:03.074485",
+    "rec_step": 2303,
+    "rec_appliance": "washing_machine",
+    "user_choice": 2,
+    "modified_hour": null,
+    "consequence": {
+      "choice": 2,
+      "appliance": "washing_machine",
+      "action": "rejected",
+      "new_time_zh": "02:00 (照常運轉)",
+      "impact_gbp": 0.0,
+      "explanation": "washing_machine 維持在 02:00 啟動。放棄省下的 £0.000。系統會記錄這次拒絕,未來推薦類似情境的頻率會降低。"
+    },
+    "llm_predicted_accept_prob": 0.996
+  },
+  {
+    "house": 7,
+    "day": 15,
+    "timestamp_logged": "2026-06-18 16:22:31.295177",
+    "rec_step": 2303,
+    "rec_appliance": "washing_machine",
+    "user_choice": 3,
+    "modified_hour": 23,
+    "consequence": {
+      "choice": 3,
+      "appliance": "washing_machine",
+      "action": "modified",
+      "new_time_zh": "23:00 (使用者指定)",
+      "impact_gbp": 0.0,
+      "explanation": "washing_machine 排到 23:00。原觸發時段 02:00 電價 £0.08/kWh,指定時段 £0.15/kWh,預估省 £-0.000。"
+    },
+    "llm_predicted_accept_prob": 0.996
+  },
+  {
+    "house": 7,
+    "day": 15,
+    "timestamp_logged": "2026-06-18 16:26:41.428771",
+    "rec_step": 2303,
+    "rec_appliance": "washing_machine",
+    "user_choice": 2,
+    "modified_hour": null,
+    "consequence": {
+      "choice": 2,
+      "appliance": "washing_machine",
+      "action": "rejected",
+      "new_time_zh": "02:00 (照常運轉)",
+      "impact_gbp": 0.0,
+      "explanation": "washing_machine 維持在 02:00 啟動。放棄省下的 £0.000。系統會記錄這次拒絕,未來推薦類似情境的頻率會降低。"
+    },
+    "llm_predicted_accept_prob": 0.85
+  },
+  {
+    "house": 7,
+    "day": 15,
+    "timestamp_logged": "2026-06-18 16:27:10.566209",
+    "rec_step": 2303,
+    "rec_appliance": "washing_machine",
+    "user_choice": 2,
+    "modified_hour": null,
+    "consequence": {
+      "choice": 2,
+      "appliance": "washing_machine",
+      "action": "rejected",
+      "new_time_zh": "02:00 (照常運轉)",
+      "impact_gbp": 0.0,
+      "explanation": "washing_machine 維持在 02:00 啟動。放棄省下的 £0.000。系統會記錄這次拒絕,未來推薦類似情境的頻率會降低。"
+    },
+    "llm_predicted_accept_prob": 0.45
+  }
+]
