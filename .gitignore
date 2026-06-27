@@ -57,3 +57,14 @@ desktop.ini
 # slides/assets/   -> source slide figures (PNG, hand-made)
 # reports/         -> LLM advisory + metrics outputs
 # docs/, src/, experiments/, *.md, requirements.txt
+
+
+# REFIT multi-house outputs (models/data — regenerable, keep off git)
+multi_household/data/
+multi_household/out/
+multi_household/out_phase2_17h/*.pt
+multi_household/out_phase2_17h/*.png
+multi_household/out_phase2_cnn_17h/*.pt
+multi_household/out_phase2_cnn_17h/*.png
+multi_household/out_phase2_cnn_compare/
+multi_household/__pycache__/
