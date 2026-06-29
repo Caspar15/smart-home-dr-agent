@@ -123,10 +123,10 @@ def build_community():
     return windows, bl_arrays, community_bl, n_comm_days, n_comm
 
 
-# ── Load Simulators (with LSTM) ───────────────────────────────────────────────
+# ── Load Simulators (arch auto-detected from config.json) ────────────────────
 
 def load_simulators(windows: dict) -> Dict[int, Simulator]:
-    print("[Simulators] Loading LSTM simulators ...")
+    print("[Simulators] Loading CNN-LSTM simulators ...")
     sims: Dict[int, Simulator] = {}
     for h in windows:
         sim = Simulator(house=h)
@@ -817,7 +817,7 @@ def hard_rule_check() -> None:
     checks = [
         ("Δ=10min / 144 slots/day — 全程使用此解析度",                                True),
         ("chronological split 70/10/20，windows 全來自各戶 test 段",                   True),
-        ("因果性: Coord 用 LSTM forecast (sim.forecast); 不讀未來真實 baseload",       True),
+        ("因果性: Coord 用 CNN-LSTM forecast (sim.forecast); 不讀未來真實 baseload",   True),
         ("Oracle 用真實 baseload 作背景（離線下界，明確標注非線上方法）",               True),
         ("must-run 計入聚合負載 (include_must_run=True in schedule_house)",             True),
         ("Coordinator 只收 Σ_h load_h（隱私）",                                       True),

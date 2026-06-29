@@ -28,7 +28,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from phase2_lstm import BaseloadLSTM, add_time_features, handle_gaps
+from phase2_lstm import BaseloadLSTM, BaseloadCNNLSTM, build_model, add_time_features, handle_gaps
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 SLOT_MINUTES    = 10
@@ -36,8 +36,10 @@ DELTA_MAX_SLOTS = 36
 LOOK_BACK       = 144   # 24 h context window (matches Phase 2)
 HORIZON         = 36    # 6 h forecast horizon (matches Phase 2)
 SHORT_GAP       = 3     # max gap slots to interpolate (matches Phase 2)
-OUT_DIR         = Path("out")
-MODEL_DIR       = Path("out_phase2_17h")
+OUT_DIR           = Path("out")
+MODEL_DIR_LSTM    = Path("out_phase2_17h")
+MODEL_DIR_CNNLSTM = Path("out_phase2_cnn_17h")
+MODEL_DIR         = MODEL_DIR_CNNLSTM   # active model: switch here to toggle LSTM ↔ CNN-LSTM
 
 
 # ── Data classes ──────────────────────────────────────────────────────────────
@@ -147,8 +149,8 @@ class Simulator:
         self._t_pos: int = 0
         self._current_t  = self._timeline[0]
 
-        # ── LSTM state (populated by load_lstm) ───────────────────────────
-        self._model:       Optional[BaseloadLSTM] = None
+        # ── Model state (populated by load_lstm; may be LSTM or CNN-LSTM) ──
+        self._model:       Optional[object] = None
         self._scaler_mean: float = 0.0
         self._scaler_std:  float = 1.0
         self._lstm_loaded: bool  = False
@@ -158,12 +160,22 @@ class Simulator:
     def load_lstm(
         self,
         model_dir:    Path = MODEL_DIR,
-        results_json: Path = MODEL_DIR / "results.json",
+        results_json: Optional[Path] = None,
     ) -> None:
         """
-        Load Phase 2 LSTM model and scaler for this house.
+        Load Phase 2 model (LSTM or CNN-LSTM) for this house.
+        Architecture is auto-detected from config.json in model_dir.
         Scaler mean/std are read from results.json — never refit (HARD RULE 3).
         """
+        if results_json is None:
+            results_json = model_dir / "results.json"
+
+        # Auto-detect architecture from config.json
+        cfg_path = model_dir / "config.json"
+        with open(cfg_path) as f:
+            cfg = json.load(f)
+        arch = cfg.get("arch", "lstm")
+
         with open(results_json) as f:
             results = json.load(f)
         house_result = next((r for r in results if r["house"] == self.house), None)
@@ -177,19 +189,14 @@ class Simulator:
             raise FileNotFoundError(
                 f"Model not found: {model_path}. Run phase2_lstm.py first."
             )
-        self._model = BaseloadLSTM(
-            input_size  = 5,
-            hidden_size = 64,
-            num_layers  = 2,
-            horizon     = HORIZON,
-            dropout     = 0.1,
-        )
+        self._model = build_model(arch, cfg)
         self._model.load_state_dict(
             torch.load(model_path, map_location="cpu", weights_only=True)
         )
         self._model.eval()
         self._lstm_loaded = True
-        print(f"  [Simulator H{self.house}] LSTM loaded  "
+        arch_label = "CNN-LSTM" if arch == "cnn_lstm" else "LSTM"
+        print(f"  [Simulator H{self.house}] {arch_label} loaded  "
               f"mean={self._scaler_mean:.1f} W  std={self._scaler_std:.1f} W")
 
     # ── Clock ─────────────────────────────────────────────────────────────────

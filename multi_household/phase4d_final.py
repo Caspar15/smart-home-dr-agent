@@ -96,6 +96,7 @@ def print_table(
     oracle_days_dict,
     coordable, bg_dom,
     committed_coord,
+    coord_logs,
 ):
     SEP  = "=" * 90
     sep2 = "-" * 90
@@ -185,7 +186,8 @@ def print_table(
     print(f"  Deadline-miss:       {n_miss} ({n_miss/max(n_total,1):.1%})")
     print(f"  Avg delay:           {np.mean(delays):.2f} h  (std {np.std(delays):.2f} h)")
     print(f"  Runtime:             0.093 s/tick  (2592 ticks, 17 戶)")
-    print(f"  Fallback ticks:      0")
+    fb_total = sum(1 for e in coord_logs if e["fallback"])
+    print(f"  Fallback ticks:      {fb_total}")
     print(f"\n  ★ Δ_max=6h / 不跨日 → miss 主因為 Δ_max 本身或午夜邊界，非協調延遲。")
 
 
@@ -258,6 +260,7 @@ def save_final_json(
     coordable, bg_dom,
     committed_coord,
     job_pct_arr,
+    fb_total,
 ):
     red_g = (pk_nodr - pk_greedy) / np.maximum(pk_nodr, 1) * 100
     red_c = (pk_nodr - pk_coord)  / np.maximum(pk_nodr, 1) * 100
@@ -313,7 +316,7 @@ def save_final_json(
             "avg_delay_h": float(np.mean(delays)) if delays else 0.0,
             "std_delay_h": float(np.std(delays))  if delays else 0.0,
             "runtime_s_per_tick": 0.093,
-            "fallback_ticks": 0,
+            "fallback_ticks": fb_total,
         },
         "per_day": [
             {
@@ -438,14 +441,14 @@ def hard_rule_check():
     print("=" * 72)
     checks = [
         ("SCHED_REF 正規化: schedule_house/run_coordination 傳入共同 t_common",        True),
-        ("LSTM forecast 仍用各戶真實 t_real (因果性保全)",                              True),
+        ("CNN-LSTM forecast 仍用各戶真實 t_real (因果性保全)",                          True),
         ("日分類用 Job%≥10% (診斷2標準)，非 max_active 寬鬆標準",                      True),
         ("協調效率 = (greedy−coord)/(greedy−oracle)×100%，oracle 口徑",                True),
         ("Oracle 直接從 JSON 讀取（離線 MILP，不受 t_real bug 影響）",                  True),
         ("No-DR 在各戶真實 r_j 時刻立刻執行 (無任何 lookahead)",                        True),
         ("排除 H11/21（太陽能）H12（無 deferrable），17 戶 HOUSES 一致",                True),
         ("無 R² 指標；用 RMSE/MAE/MAPE 系列",                                           True),
-        ("chronological split 70/10/20（Phase 2 LSTM 訓練，此處不 shuffle）",           True),
+        ("chronological split 70/10/20（Phase 2 CNN-LSTM 訓練，此處不 shuffle）",       True),
         ("commit-first / must-run / warm-start 邏輯完全沿用 phase4d_eval.run_rolling",  True),
     ]
     all_ok = all(ok for _, ok in checks)
@@ -486,7 +489,7 @@ def main():
     greedy_loads, _g_log, _g_comm = run_rolling(
         simulators, windows, window_jobs, community_bl, n_comm, "greedy")
 
-    coord_loads, _c_log, committed_coord = run_rolling(
+    coord_loads, coord_logs, committed_coord = run_rolling(
         simulators, windows, window_jobs, community_bl, n_comm, "coord")
     runtime_s_tick = (_time.time() - t0) / (2 * n_comm)
     print(f"\n  [Timing] {runtime_s_tick:.3f} s/tick across greedy+coord runs")
@@ -504,6 +507,7 @@ def main():
     print(f"    BG-dominant: Day {list(bg_dom)}  ({len(bg_dom)} days)")
 
     # Tables
+    fb_total = sum(1 for e in coord_logs if e["fallback"])
     print_table(
         no_dr_loads, greedy_loads, coord_loads,
         community_bl, n_comm_days,
@@ -511,6 +515,7 @@ def main():
         oracle_days_dict,
         coordable, bg_dom,
         committed_coord,
+        coord_logs,
     )
 
     # Plot
@@ -525,6 +530,7 @@ def main():
         coordable, bg_dom,
         committed_coord,
         job_pct_arr,
+        fb_total,
     )
 
     # Verify JSON can be read back
@@ -534,8 +540,8 @@ def main():
     print(f"  [JSON] Read-back OK — {len(_check['per_day'])} days, "
           f"miss={_check['job_metrics']['deadline_miss_rate']:.1%}")
 
-    # Update PLAN.md
-    update_plan_md()
+    # Update PLAN.md — disabled for regression test (user: 先不更新 PLAN)
+    # update_plan_md()
 
     # HARD RULE
     hard_rule_check()
