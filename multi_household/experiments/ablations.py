@@ -13,10 +13,21 @@ if sys.platform == "win32":
     try: sys.stdout.reconfigure(encoding="utf-8")
     except Exception: pass
 
+import random
 import numpy as np
+import torch
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+
+# Match the canonical rollout (rollout.py uses --seed 42). We RE-SEED before
+# every rollout so each ablation row is independently reproducible and the
+# accept=0.85 row lines up exactly with the headline result.
+SEED = 42
+
+
+def _reseed(seed: int = SEED) -> None:
+    random.seed(seed); np.random.seed(seed); torch.manual_seed(seed)
 
 from multi_household.config import CLEAN_HOUSES
 from multi_household.experiments.rollout import (
@@ -72,6 +83,7 @@ def ablate_forecast(houses_data: dict, accept: float) -> list[dict]:
     rows = []
     for fm in ("lstm", "persistence"):
         print(f"\n  --- forecast = {fm} ---")
+        _reseed()
         r = rollout(houses_data, mode="coordinated",
                     user_accept=accept, forecast_mode=fm, verbose=False)
         row = _save_and_summarize(r, "coordinated", f"forecast={fm}")
@@ -88,6 +100,7 @@ def ablate_accept_rate(houses_data: dict, rates: list[float]) -> list[dict]:
     rows = []
     for r_in in rates:
         print(f"\n  --- accept_rate = {r_in:.2f} ---")
+        _reseed()
         r = rollout(houses_data, mode="coordinated",
                     user_accept=r_in, forecast_mode="lstm", verbose=False)
         row = _save_and_summarize(r, "coordinated", f"accept={r_in:.2f}")

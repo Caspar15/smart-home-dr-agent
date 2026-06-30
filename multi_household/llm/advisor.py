@@ -23,7 +23,7 @@ from multi_household.aggregator.price_broadcast import Broadcast
 
 
 OLLAMA_URL = "http://localhost:11434/api/chat"
-MODEL      = "qwen3:4b"
+MODEL      = "llama3.1:8b"
 
 
 @dataclass
@@ -157,7 +157,7 @@ def validate_units(text: str, expected_unit: str = "Wh") -> list[str]:
             issues.append("hallucinated unit 'kW' (expected W)")
     return issues
 
-SYSTEM_PROMPT_SUMMARY = """/no_think
+SYSTEM_PROMPT_SUMMARY = """
 你是住戶能源顧問。任務:根據一天的「事實」JSON,寫一份簡短的繁體中文回顧。
 規則:
 1. 禁止使用 <think>/思考標記。
@@ -169,7 +169,7 @@ SYSTEM_PROMPT_SUMMARY = """/no_think
 7. 嚴格遵守 JSON Schema。直接輸出 JSON。"""
 
 
-SYSTEM_PROMPT_PERSONALIZED = """/no_think
+SYSTEM_PROMPT_PERSONALIZED = """
 你是個人化的住戶能源顧問。系統已經算好建議內容跟所有數字,你只負責
 「**用 user 看得懂的話包裝**」+「**預測 user 會不會接受**」。
 
@@ -220,10 +220,9 @@ def call_ollama_personalized(facts: dict,
                          + json.dumps(user_history, ensure_ascii=False, indent=2)
                          + "\n```\n\n當前推薦事實:\n```json\n"
                          + json.dumps(facts, ensure_ascii=False, indent=2)
-                         + "\n```\n直接輸出 JSON。/no_think")},
+                         + "\n```\n直接輸出 JSON。")},
         ],
         "stream": False,
-        "think": False,
         "format": PERSONALIZED_SCHEMA,
         "options": {"temperature": 0.3, "top_p": 0.9, "num_predict": 700},
     }
@@ -269,10 +268,9 @@ def call_ollama_summary(facts: dict,
             {"role": "system", "content": SYSTEM_PROMPT_SUMMARY},
             {"role": "user",
              "content": "今日事實:\n```json\n" + json.dumps(facts, ensure_ascii=False, indent=2)
-                        + "\n```\n直接輸出 JSON。/no_think"},
+                        + "\n```\n直接輸出 JSON。"},
         ],
         "stream": False,
-        "think": False,
         "format": SUMMARY_SCHEMA,
         "options": {"temperature": 0.2, "top_p": 0.9, "num_predict": 600},
     }

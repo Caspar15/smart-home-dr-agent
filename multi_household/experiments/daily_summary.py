@@ -4,7 +4,8 @@ Run:  python -m multi_household.experiments.daily_summary --house 7 --day 1
 
 Loads the saved coordinated rollout, extracts that house+day, computes
 the day's facts (cost, recommendations, peak events), then calls Ollama
-(qwen3:4b) with schema-constrained output. Saves Markdown + JSON.
+(local Llama 3.1, see advisor.MODEL) with schema-constrained output.
+Saves Markdown + JSON.
 """
 from __future__ import annotations
 import sys, io, argparse, json, time
@@ -139,7 +140,8 @@ def main():
     if args.no_ollama:
         return
 
-    print(f"\n[2/3] Calling Ollama (qwen3:4b) for daily summary ...")
+    from multi_household.llm.advisor import MODEL as LLM_MODEL
+    print(f"\n[2/3] Calling Ollama ({LLM_MODEL}) for daily summary ...")
     t0 = time.time()
     summary = call_ollama_summary(facts)
     print(f"      elapsed {time.time()-t0:.1f}s")
