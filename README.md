@@ -1,111 +1,109 @@
-# Smart-Home Multi-Agent Energy Management
+# Smart-Home Demand-Response — Forecasting · Coordination · LLM Advisory
 
-End-to-end pipeline for residential demand response: **LSTM forecast →
-single-household decision controller (rule / MPC) → LLM advisory**, on
-the UCI Appliances Energy dataset. Built up from a reproduction of
-*Durrani et al. (2025)*; now extended toward a multi-agent system.
+This repo holds **two related projects** on residential demand response (DR):
 
-- **Roadmap & progress** → [`ROADMAP.md`](ROADMAP.md)
-- **Agent design** (env, controllers, advisory) → [`docs/agent_design.md`](docs/agent_design.md)
-- **Literature comparison** → [`docs/literature.md`](docs/literature.md)
-- **Historical artefacts** (reproduction report, paper outline) → [`docs/archive/`](docs/archive/)
+| Folder | Project | Status |
+|---|---|---|
+| **`multi_household/`** | **Journal extension** — N-household DR on the REFIT UK dataset: per-house forecast → grid coordination → appliance-level control → **LLM advisory + closed-loop learning**. | ✅ active, the current focus |
+| **`conference/`** | **ISASD 2026 paper** — single-household forecasting (CNN-LSTM) + DR strategies + a single-household agent (rule / MPC) + v1 LLM advisory, on the UCI Appliances dataset. | ✅ published base (archived here) |
 
-## Pipeline at a glance
+> Most current work is in **`multi_household/`**. The `conference/` tree is the
+> already-written single-household paper, kept for reference and because its
+> `conference/src/agent/{mpc,rl_agent,env}.py` are reused as **controller baselines** later.
 
-```
-UCI Appliances (10-min, 19,735 rows)
-   │
-   ▼
-[forecasting]  CNN-LSTM ensemble  →  cache/forecast_full.npz
-   │
-   ▼
-[agent.env]    HouseholdEnv  (gym-style; ToU price; deferrable-load buffer)
-   │
-   ├─►  agent.rule_based   (heuristic: defer on peak price + forecast)
-   ├─►  agent.mpc          (LP receding horizon, perfect-foresight upper bound)
-   │
-   ▼
-[advisory]     compute_facts → qwen3:4b (schema-constrained) → validate
-   │                                                         (src/agent/advisory.py)
-   ▼
-reports/agent_advisory.md   (Chinese advisory report)
-```
+---
 
-## Project structure
+## Repo layout
 
 ```
-reproduction/                  (project root — run commands from here)
-├── src/
-│   ├── config.py              paths, seeds, hyperparameters
-│   ├── data/                  preprocess · eda
-│   ├── forecasting/           classical · lstm · lstm_cnn (CNN-LSTM ensemble)
-│   ├── dr/                    strategies (7 DR transforms)
-│   ├── evaluation/            retrain · ensemble_v2 · smoothing · experiments
-│   ├── viz/                   paper_figures · comparison_figures · experiment_figures
-│   └── agent/                 env · state · reward · rule_based · mpc · advisory
-├── experiments/               run_agent · llm_report (v0) · llm_advisory (v1)
-├── docs/                      agent_design.md · literature.md · archive/
-├── reports/                   agent_facts.json · agent_advisory.json · .md
-├── results/                   metrics CSVs (E1–E6, comparison, pivots)
-├── figures/                   paper figures (PNG)
-├── slides/assets/             source slide figures (hand-made PNG)
-├── cache/                     forecast / preds / split (gitignored, regenerable)
-└── ROADMAP.md · README.md · requirements.txt · .gitignore
+reproduction/                       ← run multi_household commands from here
+├── multi_household/                ← THE journal system (see its own README)
+│   ├── data/  forecasting/  aggregator/  agent/  llm/  experiments/  tests/
+│   └── README.md                   ← how to run the system end-to-end
+├── reports/multi_household/        ← results (JSON / npz)  ·  metrics_summary.json
+├── figures/multi_household/        ← result figures (PNG)
+├── conference/                     ← the ISASD single-household paper
+│   ├── src/  experiments/  docs/  slides/  results/  figures/
+│   └── (run conference code from inside conference/:  cd conference)
+├── README.md  ROADMAP.md  requirements.txt  .gitignore
 ```
 
-## How to run
+## The multi-household system (current focus)
 
-All commands from the project root (so `src` is importable):
+```
+REFIT 16 UK houses (10-min, cleaned + time-aligned)
+   │
+   ▼ per-house CNN-LSTM            next-step / 24h baseload forecast
+   ▼ aggregator (price broadcast)  sum forecasts → dynamic ToU + peak flag + hold-release
+   ▼ appliance-aware controller    defer flexible cycles (washer/EV…), comfort cap, off-peak drain
+   ▼ LLM advisory v2               facts → Llama 3.1 (local) → validate (no hallucinated units)
+   ▼ closed-loop learning          accept/reject/modify → suppress rejected patterns
+   ▼ evaluation                    peak / P95 / rebound / Jain fairness / energy conservation
+```
 
-### Phase 1 — Forecasting + DR evaluation
+**Validated result** (clean, time-aligned REFIT, 16 houses, ~14-day test):
+coordinated peak **40.5 → 32.7 kW (−19%)**, P95 **−12%**, **no rebound** (−2.1 kW
+mean), **energy conserved** (0% drift). 52 unit tests pass.
+
+### How to run it
+
+All commands from this directory (`reproduction/`):
 
 ```bash
-python -m src.data.preprocess               # build + cache train/test split
-python -m src.data.eda                      # EDA figures + Table 2
-python -m src.forecasting.classical --fast  # LR / RF / SVR / kNN / baselines
-python -m src.forecasting.lstm              # autoregressive LSTM (v1)
-python -m src.forecasting.lstm_cnn          # CNN-LSTM ensemble (v2)
-python -m src.evaluation.retrain --fast     # 8 models × 7 DR strategies
-python -m src.evaluation.experiments        # E1–E6 paper experiment suite
-python -m src.viz.paper_figures             # paper-style figures
+# 0. one-time: local LLM (non-cloud, runs offline)
+ollama pull llama3.1:8b
+
+# 1. cache + train per-house forecasters (slow; writes multi_household/cache + models)
+python -m multi_household.experiments.pre_cache
+python -m multi_household.experiments.train_all
+
+# 2. end-to-end rollout (baseline / independent / coordinated)
+python -m multi_household.experiments.rollout --days 14 --mode all --user-accept 0.85
+
+# 3. metrics + ablations
+python -m multi_household.experiments.metrics
+python -m multi_household.experiments.ablations --days 14
+
+# 4. LLM advisory demos (House 7, a day in the test window 0–13)
+python -m multi_household.experiments.personalized_demo --house 7 --day 5
+python -m multi_household.experiments.daily_summary     --house 7 --day 5
+
+# tests
+python -m pytest multi_household/tests/ -q          # 52 tests
 ```
 
-### Phase 2 — Single-household agent
+**Where results go** (not just the terminal — they persist as files):
+
+| Output | Location |
+|---|---|
+| Rollout data | `reports/multi_household/rollout_*.npz / _recs.json / _waitlog.json` |
+| Headline metrics | `reports/multi_household/metrics_summary.json` |
+| Ablation | `reports/multi_household/ablation_results.json` + `figures/multi_household/ablation_*.png` |
+| LLM advisory / closed loop | `reports/multi_household/personalized/`, `daily/`, `user_choices.json` |
+| Figures | `figures/multi_household/*.png` |
+
+## The conference system (archived)
+
+The single-household ISASD paper code lives under `conference/` and runs from
+**inside** that folder (its imports are `from src.…`):
 
 ```bash
-python -m src.agent.forecast                # precompute LSTM forecast cache
-python -m experiments.run_agent             # rule-based vs MPC vs no-DR
+cd conference
+python -m src.forecasting.lstm_cnn      # CNN-LSTM ensemble
+python -m experiments.run_agent         # rule-based vs MPC vs no-DR
 ```
-
-### Phase 3 prelude — LLM advisory (NEW)
-
-```bash
-# Requires Ollama running locally with qwen3:4b
-ollama pull qwen3:4b                        # one-time
-python -m experiments.llm_advisory          # facts → schema-constrained LLM → validated md
-```
-
-Output: `reports/agent_advisory.md` (Chinese advisory report).
 
 ## Requirements
 
 ```
-numpy pandas scikit-learn statsmodels matplotlib seaborn torch
+numpy<2.0  pandas  scikit-learn  statsmodels  matplotlib  seaborn  torch
 ```
-Plus, for the LLM advisory layer: a local **Ollama** install with a chat
-model (default `qwen3:4b`).
+Plus a local **Ollama** for the LLM advisory layer (default `llama3.1:8b`).
+Verified on Python 3.12 · PyTorch 2.5 + CUDA 12.1 · pandas 2.2 · numpy 1.26.
 
-Verified on: Python 3.12 · PyTorch 2.5 + CUDA 12.1 · pandas 2.2 ·
-scikit-learn 1.5 · Ollama 0.30.
+---
 
-## Key outputs
-
-| Path | What |
-|---|---|
-| `results/metrics_retrain.csv`        | 8 models × 7 DR (long format) |
-| `results/metrics_lstm_v2.csv`        | v2 ensemble, raw / MA6 / MA12 |
-| `results/E1_…E6_*.csv`               | paper experiment suite |
-| `figures/figF_agent_loadcurve.png`   | rule vs MPC vs no-DR load curves |
-| `reports/agent_facts.json`           | structured facts fed to the LLM |
-| `reports/agent_advisory.json`        | LLM schema-constrained output |
-| `reports/agent_advisory.md`          | Chinese advisory report (human-facing) |
+- **Roadmap** → [`ROADMAP.md`](ROADMAP.md)
+- **System details / run guide** → [`multi_household/README.md`](multi_household/README.md)
+- **Full status (honest: what's real vs demo)** → `../PROJECT_STATUS.md`
+- **Weekly reporting plan** → `../../decks_workspace/WEEKLY_PLAN.md`

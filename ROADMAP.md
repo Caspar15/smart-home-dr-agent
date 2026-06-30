@@ -1,133 +1,73 @@
-# Roadmap — Smart-Home Multi-Agent Energy Management
+# Roadmap — Smart-Home DR: single-household → multi-household → coordination
 
-Strategy: **build and validate ONE complete single-household agent first,
-add an LLM advisory layer on top, then scale to multi-household, and
-finally federated learning + global coordination.** (Build the single
-unit before the system.)
+Strategy: **build & validate ONE single-household agent → add an LLM advisory
+layer → scale to multi-household with coordination → learned coordination (MARL)
++ federated learning.** Build the single unit before the system.
 
-Maps to the 0508 architecture: `Local Household Intelligence → Multiple
-Household AI Agents Layer → Global Coordination + Federated Learning`.
-
----
-
-## Phase 1 — Forecasting Baseline ✅ DONE
-
-Reproduce Durrani et al. (2025) on the UCI Appliances Energy dataset.
-
-- [x] Data preprocessing + feature engineering (lags, cyclical time, comfort indices)
-- [x] 8 models: LR / RF / SVR / kNN / LSTM + Persistence / Seasonal-Naive / ETS
-- [x] 7 DR strategies (rule-based load transforms, closed-form formulas)
-- [x] Evaluation: MAE / RMSE / R² across 8 × 7 cells
-- [x] **Key finding**: the paper's R²=0.94 comes from coarser evaluation
-      granularity; honest 10-min R² caps ~0.6 (see `docs/archive/REPORT.md`)
-- [x] **Improved CNN-LSTM (v2)**: cyclical feats + 4-seed ensemble →
-      raw R²=0.64, hourly-eval ~0.91
-- [x] E1–E6 paper experiment suite (granularity / split / features / arch)
-
-**Code:** `src/data`, `src/forecasting`, `src/dr`, `src/evaluation`, `src/viz`
+Two code trees: **`conference/`** (single-household, published) and
+**`multi_household/`** (the journal system, current focus).
 
 ---
 
-## Phase 2 — Single-Household Agent ✅ DONE
+## Phase 1 — Single-household forecasting ✅ DONE (conference)
 
-Turn "prediction" into "decision" on ONE household. Close the loop:
-`forecast → state → decision → DR action → reward`.
+Reproduce + improve Durrani et al. (2025) on UCI Appliances.
+- [x] 8 forecasters (LR/RF/SVR/kNN/LSTM/Persistence/Seasonal-Naive/ETS) × 7 DR strategies
+- [x] Honest finding: paper's R²=0.94 is a granularity artefact; 10-min R² ~0.6
+- [x] CNN-LSTM v2 ensemble; E1–E6 experiment suite
+- **Code:** `conference/src/{data,forecasting,dr,evaluation,viz}`
 
-Because the dataset is a static log (no price, no actions, no feedback),
-we first build a **simulator** (`src/agent/env.py`) whose "physics" is
-the DR transforms we already have.
+## Phase 2 — Single-household agent ✅ DONE (conference)
 
-- [x] **Step 1a — Environment** (`src/agent/env.py`): Gym-style
-      `reset/step`, synthetic ToU price, deferrable-load dynamics,
-      discrete 3 actions
-- [x] **State** (`src/agent/state.py`): demand + precomputed LSTM
-      forecast + price + cyclical time + buffer level
-- [x] **Reward** (`src/agent/reward.py`): `-(cost + w1·peak + w2·comfort + w3·switching)`
-- [x] **Step 1b — Rule-based controller** (`src/agent/rule_based.py`):
-      defer on high price + forecast peak, auto-release off-peak
-- [x] **Step 1c — MPC baseline** (`src/agent/mpc.py`): LP receding-horizon
-      (perfect-foresight upper bound). Beats the rule on peak-shaving:
-      95th-pctile −13.3% vs −10.3%, cost −2.8% vs −2.6%
-- [x] **Evaluation** (`experiments/run_agent.py`): 3-way baseline / rule / MPC
-- [ ] **Step 1d — RL agent** (`src/agent/rl_agent.py`): PPO/DQN in the
-      env, must beat MPC to be worth it  ◀ optional, deferred
-
-**Forecast cache:** `src/agent/forecast.py` → `cache/forecast_full.npz`
-**Load curve:** `figures/figF_agent_loadcurve.png`
-
-**Honest caveats:** the price and the action→load effect are *simulated*
-(the dataset has neither); single household only (no coordination yet);
-comfort is a proxy (deviation from original load).
+`forecast → state → decision → DR action → reward` on one home (simulated price/physics).
+- [x] Gym-style env, rule-based controller, **MPC baseline** (LP receding-horizon, perfect-foresight upper bound)
+- [x] v1 LLM advisory (schema-constrained + post-validator, anti-hallucination)
+- [ ] RL agent (`conference/src/agent/rl_agent.py`) — scaffold only, deferred
+- **Reused later:** `conference/src/agent/{mpc,rl_agent,env}.py` become multi-household controller baselines.
 
 ---
 
-## Phase 3 prelude — LLM Advisory Layer ✅ DONE (v1)
+## Phase 3 — Multi-household coordination ✅ DONE (journal, `multi_household/`)
 
-Add a natural-language analyst on top of the deterministic controller.
-The LLM is NOT in the real-time control loop — it reads structured facts
-from a finished run and produces a Chinese advisory report.
+- [x] REFIT 16-house data: deglitch + clean window + **common-grid time alignment**
+- [x] Per-house CNN-LSTM (local-only, train-only scaler — no leakage)
+- [x] Aggregator: dynamic ToU price + peak detection + **hold-release** (anti-rebound)
+- [x] Appliance-aware controller: rising-edge defer, cooldown, comfort cap, off-peak drain
+- [x] **LLM advisory v2**: personalized, **Llama 3.1 (local Ollama)**, fact-citation + unit validation
+- [x] **Closed-loop learning**: accept/reject/modify → agent suppresses rejected patterns
+- [x] 52 unit tests; seeded ablations on clean data
+- **Validated:** coordinated peak **−19%**, P95 **−12%**, no rebound, energy conserved.
 
-- [x] **v0 metrics report** (`experiments/llm_report.py`): metrics →
-      qwen3:4b → Chinese summary. Quick demo path.
-- [x] **v1 advisory** (`experiments/llm_advisory.py` + `src/agent/advisory.py`):
-      structured facts (forecast MAE per hour, action distribution, peak
-      events, tomorrow outlook) → Ollama with JSON-Schema-constrained
-      output → post-validator → markdown.
-- [x] Hallucination control:
-      A-class (input) — pre-computed numbers, LLM can't invent.
-      B-class (reasoning) — schema enums force controlled vocabulary.
-      C-class (output) — post-validator checks claimed numbers vs facts.
-- [ ] **Next polish** — extend `validate()` with domain rules (e.g.
-      shave_rate < 50% blocks `threshold → increase`); compare qwen3:4b
-      vs 8b on advisory quality.
+## Phase 4 — Stronger results + learned coordination ◀ NEXT
 
-**Outputs:** `reports/agent_facts.json`, `reports/agent_advisory.{json,md}`
+- [ ] **Closed-loop learning** as a focused report (R13) — accept-rate 99.6→85→45%
+- [ ] **Controller baselines**: wire `conference/src/agent/{mpc,rl_agent}` to multi-house → table `No-DR | Rule(ours) | MPC | RL`
+- [ ] **EV smart-charging coordinator** (stagger 5 EVs across the trough)
+- [ ] **Federated learning** (Local vs FedAvg vs Centralized)
+- [ ] **Seq2Seq 24 h forecast** (replace recursive, stop error compounding)
+- [ ] **MARL** — replace hand-written rules with learned multi-agent coordination (Q1 novelty)
 
----
-
-## Phase 3 — Multi-Household Coordination  ◀ NEXT
-
-- [ ] **Step 2a — Multi-household env**: replicate the validated
-      single-household env to N households (each its own LSTM forecast +
-      buffer + controller). Add community-level peak, Jain-fairness, and
-      synchronous-rebound diagnostics.
-- [ ] **Step 2b — Data**: ingest Low Carbon London (5,567 UK homes,
-      half-hourly, includes 1,100-household **real dToU tariff trial** —
-      lets us drop the synthetic price assumption).
-- [ ] **Step 2c — Coordination mechanism**: compare 2-3 options —
-      central price-signal aggregator (greedy) vs. game-theoretic /
-      consensus vs. learned coordinator.
-- [ ] **Step 2d — LLM community advisor**: aggregate-level advisory
-      (which hours, which cohorts, which interventions).
-
----
-
-## Phase 4 — Federated + Global  (later)
-
-- [ ] **Step 3a — Federated learning**: train per-household LSTMs
-      federated across cohorts; preserve privacy.
-- [ ] **Step 3b — Global coordination layer**: grid-scenario evaluation;
-      Workflow vs Multi-Agent vs Hybrid; LLM as system-level explainer.
+> **External contribution under review:** a collaborator's `shadow-price + oracle MILP`
+> coordinator (PR #1) was verified (reproduces −32% PAR / 72% of oracle on our data)
+> but **not yet integrated** — it lives on the collaborator's fork pending a clean
+> integration of the two systems. See `decks_workspace/WEEKLY_PLAN.md §2.6`.
 
 ---
 
 ## Status snapshot
 
-| Layer (0508 architecture) | Status |
+| Layer | Status |
 |---|---|
-| Data | ✅ done |
-| LSTM Forecast | ✅ done (CNN-LSTM v2 ensemble) |
-| DR Simulation | ✅ done (rule-based env physics + 7 strategies) |
-| Single-household decision core | ✅ done (rule-based + MPC; RL deferred) |
-| LLM advisory (single household) | ✅ done (v1, schema-constrained + validated) |
-| Multi-household agent layer | ☐ next |
-| Global coordination + Federated | ☐ later |
+| Single-household forecast + agent + v1 advisory | ✅ done (conference) |
+| Multi-household data + per-house forecasting | ✅ done |
+| Aggregator coordination + appliance control | ✅ done (−19% peak) |
+| LLM advisory v2 + closed-loop learning | ✅ done (Llama 3.1, local) |
+| Controller baselines (MPC/RL multi-house) | ☐ next |
+| EV coordinator · FL · Seq2Seq · MARL | ☐ future |
 
-## This week (2026-06-09)
+## Recent (2026-06-30)
 
-- ISASD 2026 paper polished — final title decided by advisor:
-  *AI-Agent-Driven Demand Response Forecasting for Smart Homes with a
-  CNN-LSTM Framework* (12 pages, Springer LLNCS, compiles cleanly).
-- Added LLM advisory layer (qwen3:4b + JSON Schema + post-validator).
-- Reorganised reproduction repo (slides out of root, stale docs to
-  archive, .gitignore updated).
+- Repo restructured: conference work → `conference/`, top level now clean.
+- LLM swapped qwen3 → **local Llama 3.1** (non-Chinese, offline, privacy).
+- Ablations re-run on clean data with fixed seed.
+- Reported through **R12 (0703)**: coordination deep-dive + LLM advisory v2.
