@@ -47,11 +47,6 @@ Reproduce + improve Durrani et al. (2025) on UCI Appliances.
 - [ ] **Seq2Seq 24 h forecast** (replace recursive, stop error compounding)
 - [ ] **MARL** — replace hand-written rules with learned multi-agent coordination (Q1 novelty)
 
-> **External contribution under review:** a collaborator's `shadow-price + oracle MILP`
-> coordinator (PR #1) was verified (reproduces −32% PAR / 72% of oracle on our data)
-> but **not yet integrated** — it lives on the collaborator's fork pending a clean
-> integration of the two systems. See `decks_workspace/WEEKLY_PLAN.md §2.6`.
-
 ---
 
 ## Status snapshot
@@ -65,9 +60,12 @@ Reproduce + improve Durrani et al. (2025) on UCI Appliances.
 | Controller baselines (MPC/RL multi-house) | ☐ next |
 | EV coordinator · FL · Seq2Seq · MARL | ☐ future |
 
-## Recent (2026-06-30)
+## Recent (2026-07-03)
 
-- Repo restructured: conference work → `conference/`, top level now clean.
+- **Project cleanup**: removed all external-comparison side-work (an experimental
+  shadow-price/oracle coordinator that a collaborator had contributed) so
+  `multi_household/` is a single clean trunk — our own system only. 52 tests still pass.
+- Repo restructured earlier: conference work → `conference/`, top level clean.
 - LLM swapped qwen3 → **local Llama 3.1** (non-Chinese, offline, privacy).
 - Ablations re-run on clean data with fixed seed.
 - Reported through **R12 (0703)**: coordination deep-dive + LLM advisory v2.

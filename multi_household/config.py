@@ -43,10 +43,10 @@ OFFPEAK_PRICE_GBP = 0.08
 # Aggregator broadcasts an extra "Peak Clipping" surcharge when aggregate
 # forecast Y(t+1) exceeds GRID_THRESHOLD_W. Multiplier scales linearly
 # with the overage ratio.
-# Calibrated from 16-house aggregate distribution on test set (with EVs):
-#   mean 12.5 kW, p80 17.1 kW, p85 18.2 kW, p95 22.1 kW, p99 25.8 kW, max 35.4 kW
-# Setting threshold at ~p85 means coordinated mode triggers on the top ~15% of
-# timesteps — frequent enough to materially shave peaks, selective enough that
-# the rebound stays small.
+# Threshold ≈ the p85 of the 16-house aggregate on the test window, so
+# coordinated mode triggers on roughly the busiest ~15% of timesteps —
+# frequent enough to materially shave peaks, selective enough that the rebound
+# stays small. (For reference, the current clean-window aggregate runs ~12.5 kW
+# mean with a No-DR peak of ~40.5 kW, driven by the overnight EV pile-up.)
 GRID_THRESHOLD_W = 18000.0
 PEAK_CLIP_ALPHA  = 2.0                                  # 1 + α·(Y/G − 1)

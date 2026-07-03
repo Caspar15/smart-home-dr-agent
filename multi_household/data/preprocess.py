@@ -30,17 +30,21 @@ def reindex_to_common_grid(df: pd.DataFrame,
 def impute_missing(df: pd.DataFrame,
                    max_gap: int = MAX_INTERP_GAP_STEPS) -> pd.DataFrame:
     """Fill ONLY short gaps. REFIT has multi-week outages; interpolating across
-    those fabricates data, so we limit interpolation to `max_gap` steps (≤1 h).
+    those fabricates data, so we limit filling to `max_gap` steps (≤6 h).
     Anything still missing after that is dropped by the caller — we never invent
     a month-long straight line. (The clean-window restriction means very little
     is left to fill.)
+
+    Causal by design: we forward-fill only (never backfill from FUTURE values),
+    so an imputed cell never peeks ahead. Leading NaNs before a house's first
+    reading are left as NaN and dropped by the caller.
     """
     out = df.copy()
     numeric = out.select_dtypes(include=[np.number]).columns
     out[numeric] = (out[numeric]
                     .ffill(limit=max_gap)
                     .interpolate(method="linear", limit=max_gap,
-                                 limit_direction="both"))
+                                 limit_direction="forward"))
     return out
 
 

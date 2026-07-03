@@ -146,7 +146,14 @@ BAD_UNITS = (
 
 
 def validate_units(text: str, expected_unit: str = "Wh") -> list[str]:
-    """Return list of issues — e.g. 'kWh found, expected Wh'."""
+    """Return list of issues — e.g. 'kWh found, expected Wh'.
+
+    NOTE: this is detection-only by design. Issues are recorded on the parsed
+    output under `_unit_validation_issues` so the caller can surface / count
+    them; we do NOT auto-reject or re-prompt. The LLM only wraps numbers the
+    system already computed, so a flagged unit is a display nit, not a wrong
+    number.
+    """
     issues = []
     low = text.lower()
     if expected_unit == "Wh":
@@ -302,4 +309,3 @@ def call_ollama_summary(facts: dict,
         return None
     except Exception:
         return None
-    return None

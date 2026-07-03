@@ -33,19 +33,18 @@ from multi_household.data.appliance_map import (
 EV_HOUSES = {5, 7, 9, 13, 18}
 EV_CHARGE_W   = 7000.0     # 7 kW typical UK home charger
 EV_CHARGE_DURATION_STEPS = 24   # 4 hours @ 10-min step
-EV_CHARGE_HOUR_RANGE = (22, 4)  # plug-in 22:00, finish before 04:00
 
 
 def _inject_synthetic_ev(df: pd.DataFrame, house_id: int,
                           seed: int = None) -> pd.DataFrame:
     """Add a synthetic EV charger column for selected houses.
 
-    Behaviour: every weekday evening between EV_CHARGE_HOUR_RANGE the EV
-    charges at EV_CHARGE_W for EV_CHARGE_DURATION_STEPS steps. Weekend
-    starts are skipped randomly (~30% of nights). The column is named
-    `appliance_synthetic_ev_w` and is added to BOTH the raw aggregate
-    (so demand reflects it) and as a separate channel (so agent can
-    target it for deferral).
+    Behaviour: each night has a 70% chance the EV charges (30% skipped, no
+    weekday/weekend distinction). Plug-in is randomised to 21:00-23:50 and the
+    EV then charges at EV_CHARGE_W for EV_CHARGE_DURATION_STEPS steps (4 h). The
+    column is named `appliance_synthetic_ev_w` and is added to BOTH the raw
+    aggregate (so demand reflects it) and as a separate channel (so the agent
+    can target it for deferral). Deterministic per house (seed = house_id * 17).
     """
     if house_id not in EV_HOUSES:
         return df

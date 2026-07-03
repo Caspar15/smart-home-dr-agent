@@ -59,12 +59,8 @@ desktop.ini
 # docs/, src/, experiments/, *.md, requirements.txt
 
 
-# REFIT multi-house outputs (models/data — regenerable, keep off git)
-multi_household/data/
-multi_household/out/
-multi_household/out_phase2_17h/*.pt
-multi_household/out_phase2_17h/*.png
-multi_household/out_phase2_cnn_17h/*.pt
-multi_household/out_phase2_cnn_17h/*.png
-multi_household/out_phase2_cnn_compare/
+# REFIT multi-house regenerable outputs (parquet cache is the real data; the
+# per-house model .pt live under multi_household/models/ — both already covered
+# above by *.parquet / *.pt / multi_household/cache/). NOTE: multi_household/data/
+# is SOURCE code (loader/preprocess/appliance_map), not data — do NOT ignore it.
 multi_household/__pycache__/
