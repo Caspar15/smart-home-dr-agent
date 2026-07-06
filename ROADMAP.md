@@ -48,9 +48,13 @@ Reproduce + improve Durrani et al. (2025) on UCI Appliances.
        end; P95 stable ±0.5), per-house NaN disclosure (mean 0.48%, worst 1.18%),
        closed-loop off/on/stress (stress: recs 445→0, suppressed 51, grid unchanged
        → suppression is free). Longer-window scan still open (optional).
-2. [ ] **Controller ladder (R15)** — wire `conference/src/agent/mpc.py` to multi-house
-       → `No-DR | Rule(ours) | MPC (perfect-foresight bound)`; RL optional.
-       MPC must schedule the EVs too (they set the peak) or the comparison is unfair.
+2. [x] **Controller ladder (R15, MPC part)** ✅ 2026-07-06 — `mpc_baseline.py`: the
+       single-house buffer LP lifted to the 16-house aggregate (perfect foresight,
+       full-window min-peak, actual per-step deferrable watts incl. EV, 8h repayment
+       → a valid relaxation bound). Ladder: No-DR 40.5 | Rule@85% 32.74 (51% of
+       bound) | Rule@100% 28.75 (77%) | **MPC bound 25.21 kW (−38%)**.
+       (Bound's P95 is not meaningful — the LP only minimizes peak.)
+       ☐ RL (SB3 PPO/DQN) optional — deferred.
 3. [ ] **Federated learning (R16)** — Local vs FedAvg vs Centralized.
 4. [ ] **Fairness constraint (R17)** — fix the Jain 0.34 concentration trade-off.
 5. [ ] **Seq2Seq 24 h forecast** — *deprioritized*: the ablation shows DR is robust to

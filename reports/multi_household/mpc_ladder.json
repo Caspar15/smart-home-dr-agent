@@ -1,0 +1,25 @@
+{
+  "note": "MPC = perfect-foresight LP relaxation (blocks splittable, 8h repayment) \u2014 no realizable controller can beat it.",
+  "no_dr": {
+    "peak_kw": 40.5,
+    "p95_kw": 27.99
+  },
+  "rule_85": {
+    "peak_kw": 32.74,
+    "p95_kw": 19.99
+  },
+  "rule_100": {
+    "peak_kw": 28.75,
+    "p95_kw": 19.49
+  },
+  "mpc_bound": {
+    "peak_kw": 25.21,
+    "p95_kw": 25.21
+  },
+  "energy_conserved": true,
+  "diag": {
+    "energy_in_wh": 143300.0,
+    "energy_out_wh": 143300.0,
+    "lp_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)"
+  }
+}
