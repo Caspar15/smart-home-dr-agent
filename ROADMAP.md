@@ -41,13 +41,22 @@ Reproduce + improve Durrani et al. (2025) on UCI Appliances.
 - **Validated (85% accept):** coordinated peak **−19%**, P95 **−29%**, energy conserved,
   valley-filled (load-leveled). Full acceptance → **−29% peak**.
 
-## Phase 4 — Stronger results + learned coordination ◀ NEXT
+## Phase 4 — Stronger results + learned coordination ◀ NEXT (priority order)
 
-- [ ] **Closed-loop learning** as a focused report (R13) — accept-rate 99.6→85→45%
-- [ ] **Controller baselines**: wire `conference/src/agent/{mpc,rl_agent}` to multi-house → table `No-DR | Rule(ours) | MPC | RL`
-- [ ] **Federated learning** (Local vs FedAvg vs Centralized)
-- [ ] **Seq2Seq 24 h forecast** (replace recursive, stop error compounding)
-- [ ] **MARL** — replace hand-written rules with learned multi-agent coordination (Q1 novelty)
+1. [ ] **Rigor pack (R14)** — multi-seed error bars (≥5 seeds), per-house NaN-rate
+       disclosure, closed-loop on/off ablation, (opt.) longer clean-window scan.
+       *Cheapest step that makes every number paper-grade — do this FIRST.*
+2. [ ] **Controller ladder (R15)** — wire `conference/src/agent/mpc.py` to multi-house
+       → `No-DR | Rule(ours) | MPC (perfect-foresight bound)`; RL optional.
+       MPC must schedule the EVs too (they set the peak) or the comparison is unfair.
+3. [ ] **Federated learning (R16)** — Local vs FedAvg vs Centralized.
+4. [ ] **Fairness constraint (R17)** — fix the Jain 0.34 concentration trade-off.
+5. [ ] **Seq2Seq 24 h forecast** — *deprioritized*: the ablation shows DR is robust to
+       forecast quality (persistence gives the same peak); remaining value is only
+       the LLM advisor's next-day preview.
+6. [ ] **MARL or real user study** — the Q1 decision point; pick with the advisor.
+
+> R13 (closed-loop + EV advisory + full ablation) is prepared — deck `0710國實院.pptx`.
 
 ---
 
