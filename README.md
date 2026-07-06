@@ -45,7 +45,7 @@ REFIT 16 UK houses (10-min, cleaned + time-aligned)
 **Validated result** (clean, time-aligned REFIT, 16 houses, ~14-day test, 85% accept):
 coordinated peak **40.5 → 32.7 kW (−19%)**, P95 **27.99 → 19.99 kW (−29%)**,
 **energy conserved** (0% drift); the EV reschedule is **advisory** (accept-gated) so
-acceptance drives it — 0% → 0% shaving, 100% → **−29% peak (28.75 kW)**. 54 unit tests pass.
+acceptance drives it — 0% → 0% shaving, 100% → **−29% peak (28.75 kW)**. 61 unit tests pass.
 
 ### How to run it
 
@@ -71,7 +71,7 @@ python -m multi_household.experiments.personalized_demo --house 7 --day 5
 python -m multi_household.experiments.daily_summary     --house 7 --day 5
 
 # tests
-python -m pytest multi_household/tests/ -q          # 54 tests
+python -m pytest multi_household/tests/ -q          # 61 tests
 ```
 
 **Where results go** (not just the terminal — they persist as files):

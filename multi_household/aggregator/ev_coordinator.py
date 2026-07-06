@@ -42,43 +42,6 @@ def _detect_blocks(ev: np.ndarray) -> list[tuple[int, int]]:
     return blocks
 
 
-def stagger_ev_schedule(ev_orig_by_house: dict[int, np.ndarray],
-                        timestamps: pd.DatetimeIndex,
-                        stagger_steps: int = STAGGER_STEPS) -> dict[int, np.ndarray]:
-    """Reschedule each night's EV blocks across houses so they fan out.
-
-    Args:
-        ev_orig_by_house: {house_id: EV watts array (T,)}
-        timestamps:       (T,) DatetimeIndex aligned with the arrays
-    Returns:
-        {house_id: rescheduled EV watts array (T,)} — same energy, spread out.
-    """
-    houses = sorted(ev_orig_by_house)
-    T = len(timestamps)
-    ev_shift = {h: np.zeros(T, dtype=np.float32) for h in houses}
-
-    # Group every EV block by the calendar date of its (evening) start. The
-    # synthetic injection always plugs in at 21:00-23:00, so the start date is
-    # an unambiguous "night" key.
-    night_blocks: dict[object, list] = defaultdict(list)
-    for h in houses:
-        for (start, length) in _detect_blocks(ev_orig_by_house[h]):
-            power = float(ev_orig_by_house[h][start])
-            night = timestamps[start].date()
-            night_blocks[night].append((h, start, length, power))
-
-    for night, blocks in night_blocks.items():
-        blocks.sort(key=lambda b: b[1])         # by original start step
-        anchor = blocks[0][1]                   # earliest plug-in that night
-        for rank, (h, start, length, power) in enumerate(blocks):
-            new_start = anchor + rank * stagger_steps
-            # keep the block inside the array; never resize it
-            new_start = max(0, min(new_start, T - length)) if length <= T else 0
-            end = min(new_start + length, T)
-            ev_shift[h][new_start:end] = power
-    return ev_shift
-
-
 # Fixed seed so the per-night EV accept decisions are reproducible AND monotone
 # in accept_rate (a block accepted at 0.5 is still accepted at 0.85).
 EV_ACCEPT_SEED = 20260710
@@ -89,7 +52,8 @@ def advisory_ev_schedule(ev_orig_by_house: dict[int, np.ndarray],
                          accept_rate: float = 1.0,
                          stagger_steps: int = STAGGER_STEPS,
                          seed: int = EV_ACCEPT_SEED):
-    """Advisory (human-in-the-loop) version of stagger_ev_schedule.
+    """Advisory (human-in-the-loop) EV stagger. accept_rate=1.0 is the fully
+    automatic schedule; below that, each night's reschedule is user-gated.
 
     Each night's EV reschedule is a RECOMMENDATION the user accepts with
     probability `accept_rate`:

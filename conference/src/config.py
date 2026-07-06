@@ -2,10 +2,11 @@
 from __future__ import annotations
 from pathlib import Path
 
-# src/config.py  ->  parents[1] = project root (reproduction/)
+# conference/src/config.py  ->  parents[1] = conference/ (this project's root;
+# results/figures/cache live INSIDE conference/ since the 2026-06 restructure)
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-# dataset lives one level above the project root (AI Agent smart grid/dataset/)
-DATA_CSV = PROJECT_ROOT.parent / "dataset" / "energydata_complete.csv"
+# dataset lives at "AI Agent smart grid/dataset/" = two levels above conference/
+DATA_CSV = PROJECT_ROOT.parents[1] / "dataset" / "energydata_complete.csv"
 
 RESULTS = PROJECT_ROOT / "results"
 FIGURES = PROJECT_ROOT / "figures"

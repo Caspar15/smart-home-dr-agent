@@ -14,3 +14,6 @@ Pillow
 # Phase 2 — single-household agent (add when building the RL controller)
 # gymnasium
 # stable-baselines3
+
+# Testing
+pytest
