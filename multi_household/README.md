@@ -46,7 +46,7 @@ multi_household/
 ├── llm/advisor.py            Llama 3.1 personalized advice + validators + closed loop
 ├── experiments/              pre_cache · train_all · rollout · metrics · ablations
 │                             · daily_summary · personalized_demo · run_full
-└── tests/                    52 tests (energy conservation, cycle edge, cooldown, loop)
+└── tests/                    54 tests (energy conservation, cycle edge, cooldown, loop, EV advisory)
 ```
 
 ## Status — ✅ built & validated
@@ -59,7 +59,7 @@ multi_household/
 - [x] LLM advisory v2 — personalized, Llama 3.1 (local), fact-citation + unit validation
 - [x] Closed-loop learning (accept/reject/modify → pattern suppression)
 - [x] EV advisory coordinator (accept-gated stagger of the 5 EVs → the big peak lever)
-- [x] 52 unit tests passing
+- [x] 54 unit tests passing
 - [x] Ablations on clean data (LSTM vs persistence, accept-rate sweep, seeded)
 - [ ] Controller baselines (MPC/RL — reuse `conference/src/agent/`) — next
 - [ ] Federated learning · Seq2Seq · MARL — future

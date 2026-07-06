@@ -37,7 +37,7 @@ Reproduce + improve Durrani et al. (2025) on UCI Appliances.
 - [x] **Closed-loop learning**: accept/reject/modify → agent suppresses rejected patterns
 - [x] **EV advisory coordinator**: stagger the 5 EVs across the overnight trough,
       accept-gated (a recommendation, not automatic) → acceptance drives the peak
-- [x] 52 unit tests; seeded ablations on clean data
+- [x] 54 unit tests; seeded ablations on clean data
 - **Validated (85% accept):** coordinated peak **−19%**, P95 **−29%**, energy conserved,
   valley-filled (load-leveled). Full acceptance → **−29% peak**.
 
@@ -71,7 +71,7 @@ Reproduce + improve Durrani et al. (2025) on UCI Appliances.
   Acceptance now cleanly drives the peak (0%→0%), strengthening the human-in-the-loop story.
 - **Project cleanup**: removed all external-comparison side-work (an experimental
   shadow-price/oracle coordinator that a collaborator had contributed) so
-  `multi_household/` is a single clean trunk — our own system only. 52 tests still pass.
+  `multi_household/` is a single clean trunk — our own system only. 54 tests pass (2 new for the EV advisory).
 - Repo restructured earlier: conference work → `conference/`, top level clean.
 - LLM swapped qwen3 → **local Llama 3.1** (non-Chinese, offline, privacy).
 - Ablations re-run on clean data with fixed seed.

@@ -68,3 +68,44 @@ def test_base_tou_price(hour, expected):
 ])
 def test_is_off_peak(hour, expected):
     assert is_off_peak(hour) == expected
+
+
+# --- EV advisory coordinator -------------------------------------------------
+
+def _toy_ev_night():
+    """Two houses, one night: both EVs plug in around 22:00 at 7 kW for 4 h."""
+    import numpy as np
+    import pandas as pd
+    ts = pd.date_range("2014-06-30", periods=288, freq="10min")  # 2 days
+    ev = {}
+    for h, start in ((5, 132), (7, 135)):        # ~22:00 / 22:30
+        arr = np.zeros(288, dtype=np.float32)
+        arr[start:start + 24] = 7000.0
+        ev[h] = arr
+    return ev, ts
+
+
+def test_advisory_ev_full_accept_conserves_energy_and_staggers():
+    from multi_household.aggregator.ev_coordinator import advisory_ev_schedule
+    ev, ts = _toy_ev_night()
+    orig, shift, (n_reco, n_acc) = advisory_ev_schedule(ev, ts, accept_rate=1.0)
+    assert n_reco == 2 and n_acc == 2
+    for h in ev:
+        # accepted → the natural block is fully removed and fully re-placed
+        assert orig[h].sum() == ev[h].sum()
+        assert shift[h].sum() == ev[h].sum()          # energy conserved
+    # staggered → the two shifted blocks no longer fully overlap
+    overlap = ((shift[5] > 0) & (shift[7] > 0)).sum()
+    natural_overlap = ((ev[5] > 0) & (ev[7] > 0)).sum()
+    assert overlap < natural_overlap
+
+
+def test_advisory_ev_zero_accept_touches_nothing():
+    from multi_household.aggregator.ev_coordinator import advisory_ev_schedule
+    ev, ts = _toy_ev_night()
+    orig, shift, (n_reco, n_acc) = advisory_ev_schedule(ev, ts, accept_rate=0.0)
+    assert n_reco == 2 and n_acc == 0
+    for h in ev:
+        # rejected → both applied arrays stay zero (EV stays in demand as-is)
+        assert orig[h].sum() == 0.0
+        assert shift[h].sum() == 0.0
