@@ -35,7 +35,7 @@ from multi_household.forecasting.per_house_lstm import (
 from multi_household.aggregator.price_broadcast import (
     aggregate_and_price, base_tou_price, is_off_peak, Broadcast,
 )
-from multi_household.aggregator.ev_coordinator import stagger_ev_schedule
+from multi_household.aggregator.ev_coordinator import advisory_ev_schedule
 from multi_household.agent.appliance_controller import (
     HouseAgentState, decide_step, build_state, _hour_bucket,
 )
@@ -233,18 +233,24 @@ def rollout(houses_data: dict,
     }
 
     # ── EV smart charging (coordinated only) ──────────────────────────────
-    # Stagger the synthetic EVs across the overnight trough so they don't pile
-    # up, and take EV out of the per-house agent's hands (the coordinator owns
-    # it). ev_orig/ev_shift are zero for non-EV houses.
+    # ADVISORY: each night's EV reschedule is a recommendation the user accepts
+    # (prob = user_accept) or rejects (EV stays at its natural time). So user
+    # acceptance drives the peak — accept 0 leaves the pile-up, accept 1 fully
+    # staggers it. EV is taken out of the per-house agent's hands either way.
+    # ev_orig/ev_shift are populated only for ACCEPTED blocks (zero elsewhere).
     ev_orig  = {h: np.zeros(T, dtype=np.float32) for h in houses}
     ev_shift = {h: np.zeros(T, dtype=np.float32) for h in houses}
     if ev_smart:
         ev_houses = {h: appliance_loads[h][EV_COL][:T]
                      for h in houses if EV_COL in appliance_loads[h]}
         if ev_houses:
-            ev_orig.update({h: v.astype(np.float32) for h, v in ev_houses.items()})
-            shifted = stagger_ev_schedule(ev_houses, timestamps)
-            ev_shift.update(shifted)
+            oa, sa, (ev_reco, ev_acc) = advisory_ev_schedule(
+                ev_houses, timestamps, accept_rate=user_accept)
+            ev_orig.update(oa)
+            ev_shift.update(sa)
+            if verbose:
+                print(f"  EV advisory: {ev_acc}/{ev_reco} nightly reschedules "
+                      f"accepted (accept_rate={user_accept})")
 
     def _agent_deferable(h):
         cols = houses_data[h]["deferable_cols"]
@@ -387,6 +393,9 @@ def main():
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--forecast-mode", default="lstm",
                     choices=["lstm", "persistence"])
+    ap.add_argument("--ev-smart", action=argparse.BooleanOptionalAction, default=True,
+                    help="stagger the synthetic EVs across the overnight trough "
+                         "(coordinated mode only; --no-ev-smart to ablate)")
     args = ap.parse_args()
 
     import random; random.seed(args.seed); np.random.seed(args.seed)
@@ -405,11 +414,11 @@ def main():
     for mode in modes:
         print(f"\n[2/3] Rollout (mode={mode}, forecast={args.forecast_mode}) ...")
         t0 = time.time()
+        # EV stagger is a coordination action → only in coordinated mode.
         results[mode] = rollout(houses_data, mode=mode,
                                 user_accept=args.user_accept,
                                 forecast_mode=args.forecast_mode,
-                                ev_smart=False)   # EV smart-charging: future work
-                                                  # (needs EV/NaN data cleanup first)
+                                ev_smart=(args.ev_smart and mode == "coordinated"))
         print(f"      elapsed {time.time()-t0:.0f}s")
 
     # Save raw results

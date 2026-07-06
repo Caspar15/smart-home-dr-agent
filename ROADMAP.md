@@ -35,14 +35,16 @@ Reproduce + improve Durrani et al. (2025) on UCI Appliances.
 - [x] Appliance-aware controller: rising-edge defer, cooldown, comfort cap, off-peak drain
 - [x] **LLM advisory v2**: personalized, **Llama 3.1 (local Ollama)**, fact-citation + unit validation
 - [x] **Closed-loop learning**: accept/reject/modify → agent suppresses rejected patterns
+- [x] **EV advisory coordinator**: stagger the 5 EVs across the overnight trough,
+      accept-gated (a recommendation, not automatic) → acceptance drives the peak
 - [x] 52 unit tests; seeded ablations on clean data
-- **Validated:** coordinated peak **−19%**, P95 **−12%**, no rebound, energy conserved.
+- **Validated (85% accept):** coordinated peak **−19%**, P95 **−29%**, energy conserved,
+  valley-filled (load-leveled). Full acceptance → **−29% peak**.
 
 ## Phase 4 — Stronger results + learned coordination ◀ NEXT
 
 - [ ] **Closed-loop learning** as a focused report (R13) — accept-rate 99.6→85→45%
 - [ ] **Controller baselines**: wire `conference/src/agent/{mpc,rl_agent}` to multi-house → table `No-DR | Rule(ours) | MPC | RL`
-- [ ] **EV smart-charging coordinator** (stagger 5 EVs across the trough)
 - [ ] **Federated learning** (Local vs FedAvg vs Centralized)
 - [ ] **Seq2Seq 24 h forecast** (replace recursive, stop error compounding)
 - [ ] **MARL** — replace hand-written rules with learned multi-agent coordination (Q1 novelty)
@@ -55,13 +57,18 @@ Reproduce + improve Durrani et al. (2025) on UCI Appliances.
 |---|---|
 | Single-household forecast + agent + v1 advisory | ✅ done (conference) |
 | Multi-household data + per-house forecasting | ✅ done |
-| Aggregator coordination + appliance control | ✅ done (−19% peak) |
+| Aggregator coordination + appliance control | ✅ done (−19% peak, −29% P95) |
 | LLM advisory v2 + closed-loop learning | ✅ done (Llama 3.1, local) |
+| EV advisory coordinator (accept-gated stagger) | ✅ done (drives −29% at full accept) |
 | Controller baselines (MPC/RL multi-house) | ☐ next |
-| EV coordinator · FL · Seq2Seq · MARL | ☐ future |
+| FL · Seq2Seq · MARL | ☐ future |
 
 ## Recent (2026-07-03)
 
+- **EV advisory coordinator enabled**: the (previously disabled) EV stagger is now
+  wired in as an **accept-gated recommendation** → P95 −11.8% → **−29%**, headline
+  peak unchanged (−19% at 85% accept), full acceptance → −29% peak. Energy conserved.
+  Acceptance now cleanly drives the peak (0%→0%), strengthening the human-in-the-loop story.
 - **Project cleanup**: removed all external-comparison side-work (an experimental
   shadow-price/oracle coordinator that a collaborator had contributed) so
   `multi_household/` is a single clean trunk — our own system only. 52 tests still pass.

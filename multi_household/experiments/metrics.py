@@ -43,8 +43,8 @@ def cost_gbp(load_w: np.ndarray, hours: np.ndarray) -> float:
     return float((energy_kwh * tou_price_vec(hours)).sum())
 
 
-def _load_recs(mode: str) -> list[dict]:
-    path = REPORTS / f"rollout_{mode}_recs.json"
+def _load_recs(mode: str, base: Path = REPORTS) -> list[dict]:
+    path = base / f"rollout_{mode}_recs.json"
     if not path.exists():
         return []
     try:
@@ -109,7 +109,9 @@ def compute_metrics(npz_path: Path) -> dict:
     peak_win_mean_ser = float(served_agg[is_peak].mean()) if is_peak.any() else 0.0
 
     # ---------------- Defer duration metrics ------------------------------
-    wait_path = REPORTS / f"rollout_{mode}_waitlog.json"
+    # Companion files live NEXT TO the npz (so ablation runs can write to their
+    # own folder without clobbering the headline rollout_* files in REPORTS).
+    wait_path = npz_path.parent / f"rollout_{mode}_waitlog.json"
     defer_waits = []
     if wait_path.exists():
         try:
@@ -130,7 +132,7 @@ def compute_metrics(npz_path: Path) -> dict:
         defer_mean_min = defer_p95_min = defer_max_min = 0.0
 
     # ---------------- Comfort + fairness metrics --------------------------
-    recs = _load_recs(mode)
+    recs = _load_recs(mode, base=npz_path.parent)
     per_house_recs = {int(h): 0 for h in houses}
     per_house_accepted = {int(h): 0 for h in houses}
     for r in recs:

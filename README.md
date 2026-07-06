@@ -35,15 +35,17 @@ REFIT 16 UK houses (10-min, cleaned + time-aligned)
    │
    ▼ per-house CNN-LSTM            next-step / 24h baseload forecast
    ▼ aggregator (price broadcast)  sum forecasts → dynamic ToU + peak flag + hold-release
-   ▼ appliance-aware controller    defer flexible cycles (washer/EV…), comfort cap, off-peak drain
+   ▼ appliance-aware controller    defer flexible cycles (washer…), comfort cap, off-peak drain
+   ▼ EV advisory coordinator       stagger the 5 EVs across the overnight trough (accept-gated)
    ▼ LLM advisory v2               facts → Llama 3.1 (local) → validate (no hallucinated units)
    ▼ closed-loop learning          accept/reject/modify → suppress rejected patterns
-   ▼ evaluation                    peak / P95 / rebound / Jain fairness / energy conservation
+   ▼ evaluation                    peak / P95 / valley-fill / Jain fairness / energy conservation
 ```
 
-**Validated result** (clean, time-aligned REFIT, 16 houses, ~14-day test):
-coordinated peak **40.5 → 32.7 kW (−19%)**, P95 **−12%**, **no rebound** (−2.1 kW
-mean), **energy conserved** (0% drift). 52 unit tests pass.
+**Validated result** (clean, time-aligned REFIT, 16 houses, ~14-day test, 85% accept):
+coordinated peak **40.5 → 32.7 kW (−19%)**, P95 **27.99 → 19.99 kW (−29%)**,
+**energy conserved** (0% drift); the EV reschedule is **advisory** (accept-gated) so
+acceptance drives it — 0% → 0% shaving, 100% → **−29% peak (28.75 kW)**. 52 unit tests pass.
 
 ### How to run it
 

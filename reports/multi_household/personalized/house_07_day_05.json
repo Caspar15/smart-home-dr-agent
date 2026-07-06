@@ -1,0 +1,158 @@
+{
+  "facts": {
+    "household_id": 7,
+    "date": "2014-07-05",
+    "horizon_steps": 144,
+    "controller": "rule-based + appliance-aware (multi-house)",
+    "cost_baseline_gbp": 4.66,
+    "cost_after_gbp": 4.45,
+    "cost_saving_gbp": 0.21,
+    "cost_saving_pct": 4.5,
+    "recommendations_total": 37,
+    "recommendations_accepted": 37,
+    "peak_window_mean_demand_w": 553.6,
+    "peak_window_mean_served_w": 553.6,
+    "peak_window_reduction_pct": 0.0,
+    "tomorrow_forecast": {
+      "source": "LSTM recursive multi-step",
+      "horizon_steps": 144,
+      "peak_hour_idx": 45,
+      "peak_value_w": 301.2,
+      "mean_w": 299.3,
+      "min_w": 253.1,
+      "note": "recursive — error compounds; treat as guidance"
+    }
+  },
+  "history": {
+    "n_recommendations": 85,
+    "n_accepted": 85,
+    "accept_rate": 1.0,
+    "per_appliance": {
+      "synthetic_ev": {
+        "total": 85,
+        "accepted": 85,
+        "rate": 1.0
+      }
+    },
+    "recent_decisions": [
+      {
+        "accepted": true,
+        "appliance": "synthetic_ev",
+        "hour": 9,
+        "source": "sim"
+      },
+      {
+        "accepted": true,
+        "appliance": "synthetic_ev",
+        "hour": 10,
+        "source": "sim"
+      },
+      {
+        "accepted": true,
+        "appliance": "synthetic_ev",
+        "hour": 10,
+        "source": "sim"
+      },
+      {
+        "accepted": true,
+        "appliance": "synthetic_ev",
+        "hour": 10,
+        "source": "sim"
+      },
+      {
+        "accepted": true,
+        "appliance": "synthetic_ev",
+        "hour": 10,
+        "source": "sim"
+      }
+    ],
+    "real_overrides_total": 6,
+    "real_accepted": 2,
+    "real_rejected": 3,
+    "real_modified": 1,
+    "real_reject_by_appliance": {
+      "washing_machine": 3
+    },
+    "real_total_by_appliance": {
+      "washing_machine": 5,
+      "synthetic_ev": 1
+    },
+    "real_recent_overrides": [
+      {
+        "user_choice": 2,
+        "appliance": "washing_machine",
+        "action": "rejected",
+        "source": "real"
+      },
+      {
+        "user_choice": 3,
+        "appliance": "washing_machine",
+        "action": "modified",
+        "source": "real"
+      },
+      {
+        "user_choice": 2,
+        "appliance": "washing_machine",
+        "action": "rejected",
+        "source": "real"
+      },
+      {
+        "user_choice": 2,
+        "appliance": "washing_machine",
+        "action": "rejected",
+        "source": "real"
+      },
+      {
+        "user_choice": 1,
+        "appliance": "synthetic_ev",
+        "action": "deferred",
+        "source": "real"
+      }
+    ]
+  },
+  "recommendation": {
+    "house_id": 7,
+    "timestep": 797,
+    "hour": 22,
+    "headline": "Peak alert: defer Synthetic Ev to save £2.68",
+    "body": "Tonight 22:00 is a peak event (grid forecast 19.5 kW, 9% over capacity). Price is now £0.18/kWh, off-peak 0.08. Suggest: hold Synthetic Ev until the next off-peak window.",
+    "saving_gbp": 2.677,
+    "appliance": "appliance_synthetic_ev_w",
+    "accepted": true
+  },
+  "llm_advice": {
+    "greeting_zh": "您最近的能源使用趨勢很棒！",
+    "personal_note_zh": "我注意到您對洗衣機有過三次拒絕，我們會根據您的反饋調整建議。",
+    "predicted_accept_prob": 0.4,
+    "rationale_zh": "根據您的歷史記錄，對於洗衣機的接受率降低至 40%，因為您曾經三次拒絕這個設備。",
+    "fact_citations": [
+      "3",
+      "washing_machine"
+    ],
+    "_unit_validation_issues": []
+  },
+  "user_choice": 1,
+  "consequence": {
+    "choice": 1,
+    "appliance": "synthetic_ev",
+    "action": "deferred",
+    "new_time_zh": "下一個離峰時段 (預設 22:00 後)",
+    "impact_gbp": -2.677,
+    "explanation": "系統會把 synthetic_ev 排程到下一個離峰時段。預估電費省 £2.677。設備會在離峰時段自動執行。"
+  },
+  "validation": {
+    "unit_issues": [],
+    "cited": [
+      "3",
+      "washing_machine"
+    ],
+    "cited_unverified": [],
+    "numbers_in_text": [
+      "40%"
+    ],
+    "numbers_unknown": [
+      "40%"
+    ],
+    "all_ok": false
+  }
+}

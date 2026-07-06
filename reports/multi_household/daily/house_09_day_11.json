@@ -1,22 +1,32 @@
 {
   "facts": {
     "household_id": 9,
-    "date": "2015-03-15",
+    "date": "2014-07-11",
     "horizon_steps": 144,
     "controller": "rule-based + appliance-aware (multi-house)",
-    "cost_baseline_gbp": 3.177,
-    "cost_after_gbp": 3.002,
-    "cost_saving_gbp": 0.175,
-    "cost_saving_pct": 5.52,
-    "recommendations_total": 4,
-    "recommendations_accepted": 4,
-    "peak_window_mean_demand_w": 446.4,
-    "peak_window_mean_served_w": 378.0,
-    "peak_window_reduction_pct": 15.31
+    "cost_baseline_gbp": 4.257,
+    "cost_after_gbp": 3.823,
+    "cost_saving_gbp": 0.434,
+    "cost_saving_pct": 10.2,
+    "recommendations_total": 34,
+    "recommendations_accepted": 34,
+    "peak_window_mean_demand_w": 647.4,
+    "peak_window_mean_served_w": 647.4,
+    "peak_window_reduction_pct": 0.0,
+    "tomorrow_forecast": {
+      "source": "LSTM recursive multi-step",
+      "horizon_steps": 144,
+      "peak_hour_idx": 1,
+      "peak_value_w": 777.3,
+      "mean_w": 732.2,
+      "min_w": 687.0,
+      "note": "recursive — error compounds; treat as guidance"
+    }
   },
   "summary": {
-    "summary_zh": "今日省下 0.175 GBP 電費，削減尖峰 15.31%。",
-    "highlight_zh": "所有 4 個建議均被接受，有效降低尖峰需求。",
-    "next_day_advice_zh": "明天請繼續使用所有建議，以維持尖峰削減效果。"
+    "summary_zh": "今日節電成功,省下了 £0.434,削峰了 0 個尖峰。",
+    "highlight_zh": "注意:明天預測的平均電量需求為 732.2 Wh,請盡量節約。",
+    "next_day_advice_zh": "明天建議盡量關閉不必要的家電和燈光,並保持空調溫度在舒適範圍內。",
+    "_unit_validation_issues": []
   }
 }

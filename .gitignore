@@ -64,3 +64,5 @@ desktop.ini
 # above by *.parquet / *.pt / multi_household/cache/). NOTE: multi_household/data/
 # is SOURCE code (loader/preprocess/appliance_map), not data — do NOT ignore it.
 multi_household/__pycache__/
+# ablation per-row artifacts (regenerable; summary lives in ablation_results.json)
+reports/multi_household/ablation/

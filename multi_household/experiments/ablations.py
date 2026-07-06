@@ -40,9 +40,16 @@ from multi_household.experiments.metrics import (
 
 def _save_and_summarize(r: dict, mode: str, tag: str) -> dict:
     """Save .npz files using the same naming the metrics module expects, then
-    compute metrics and return a summary row."""
-    out_dir = REPORTS
+    compute metrics and return a summary row.
+
+    Ablation outputs go to their OWN subfolder (reports/multi_household/ablation/)
+    with the tag in the filename — they must never overwrite the headline
+    rollout_<mode>.npz that metrics.py reads for the main table.
+    """
+    out_dir = REPORTS / "ablation"
     out_dir.mkdir(parents=True, exist_ok=True)
+    safe_tag = tag.replace("=", "-")
+    mode = f"{mode}_{safe_tag}"          # e.g. rollout_coordinated_accept-0.85.npz
     npz = out_dir / f"rollout_{mode}.npz"
     np.savez(npz,
              served=np.stack([r["served_w"][h] for h in r["houses"]]),
@@ -85,7 +92,8 @@ def ablate_forecast(houses_data: dict, accept: float) -> list[dict]:
         print(f"\n  --- forecast = {fm} ---")
         _reseed()
         r = rollout(houses_data, mode="coordinated",
-                    user_accept=accept, forecast_mode=fm, verbose=False)
+                    user_accept=accept, forecast_mode=fm, verbose=False,
+                    ev_smart=True)
         row = _save_and_summarize(r, "coordinated", f"forecast={fm}")
         rows.append(row)
         print(f"    saving={row['user_saving']:+.2f}%  "
@@ -102,7 +110,8 @@ def ablate_accept_rate(houses_data: dict, rates: list[float]) -> list[dict]:
         print(f"\n  --- accept_rate = {r_in:.2f} ---")
         _reseed()
         r = rollout(houses_data, mode="coordinated",
-                    user_accept=r_in, forecast_mode="lstm", verbose=False)
+                    user_accept=r_in, forecast_mode="lstm", verbose=False,
+                    ev_smart=True)
         row = _save_and_summarize(r, "coordinated", f"accept={r_in:.2f}")
         rows.append(row)
         print(f"    saving={row['user_saving']:+.2f}%  "
