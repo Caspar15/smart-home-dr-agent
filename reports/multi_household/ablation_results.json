@@ -74,5 +74,46 @@
       "defer_mean_min": 324.1,
       "n_defers": 312
     }
+  ],
+  "closed_loop": [
+    {
+      "tag": "closedloop=off",
+      "user_saving": 0.75,
+      "p95_reduction": 28.57,
+      "peak_kw": 32.74,
+      "rebound_mean": 0.999,
+      "rebound_p95": 14.0,
+      "total_recs": 445,
+      "fairness": 0.36,
+      "defer_mean_min": 298.7,
+      "n_defers": 323,
+      "n_suppressed": 0
+    },
+    {
+      "tag": "closedloop=on",
+      "user_saving": 0.75,
+      "p95_reduction": 28.57,
+      "peak_kw": 32.74,
+      "rebound_mean": 0.999,
+      "rebound_p95": 14.0,
+      "total_recs": 445,
+      "fairness": 0.36,
+      "defer_mean_min": 298.7,
+      "n_defers": 323,
+      "n_suppressed": 0
+    },
+    {
+      "tag": "closedloop=stress",
+      "user_saving": 0.82,
+      "p95_reduction": 28.86,
+      "peak_kw": 32.74,
+      "rebound_mean": 0.985,
+      "rebound_p95": 14.0,
+      "total_recs": 0,
+      "fairness": 1.0,
+      "defer_mean_min": 0.0,
+      "n_defers": 0,
+      "n_suppressed": 51
+    }
   ]
 }

@@ -120,6 +120,43 @@ def ablate_accept_rate(houses_data: dict, rates: list[float]) -> list[dict]:
     return rows
 
 
+def ablate_closed_loop(houses_data: dict, accept: float) -> list[dict]:
+    """Closed loop: off / on (real history) / stress (synthetic history).
+
+    With the current tiny user_choices.json the real history may fire zero
+    suppressions in this window — reported honestly. The STRESS row injects a
+    synthetic "user rejected everything" history for exactly the patterns that
+    fire in this window, proving the suppression path works end-to-end
+    in-rollout (not just in unit tests).
+    """
+    from multi_household.agent.appliance_controller import _hour_bucket
+    print("\n=== Ablation 3: closed loop off / on / stress ===")
+    rows = []
+    runs = [("closedloop=off",    dict(closed_loop=False)),
+            ("closedloop=on",     dict(closed_loop=True)),
+            ("closedloop=stress", None)]                    # filled below
+    fired_patterns: dict[str, float] = {}
+    for tag, kw in runs:
+        if kw is None:      # build the stress override from the ON run's recs
+            kw = dict(closed_loop=True, rejection_override=fired_patterns)
+        print(f"\n  --- {tag} ---")
+        _reseed()
+        r = rollout(houses_data, mode="coordinated",
+                    user_accept=accept, forecast_mode="lstm", verbose=False,
+                    ev_smart=True, **kw)
+        if tag == "closedloop=on":
+            for rec in r["recommendations"]:
+                short = rec.appliance.replace("appliance_", "").replace("_w", "")
+                fired_patterns[f"{short}@{_hour_bucket(rec.hour)}"] = 1.0
+        row = _save_and_summarize(r, "coordinated", tag)
+        row["n_suppressed"] = int(sum(
+            r["agent_state"][h].n_suppressed_by_user_history for h in r["houses"]))
+        rows.append(row)
+        print(f"    p95_red={row['p95_reduction']:+.2f}%  peak={row['peak_kw']:.2f}kW  "
+              f"recs={row['total_recs']}  suppressed={row['n_suppressed']}")
+    return rows
+
+
 def plot_accept_curve(rows: list[dict], out_path: Path):
     rates = [float(r["tag"].split("=")[1]) for r in rows]
     saving = [r["user_saving"] for r in rows]
@@ -177,12 +214,14 @@ def main():
     print(f"\n[2/3] Running ablations ...")
     forecast_rows = ablate_forecast(houses_data, accept=0.85)
     accept_rows   = ablate_accept_rate(houses_data, args.accept_rates)
+    loop_rows     = ablate_closed_loop(houses_data, accept=0.85)
 
     print(f"\n[3/3] Saving plots + tables ...")
     out_table = REPORTS / "ablation_results.json"
     out_table.write_text(json.dumps({
         "forecast":     forecast_rows,
         "accept_rate":  accept_rows,
+        "closed_loop":  loop_rows,
     }, indent=2), encoding="utf-8")
     print(f"  saved {out_table}")
 
@@ -203,6 +242,11 @@ def main():
         print(f"  {r['tag']:24s} saving={r['user_saving']:+.2f}%  "
               f"p95_red={r['p95_reduction']:+.2f}%  "
               f"recs={r['total_recs']}  defer_mean={r['defer_mean_min']:.0f}min")
+    print(f"\nClosed loop (coordinated, accept=0.85):")
+    for r in loop_rows:
+        print(f"  {r['tag']:24s} p95_red={r['p95_reduction']:+.2f}%  "
+              f"peak={r['peak_kw']:.2f}kW  recs={r['total_recs']}  "
+              f"suppressed={r['n_suppressed']}")
 
 
 if __name__ == "__main__":

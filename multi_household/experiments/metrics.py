@@ -377,6 +377,34 @@ def plot_fairness(metrics_by_mode: dict, out_path: Path):
     plt.close(fig)
 
 
+def data_quality_report() -> dict:
+    """Per-house NaN disclosure on the common clean-window grid (reviewers ask).
+    nan_rate = share of 10-min slots with no real aggregate reading BEFORE
+    imputation; max_gap = longest consecutive missing run (steps of 10 min)."""
+    from multi_household.config import CLEAN_HOUSES
+    from multi_household.data.refit_loader import load_house
+    from multi_household.data.preprocess import reindex_to_common_grid
+    out = {}
+    for h in CLEAN_HOUSES:
+        df = reindex_to_common_grid(load_house(h))
+        nan = df["aggregate_w"].isna().to_numpy()
+        # longest consecutive NaN run
+        max_gap = gap = 0
+        for v in nan:
+            gap = gap + 1 if v else 0
+            max_gap = max(max_gap, gap)
+        out[f"house_{h:02d}"] = {
+            "n_slots":       int(len(df)),
+            "nan_rate_pct":  round(100.0 * float(nan.mean()), 3),
+            "max_gap_steps": int(max_gap),
+            "max_gap_hours": round(max_gap / 6.0, 1),
+        }
+    rates = [v["nan_rate_pct"] for v in out.values()]
+    out["_overall"] = {"mean_nan_rate_pct": round(float(np.mean(rates)), 3),
+                       "worst_house_pct":   round(float(np.max(rates)), 3)}
+    return out
+
+
 def main():
     modes = ["baseline", "independent", "coordinated"]
     summaries = {}
@@ -396,12 +424,23 @@ def main():
             demand_agg_ref = demand_agg
             ts_ref = ts
 
+    # Data-quality disclosure (pre-imputation NaN per house on the clean window)
+    try:
+        summaries["data_quality"] = data_quality_report()
+        dq = summaries["data_quality"]["_overall"]
+        print(f"data quality: mean NaN {dq['mean_nan_rate_pct']}% "
+              f"(worst house {dq['worst_house_pct']}%)")
+    except Exception as e:                       # noqa: BLE001
+        print(f"data-quality report skipped: {e}")
+
     out = REPORTS / "metrics_summary.json"
     out.write_text(json.dumps(summaries, ensure_ascii=False, indent=2))
     print(f"saved {out}")
 
     print("\n=== SUMMARY ===")
     for mode, s in summaries.items():
+        if mode == "data_quality":
+            continue
         print(f"\n[{mode}]")
         print(f"  user.avg_saving_pct       = {s['user']['avg_saving_pct']:.2f} %")
         print(f"  grid.p95_reduction_pct    = {s['grid']['p95_reduction_pct']:.2f} %")

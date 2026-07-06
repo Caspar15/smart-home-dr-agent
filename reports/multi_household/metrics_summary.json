@@ -520,5 +520,107 @@
       "served_total_mwh": 3.494,
       "diff_pct": 0.0
     }
+  },
+  "data_quality": {
+    "house_01": {
+      "n_slots": 10801,
+      "nan_rate_pct": 0.444,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "house_02": {
+      "n_slots": 10801,
+      "nan_rate_pct": 0.565,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "house_03": {
+      "n_slots": 10801,
+      "nan_rate_pct": 0.472,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "house_04": {
+      "n_slots": 10801,
+      "nan_rate_pct": 0.352,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "house_05": {
+      "n_slots": 10801,
+      "nan_rate_pct": 0.37,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "house_06": {
+      "n_slots": 10801,
+      "nan_rate_pct": 0.685,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "house_07": {
+      "n_slots": 10801,
+      "nan_rate_pct": 0.509,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "house_08": {
+      "n_slots": 10801,
+      "nan_rate_pct": 0.444,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "house_09": {
+      "n_slots": 10801,
+      "nan_rate_pct": 0.426,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "house_10": {
+      "n_slots": 10801,
+      "nan_rate_pct": 0.38,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "house_13": {
+      "n_slots": 10801,
+      "nan_rate_pct": 1.176,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "house_15": {
+      "n_slots": 10801,
+      "nan_rate_pct": 0.343,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "house_16": {
+      "n_slots": 10801,
+      "nan_rate_pct": 0.352,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "house_17": {
+      "n_slots": 10801,
+      "nan_rate_pct": 0.463,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "house_18": {
+      "n_slots": 10801,
+      "nan_rate_pct": 0.37,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "house_20": {
+      "n_slots": 10801,
+      "nan_rate_pct": 0.333,
+      "max_gap_steps": 34,
+      "max_gap_hours": 5.7
+    },
+    "_overall": {
+      "mean_nan_rate_pct": 0.48,
+      "worst_house_pct": 1.176
+    }
   }
 }

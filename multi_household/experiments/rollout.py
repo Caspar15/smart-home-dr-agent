@@ -195,7 +195,10 @@ def rollout(houses_data: dict,
             user_accept: float = 1.0,
             verbose: bool = True,
             forecast_mode: str = "lstm",
-            ev_smart: bool = False) -> dict:
+            ev_smart: bool = False,
+            ev_seed: int | None = None,
+            closed_loop: bool = True,
+            rejection_override: dict[str, float] | None = None) -> dict:
     """Step through the test period for all houses simultaneously.
 
     Returns a dict with:
@@ -244,8 +247,12 @@ def rollout(houses_data: dict,
         ev_houses = {h: appliance_loads[h][EV_COL][:T]
                      for h in houses if EV_COL in appliance_loads[h]}
         if ev_houses:
+            # ev_seed=None keeps the fixed default (reproducible headline);
+            # multi-seed runs pass a varying seed so the nightly accept
+            # decisions contribute to the error bars.
+            ev_kwargs = {} if ev_seed is None else {"seed": ev_seed}
             oa, sa, (ev_reco, ev_acc) = advisory_ev_schedule(
-                ev_houses, timestamps, accept_rate=user_accept)
+                ev_houses, timestamps, accept_rate=user_accept, **ev_kwargs)
             ev_orig.update(oa)
             ev_shift.update(sa)
             if verbose:
@@ -259,13 +266,20 @@ def rollout(houses_data: dict,
         return cols
 
     # Build agent state per house — ★ inject closed-loop rejection rates
+    # (closed_loop=False skips the user-history injection: the on/off ablation)
     agents = {h: build_state(h, _agent_deferable(h)) for h in houses}
     n_loaded = 0
-    for h in houses:
-        rates = load_user_rejection_rates(h)
-        if rates:
-            agents[h].pattern_rejection_rate = rates
-            n_loaded += len(rates)
+    if closed_loop:
+        for h in houses:
+            rates = load_user_rejection_rates(h)
+            if rates:
+                agents[h].pattern_rejection_rate = rates
+                n_loaded += len(rates)
+        # Synthetic override for the closed-loop STRESS ablation: pretend every
+        # user rejected these patterns, so suppression provably engages in-rollout.
+        if rejection_override:
+            for h in houses:
+                agents[h].pattern_rejection_rate.update(rejection_override)
     if verbose and n_loaded > 0:
         print(f"  closed loop: loaded {n_loaded} rejection patterns from user_choices.json")
 

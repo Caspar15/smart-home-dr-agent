@@ -43,9 +43,11 @@ Reproduce + improve Durrani et al. (2025) on UCI Appliances.
 
 ## Phase 4 — Stronger results + learned coordination ◀ NEXT (priority order)
 
-1. [ ] **Rigor pack (R14)** — multi-seed error bars (≥5 seeds), per-house NaN-rate
-       disclosure, closed-loop on/off ablation, (opt.) longer clean-window scan.
-       *Cheapest step that makes every number paper-grade — do this FIRST.*
+1. [x] **Rigor pack (R14)** ✅ 2026-07-06 — multi-seed error bars (`multiseed.py`,
+       85% accept: peak 29.7±2.6 kW / −27% mean, seed-42 headline is the conservative
+       end; P95 stable ±0.5), per-house NaN disclosure (mean 0.48%, worst 1.18%),
+       closed-loop off/on/stress (stress: recs 445→0, suppressed 51, grid unchanged
+       → suppression is free). Longer-window scan still open (optional).
 2. [ ] **Controller ladder (R15)** — wire `conference/src/agent/mpc.py` to multi-house
        → `No-DR | Rule(ours) | MPC (perfect-foresight bound)`; RL optional.
        MPC must schedule the EVs too (they set the peak) or the comparison is unfair.

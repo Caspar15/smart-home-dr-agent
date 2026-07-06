@@ -1,0 +1,76 @@
+{
+  "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45
+  ],
+  "days": 14,
+  "baseline": {
+    "peak_kw": 40.5,
+    "p95_kw": 27.99
+  },
+  "coordinated": {
+    "accept=0.00": {
+      "peak_kw_mean": 40.5,
+      "peak_kw_std": 0.0,
+      "p95_kw_mean": 27.99,
+      "p95_kw_std": 0.0,
+      "peak_red_pct_mean": 0.0,
+      "p95_red_pct_mean": 0.0,
+      "peaks": [
+        40.5,
+        40.5,
+        40.5,
+        40.5,
+        40.5
+      ]
+    },
+    "accept=0.50": {
+      "peak_kw_mean": 35.38,
+      "peak_kw_std": 2.712,
+      "p95_kw_mean": 24.09,
+      "p95_kw_std": 1.364,
+      "peak_red_pct_mean": 12.64,
+      "p95_red_pct_mean": 13.95,
+      "peaks": [
+        33.5,
+        33.5,
+        33.5,
+        35.93,
+        40.47
+      ]
+    },
+    "accept=0.85": {
+      "peak_kw_mean": 29.74,
+      "peak_kw_std": 2.585,
+      "p95_kw_mean": 20.53,
+      "p95_kw_std": 0.487,
+      "peak_red_pct_mean": 26.57,
+      "p95_red_pct_mean": 26.65,
+      "peaks": [
+        27.2,
+        27.19,
+        32.1,
+        33.47,
+        28.75
+      ]
+    },
+    "accept=1.00": {
+      "peak_kw_mean": 28.75,
+      "peak_kw_std": 0.0,
+      "p95_kw_mean": 19.49,
+      "p95_kw_std": 0.0,
+      "peak_red_pct_mean": 29.02,
+      "p95_red_pct_mean": 30.39,
+      "peaks": [
+        28.75,
+        28.75,
+        28.75,
+        28.75,
+        28.75
+      ]
+    }
+  }
+}
