@@ -234,3 +234,41 @@ def test_user_rejection_wrong_bucket_does_not_suppress(state_washer):
     d = decide_step(state_washer, appliance_loads,
                     forecast_w=400, broadcast=bc, step=0)
     assert d.action == "defer"
+
+
+# --- fairness budget ---------------------------------------------------------
+
+def test_fairness_budget_caps_daily_recommendations():
+    from multi_household.agent.appliance_controller import (
+        build_state, decide_step)
+    from multi_household.aggregator.price_broadcast import Broadcast
+
+    col = "appliance_washing_machine_w"
+    state = build_state(1, [col])
+    state.rec_budget_per_day = 1
+
+    def bc(step):
+        return Broadcast(timestep=step, hour=12, p_now_gbp_kwh=0.30,
+                         p_off_gbp_kwh=0.08, peak_event=True,
+                         aggregate_forecast_w=20000.0, threshold_w=18000.0,
+                         overage_ratio=0.1)
+
+    def edge(step):
+        # off then on -> rising edge at the "on" step
+        decide_step(state, {col: 0.0}, 500.0, bc(step), step,
+                    accept_rate=1.0, current_demand_w=1000.0)
+        return decide_step(state, {col: 400.0}, 500.0, bc(step + 1), step + 1,
+                           accept_rate=1.0, current_demand_w=1000.0)
+
+    d1 = edge(10)                       # first rec of the day → allowed
+    assert d1.action == "defer"
+    # let the deferring cycle + cooldown expire, then try again SAME day
+    state.deferring_until.clear(); state.cooldown_until.clear()
+    d2 = edge(60)                       # second rec same day → budget-blocked
+    assert d2.action == "no_op"
+    assert state.n_skipped_by_fairness >= 1
+    # next day the budget resets
+    state.deferring_until.clear(); state.cooldown_until.clear()
+    state.ledger.clear(); state.release_pool_wh = 0.0
+    d3 = edge(150)                      # step 150 // 144 = day 1 → allowed
+    assert d3.action == "defer"

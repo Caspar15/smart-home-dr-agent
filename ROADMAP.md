@@ -55,8 +55,12 @@ Reproduce + improve Durrani et al. (2025) on UCI Appliances.
        bound) | Rule@100% 28.75 (77%) | **MPC bound 25.21 kW (−38%)**.
        (Bound's P95 is not meaningful — the LP only minimizes peak.)
        ☐ RL (SB3 PPO/DQN) optional — deferred.
-3. [ ] **Fairness constraint (R16)** — fix the Jain 0.34 concentration trade-off
-       (per-house daily recommendation budget → Jain vs peak trade-off curve).
+3. [x] **Fairness constraint (R16)** ✅ 2026-07-07 — per-house daily rec budget
+       (`fairness_sweep.py`, B ∈ {∞,6,4,2,1}). Honest finding: the budget is FREE
+       (B=1 skips only 7 recs, grid unchanged) but Jain doesn't move — unfairness
+       is STRUCTURAL (4/16 houses own no flexible load → zero recs ever; top house
+       is non-EV H2). Report fairness conditioned on flexibility ownership:
+       Jain|flexible-12-houses = 0.48. A frequency cap can't raise the floor.
 4. [ ] **Federated learning (R17)** — Local vs FedAvg vs Centralized.
        *Moved to the END of the engineering items (user decision 2026-07-07) —
        training-heavy (re-train 16 forecasters ×3 regimes).*

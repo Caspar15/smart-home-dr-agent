@@ -198,7 +198,8 @@ def rollout(houses_data: dict,
             ev_smart: bool = False,
             ev_seed: int | None = None,
             closed_loop: bool = True,
-            rejection_override: dict[str, float] | None = None) -> dict:
+            rejection_override: dict[str, float] | None = None,
+            fairness_budget: int | None = None) -> dict:
     """Step through the test period for all houses simultaneously.
 
     Returns a dict with:
@@ -268,6 +269,9 @@ def rollout(houses_data: dict,
     # Build agent state per house — ★ inject closed-loop rejection rates
     # (closed_loop=False skips the user-history injection: the on/off ablation)
     agents = {h: build_state(h, _agent_deferable(h)) for h in houses}
+    if fairness_budget is not None:
+        for h in houses:
+            agents[h].rec_budget_per_day = fairness_budget
     n_loaded = 0
     if closed_loop:
         for h in houses:

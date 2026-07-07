@@ -1,0 +1,67 @@
+[
+  {
+    "tag": "budget=inf",
+    "user_saving": 0.75,
+    "p95_reduction": 28.57,
+    "peak_kw": 32.74,
+    "rebound_mean": 0.999,
+    "rebound_p95": 14.0,
+    "total_recs": 445,
+    "fairness": 0.36,
+    "defer_mean_min": 298.7,
+    "n_defers": 323,
+    "n_skipped_by_fairness": 0
+  },
+  {
+    "tag": "budget=6",
+    "user_saving": 0.75,
+    "p95_reduction": 28.57,
+    "peak_kw": 32.74,
+    "rebound_mean": 0.999,
+    "rebound_p95": 14.0,
+    "total_recs": 445,
+    "fairness": 0.36,
+    "defer_mean_min": 298.7,
+    "n_defers": 323,
+    "n_skipped_by_fairness": 0
+  },
+  {
+    "tag": "budget=4",
+    "user_saving": 0.75,
+    "p95_reduction": 28.57,
+    "peak_kw": 32.74,
+    "rebound_mean": 0.999,
+    "rebound_p95": 14.0,
+    "total_recs": 445,
+    "fairness": 0.36,
+    "defer_mean_min": 298.7,
+    "n_defers": 323,
+    "n_skipped_by_fairness": 0
+  },
+  {
+    "tag": "budget=2",
+    "user_saving": 0.75,
+    "p95_reduction": 28.57,
+    "peak_kw": 32.74,
+    "rebound_mean": 0.999,
+    "rebound_p95": 14.0,
+    "total_recs": 445,
+    "fairness": 0.36,
+    "defer_mean_min": 298.7,
+    "n_defers": 323,
+    "n_skipped_by_fairness": 0
+  },
+  {
+    "tag": "budget=1",
+    "user_saving": 0.76,
+    "p95_reduction": 28.58,
+    "peak_kw": 32.74,
+    "rebound_mean": 0.991,
+    "rebound_p95": 14.0,
+    "total_recs": 390,
+    "fairness": 0.3435,
+    "defer_mean_min": 302.5,
+    "n_defers": 295,
+    "n_skipped_by_fairness": 7
+  }
+]

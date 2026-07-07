@@ -90,6 +90,14 @@ class HouseAgentState:
     # rejection rate > USER_REJECT_SUPPRESS_THRESHOLD, agent suppresses that
     # pattern in future recommendations.
     pattern_rejection_rate: dict[str, float] = field(default_factory=dict)
+    # ★ FAIRNESS — per-house daily recommendation budget (None = unlimited).
+    # Once a house has received `rec_budget_per_day` NEW recommendations in one
+    # day, further rising-edge recommendations are skipped for the rest of that
+    # day, spreading the burden across houses (Jain ↑ at some peak cost).
+    rec_budget_per_day: Optional[int] = None
+    budget_day: int = -1
+    recs_today: int = 0
+    n_skipped_by_fairness: int = 0
 
 
 def _hour_bucket(hour: int) -> str:
@@ -267,6 +275,16 @@ def decide_step(state: HouseAgentState,
             filtered.append((col, w))
         candidates = filtered
 
+        # ★ FAIRNESS budget: cap NEW recommendations per house per day
+        if candidates and state.rec_budget_per_day is not None:
+            day = step // 144
+            if day != state.budget_day:
+                state.budget_day = day
+                state.recs_today = 0
+            if state.recs_today >= state.rec_budget_per_day:
+                state.n_skipped_by_fairness += len(candidates)
+                candidates = []
+
         if candidates:
             col, w = max(candidates, key=lambda kv: kv[1])
             on_thr, cycle_steps, _ = _appliance_params(col)
@@ -276,6 +294,7 @@ def decide_step(state: HouseAgentState,
             saving = (broadcast.p_now_gbp_kwh - broadcast.p_off_gbp_kwh) \
                      * (full_cycle_wh / 1000.0)
             state.n_recommendations += 1
+            state.recs_today += 1
             if _accept(accept_rate):
                 state.n_accepted += 1
                 # Mark this appliance as "being deferred for the next K steps".
