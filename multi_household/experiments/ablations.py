@@ -166,8 +166,9 @@ def plot_accept_curve(rows: list[dict], out_path: Path):
     ax1.set_xlabel("User accept rate")
     ax1.set_ylabel("Cost saving (%)", color="#124163")
     ax2 = ax1.twinx()
-    ax2.plot(rates, p95, "s--", color="#c47a3d", lw=2, label="Grid P95 削減 (%)")
-    ax2.set_ylabel("Grid P95 削減 (%)", color="#c47a3d")
+    # English labels only — matplotlib's default font has no CJK glyphs (boxes)
+    ax2.plot(rates, p95, "s--", color="#c47a3d", lw=2, label="Grid P95 reduction (%)")
+    ax2.set_ylabel("Grid P95 reduction (%)", color="#c47a3d")
     ax1.set_title("Sensitivity to user accept rate (coordinated mode)",
                   fontsize=12, fontweight="bold")
     ax1.grid(alpha=0.3)
@@ -178,7 +179,7 @@ def plot_accept_curve(rows: list[dict], out_path: Path):
 
 def plot_forecast_compare(rows: list[dict], out_path: Path):
     labels = [r["tag"].split("=")[1] for r in rows]
-    metrics_to_show = [("p95_reduction", "P95 削減 (%)", "#124163"),
+    metrics_to_show = [("p95_reduction", "P95 reduction (%)", "#124163"),
                        ("rebound_p95",   "Rebound P95 (kW)", "#c47a3d"),
                        ("user_saving",   "Cost saving (%)", "#75BDA7")]
     x = np.arange(len(labels))
