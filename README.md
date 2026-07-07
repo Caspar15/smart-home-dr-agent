@@ -63,8 +63,13 @@ python -m multi_household.experiments.train_all
 python -m multi_household.experiments.rollout --days 14 --mode all --user-accept 0.85
 
 # 3. metrics + ablations
-python -m multi_household.experiments.metrics
-python -m multi_household.experiments.ablations --days 14
+python -m multi_household.experiments.metrics          # incl. per-house NaN disclosure
+python -m multi_household.experiments.ablations --days 14   # forecast / accept / closed-loop
+
+# 3b. rigor + baselines
+python -m multi_household.experiments.multiseed --days 14        # error bars (5 seeds)
+python -m multi_household.experiments.mpc_baseline --days 14     # controller ladder (MPC bound)
+python -m multi_household.experiments.fairness_sweep --days 14   # Jain vs shaving trade-off
 
 # 4. LLM advisory demos (House 7, a day in the test window 0–13)
 python -m multi_household.experiments.personalized_demo --house 7 --day 5
@@ -81,6 +86,9 @@ python -m pytest multi_household/tests/ -q          # 61 tests
 | Rollout data | `reports/multi_household/rollout_*.npz / _recs.json / _waitlog.json` |
 | Headline metrics | `reports/multi_household/metrics_summary.json` |
 | Ablation | `reports/multi_household/ablation_results.json` + `figures/multi_household/ablation_*.png` |
+| Multi-seed error bars | `reports/multi_household/multiseed_results.json` + `figures/multi_household/multiseed_accept.png` |
+| Controller ladder (MPC bound) | `reports/multi_household/mpc_ladder.json` |
+| Fairness trade-off | `reports/multi_household/fairness_sweep.json` + `figures/multi_household/fairness_tradeoff.png` |
 | LLM advisory / closed loop | `reports/multi_household/personalized/`, `daily/`, `user_choices.json` |
 | Figures | `figures/multi_household/*.png` |
 

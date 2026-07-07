@@ -45,7 +45,8 @@ multi_household/
 ├── agent/appliance_controller.py    the rule controller (defer/release/cooldown)
 ├── llm/advisor.py            Llama 3.1 personalized advice + validators + closed loop
 ├── experiments/              pre_cache · train_all · rollout · metrics · ablations
-│                             · daily_summary · personalized_demo · run_full
+│                             · multiseed (error bars) · mpc_baseline (ladder bound)
+│                             · fairness_sweep · daily_summary · personalized_demo · run_full
 └── tests/                    61 tests (data causality, energy conservation, cycle edge, cooldown, loop, EV advisory)
 ```
 
@@ -78,6 +79,17 @@ Full acceptance (100%) → peak **28.75 kW (−29%)**. The EV reschedule is **ad
 **Ablation (seeded):** acceptance is the lever — P95 cut 0% / 12.6% / 28.6% / 30.4%
 at accept 0 / 50 / 85 / 100%. Forecast (LSTM vs persistence) now gives the same peak
 (32.74 — EV coordination sets the peak); DR is robust to forecast quality.
+
+**Rigor + baselines (2026-07-06/07):**
+- Multi-seed (5 seeds): 85% accept peak **29.7±2.6 kW** (−27% mean; the seed-42
+  headline 32.74 is the conservative end), P95 stable ±0.5.
+- Controller ladder: No-DR 40.5 | Rule@85% 32.74 (**51% of bound**) | Rule@100%
+  28.75 (**77%**) | **MPC perfect-foresight bound 25.21 kW (−38%)**.
+- Data quality: mean NaN **0.48%** (worst house 1.18%), max gap 5.7 h.
+- Closed-loop stress: reject-all history → recs 445→0, grid unchanged
+  (suppression is free — the EV advisory carries the peak).
+- Fairness: a daily rec budget is free but can't move Jain — unfairness is
+  structural (4/16 houses own no flexible load); Jain | flexible houses = 0.48.
 
 ## Data notes
 
