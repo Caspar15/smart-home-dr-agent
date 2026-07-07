@@ -55,8 +55,11 @@ Reproduce + improve Durrani et al. (2025) on UCI Appliances.
        bound) | Rule@100% 28.75 (77%) | **MPC bound 25.21 kW (−38%)**.
        (Bound's P95 is not meaningful — the LP only minimizes peak.)
        ☐ RL (SB3 PPO/DQN) optional — deferred.
-3. [ ] **Federated learning (R16)** — Local vs FedAvg vs Centralized.
-4. [ ] **Fairness constraint (R17)** — fix the Jain 0.34 concentration trade-off.
+3. [ ] **Fairness constraint (R16)** — fix the Jain 0.34 concentration trade-off
+       (per-house daily recommendation budget → Jain vs peak trade-off curve).
+4. [ ] **Federated learning (R17)** — Local vs FedAvg vs Centralized.
+       *Moved to the END of the engineering items (user decision 2026-07-07) —
+       training-heavy (re-train 16 forecasters ×3 regimes).*
 5. [ ] **Seq2Seq 24 h forecast** — *deprioritized*: the ablation shows DR is robust to
        forecast quality (persistence gives the same peak); remaining value is only
        the LLM advisor's next-day preview.
