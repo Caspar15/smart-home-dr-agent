@@ -1,0 +1,59 @@
+[
+  {
+    "tag": "spring (headline)",
+    "window": [
+      "2014-04-30",
+      "2014-07-14"
+    ],
+    "baseline": {
+      "peak_kw": 40.5,
+      "p95_kw": 27.99
+    },
+    "coordinated": {
+      "peak_kw": 32.74,
+      "p95_kw": 19.99
+    },
+    "peak_red_pct": 19.2,
+    "p95_red_pct": 28.6
+  },
+  {
+    "tag": "autumn",
+    "window": [
+      "2014-08-02",
+      "2014-10-15 12:00"
+    ],
+    "split_at": "2014-10-01 12:00",
+    "test_slots": 2016,
+    "baseline": {
+      "peak_kw": 41.5,
+      "p95_kw": 31.83
+    },
+    "coordinated": {
+      "peak_kw": 30.98,
+      "p95_kw": 21.14
+    },
+    "peak_red_pct": 25.4,
+    "p95_red_pct": 33.6,
+    "energy_drift_pct": 0.0
+  },
+  {
+    "tag": "winter",
+    "window": [
+      "2014-12-16",
+      "2015-02-28 12:00"
+    ],
+    "split_at": "2015-02-14 12:00",
+    "test_slots": 2016,
+    "baseline": {
+      "peak_kw": 41.96,
+      "p95_kw": 32.79
+    },
+    "coordinated": {
+      "peak_kw": 34.96,
+      "p95_kw": 22.98
+    },
+    "peak_red_pct": 16.7,
+    "p95_red_pct": 29.9,
+    "energy_drift_pct": 0.006
+  }
+]

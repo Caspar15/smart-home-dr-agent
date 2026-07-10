@@ -1153,11 +1153,121 @@
     "house_id": 2,
     "timestep": 433,
     "hour": 9,
-    "headline": "Suggestion declined: continue using Dishwasher",
-    "body": "You declined the suggestion to defer Dishwasher. Estimated additional cost £0.01.",
+    "headline": "Peak alert: defer Dishwasher to save £0.01",
+    "body": "This morning 09:00 is a peak event (grid forecast 9.3 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.005,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 2,
+    "timestep": 434,
+    "hour": 10,
+    "headline": "Peak alert: defer Dishwasher to save £0.00",
+    "body": "This morning 10:00 is a peak event (grid forecast 7.0 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
-    "accepted": false
+    "accepted": true
+  },
+  {
+    "house_id": 2,
+    "timestep": 435,
+    "hour": 10,
+    "headline": "Peak alert: defer Dishwasher to save £0.00",
+    "body": "This morning 10:00 is a peak event (grid forecast 6.0 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 2,
+    "timestep": 436,
+    "hour": 10,
+    "headline": "Peak alert: defer Dishwasher to save £0.00",
+    "body": "This morning 10:00 is a peak event (grid forecast 6.2 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 2,
+    "timestep": 437,
+    "hour": 10,
+    "headline": "Peak alert: defer Dishwasher to save £0.00",
+    "body": "This morning 10:00 is a peak event (grid forecast 5.9 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 2,
+    "timestep": 438,
+    "hour": 10,
+    "headline": "Peak alert: defer Dishwasher to save £0.00",
+    "body": "This morning 10:00 is a peak event (grid forecast 5.4 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 2,
+    "timestep": 469,
+    "hour": 15,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 2,
+    "timestep": 470,
+    "hour": 16,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 2,
+    "timestep": 471,
+    "hour": 16,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 2,
+    "timestep": 472,
+    "hour": 16,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 2,
+    "timestep": 473,
+    "hour": 16,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 2,
+    "timestep": 474,
+    "hour": 16,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
   },
   {
     "house_id": 10,
@@ -2063,11 +2173,11 @@
     "house_id": 2,
     "timestep": 851,
     "hour": 7,
-    "headline": "Peak alert: defer Dishwasher to save £0.13",
-    "body": "This morning 07:00 is a peak event (grid forecast 9.4 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
-    "saving_gbp": 0.129,
+    "headline": "Suggestion declined: continue using Dishwasher",
+    "body": "You declined the suggestion to defer Dishwasher. Estimated additional cost £0.13.",
+    "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
-    "accepted": true
+    "accepted": false
   },
   {
     "house_id": 5,
@@ -2080,16 +2190,6 @@
     "accepted": true
   },
   {
-    "house_id": 2,
-    "timestep": 852,
-    "hour": 7,
-    "headline": "Peak alert: defer Dishwasher to save £0.00",
-    "body": "This morning 07:00 is a peak event (grid forecast 7.8 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true
-  },
-  {
     "house_id": 5,
     "timestep": 852,
     "hour": 7,
@@ -2100,31 +2200,11 @@
     "accepted": true
   },
   {
-    "house_id": 2,
-    "timestep": 853,
-    "hour": 7,
-    "headline": "Peak alert: defer Dishwasher to save £0.00",
-    "body": "This morning 07:00 is a peak event (grid forecast 6.6 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true
-  },
-  {
     "house_id": 5,
     "timestep": 853,
     "hour": 7,
     "headline": "Releasing held Dishwasher",
     "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true
-  },
-  {
-    "house_id": 2,
-    "timestep": 854,
-    "hour": 8,
-    "headline": "Peak alert: defer Dishwasher to save £0.00",
-    "body": "This morning 08:00 is a peak event (grid forecast 7.7 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
     "accepted": true
@@ -2213,11 +2293,11 @@
     "house_id": 9,
     "timestep": 866,
     "hour": 10,
-    "headline": "Suggestion declined: continue using Washing Machine",
-    "body": "You declined the suggestion to defer Washing Machine. Estimated additional cost £0.01.",
-    "saving_gbp": 0.0,
+    "headline": "Peak alert: defer Washing Machine to save £0.01",
+    "body": "This morning 10:00 is a peak event (grid forecast 6.6 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.011,
     "appliance": "appliance_washing_machine_w",
-    "accepted": false
+    "accepted": true
   },
   {
     "house_id": 8,
@@ -2227,6 +2307,16 @@
     "body": "Dryer cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dryer_w",
+    "accepted": true
+  },
+  {
+    "house_id": 9,
+    "timestep": 867,
+    "hour": 10,
+    "headline": "Peak alert: defer Washing Machine to save £0.00",
+    "body": "This morning 10:00 is a peak event (grid forecast 8.4 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true
   },
   {
@@ -2240,6 +2330,16 @@
     "accepted": true
   },
   {
+    "house_id": 9,
+    "timestep": 868,
+    "hour": 10,
+    "headline": "Peak alert: defer Washing Machine to save £0.00",
+    "body": "This morning 10:00 is a peak event (grid forecast 10.5 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
+  },
+  {
     "house_id": 8,
     "timestep": 869,
     "hour": 10,
@@ -2250,43 +2350,63 @@
     "accepted": true
   },
   {
-    "house_id": 2,
-    "timestep": 887,
-    "hour": 13,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "house_id": 9,
+    "timestep": 869,
+    "hour": 10,
+    "headline": "Peak alert: defer Washing Machine to save £0.00",
+    "body": "This morning 10:00 is a peak event (grid forecast 11.4 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
     "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
+    "appliance": "appliance_washing_machine_w",
     "accepted": true
   },
   {
-    "house_id": 2,
-    "timestep": 888,
-    "hour": 13,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "house_id": 9,
+    "timestep": 870,
+    "hour": 10,
+    "headline": "Peak alert: defer Washing Machine to save £0.00",
+    "body": "This morning 10:00 is a peak event (grid forecast 11.2 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
     "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
+    "appliance": "appliance_washing_machine_w",
     "accepted": true
   },
   {
-    "house_id": 2,
-    "timestep": 889,
-    "hour": 13,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "house_id": 9,
+    "timestep": 871,
+    "hour": 10,
+    "headline": "Peak alert: defer Washing Machine to save £0.00",
+    "body": "This morning 10:00 is a peak event (grid forecast 8.9 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
     "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
+    "appliance": "appliance_washing_machine_w",
     "accepted": true
   },
   {
-    "house_id": 2,
-    "timestep": 890,
-    "hour": 14,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "house_id": 9,
+    "timestep": 872,
+    "hour": 11,
+    "headline": "Peak alert: defer Washing Machine to save £0.00",
+    "body": "This morning 11:00 is a peak event (grid forecast 8.1 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
     "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
+  },
+  {
+    "house_id": 9,
+    "timestep": 873,
+    "hour": 11,
+    "headline": "Peak alert: defer Washing Machine to save £0.00",
+    "body": "This morning 11:00 is a peak event (grid forecast 7.7 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
+  },
+  {
+    "house_id": 9,
+    "timestep": 874,
+    "hour": 11,
+    "headline": "Peak alert: defer Washing Machine to save £0.00",
+    "body": "This morning 11:00 is a peak event (grid forecast 7.5 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true
   },
   {
@@ -2330,14 +2450,214 @@
     "accepted": true
   },
   {
+    "house_id": 9,
+    "timestep": 902,
+    "hour": 16,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
+  },
+  {
+    "house_id": 9,
+    "timestep": 903,
+    "hour": 16,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
+  },
+  {
+    "house_id": 9,
+    "timestep": 904,
+    "hour": 16,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
+  },
+  {
+    "house_id": 9,
+    "timestep": 905,
+    "hour": 16,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
+  },
+  {
+    "house_id": 9,
+    "timestep": 906,
+    "hour": 16,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
+  },
+  {
+    "house_id": 9,
+    "timestep": 907,
+    "hour": 16,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
+  },
+  {
     "house_id": 10,
     "timestep": 907,
     "hour": 16,
-    "headline": "Suggestion declined: continue using Dishwasher",
-    "body": "You declined the suggestion to defer Dishwasher. Estimated additional cost £0.01.",
+    "headline": "Peak alert: defer Dishwasher to save £0.01",
+    "body": "This afternoon 16:00 is a peak event (grid forecast 10.9 kW, 0% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.007,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 9,
+    "timestep": 908,
+    "hour": 17,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
+  },
+  {
+    "house_id": 10,
+    "timestep": 908,
+    "hour": 17,
+    "headline": "Peak alert: defer Dishwasher to save £0.00",
+    "body": "Tonight 17:00 is a peak event (grid forecast 9.9 kW, 0% over capacity). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
-    "accepted": false
+    "accepted": true
+  },
+  {
+    "house_id": 9,
+    "timestep": 909,
+    "hour": 17,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
+  },
+  {
+    "house_id": 10,
+    "timestep": 909,
+    "hour": 17,
+    "headline": "Peak alert: defer Dishwasher to save £0.00",
+    "body": "Tonight 17:00 is a peak event (grid forecast 11.2 kW, 0% over capacity). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 9,
+    "timestep": 910,
+    "hour": 17,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
+  },
+  {
+    "house_id": 10,
+    "timestep": 910,
+    "hour": 17,
+    "headline": "Peak alert: defer Dishwasher to save £0.00",
+    "body": "Tonight 17:00 is a peak event (grid forecast 9.0 kW, 0% over capacity). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 10,
+    "timestep": 911,
+    "hour": 17,
+    "headline": "Peak alert: defer Dishwasher to save £0.00",
+    "body": "Tonight 17:00 is a peak event (grid forecast 10.0 kW, 0% over capacity). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 10,
+    "timestep": 912,
+    "hour": 17,
+    "headline": "Peak alert: defer Dishwasher to save £0.00",
+    "body": "Tonight 17:00 is a peak event (grid forecast 11.1 kW, 0% over capacity). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 10,
+    "timestep": 943,
+    "hour": 22,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 10,
+    "timestep": 944,
+    "hour": 23,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 10,
+    "timestep": 945,
+    "hour": 23,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 10,
+    "timestep": 946,
+    "hour": 23,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 10,
+    "timestep": 947,
+    "hour": 23,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
+  },
+  {
+    "house_id": 10,
+    "timestep": 948,
+    "hour": 23,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true
   },
   {
     "house_id": 2,
@@ -3183,61 +3503,11 @@
     "house_id": 5,
     "timestep": 1533,
     "hour": 1,
-    "headline": "Peak alert: defer Dishwasher to save £0.16",
-    "body": "This morning 01:00 is a peak event (grid forecast 29.0 kW, 61% over capacity). Price is now £0.18/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
-    "saving_gbp": 0.16,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true
-  },
-  {
-    "house_id": 5,
-    "timestep": 1534,
-    "hour": 1,
-    "headline": "Peak alert: defer Dishwasher to save £0.00",
-    "body": "This morning 01:00 is a peak event (grid forecast 29.8 kW, 65% over capacity). Price is now £0.18/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "headline": "Suggestion declined: continue using Dishwasher",
+    "body": "You declined the suggestion to defer Dishwasher. Estimated additional cost £0.16.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
-    "accepted": true
-  },
-  {
-    "house_id": 5,
-    "timestep": 1535,
-    "hour": 1,
-    "headline": "Peak alert: defer Dishwasher to save £0.00",
-    "body": "This morning 01:00 is a peak event (grid forecast 29.2 kW, 62% over capacity). Price is now £0.18/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true
-  },
-  {
-    "house_id": 5,
-    "timestep": 1536,
-    "hour": 1,
-    "headline": "Peak alert: defer Dishwasher to save £0.00",
-    "body": "This morning 01:00 is a peak event (grid forecast 27.5 kW, 53% over capacity). Price is now £0.16/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true
-  },
-  {
-    "house_id": 5,
-    "timestep": 1537,
-    "hour": 1,
-    "headline": "Peak alert: defer Dishwasher to save £0.00",
-    "body": "This morning 01:00 is a peak event (grid forecast 25.7 kW, 43% over capacity). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true
-  },
-  {
-    "house_id": 5,
-    "timestep": 1538,
-    "hour": 2,
-    "headline": "Peak alert: defer Dishwasher to save £0.00",
-    "body": "This morning 02:00 is a peak event (grid forecast 22.5 kW, 25% over capacity). Price is now £0.12/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true
+    "accepted": false
   },
   {
     "house_id": 5,
@@ -3285,66 +3555,6 @@
     "hour": 3,
     "headline": "Peak alert: defer Dishwasher to save £0.00",
     "body": "This morning 03:00 is a peak event (grid forecast 4.2 kW, 0% over capacity). Price is now £0.08/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true
-  },
-  {
-    "house_id": 5,
-    "timestep": 1569,
-    "hour": 7,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true
-  },
-  {
-    "house_id": 5,
-    "timestep": 1570,
-    "hour": 7,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true
-  },
-  {
-    "house_id": 5,
-    "timestep": 1571,
-    "hour": 7,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true
-  },
-  {
-    "house_id": 5,
-    "timestep": 1572,
-    "hour": 7,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true
-  },
-  {
-    "house_id": 5,
-    "timestep": 1573,
-    "hour": 7,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true
-  },
-  {
-    "house_id": 5,
-    "timestep": 1574,
-    "hour": 8,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
     "accepted": true
@@ -3753,11 +3963,41 @@
     "house_id": 3,
     "timestep": 1824,
     "hour": 1,
-    "headline": "Suggestion declined: continue using Washing Machine",
-    "body": "You declined the suggestion to defer Washing Machine. Estimated additional cost £0.00.",
+    "headline": "Peak alert: defer Washing Machine to save £0.00",
+    "body": "This morning 01:00 is a peak event (grid forecast 10.4 kW, 0% over capacity). Price is now £0.08/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
     "saving_gbp": 0.0,
     "appliance": "appliance_washing_machine_w",
-    "accepted": false
+    "accepted": true
+  },
+  {
+    "house_id": 3,
+    "timestep": 1825,
+    "hour": 1,
+    "headline": "Peak alert: defer Washing Machine to save £0.00",
+    "body": "This morning 01:00 is a peak event (grid forecast 10.2 kW, 0% over capacity). Price is now £0.08/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
+  },
+  {
+    "house_id": 3,
+    "timestep": 1826,
+    "hour": 2,
+    "headline": "Peak alert: defer Washing Machine to save £0.00",
+    "body": "This morning 02:00 is a peak event (grid forecast 10.3 kW, 0% over capacity). Price is now £0.08/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
+  },
+  {
+    "house_id": 3,
+    "timestep": 1827,
+    "hour": 2,
+    "headline": "Peak alert: defer Washing Machine to save £0.00",
+    "body": "This morning 02:00 is a peak event (grid forecast 10.3 kW, 0% over capacity). Price is now £0.08/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true
   },
   {
     "house_id": 9,

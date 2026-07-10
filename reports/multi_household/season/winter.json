@@ -1,0 +1,20 @@
+{
+  "tag": "winter",
+  "window": [
+    "2014-12-16",
+    "2015-02-28 12:00"
+  ],
+  "split_at": "2015-02-14 12:00",
+  "test_slots": 2016,
+  "baseline": {
+    "peak_kw": 41.96,
+    "p95_kw": 32.79
+  },
+  "coordinated": {
+    "peak_kw": 34.96,
+    "p95_kw": 22.98
+  },
+  "peak_red_pct": 16.7,
+  "p95_red_pct": 29.9,
+  "energy_drift_pct": 0.006
+}

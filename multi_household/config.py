@@ -27,6 +27,16 @@ AGG_DEGLITCH_W = 15000.0
 # onto this common 10-min grid (see preprocess) so the aggregate sums the SAME
 # timestamps across houses — not misaligned positions.
 CLEAN_WINDOW = ("2014-04-30", "2014-07-14")
+# --- seasonal-window overrides (experiments/season_windows.py) ----------
+# MH_CLEAN_WINDOW="YYYY-MM-DD,YYYY-MM-DD" swaps the analysis window;
+# MH_SPLIT_AT="YYYY-MM-DD" switches the train/test split from 80/20-by-rows
+# to a FIXED TIMESTAMP (needed for seasonal windows: the clean 14-day test
+# region stays cross-house aligned even if the training months have gaps
+# that drop different rows per house). Defaults (unset) = headline behaviour.
+import os as _os
+if _os.environ.get("MH_CLEAN_WINDOW"):
+    CLEAN_WINDOW = tuple(_os.environ["MH_CLEAN_WINDOW"].split(","))
+SPLIT_AT = _os.environ.get("MH_SPLIT_AT")               # None = 80/20 split
 MAX_INTERP_GAP_STEPS = 36                               # fill only ≤6 h gaps
 # House 11, 21 have solar PV (aggregate is net load, not raw demand)
 # House 12 has no deferable appliances

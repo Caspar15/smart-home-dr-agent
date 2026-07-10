@@ -9,7 +9,9 @@ import numpy as np
 import pandas as pd
 
 from multi_household.data.refit_loader import load_house
-from multi_household.config import CLEAN_WINDOW, MAX_INTERP_GAP_STEPS, RESAMPLE_FREQ
+from multi_household.config import (
+    CLEAN_WINDOW, MAX_INTERP_GAP_STEPS, RESAMPLE_FREQ, SPLIT_AT,
+)
 
 
 def reindex_to_common_grid(df: pd.DataFrame,
@@ -130,7 +132,15 @@ def prepare_house(house_id: int, train_frac: float = 0.80) -> dict:
                             if c.startswith("aggregate_w_lag")
                             or c.startswith("aggregate_w_roll")]).reset_index(drop=True)
 
-    train_df, test_df = chronological_split(df, train_frac=train_frac)
+    if SPLIT_AT:
+        # Fixed-timestamp split (seasonal windows): the clean test region stays
+        # cross-house aligned even if training-month gaps drop rows per house.
+        t = pd.to_datetime(df["time"])
+        cut_ts = pd.Timestamp(SPLIT_AT)
+        train_df = df[t < cut_ts].reset_index(drop=True)
+        test_df = df[t >= cut_ts].reset_index(drop=True)
+    else:
+        train_df, test_df = chronological_split(df, train_frac=train_frac)
 
     feature_cols = FEATURE_COLS_BASE + [
         c for c in df.columns

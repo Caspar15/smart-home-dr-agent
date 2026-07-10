@@ -66,3 +66,6 @@ desktop.ini
 multi_household/__pycache__/
 # ablation per-row artifacts (regenerable; summary lives in ablation_results.json)
 reports/multi_household/ablation/
+
+# seasonal-window models (regenerable)
+multi_household/models_*/

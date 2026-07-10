@@ -47,7 +47,7 @@ Reproduce + improve Durrani et al. (2025) on UCI Appliances.
        85% accept: peak 29.7±2.6 kW / −27% mean, seed-42 headline is the conservative
        end; P95 stable ±0.5), per-house NaN disclosure (mean 0.48%, worst 1.18%),
        closed-loop off/on/stress (stress: recs 445→0, suppressed 51, grid unchanged
-       → suppression is free). Longer-window scan still open (optional).
+       → suppression is free). Cross-season replication DONE 2026-07-07 (`season_windows.py`): autumn peak −25.4%/P95 −33.6%, winter −16.7%/−29.9% vs spring −19.2%/−28.6% → P95 season-robust at ~−30%; noon-anchored windows (fixes a finite-window tail artifact).
 2. [x] **Controller ladder (R15, MPC part)** ✅ 2026-07-06 — `mpc_baseline.py`: the
        single-house buffer LP lifted to the 16-house aggregate (perfect foresight,
        full-window min-peak, actual per-step deferrable watts incl. EV, 8h repayment

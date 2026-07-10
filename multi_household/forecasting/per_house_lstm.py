@@ -19,7 +19,11 @@ from multi_household.config import CACHE_DIR
 from multi_household.data.preprocess import prepare_house
 
 
-MODEL_DIR = CACHE_DIR.parent / "models"
+# MH_MODEL_DIR override keeps seasonal-window models in their own folder so
+# they never clobber the headline forecasters in multi_household/models/.
+import os as _os
+MODEL_DIR = (Path(_os.environ["MH_MODEL_DIR"]) if _os.environ.get("MH_MODEL_DIR")
+             else CACHE_DIR.parent / "models")
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
 
 
