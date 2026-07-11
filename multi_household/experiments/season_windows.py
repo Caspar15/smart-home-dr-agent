@@ -41,6 +41,9 @@ WINDOWS = {
     # trough fully inside the horizon — every night is treatable.
     "autumn": ("2014-08-02", "2014-10-15 12:00", "2014-10-01 12:00"),
     "winter": ("2014-12-16", "2015-02-28 12:00", "2015-02-14 12:00"),
+    # true spring — completes all four seasons (the headline test window
+    # Jun-30..Jul-14 is SUMMER; its training months are spring)
+    "spring": ("2015-02-06", "2015-04-21 12:00", "2015-04-07 12:00"),
 }
 SEED = 42
 ACCEPT = 0.85
@@ -129,11 +132,11 @@ def orchestrate(tags: list[str], epochs: int, lookback: int) -> None:
 
     # summary table incl. the spring headline
     rows = []
-    spring = {"tag": "spring (headline)", "window": ["2014-04-30", "2014-07-14"],
-              "baseline": {"peak_kw": 40.50, "p95_kw": 27.99},
-              "coordinated": {"peak_kw": 32.74, "p95_kw": 19.99},
-              "peak_red_pct": 19.2, "p95_red_pct": 28.6}
-    rows.append(spring)
+    headline = {"tag": "summer (headline)", "window": ["2014-04-30", "2014-07-14"],
+                "baseline": {"peak_kw": 40.50, "p95_kw": 27.99},
+                "coordinated": {"peak_kw": 32.74, "p95_kw": 19.99},
+                "peak_red_pct": 19.2, "p95_red_pct": 28.6}
+    rows.append(headline)
     for tag in WINDOWS:
         p = SEASON_DIR / f"{tag}.json"
         if p.exists():

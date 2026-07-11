@@ -1,6 +1,6 @@
 [
   {
-    "tag": "spring (headline)",
+    "tag": "summer (headline)",
     "window": [
       "2014-04-30",
       "2014-07-14"
@@ -55,5 +55,25 @@
     "peak_red_pct": 16.7,
     "p95_red_pct": 29.9,
     "energy_drift_pct": 0.006
+  },
+  {
+    "tag": "spring",
+    "window": [
+      "2015-02-06",
+      "2015-04-21 12:00"
+    ],
+    "split_at": "2015-04-07 12:00",
+    "test_slots": 2016,
+    "baseline": {
+      "peak_kw": 45.99,
+      "p95_kw": 31.54
+    },
+    "coordinated": {
+      "peak_kw": 34.85,
+      "p95_kw": 20.42
+    },
+    "peak_red_pct": 24.2,
+    "p95_red_pct": 35.3,
+    "energy_drift_pct": 0.0
   }
 ]
