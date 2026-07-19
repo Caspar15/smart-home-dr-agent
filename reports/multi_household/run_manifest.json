@@ -1,0 +1,46 @@
+{
+  "run_utc": "2026-07-19T11:23:06Z",
+  "git_commit": "caacadd5594c20c184dbfa2c4b8bb3199932a0c1",
+  "modes": [
+    "baseline",
+    "independent",
+    "coordinated"
+  ],
+  "houses": [
+    1,
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    13,
+    15,
+    16,
+    17,
+    18,
+    20
+  ],
+  "seed": 42,
+  "ev_seed": 20260710,
+  "user_accept": 0.85,
+  "forecast_mode": "lstm",
+  "ev_smart": true,
+  "clean_window": [
+    "2014-04-30",
+    "2014-07-14 12:00"
+  ],
+  "split_at": "2014-06-30 12:00",
+  "cache_version": "v2",
+  "grid_threshold_w": 17712.6,
+  "test_steps": 2016,
+  "test_days": 14.0,
+  "versions": {
+    "python": "3.12.7",
+    "torch": "2.5.1+cu121",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2"
+  }
+}

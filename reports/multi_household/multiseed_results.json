@@ -8,68 +8,68 @@
   ],
   "days": 14,
   "baseline": {
-    "peak_kw": 40.5,
-    "p95_kw": 27.99
+    "peak_kw": 40.37,
+    "p95_kw": 26.79
   },
   "coordinated": {
     "accept=0.00": {
-      "peak_kw_mean": 40.5,
+      "peak_kw_mean": 40.37,
       "peak_kw_std": 0.0,
-      "p95_kw_mean": 27.99,
+      "p95_kw_mean": 26.79,
       "p95_kw_std": 0.0,
-      "peak_red_pct_mean": 0.0,
+      "peak_red_pct_mean": -0.0,
       "p95_red_pct_mean": 0.0,
       "peaks": [
-        40.5,
-        40.5,
-        40.5,
-        40.5,
-        40.5
+        40.37,
+        40.37,
+        40.37,
+        40.37,
+        40.37
       ]
     },
     "accept=0.50": {
-      "peak_kw_mean": 35.38,
-      "peak_kw_std": 2.712,
-      "p95_kw_mean": 24.09,
-      "p95_kw_std": 1.364,
-      "peak_red_pct_mean": 12.64,
-      "p95_red_pct_mean": 13.95,
+      "peak_kw_mean": 35.19,
+      "peak_kw_std": 2.703,
+      "p95_kw_mean": 23.41,
+      "p95_kw_std": 1.58,
+      "peak_red_pct_mean": 12.83,
+      "p95_red_pct_mean": 12.62,
       "peaks": [
-        33.5,
-        33.5,
-        33.5,
-        35.93,
-        40.47
+        33.37,
+        33.37,
+        33.37,
+        35.51,
+        40.33
       ]
     },
     "accept=0.85": {
-      "peak_kw_mean": 29.74,
-      "peak_kw_std": 2.585,
-      "p95_kw_mean": 20.53,
-      "p95_kw_std": 0.487,
-      "peak_red_pct_mean": 26.57,
-      "p95_red_pct_mean": 26.65,
+      "peak_kw_mean": 29.4,
+      "peak_kw_std": 2.767,
+      "p95_kw_mean": 19.99,
+      "p95_kw_std": 0.351,
+      "peak_red_pct_mean": 27.17,
+      "p95_red_pct_mean": 25.4,
       "peaks": [
-        27.2,
-        27.19,
-        32.1,
-        33.47,
-        28.75
+        26.84,
+        26.38,
+        31.91,
+        33.33,
+        28.53
       ]
     },
     "accept=1.00": {
-      "peak_kw_mean": 28.75,
+      "peak_kw_mean": 28.53,
       "peak_kw_std": 0.0,
-      "p95_kw_mean": 19.49,
+      "p95_kw_mean": 19.13,
       "p95_kw_std": 0.0,
-      "peak_red_pct_mean": 29.02,
-      "p95_red_pct_mean": 30.39,
+      "peak_red_pct_mean": 29.33,
+      "p95_red_pct_mean": 28.62,
       "peaks": [
-        28.75,
-        28.75,
-        28.75,
-        28.75,
-        28.75
+        28.53,
+        28.53,
+        28.53,
+        28.53,
+        28.53
       ]
     }
   }

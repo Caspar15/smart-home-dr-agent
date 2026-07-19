@@ -1,20 +1,20 @@
 {
   "tag": "spring",
   "window": [
-    "2015-02-06",
-    "2015-04-21 12:00"
+    "2015-02-13",
+    "2015-04-26 12:00"
   ],
-  "split_at": "2015-04-07 12:00",
-  "test_slots": 2016,
+  "split_at": "2015-04-14 12:00",
+  "test_slots": 1728,
   "baseline": {
-    "peak_kw": 45.99,
-    "p95_kw": 31.54
+    "peak_kw": 40.79,
+    "p95_kw": 26.97
   },
   "coordinated": {
-    "peak_kw": 34.85,
-    "p95_kw": 20.42
+    "peak_kw": 31.31,
+    "p95_kw": 20.8
   },
-  "peak_red_pct": 24.2,
-  "p95_red_pct": 35.3,
-  "energy_drift_pct": 0.0
+  "peak_red_pct": 23.2,
+  "p95_red_pct": 22.9,
+  "energy_drift_pct": 0.037
 }

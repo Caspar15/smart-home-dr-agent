@@ -1,626 +1,652 @@
 {
   "baseline": {
-    "n_houses": 16,
-    "n_steps": 1959,
-    "days": 13.6,
+    "n_houses": 15,
+    "n_steps": 2016,
+    "days": 14.0,
     "user": {
-      "total_cost_baseline_gbp": 552.87,
-      "total_cost_after_gbp": 552.87,
-      "avg_saving_pct": 0.0,
+      "total_cost_baseline_gbp": 540.39,
+      "total_cost_after_gbp": 540.39,
+      "mean_household_saving_pct": 0.0,
+      "weighted_total_saving_pct": 0.0,
+      "tariff_note": "fixed ToU only; dynamic surcharge not billed",
       "per_house": [
         {
           "house": 1,
-          "demand_kwh": 113.99878125,
-          "served_kwh": 113.99878125,
-          "cost_baseline_gbp": 21.56,
-          "cost_after_gbp": 21.56,
+          "demand_kwh": 116.12595833333333,
+          "served_kwh": 116.12595833333333,
+          "cost_baseline_gbp": 21.8,
+          "cost_after_gbp": 21.8,
           "saving_pct": 0.0
         },
         {
           "house": 2,
-          "demand_kwh": 134.09194791666667,
-          "served_kwh": 134.09194791666667,
-          "cost_baseline_gbp": 25.03,
-          "cost_after_gbp": 25.03,
-          "saving_pct": 0.0
-        },
-        {
-          "house": 3,
-          "demand_kwh": 129.95291666666665,
-          "served_kwh": 129.95291666666665,
-          "cost_baseline_gbp": 22.61,
-          "cost_after_gbp": 22.61,
+          "demand_kwh": 136.93996875,
+          "served_kwh": 136.93996875,
+          "cost_baseline_gbp": 25.41,
+          "cost_after_gbp": 25.41,
           "saving_pct": 0.0
         },
         {
           "house": 4,
-          "demand_kwh": 116.28897916666666,
-          "served_kwh": 116.28897916666666,
-          "cost_baseline_gbp": 20.56,
-          "cost_after_gbp": 20.56,
+          "demand_kwh": 120.61386458333332,
+          "served_kwh": 120.61386458333332,
+          "cost_baseline_gbp": 21.11,
+          "cost_after_gbp": 21.11,
           "saving_pct": 0.0
         },
         {
           "house": 5,
-          "demand_kwh": 529.1969583333332,
-          "served_kwh": 529.1969583333332,
-          "cost_baseline_gbp": 75.05,
-          "cost_after_gbp": 75.05,
+          "demand_kwh": 535.049875,
+          "served_kwh": 535.049875,
+          "cost_baseline_gbp": 75.72,
+          "cost_after_gbp": 75.72,
           "saving_pct": 0.0
         },
         {
           "house": 6,
-          "demand_kwh": 117.21025,
-          "served_kwh": 117.21025,
-          "cost_baseline_gbp": 21.09,
-          "cost_after_gbp": 21.09,
+          "demand_kwh": 118.88145833333333,
+          "served_kwh": 118.88145833333333,
+          "cost_baseline_gbp": 21.26,
+          "cost_after_gbp": 21.26,
           "saving_pct": 0.0
         },
         {
           "house": 7,
-          "demand_kwh": 389.24975,
-          "served_kwh": 389.24975,
-          "cost_baseline_gbp": 52.95,
-          "cost_after_gbp": 52.95,
+          "demand_kwh": 411.1628333333333,
+          "served_kwh": 411.1628333333333,
+          "cost_baseline_gbp": 54.69,
+          "cost_after_gbp": 54.69,
           "saving_pct": 0.0
         },
         {
           "house": 8,
-          "demand_kwh": 184.4213333333333,
-          "served_kwh": 184.4213333333333,
-          "cost_baseline_gbp": 25.46,
-          "cost_after_gbp": 25.46,
+          "demand_kwh": 193.72941666666665,
+          "served_kwh": 193.72941666666665,
+          "cost_baseline_gbp": 26.3,
+          "cost_after_gbp": 26.3,
           "saving_pct": 0.0
         },
         {
           "house": 9,
-          "demand_kwh": 384.2135833333333,
-          "served_kwh": 384.2135833333333,
-          "cost_baseline_gbp": 58.56,
-          "cost_after_gbp": 58.56,
+          "demand_kwh": 387.544875,
+          "served_kwh": 387.544875,
+          "cost_baseline_gbp": 58.94,
+          "cost_after_gbp": 58.94,
           "saving_pct": 0.0
         },
         {
           "house": 10,
-          "demand_kwh": 198.64389583333332,
-          "served_kwh": 198.64389583333332,
-          "cost_baseline_gbp": 36.38,
-          "cost_after_gbp": 36.38,
+          "demand_kwh": 201.5795625,
+          "served_kwh": 201.5795625,
+          "cost_baseline_gbp": 36.69,
+          "cost_after_gbp": 36.69,
           "saving_pct": 0.0
         },
         {
           "house": 13,
-          "demand_kwh": 357.2980833333333,
-          "served_kwh": 357.2980833333333,
-          "cost_baseline_gbp": 58.1,
-          "cost_after_gbp": 58.1,
+          "demand_kwh": 378.1139583333333,
+          "served_kwh": 378.1139583333333,
+          "cost_baseline_gbp": 59.82,
+          "cost_after_gbp": 59.82,
           "saving_pct": 0.0
         },
         {
           "house": 15,
-          "demand_kwh": 78.55383333333333,
-          "served_kwh": 78.55383333333333,
-          "cost_baseline_gbp": 13.69,
-          "cost_after_gbp": 13.69,
+          "demand_kwh": 78.553328125,
+          "served_kwh": 78.553328125,
+          "cost_baseline_gbp": 13.62,
+          "cost_after_gbp": 13.62,
           "saving_pct": 0.0
         },
         {
           "house": 16,
-          "demand_kwh": 159.4521875,
-          "served_kwh": 159.4521875,
-          "cost_baseline_gbp": 28.98,
-          "cost_after_gbp": 28.98,
+          "demand_kwh": 163.34260416666666,
+          "served_kwh": 163.34260416666666,
+          "cost_baseline_gbp": 29.4,
+          "cost_after_gbp": 29.4,
           "saving_pct": 0.0
         },
         {
           "house": 17,
-          "demand_kwh": 122.93252083333333,
-          "served_kwh": 122.93252083333333,
-          "cost_baseline_gbp": 21.31,
-          "cost_after_gbp": 21.31,
+          "demand_kwh": 125.4954375,
+          "served_kwh": 125.4954375,
+          "cost_baseline_gbp": 21.6,
+          "cost_after_gbp": 21.6,
           "saving_pct": 0.0
         },
         {
           "house": 18,
-          "demand_kwh": 370.30333333333334,
-          "served_kwh": 370.30333333333334,
-          "cost_baseline_gbp": 51.39,
-          "cost_after_gbp": 51.39,
+          "demand_kwh": 394.69325,
+          "served_kwh": 394.69325,
+          "cost_baseline_gbp": 53.44,
+          "cost_after_gbp": 53.44,
           "saving_pct": 0.0
         },
         {
           "house": 20,
-          "demand_kwh": 108.25061458333333,
-          "served_kwh": 108.25061458333333,
-          "cost_baseline_gbp": 20.15,
-          "cost_after_gbp": 20.15,
+          "demand_kwh": 111.74220833333332,
+          "served_kwh": 111.74220833333332,
+          "cost_baseline_gbp": 20.59,
+          "cost_after_gbp": 20.59,
           "saving_pct": 0.0
         }
       ]
     },
-    "comfort": {
-      "total_recommendations": 0,
-      "accept_rate": 0.0,
-      "avg_recs_per_house": 0.0,
-      "max_recs_per_house": 0,
-      "fairness_jain": 1.0,
-      "defer_wait_mean_min": 0.0,
-      "defer_wait_p95_min": 0.0,
-      "defer_wait_max_min": 0.0,
-      "n_defers_completed": 0
-    },
+    "comfort": null,
     "rebound": {
       "off_peak_rebound_mean_kw": 0.0,
       "off_peak_rebound_p95_kw": 0.0,
       "off_peak_rebound_max_kw": 0.0
     },
     "grid": {
-      "agg_demand_p95_kw": 27.99,
-      "agg_served_p95_kw": 27.99,
+      "agg_demand_p95_kw": 26.79,
+      "agg_served_p95_kw": 26.79,
       "p95_reduction_pct": 0.0,
-      "agg_demand_peak_kw": 40.5,
-      "agg_served_peak_kw": 40.5,
-      "peak_window_mean_demand_kw": 9.97,
-      "peak_window_mean_served_kw": 9.97,
+      "agg_demand_peak_kw": 40.37,
+      "agg_served_peak_kw": 40.37,
+      "peak_window_mean_demand_kw": 9.54,
+      "peak_window_mean_served_kw": 9.54,
       "peak_window_reduction_pct": 0.0,
-      "off_peak_max_demand_kw": 40.5,
-      "off_peak_max_served_kw": 40.5,
+      "off_peak_max_demand_kw": 40.37,
+      "off_peak_max_served_kw": 40.37,
       "rebound_increase_kw": 0.0
     },
     "energy_conservation": {
-      "demand_total_mwh": 3.494,
-      "served_total_mwh": 3.494,
+      "demand_total_mwh": 3.474,
+      "served_total_mwh": 3.474,
       "diff_pct": 0.0
     }
   },
   "independent": {
-    "n_houses": 16,
-    "n_steps": 1959,
-    "days": 13.6,
+    "n_houses": 15,
+    "n_steps": 2016,
+    "days": 14.0,
     "user": {
-      "total_cost_baseline_gbp": 552.87,
-      "total_cost_after_gbp": 538.46,
-      "avg_saving_pct": 1.89,
+      "total_cost_baseline_gbp": 540.39,
+      "total_cost_after_gbp": 525.06,
+      "mean_household_saving_pct": 2.03,
+      "weighted_total_saving_pct": 2.84,
+      "tariff_note": "fixed ToU only; dynamic surcharge not billed",
       "per_house": [
         {
           "house": 1,
-          "demand_kwh": 113.99878125,
-          "served_kwh": 113.99878125,
-          "cost_baseline_gbp": 21.56,
-          "cost_after_gbp": 21.56,
-          "saving_pct": 0.0
+          "demand_kwh": 116.12595833333333,
+          "served_kwh": 116.12595833333333,
+          "cost_baseline_gbp": 21.8,
+          "cost_after_gbp": 21.79,
+          "saving_pct": 0.03
         },
         {
           "house": 2,
-          "demand_kwh": 134.09194791666667,
-          "served_kwh": 133.45941666666667,
-          "cost_baseline_gbp": 25.03,
-          "cost_after_gbp": 24.23,
-          "saving_pct": 3.17
-        },
-        {
-          "house": 3,
-          "demand_kwh": 129.95291666666665,
-          "served_kwh": 129.95291666666665,
-          "cost_baseline_gbp": 22.61,
-          "cost_after_gbp": 22.73,
-          "saving_pct": -0.53
+          "demand_kwh": 136.93996875,
+          "served_kwh": 136.93997916666666,
+          "cost_baseline_gbp": 25.41,
+          "cost_after_gbp": 24.81,
+          "saving_pct": 2.36
         },
         {
           "house": 4,
-          "demand_kwh": 116.28897916666666,
-          "served_kwh": 116.28897916666666,
-          "cost_baseline_gbp": 20.56,
-          "cost_after_gbp": 20.55,
+          "demand_kwh": 120.61386458333332,
+          "served_kwh": 120.61385416666666,
+          "cost_baseline_gbp": 21.11,
+          "cost_after_gbp": 21.1,
           "saving_pct": 0.04
         },
         {
           "house": 5,
-          "demand_kwh": 529.1969583333332,
-          "served_kwh": 529.1969583333332,
-          "cost_baseline_gbp": 75.05,
-          "cost_after_gbp": 74.54,
-          "saving_pct": 0.68
+          "demand_kwh": 535.049875,
+          "served_kwh": 535.049875,
+          "cost_baseline_gbp": 75.72,
+          "cost_after_gbp": 74.71,
+          "saving_pct": 1.34
         },
         {
           "house": 6,
-          "demand_kwh": 117.21025,
-          "served_kwh": 117.21025,
-          "cost_baseline_gbp": 21.09,
-          "cost_after_gbp": 21.09,
+          "demand_kwh": 118.88145833333333,
+          "served_kwh": 118.88145833333333,
+          "cost_baseline_gbp": 21.26,
+          "cost_after_gbp": 21.26,
           "saving_pct": 0.0
         },
         {
           "house": 7,
-          "demand_kwh": 389.24975,
-          "served_kwh": 389.24975,
-          "cost_baseline_gbp": 52.95,
-          "cost_after_gbp": 50.61,
-          "saving_pct": 4.42
+          "demand_kwh": 411.1628333333333,
+          "served_kwh": 411.1628333333333,
+          "cost_baseline_gbp": 54.69,
+          "cost_after_gbp": 52.2,
+          "saving_pct": 4.55
         },
         {
           "house": 8,
-          "demand_kwh": 184.4213333333333,
-          "served_kwh": 184.4213333333333,
-          "cost_baseline_gbp": 25.46,
-          "cost_after_gbp": 25.48,
-          "saving_pct": -0.09
+          "demand_kwh": 193.72941666666665,
+          "served_kwh": 193.72941666666665,
+          "cost_baseline_gbp": 26.3,
+          "cost_after_gbp": 26.32,
+          "saving_pct": -0.08
         },
         {
           "house": 9,
-          "demand_kwh": 384.2135833333333,
-          "served_kwh": 384.2135833333333,
-          "cost_baseline_gbp": 58.56,
-          "cost_after_gbp": 55.93,
-          "saving_pct": 4.49
+          "demand_kwh": 387.544875,
+          "served_kwh": 387.18066666666664,
+          "cost_baseline_gbp": 58.94,
+          "cost_after_gbp": 55.26,
+          "saving_pct": 6.25
         },
         {
           "house": 10,
-          "demand_kwh": 198.64389583333332,
-          "served_kwh": 198.2233958333333,
-          "cost_baseline_gbp": 36.38,
-          "cost_after_gbp": 35.13,
-          "saving_pct": 3.42
+          "demand_kwh": 201.5795625,
+          "served_kwh": 201.5795625,
+          "cost_baseline_gbp": 36.69,
+          "cost_after_gbp": 35.75,
+          "saving_pct": 2.56
         },
         {
           "house": 13,
-          "demand_kwh": 357.2980833333333,
-          "served_kwh": 357.2980833333333,
-          "cost_baseline_gbp": 58.1,
-          "cost_after_gbp": 53.59,
-          "saving_pct": 7.75
+          "demand_kwh": 378.1139583333333,
+          "served_kwh": 378.1139583333333,
+          "cost_baseline_gbp": 59.82,
+          "cost_after_gbp": 55.88,
+          "saving_pct": 6.59
         },
         {
           "house": 15,
-          "demand_kwh": 78.55383333333333,
-          "served_kwh": 78.55383333333333,
-          "cost_baseline_gbp": 13.69,
-          "cost_after_gbp": 13.69,
-          "saving_pct": -0.03
+          "demand_kwh": 78.553328125,
+          "served_kwh": 78.553328125,
+          "cost_baseline_gbp": 13.62,
+          "cost_after_gbp": 13.62,
+          "saving_pct": -0.02
         },
         {
           "house": 16,
-          "demand_kwh": 159.4521875,
-          "served_kwh": 159.4521875,
-          "cost_baseline_gbp": 28.98,
-          "cost_after_gbp": 27.88,
-          "saving_pct": 3.81
+          "demand_kwh": 163.34260416666666,
+          "served_kwh": 163.34260416666666,
+          "cost_baseline_gbp": 29.4,
+          "cost_after_gbp": 28.23,
+          "saving_pct": 4.01
         },
         {
           "house": 17,
-          "demand_kwh": 122.93252083333333,
-          "served_kwh": 122.93252083333333,
-          "cost_baseline_gbp": 21.31,
-          "cost_after_gbp": 21.3,
+          "demand_kwh": 125.4954375,
+          "served_kwh": 125.4954375,
+          "cost_baseline_gbp": 21.6,
+          "cost_after_gbp": 21.59,
           "saving_pct": 0.03
         },
         {
           "house": 18,
-          "demand_kwh": 370.30333333333334,
-          "served_kwh": 370.30333333333334,
-          "cost_baseline_gbp": 51.39,
-          "cost_after_gbp": 50.13,
-          "saving_pct": 2.46
+          "demand_kwh": 394.69325,
+          "served_kwh": 394.69325,
+          "cost_baseline_gbp": 53.44,
+          "cost_after_gbp": 51.95,
+          "saving_pct": 2.8
         },
         {
           "house": 20,
-          "demand_kwh": 108.25061458333333,
-          "served_kwh": 108.25061458333333,
-          "cost_baseline_gbp": 20.15,
-          "cost_after_gbp": 20.02,
-          "saving_pct": 0.63
+          "demand_kwh": 111.74220833333332,
+          "served_kwh": 111.74220833333332,
+          "cost_baseline_gbp": 20.59,
+          "cost_after_gbp": 20.59,
+          "saving_pct": 0.0
         }
       ]
     },
     "comfort": {
-      "total_recommendations": 1581,
-      "accept_rate": 0.986,
-      "avg_recs_per_house": 98.81,
-      "max_recs_per_house": 284,
-      "fairness_jain": 0.4998,
-      "defer_wait_mean_min": 337.5,
-      "defer_wait_p95_min": 480.0,
-      "defer_wait_max_min": 480.0,
-      "n_defers_completed": 1354
+      "appliance_decisions": 148,
+      "appliance_accepted": 125,
+      "appliance_accept_rate": 0.845,
+      "ev_decisions": 0,
+      "ev_accepted": 0,
+      "ev_accept_rate": null,
+      "total_decisions": 148,
+      "total_accepted": 125,
+      "total_accept_rate": 0.845,
+      "surface_messages_total": 1777,
+      "avg_decisions_per_house": 9.87,
+      "max_decisions_per_house": 25,
+      "per_house_decisions": {
+        "1": 1,
+        "2": 21,
+        "4": 4,
+        "5": 19,
+        "6": 0,
+        "7": 23,
+        "8": 1,
+        "9": 15,
+        "10": 25,
+        "13": 15,
+        "15": 1,
+        "16": 12,
+        "17": 1,
+        "18": 8,
+        "20": 2
+      },
+      "fairness": {
+        "jain_appliance": 0.5536,
+        "jain_ev": null,
+        "jain_total": 0.5536,
+        "jain_total_active": 0.5931
+      },
+      "release_chunk_wait_mean_min": 338.1,
+      "release_chunk_wait_p95_min": 480.0,
+      "release_chunk_wait_max_min": 480.0,
+      "n_release_chunks": 1546
     },
     "rebound": {
-      "off_peak_rebound_mean_kw": 0.477,
-      "off_peak_rebound_p95_kw": 4.289,
-      "off_peak_rebound_max_kw": 6.082
+      "off_peak_rebound_mean_kw": 0.405,
+      "off_peak_rebound_p95_kw": 4.693,
+      "off_peak_rebound_max_kw": 6.866
     },
     "grid": {
-      "agg_demand_p95_kw": 27.99,
-      "agg_served_p95_kw": 25.87,
-      "p95_reduction_pct": 7.58,
-      "agg_demand_peak_kw": 40.5,
-      "agg_served_peak_kw": 38.69,
-      "peak_window_mean_demand_kw": 9.97,
-      "peak_window_mean_served_kw": 8.86,
-      "peak_window_reduction_pct": 11.1,
-      "off_peak_max_demand_kw": 40.5,
-      "off_peak_max_served_kw": 38.69,
-      "rebound_increase_kw": -1.82
+      "agg_demand_p95_kw": 26.79,
+      "agg_served_p95_kw": 25.06,
+      "p95_reduction_pct": 6.49,
+      "agg_demand_peak_kw": 40.37,
+      "agg_served_peak_kw": 35.56,
+      "peak_window_mean_demand_kw": 9.54,
+      "peak_window_mean_served_kw": 8.31,
+      "peak_window_reduction_pct": 12.89,
+      "off_peak_max_demand_kw": 40.37,
+      "off_peak_max_served_kw": 35.56,
+      "rebound_increase_kw": -4.81
     },
     "energy_conservation": {
-      "demand_total_mwh": 3.494,
-      "served_total_mwh": 3.493,
-      "diff_pct": -0.03
+      "demand_total_mwh": 3.474,
+      "served_total_mwh": 3.473,
+      "diff_pct": -0.01
     }
   },
   "coordinated": {
-    "n_houses": 16,
-    "n_steps": 1959,
-    "days": 13.6,
+    "n_houses": 15,
+    "n_steps": 2016,
+    "days": 14.0,
     "user": {
-      "total_cost_baseline_gbp": 552.87,
-      "total_cost_after_gbp": 545.96,
-      "avg_saving_pct": 0.73,
+      "total_cost_baseline_gbp": 540.39,
+      "total_cost_after_gbp": 533.27,
+      "mean_household_saving_pct": 0.83,
+      "weighted_total_saving_pct": 1.32,
+      "tariff_note": "fixed ToU only; dynamic surcharge not billed",
       "per_house": [
         {
           "house": 1,
-          "demand_kwh": 113.99878125,
-          "served_kwh": 113.99878125,
-          "cost_baseline_gbp": 21.56,
-          "cost_after_gbp": 21.56,
+          "demand_kwh": 116.12595833333333,
+          "served_kwh": 116.12595833333333,
+          "cost_baseline_gbp": 21.8,
+          "cost_after_gbp": 21.8,
           "saving_pct": 0.0
         },
         {
           "house": 2,
-          "demand_kwh": 134.09194791666667,
-          "served_kwh": 134.09194791666667,
-          "cost_baseline_gbp": 25.03,
-          "cost_after_gbp": 25.18,
-          "saving_pct": -0.6
-        },
-        {
-          "house": 3,
-          "demand_kwh": 129.95291666666665,
-          "served_kwh": 129.95291666666665,
-          "cost_baseline_gbp": 22.61,
-          "cost_after_gbp": 22.82,
-          "saving_pct": -0.94
+          "demand_kwh": 136.93996875,
+          "served_kwh": 136.93997916666666,
+          "cost_baseline_gbp": 25.41,
+          "cost_after_gbp": 25.55,
+          "saving_pct": -0.55
         },
         {
           "house": 4,
-          "demand_kwh": 116.28897916666666,
-          "served_kwh": 116.28897916666666,
-          "cost_baseline_gbp": 20.56,
-          "cost_after_gbp": 20.57,
-          "saving_pct": -0.03
+          "demand_kwh": 120.61386458333332,
+          "served_kwh": 120.61385416666666,
+          "cost_baseline_gbp": 21.11,
+          "cost_after_gbp": 21.1,
+          "saving_pct": 0.04
         },
         {
           "house": 5,
-          "demand_kwh": 529.1969583333332,
-          "served_kwh": 529.1969583333332,
-          "cost_baseline_gbp": 75.05,
-          "cost_after_gbp": 75.75,
-          "saving_pct": -0.93
+          "demand_kwh": 535.049875,
+          "served_kwh": 535.049875,
+          "cost_baseline_gbp": 75.72,
+          "cost_after_gbp": 76.53,
+          "saving_pct": -1.06
         },
         {
           "house": 6,
-          "demand_kwh": 117.21025,
-          "served_kwh": 117.21025,
-          "cost_baseline_gbp": 21.09,
-          "cost_after_gbp": 21.21,
-          "saving_pct": -0.54
-        },
-        {
-          "house": 7,
-          "demand_kwh": 389.24975,
-          "served_kwh": 389.24975,
-          "cost_baseline_gbp": 52.95,
-          "cost_after_gbp": 48.85,
-          "saving_pct": 7.73
-        },
-        {
-          "house": 8,
-          "demand_kwh": 184.4213333333333,
-          "served_kwh": 184.4213333333333,
-          "cost_baseline_gbp": 25.46,
-          "cost_after_gbp": 25.48,
-          "saving_pct": -0.09
-        },
-        {
-          "house": 9,
-          "demand_kwh": 384.2135833333333,
-          "served_kwh": 384.2135833333333,
-          "cost_baseline_gbp": 58.56,
-          "cost_after_gbp": 56.39,
-          "saving_pct": 3.71
-        },
-        {
-          "house": 10,
-          "demand_kwh": 198.64389583333332,
-          "served_kwh": 198.64389583333332,
-          "cost_baseline_gbp": 36.38,
-          "cost_after_gbp": 36.34,
-          "saving_pct": 0.12
-        },
-        {
-          "house": 13,
-          "demand_kwh": 357.2980833333333,
-          "served_kwh": 357.2980833333333,
-          "cost_baseline_gbp": 58.1,
-          "cost_after_gbp": 56.24,
-          "saving_pct": 3.19
-        },
-        {
-          "house": 15,
-          "demand_kwh": 78.55383333333333,
-          "served_kwh": 78.55383333333333,
-          "cost_baseline_gbp": 13.69,
-          "cost_after_gbp": 13.69,
-          "saving_pct": -0.03
-        },
-        {
-          "house": 16,
-          "demand_kwh": 159.4521875,
-          "served_kwh": 159.4521875,
-          "cost_baseline_gbp": 28.98,
-          "cost_after_gbp": 28.83,
-          "saving_pct": 0.53
-        },
-        {
-          "house": 17,
-          "demand_kwh": 122.93252083333333,
-          "served_kwh": 122.93252083333333,
-          "cost_baseline_gbp": 21.31,
-          "cost_after_gbp": 21.31,
+          "demand_kwh": 118.88145833333333,
+          "served_kwh": 118.88145833333333,
+          "cost_baseline_gbp": 21.26,
+          "cost_after_gbp": 21.26,
           "saving_pct": 0.0
         },
         {
+          "house": 7,
+          "demand_kwh": 411.1628333333333,
+          "served_kwh": 411.1628333333333,
+          "cost_baseline_gbp": 54.69,
+          "cost_after_gbp": 50.18,
+          "saving_pct": 8.23
+        },
+        {
+          "house": 8,
+          "demand_kwh": 193.72941666666665,
+          "served_kwh": 193.72941666666665,
+          "cost_baseline_gbp": 26.3,
+          "cost_after_gbp": 26.39,
+          "saving_pct": -0.35
+        },
+        {
+          "house": 9,
+          "demand_kwh": 387.544875,
+          "served_kwh": 387.18066666666664,
+          "cost_baseline_gbp": 58.94,
+          "cost_after_gbp": 56.75,
+          "saving_pct": 3.73
+        },
+        {
+          "house": 10,
+          "demand_kwh": 201.5795625,
+          "served_kwh": 201.5795625,
+          "cost_baseline_gbp": 36.69,
+          "cost_after_gbp": 36.71,
+          "saving_pct": -0.04
+        },
+        {
+          "house": 13,
+          "demand_kwh": 378.1139583333333,
+          "served_kwh": 378.1139583333333,
+          "cost_baseline_gbp": 59.82,
+          "cost_after_gbp": 57.97,
+          "saving_pct": 3.09
+        },
+        {
+          "house": 15,
+          "demand_kwh": 78.553328125,
+          "served_kwh": 78.553328125,
+          "cost_baseline_gbp": 13.62,
+          "cost_after_gbp": 13.62,
+          "saving_pct": -0.02
+        },
+        {
+          "house": 16,
+          "demand_kwh": 163.34260416666666,
+          "served_kwh": 163.34260416666666,
+          "cost_baseline_gbp": 29.4,
+          "cost_after_gbp": 29.39,
+          "saving_pct": 0.04
+        },
+        {
+          "house": 17,
+          "demand_kwh": 125.4954375,
+          "served_kwh": 125.4954375,
+          "cost_baseline_gbp": 21.6,
+          "cost_after_gbp": 21.59,
+          "saving_pct": 0.03
+        },
+        {
           "house": 18,
-          "demand_kwh": 370.30333333333334,
-          "served_kwh": 370.30333333333334,
-          "cost_baseline_gbp": 51.39,
-          "cost_after_gbp": 51.59,
-          "saving_pct": -0.4
+          "demand_kwh": 394.69325,
+          "served_kwh": 394.69325,
+          "cost_baseline_gbp": 53.44,
+          "cost_after_gbp": 53.84,
+          "saving_pct": -0.74
         },
         {
           "house": 20,
-          "demand_kwh": 108.25061458333333,
-          "served_kwh": 108.25061458333333,
-          "cost_baseline_gbp": 20.15,
-          "cost_after_gbp": 20.15,
+          "demand_kwh": 111.74220833333332,
+          "served_kwh": 111.74220833333332,
+          "cost_baseline_gbp": 20.59,
+          "cost_after_gbp": 20.59,
           "saving_pct": 0.0
         }
       ]
     },
     "comfort": {
-      "total_recommendations": 421,
-      "accept_rate": 0.986,
-      "avg_recs_per_house": 26.31,
-      "max_recs_per_house": 120,
-      "fairness_jain": 0.3387,
-      "defer_wait_mean_min": 300.0,
-      "defer_wait_p95_min": 360.0,
-      "defer_wait_max_min": 360.0,
-      "n_defers_completed": 308
+      "appliance_decisions": 58,
+      "appliance_accepted": 53,
+      "appliance_accept_rate": 0.914,
+      "ev_decisions": 44,
+      "ev_accepted": 39,
+      "ev_accept_rate": 0.886,
+      "total_decisions": 102,
+      "total_accepted": 92,
+      "total_accept_rate": 0.902,
+      "surface_messages_total": 559,
+      "avg_decisions_per_house": 6.8,
+      "max_decisions_per_house": 23,
+      "per_house_decisions": {
+        "1": 0,
+        "2": 14,
+        "4": 4,
+        "5": 23,
+        "6": 0,
+        "7": 10,
+        "8": 2,
+        "9": 12,
+        "10": 13,
+        "13": 10,
+        "15": 1,
+        "16": 2,
+        "17": 1,
+        "18": 10,
+        "20": 0
+      },
+      "fairness": {
+        "jain_appliance": 0.384,
+        "jain_ev": 0.9878,
+        "jain_total": 0.5085,
+        "jain_total_active": 0.6356
+      },
+      "release_chunk_wait_mean_min": 306.2,
+      "release_chunk_wait_p95_min": 360.0,
+      "release_chunk_wait_max_min": 360.0,
+      "n_release_chunks": 344
     },
     "rebound": {
-      "off_peak_rebound_mean_kw": 0.993,
+      "off_peak_rebound_mean_kw": 0.94,
       "off_peak_rebound_p95_kw": 14.0,
-      "off_peak_rebound_max_kw": 14.0
+      "off_peak_rebound_max_kw": 14.376
     },
     "grid": {
-      "agg_demand_p95_kw": 27.99,
-      "agg_served_p95_kw": 19.99,
-      "p95_reduction_pct": 28.57,
-      "agg_demand_peak_kw": 40.5,
-      "agg_served_peak_kw": 32.74,
-      "peak_window_mean_demand_kw": 9.97,
-      "peak_window_mean_served_kw": 9.83,
-      "peak_window_reduction_pct": 1.41,
-      "off_peak_max_demand_kw": 40.5,
-      "off_peak_max_served_kw": 28.75,
-      "rebound_increase_kw": -11.75
+      "agg_demand_p95_kw": 26.79,
+      "agg_served_p95_kw": 19.44,
+      "p95_reduction_pct": 27.45,
+      "agg_demand_peak_kw": 40.37,
+      "agg_served_peak_kw": 32.41,
+      "peak_window_mean_demand_kw": 9.54,
+      "peak_window_mean_served_kw": 9.39,
+      "peak_window_reduction_pct": 1.54,
+      "off_peak_max_demand_kw": 40.37,
+      "off_peak_max_served_kw": 28.53,
+      "rebound_increase_kw": -11.84
     },
     "energy_conservation": {
-      "demand_total_mwh": 3.494,
-      "served_total_mwh": 3.494,
-      "diff_pct": 0.0
+      "demand_total_mwh": 3.474,
+      "served_total_mwh": 3.473,
+      "diff_pct": -0.01
     }
   },
   "data_quality": {
     "house_01": {
-      "n_slots": 10801,
-      "nan_rate_pct": 0.444,
+      "n_slots": 10873,
+      "nan_rate_pct": 0.478,
       "max_gap_steps": 34,
       "max_gap_hours": 5.7
     },
     "house_02": {
-      "n_slots": 10801,
-      "nan_rate_pct": 0.565,
-      "max_gap_steps": 34,
-      "max_gap_hours": 5.7
-    },
-    "house_03": {
-      "n_slots": 10801,
-      "nan_rate_pct": 0.472,
+      "n_slots": 10873,
+      "nan_rate_pct": 0.561,
       "max_gap_steps": 34,
       "max_gap_hours": 5.7
     },
     "house_04": {
-      "n_slots": 10801,
-      "nan_rate_pct": 0.352,
+      "n_slots": 10873,
+      "nan_rate_pct": 0.349,
       "max_gap_steps": 34,
       "max_gap_hours": 5.7
     },
     "house_05": {
-      "n_slots": 10801,
-      "nan_rate_pct": 0.37,
+      "n_slots": 10873,
+      "nan_rate_pct": 0.368,
       "max_gap_steps": 34,
       "max_gap_hours": 5.7
     },
     "house_06": {
-      "n_slots": 10801,
-      "nan_rate_pct": 0.685,
+      "n_slots": 10873,
+      "nan_rate_pct": 0.717,
       "max_gap_steps": 34,
       "max_gap_hours": 5.7
     },
     "house_07": {
-      "n_slots": 10801,
-      "nan_rate_pct": 0.509,
+      "n_slots": 10873,
+      "nan_rate_pct": 0.543,
       "max_gap_steps": 34,
       "max_gap_hours": 5.7
     },
     "house_08": {
-      "n_slots": 10801,
-      "nan_rate_pct": 0.444,
+      "n_slots": 10873,
+      "nan_rate_pct": 0.478,
       "max_gap_steps": 34,
       "max_gap_hours": 5.7
     },
     "house_09": {
-      "n_slots": 10801,
-      "nan_rate_pct": 0.426,
+      "n_slots": 10873,
+      "nan_rate_pct": 0.46,
       "max_gap_steps": 34,
       "max_gap_hours": 5.7
     },
     "house_10": {
-      "n_slots": 10801,
-      "nan_rate_pct": 0.38,
+      "n_slots": 10873,
+      "nan_rate_pct": 0.377,
       "max_gap_steps": 34,
       "max_gap_hours": 5.7
     },
     "house_13": {
-      "n_slots": 10801,
-      "nan_rate_pct": 1.176,
+      "n_slots": 10873,
+      "nan_rate_pct": 1.205,
       "max_gap_steps": 34,
       "max_gap_hours": 5.7
     },
     "house_15": {
-      "n_slots": 10801,
-      "nan_rate_pct": 0.343,
+      "n_slots": 10873,
+      "nan_rate_pct": 0.34,
       "max_gap_steps": 34,
       "max_gap_hours": 5.7
     },
     "house_16": {
-      "n_slots": 10801,
-      "nan_rate_pct": 0.352,
+      "n_slots": 10873,
+      "nan_rate_pct": 0.349,
       "max_gap_steps": 34,
       "max_gap_hours": 5.7
     },
     "house_17": {
-      "n_slots": 10801,
-      "nan_rate_pct": 0.463,
+      "n_slots": 10873,
+      "nan_rate_pct": 0.497,
       "max_gap_steps": 34,
       "max_gap_hours": 5.7
     },
     "house_18": {
-      "n_slots": 10801,
-      "nan_rate_pct": 0.37,
+      "n_slots": 10873,
+      "nan_rate_pct": 0.368,
       "max_gap_steps": 34,
       "max_gap_hours": 5.7
     },
     "house_20": {
-      "n_slots": 10801,
-      "nan_rate_pct": 0.333,
+      "n_slots": 10873,
+      "nan_rate_pct": 0.331,
       "max_gap_steps": 34,
       "max_gap_hours": 5.7
     },
     "_overall": {
-      "mean_nan_rate_pct": 0.48,
-      "worst_house_pct": 1.176
+      "mean_nan_rate_pct": 0.495,
+      "worst_house_pct": 1.205
     }
   }
 }

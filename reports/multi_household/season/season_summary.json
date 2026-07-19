@@ -3,18 +3,18 @@
     "tag": "summer (headline)",
     "window": [
       "2014-04-30",
-      "2014-07-14"
+      "2014-07-14 12:00"
     ],
     "baseline": {
-      "peak_kw": 40.5,
-      "p95_kw": 27.99
+      "peak_kw": 40.37,
+      "p95_kw": 26.79
     },
     "coordinated": {
-      "peak_kw": 32.74,
-      "p95_kw": 19.99
+      "peak_kw": 32.41,
+      "p95_kw": 19.44
     },
-    "peak_red_pct": 19.2,
-    "p95_red_pct": 28.6
+    "peak_red_pct": 19.7,
+    "p95_red_pct": 27.4
   },
   {
     "tag": "autumn",
@@ -25,15 +25,15 @@
     "split_at": "2014-10-01 12:00",
     "test_slots": 2016,
     "baseline": {
-      "peak_kw": 41.5,
-      "p95_kw": 31.83
+      "peak_kw": 41.08,
+      "p95_kw": 31.55
     },
     "coordinated": {
-      "peak_kw": 30.98,
-      "p95_kw": 21.14
+      "peak_kw": 30.35,
+      "p95_kw": 20.45
     },
-    "peak_red_pct": 25.4,
-    "p95_red_pct": 33.6,
+    "peak_red_pct": 26.1,
+    "p95_red_pct": 35.2,
     "energy_drift_pct": 0.0
   },
   {
@@ -45,35 +45,35 @@
     "split_at": "2015-02-14 12:00",
     "test_slots": 2016,
     "baseline": {
-      "peak_kw": 41.96,
-      "p95_kw": 32.79
+      "peak_kw": 41.67,
+      "p95_kw": 32.53
     },
     "coordinated": {
-      "peak_kw": 34.96,
-      "p95_kw": 22.98
+      "peak_kw": 34.67,
+      "p95_kw": 22.27
     },
-    "peak_red_pct": 16.7,
-    "p95_red_pct": 29.9,
-    "energy_drift_pct": 0.006
+    "peak_red_pct": 16.8,
+    "p95_red_pct": 31.5,
+    "energy_drift_pct": 0.007
   },
   {
     "tag": "spring",
     "window": [
-      "2015-02-06",
-      "2015-04-21 12:00"
+      "2015-02-13",
+      "2015-04-26 12:00"
     ],
-    "split_at": "2015-04-07 12:00",
-    "test_slots": 2016,
+    "split_at": "2015-04-14 12:00",
+    "test_slots": 1728,
     "baseline": {
-      "peak_kw": 45.99,
-      "p95_kw": 31.54
+      "peak_kw": 40.79,
+      "p95_kw": 26.97
     },
     "coordinated": {
-      "peak_kw": 34.85,
-      "p95_kw": 20.42
+      "peak_kw": 31.31,
+      "p95_kw": 20.8
     },
-    "peak_red_pct": 24.2,
-    "p95_red_pct": 35.3,
-    "energy_drift_pct": 0.0
+    "peak_red_pct": 23.2,
+    "p95_red_pct": 22.9,
+    "energy_drift_pct": 0.037
   }
 ]

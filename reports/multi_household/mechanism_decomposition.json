@@ -1,0 +1,67 @@
+{
+  "seed": 42,
+  "accept": 0.85,
+  "days": 14,
+  "rows": {
+    "natural": {
+      "peak_kw": 25.82,
+      "p95_kw": 11.62,
+      "ev": false,
+      "agent": "off",
+      "coordinator": "off"
+    },
+    "ev_no_dr": {
+      "peak_kw": 40.37,
+      "p95_kw": 26.79,
+      "ev": true,
+      "agent": "off",
+      "coordinator": "off",
+      "peak_red_pct": 0.0,
+      "p95_red_pct": 0.0
+    },
+    "agent_with_ev": {
+      "peak_kw": 32.41,
+      "p95_kw": 24.39,
+      "appliance_decisions": 68,
+      "ev_decisions": 0,
+      "ev": true,
+      "agent": "on (incl. EV)",
+      "coordinator": "off",
+      "peak_red_pct": 19.7,
+      "p95_red_pct": 9.0
+    },
+    "agent_no_ev": {
+      "peak_kw": 40.33,
+      "p95_kw": 26.73,
+      "appliance_decisions": 58,
+      "ev_decisions": 0,
+      "ev": true,
+      "agent": "on (excl. EV)",
+      "coordinator": "off",
+      "peak_red_pct": 0.1,
+      "p95_red_pct": 0.2
+    },
+    "coord_only": {
+      "peak_kw": 32.41,
+      "p95_kw": 19.49,
+      "appliance_decisions": 0,
+      "ev_decisions": 44,
+      "ev": true,
+      "agent": "off",
+      "coordinator": "on",
+      "peak_red_pct": 19.7,
+      "p95_red_pct": 27.2
+    },
+    "full": {
+      "peak_kw": 32.41,
+      "p95_kw": 19.44,
+      "appliance_decisions": 58,
+      "ev_decisions": 44,
+      "ev": true,
+      "agent": "on (excl. EV)",
+      "coordinator": "on",
+      "peak_red_pct": 19.7,
+      "p95_red_pct": 27.4
+    }
+  }
+}

@@ -42,10 +42,17 @@ REFIT 16 UK houses (10-min, cleaned + time-aligned)
    ▼ evaluation                    peak / P95 / valley-fill / Jain fairness / energy conservation
 ```
 
-**Validated result** (clean, time-aligned REFIT, 16 houses, ~14-day test, 85% accept):
-coordinated peak **40.5 → 32.7 kW (−19%)**, P95 **27.99 → 19.99 kW (−29%)**,
-**energy conserved** (0% drift); the EV reschedule is **advisory** (accept-gated) so
-acceptance drives it — 0% → 0% shaving, 100% → **−29% peak (28.75 kW)**. 61 unit tests pass.
+**Validated result** (v2 pipeline: 15 non-solar houses, noon-anchored exact
+14.0-day test, 85% accept, seed-42 + fixed EV seed, train-derived threshold
+17.7 kW): coordinated peak **40.37 → 32.41 kW (−19.7%)**, P95 **26.79 → 19.44 kW
+(−27.4%)**, energy conserved (−0.01%). Decision-level events: 58 appliance
+(91.4% accepted) + 44 EV advisories (88.6%) = **102 user decisions** (trace
+messages reported separately). Mechanism decomposition (factorial): the EV
+advisory stagger alone delivers −19.7% peak / −27.2% P95; the appliance layer
+alone ~0.2pp — the paper presents this semi-synthetic EV scenario decomposition
+explicitly. Multi-seed (5 seeds): peak 29.40±2.77 kW. Cross-season P95
+−22.9…−35.2%. 64 unit tests pass. Full provenance in
+`reports/multi_household/run_manifest.json`; audit trail in `../AUDIT_2026-07-19.md`.
 
 ### How to run it
 

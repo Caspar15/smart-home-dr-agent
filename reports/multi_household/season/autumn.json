@@ -7,14 +7,14 @@
   "split_at": "2014-10-01 12:00",
   "test_slots": 2016,
   "baseline": {
-    "peak_kw": 41.5,
-    "p95_kw": 31.83
+    "peak_kw": 41.08,
+    "p95_kw": 31.55
   },
   "coordinated": {
-    "peak_kw": 30.98,
-    "p95_kw": 21.14
+    "peak_kw": 30.35,
+    "p95_kw": 20.45
   },
-  "peak_red_pct": 25.4,
-  "p95_red_pct": 33.6,
+  "peak_red_pct": 26.1,
+  "p95_red_pct": 35.2,
   "energy_drift_pct": 0.0
 }

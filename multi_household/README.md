@@ -14,7 +14,7 @@ modify — with the system **learning** from those choices.
 ## Pipeline
 
 ```
-REFIT 16 houses (10-min, deglitched + clean-window + common-grid aligned)
+REFIT 15 non-solar houses (10-min, deglitched + clean-window + common-grid aligned)
    │
    ▼ forecasting/       per-house CNN-LSTM  (2 Conv1D + 2 LSTM, local-only)
    ▼ aggregator/        price_broadcast: Σ forecasts → dynamic ToU + peak flag
@@ -47,7 +47,7 @@ multi_household/
 ├── experiments/              pre_cache · train_all · rollout · metrics · ablations
 │                             · multiseed (error bars) · mpc_baseline (ladder bound)
 │                             · fairness_sweep · daily_summary · personalized_demo · run_full
-└── tests/                    61 tests (data causality, energy conservation, cycle edge, cooldown, loop, EV advisory)
+└── tests/                    64 tests (data causality, energy conservation, cycle edge, cooldown, loop, EV advisory)
 ```
 
 ## Status — ✅ built & validated
@@ -60,49 +60,64 @@ multi_household/
 - [x] LLM advisory v2 — personalized, Llama 3.1 (local), fact-citation + unit validation
 - [x] Closed-loop learning (accept/reject/modify → pattern suppression)
 - [x] EV advisory coordinator (accept-gated stagger of the 5 EVs → the big peak lever)
-- [x] 61 unit tests passing
+- [x] 64 unit tests passing
 - [x] Ablations on clean data (LSTM vs persistence, accept-rate sweep, seeded)
 - [ ] Controller baselines (MPC/RL — reuse `conference/src/agent/`) — next
 - [ ] Federated learning · Seq2Seq · MARL — future
 
-## Validated numbers (clean, time-aligned · 16 houses · 13.6-day test · energy 0% drift)
+## Validated numbers (v2 · 15 non-solar houses · exact 14.0-day noon-anchored test)
 
 | Metric | Baseline | Independent | **Coordinated (85% accept)** |
 |---|---|---|---|
-| Peak (kW) | 40.50 | 38.69 (−4.5%) | **32.74 (−19.2%)** |
-| P95 (kW) | 27.99 | 25.87 (−7.6%) | **19.99 (−28.6%)** |
-| Off-peak load (kW) | 0 | +0.48 | **+0.99 (valley-fill, load-leveled)** |
+| Peak (kW) | 40.37 | 35.56 (−11.9%) | **32.41 (−19.7%)** |
+| P95 (kW) | 26.79 | 25.06 (−6.5%) | **19.44 (−27.4%)** |
+| Energy (MWh) | 3.474 | 3.473 (−0.01%) | 3.473 (−0.01%) |
+| User decisions | n/a | 148 appliance | **58 appliance (91.4% acc) + 44 EV (88.6%) = 102** |
 
-Full acceptance (100%) → peak **28.75 kW (−29%)**. The EV reschedule is **advisory**
-(accept-gated), so acceptance drives the peak: 0%→0%, 50%→−11%, 85%→−19%, 100%→−29%.
+Decision-level metrics only (trace messages counted separately). Full acceptance
+(100%) → peak **28.53 kW**. The EV reschedule is **advisory** (accept-gated):
+P95 cut 0% / 16.7% / 27.5% / 28.6% at accept 0 / 50 / 85 / 100%.
 
-**Ablation (seeded):** acceptance is the lever — P95 cut 0% / 12.6% / 28.6% / 30.4%
-at accept 0 / 50 / 85 / 100%. Forecast (LSTM vs persistence) now gives the same peak
-(32.74 — EV coordination sets the peak); DR is robust to forecast quality.
+**Mechanism decomposition (factorial, `mechanism_decomposition.py`):** the EV
+advisory stagger ALONE gives −19.7% peak / −27.2% P95; the appliance layer alone
+~0.2pp; natural no-EV demand is 25.82 / 11.62 kW. The system is presented as a
+**semi-synthetic REFIT + deterministic EV-adoption scenario**, decomposed openly.
 
-**Rigor + baselines (2026-07-06/07):**
-- Multi-seed (5 seeds): 85% accept peak **29.7±2.6 kW** (−27% mean; the seed-42
-  headline 32.74 is the conservative end), P95 stable ±0.5.
-- Controller ladder: No-DR 40.5 | Rule@85% 32.74 (**51% of bound**) | Rule@100%
-  28.75 (**77%**) | **MPC perfect-foresight bound 25.21 kW (−38%)**.
-- Data quality: mean NaN **0.48%** (worst house 1.18%), max gap 5.7 h.
-- Closed-loop stress: reject-all history → recs 445→0, grid unchanged
-  (suppression is free — the EV advisory carries the peak).
-- Fairness: a daily rec budget is free but can't move Jain — unfairness is
-  structural (4/16 houses own no flexible load); Jain | flexible houses = 0.48.
+**Rigor + baselines (v2, 2026-07-19):**
+- Multi-seed (5 seeds incl. EV accept): 85% peak **29.40±2.77 kW**, P95 19.99±0.35.
+  The fixed-EV-seed headline 32.41 sits at the high (conservative) end.
+- Controller ladder: No-DR 40.37 | Rule@85% 32.41 (**50% of bound**) | Rule@100%
+  28.53 (**74%**) | **MPC perfect-foresight bound 24.45 kW**.
+- Grid threshold: train-window p85 = **17.7 kW**, frozen (`derive_threshold.py`);
+  legacy 18 kW kept only as a sensitivity point.
+- Data quality: mean NaN **0.50%** (worst house 1.21%); causal ffill ≤6 h only.
+- Closed-loop stress: reject-all appliance history → appliance decisions
+  suppressed (61), P95 27.45→27.27% — the appliance layer contributes +0.2pp.
+- Fairness (decision-level): Jain appliance 0.384 / EV 0.988 / total 0.509;
+  a B=1 daily budget skips 15 decisions at zero grid cost (low event rate:
+  ~0.5 decisions/house/day, so the budget binds only weakly).
+- Forecast honesty: CNN-LSTM one-step MAE **loses to persistence** (263 vs
+  192 W per-house; wins 2/15) — DR results are insensitive to this (the EV
+  coordinator uses no forecast); the LSTM is NOT a claimed contribution.
 
 ## Data notes
 
-- 16 clean houses: `1,2,3,4,5,6,7,8,9,10,13,15,16,17,18,20`.
-  Excluded: 11/21 (rooftop solar → net load), 12 (no deferable), 14 (skipped in REFIT), 19 (1 deferable).
-- 5 houses get a synthetic EV (7 kW, ~4 h nightly): 5, 7, 9, 13, 18 — they create the overnight peak.
-- Test window is short (~14 days) because it's the intersection where all 16 houses
-  are simultaneously clean+aligned. Stated as a limitation.
+- 15 clean non-solar houses: `1,2,4,5,6,7,8,9,10,13,15,16,17,18,20`.
+  Excluded: 3/11/21 (solar PV interferes with the aggregate — the non-directional
+  clamp shows generation as additional positive consumption; per the REFIT paper;
+  houses 1/6/7 also had PV but were re-wired by the REFIT team), 12 (no
+  deferable), 14 (skipped in REFIT), 19 (1 deferable). H12/H19 exclusion is a
+  DR-potential selection choice — an all-non-solar sensitivity is reported.
+- 5 houses get a synthetic EV (7 kW, ~4 h nightly): 5, 7, 9, 13, 18 — they create
+  the overnight peak (a deterministic adoption scenario, not calibrated).
+- Test window: 2014-06-30 12:00 → 07-14 12:00 (noon-anchored, exactly 2016
+  steps). Seasonal replicas use the same convention (spring is a 12-day window —
+  the only Mar–May span where every house passes the ≤6 h gap bar).
 
 ## Appliance classes
 
 | Class | Examples | Behaviour |
 |---|---|---|
-| `deferable` | Washing Machine, Dishwasher, Tumble Dryer, Washer-Dryer, EV | Whole cycle shifted; runs uninterrupted; comfort cap 4–8 h |
+| `deferable` | Washing Machine, Dishwasher, Tumble Dryer, Washer-Dryer, EV | **Energy-buffer relaxation**: the running cycle's energy is banked step-by-step and re-released as a smoothed off-peak drain (pool/60 per step). Energy is conserved but the cycle waveform is NOT preserved — this is a virtual load-shifting lower bound, not an appliance-feasible schedule. Comfort cap 4–8 h. (EV blocks handled by the advisory coordinator ARE moved as whole blocks.) |
 | `semi_deferable` | Electric / Water Heater | Throttle, not shift far |
 | `non_controllable` | Fridge, Freezer, Lighting, Cooking, TV | Never touched (comfort) |
