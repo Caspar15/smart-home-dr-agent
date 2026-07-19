@@ -16,24 +16,28 @@ from multi_household.forecasting.per_house_lstm import (
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--epochs", type=int, default=10)
-    ap.add_argument("--lookback", type=int, default=24)
+    # Defaults now MATCH the headline configuration (they used to be 10/24,
+    # which silently produced different models than the published ones).
+    ap.add_argument("--epochs", type=int, default=30)
+    ap.add_argument("--lookback", type=int, default=48)
+    ap.add_argument("--train-seed", type=int, default=42,
+                    help="base seed; per house uses train_seed + house_id")
     ap.add_argument("--houses", nargs="+", type=int, default=CLEAN_HOUSES)
     args = ap.parse_args()
 
     print(f"Training {len(args.houses)} per-house forecasters, "
-          f"{args.epochs} epochs each ...\n")
+          f"{args.epochs} epochs each (base seed {args.train_seed}) ...\n")
 
     results = []
     grand_t0 = time.time()
     for h in args.houses:
         t0 = time.time()
         meta = train_one_house(h, epochs=args.epochs, lookback=args.lookback,
-                               verbose=False)
+                               train_seed=args.train_seed, verbose=False)
         dt = time.time() - t0
         results.append({**meta, "time_s": round(dt, 1)})
-        print(f"  House {h:2d}: MAE={meta['mae_wh']:6.1f} Wh, "
-              f"RMSE={meta['rmse_wh']:6.1f}, "
+        print(f"  House {h:2d}: MAE={meta['mae_w']:6.1f} W, "
+              f"RMSE={meta['rmse_w']:6.1f}, "
               f"R²={meta['r2']:+.3f}   ({dt:.0f}s)")
 
     print(f"\nTotal time: {time.time()-grand_t0:.0f}s")

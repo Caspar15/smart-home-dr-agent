@@ -56,6 +56,16 @@ def load_user_rejection_rates(house_id: int) -> dict[str, float]:
 
     Pattern key format: "{appliance_short}@{bucket}",
         e.g. "washing_machine@peak"  →  rate in [0.0, 1.0]
+
+    Provenance rules (fixes the old hour-reconstruction bug — `(step%144)//6`
+    assumed the test window starts at midnight, which it never did; the stored
+    hour of every legacy entry disagreed with that formula):
+      • the hour comes ONLY from the entry's stored `rec_hour` field;
+        entries without it (legacy schema) are SKIPPED;
+      • entries whose `source` is not "real" (e.g. demo/synthetic) are skipped;
+      • duplicate clicks on the same recommendation_id count ONCE (the LAST
+        choice wins) — the legacy log held 5 clicks on one recommendation and
+        treated them as 5 independent samples.
     """
     path = REPORTS / "user_choices.json"
     if not path.exists():
@@ -64,19 +74,24 @@ def load_user_rejection_rates(house_id: int) -> dict[str, float]:
         log = json.loads(path.read_text(encoding="utf-8"))
     except Exception:
         return {}
-    house_entries = [e for e in log if e.get("house") == house_id]
-    if not house_entries:
-        return {}
+
+    latest_by_rec: dict[str, dict] = {}
+    for e in log:
+        if e.get("house") != house_id:
+            continue
+        if e.get("source", "real") != "real":
+            continue
+        apl = e.get("rec_appliance", "") or ""
+        hour = e.get("rec_hour")
+        if not apl or hour is None:
+            continue                       # legacy entry without stored hour
+        rec_id = e.get("recommendation_id") or f"legacy-{e.get('rec_step')}-{apl}"
+        latest_by_rec[rec_id] = e          # last click wins
 
     pattern_total: dict[str, int] = {}
     pattern_reject: dict[str, int] = {}
-    for e in house_entries:
-        apl  = e.get("rec_appliance", "") or ""
-        step = e.get("rec_step", -1)
-        if not apl or step < 0:
-            continue
-        hour = (step % 144) // 6           # 144 steps/day, 6 steps/hour
-        key  = f"{apl}@{_hour_bucket(hour)}"
+    for e in latest_by_rec.values():
+        key = f"{e['rec_appliance']}@{_hour_bucket(int(e['rec_hour']))}"
         pattern_total[key] = pattern_total.get(key, 0) + 1
         if e.get("user_choice") == 2:
             pattern_reject[key] = pattern_reject.get(key, 0) + 1
@@ -139,9 +154,12 @@ def compute_all_forecasts(houses: list[int],
         T = len(Xte)
 
         forecasts = np.zeros(T, dtype=np.float32)
-        # First `lookback` steps: not enough history to use the model;
-        # fall back to persistence (use current demand as the forecast).
-        forecasts[:lookback] = test_df[target].values[:lookback].astype(np.float32)
+        # First `lookback` steps: not enough history to use the model; fall
+        # back to TRUE persistence ŷ(t)=y(t−1). (An earlier version filled
+        # y(t) itself — a same-step peek for the first 8 h of the rollout.)
+        head = test_df[target].values[:lookback].astype(np.float32)
+        forecasts[1:lookback] = head[:lookback-1]
+        forecasts[0] = head[0]
 
         # Batched windowed prediction
         batch = 1024
@@ -166,6 +184,19 @@ def compute_all_forecasts(houses: list[int],
         }
         print(f"  H{h:02d}: T={len(test_df)} steps, "
               f"deferable={len(deferable_cols)} cols")
+
+    # --- alignment guards (the aggregate is only valid if every house sees the
+    # SAME timestamps at the same positions, and the test region is contiguous)
+    hs = sorted(out)
+    T0 = min(len(out[h]["test_df"]) for h in hs)
+    t_ref = pd.to_datetime(out[hs[0]]["test_df"]["time"].values[:T0])
+    for h in hs[1:]:
+        t_h = pd.to_datetime(out[h]["test_df"]["time"].values[:T0])
+        if not (t_h == t_ref).all():
+            raise RuntimeError(f"cross-house timestamp misalignment: house {h}")
+    dt = np.diff(t_ref.values.astype("datetime64[s]").astype(np.int64))
+    if len(dt) and not (dt == 600).all():
+        raise RuntimeError("test region is not a contiguous 10-min grid")
     return out
 
 
@@ -199,7 +230,9 @@ def rollout(houses_data: dict,
             ev_seed: int | None = None,
             closed_loop: bool = True,
             rejection_override: dict[str, float] | None = None,
-            fairness_budget: int | None = None) -> dict:
+            fairness_budget: int | None = None,
+            appliance_agent: bool = True,
+            exclude_ev_from_agent: bool = False) -> dict:
     """Step through the test period for all houses simultaneously.
 
     Returns a dict with:
@@ -244,6 +277,7 @@ def rollout(houses_data: dict,
     # ev_orig/ev_shift are populated only for ACCEPTED blocks (zero elsewhere).
     ev_orig  = {h: np.zeros(T, dtype=np.float32) for h in houses}
     ev_shift = {h: np.zeros(T, dtype=np.float32) for h in houses}
+    ev_decisions: list[dict] = []
     if ev_smart:
         ev_houses = {h: appliance_loads[h][EV_COL][:T]
                      for h in houses if EV_COL in appliance_loads[h]}
@@ -252,17 +286,18 @@ def rollout(houses_data: dict,
             # multi-seed runs pass a varying seed so the nightly accept
             # decisions contribute to the error bars.
             ev_kwargs = {} if ev_seed is None else {"seed": ev_seed}
-            oa, sa, (ev_reco, ev_acc) = advisory_ev_schedule(
+            oa, sa, ev_decisions = advisory_ev_schedule(
                 ev_houses, timestamps, accept_rate=user_accept, **ev_kwargs)
             ev_orig.update(oa)
             ev_shift.update(sa)
             if verbose:
-                print(f"  EV advisory: {ev_acc}/{ev_reco} nightly reschedules "
-                      f"accepted (accept_rate={user_accept})")
+                ev_acc = sum(1 for dcn in ev_decisions if dcn["accepted"])
+                print(f"  EV advisory: {ev_acc}/{len(ev_decisions)} nightly "
+                      f"reschedules accepted (accept_rate={user_accept})")
 
     def _agent_deferable(h):
         cols = houses_data[h]["deferable_cols"]
-        if ev_smart:
+        if ev_smart or exclude_ev_from_agent:
             cols = [c for c in cols if c != EV_COL]   # coordinator owns the EV
         return cols
 
@@ -289,6 +324,24 @@ def rollout(houses_data: dict,
 
     broadcasts: list[Broadcast] = []
     recs: list[Recommendation] = []
+    # ★ EV advisory decisions ARE user decision points — log them as typed
+    # events. (They used to be invisible to every comfort/fairness metric
+    # even though they are the dominant lever.)
+    for dcn in ev_decisions:
+        t_start = timestamps[dcn["start_idx"]]
+        recs.append(Recommendation(
+            house_id=dcn["house"],
+            timestep=dcn["start_idx"],
+            hour=int(t_start.hour),
+            headline=(f"EV advisory ({dcn['night']}): shift tonight's charge "
+                      f"{'accepted' if dcn['accepted'] else 'declined'}"),
+            body=(f"Stagger tonight's {dcn['length_steps']*10} min EV charge "
+                  f"into the overnight trough."),
+            saving_gbp=0.0,
+            appliance="appliance_synthetic_ev_w",
+            accepted=dcn["accepted"],
+            event_type="ev_advisory",
+        ))
     prev_agg_served = 0.0                          # for aggregator feedback
     # Energy-conservation guard: how much energy each house has actually had
     # removed from served (Wh). Releases are capped at this so served can never
@@ -339,6 +392,13 @@ def rollout(houses_data: dict,
             if mode == "baseline":
                 # No DR — served = demand
                 served_w[h][t] = demand_w[h][t]
+                continue
+
+            if not appliance_agent:
+                # Factorial row "agent off": only the EV coordinator acts.
+                served_w[h][t] = max(
+                    float(demand_w[h][t]) - float(ev_orig[h][t])
+                    + float(ev_shift[h][t]), 0.0)
                 continue
 
             decision = decide_step(
@@ -414,10 +474,12 @@ def main():
     ap.add_argument("--ev-smart", action=argparse.BooleanOptionalAction, default=True,
                     help="stagger the synthetic EVs across the overnight trough "
                          "(coordinated mode only; --no-ev-smart to ablate)")
+    ap.add_argument("--ev-seed", type=int, default=None,
+                    help="override the fixed EV-advisory accept seed "
+                         "(default: EV_ACCEPT_SEED, reproducible headline)")
     args = ap.parse_args()
 
-    import random; random.seed(args.seed); np.random.seed(args.seed)
-    torch.manual_seed(args.seed)
+    import random
 
     n_test_steps = args.days * 144 if args.days else None
 
@@ -425,6 +487,11 @@ def main():
     t0 = time.time()
     houses_data = compute_all_forecasts(args.houses, n_test_steps=n_test_steps)
     print(f"      elapsed {time.time()-t0:.0f}s")
+    T_actual = min(len(houses_data[h]["test_df"]) for h in houses_data)
+    if n_test_steps is not None and T_actual < n_test_steps:
+        print(f"  ⚠ requested {n_test_steps} steps but test set has only "
+              f"{T_actual} ({T_actual/144:.3f} days) — using the shorter span. "
+              f"Report the ACTUAL length, not --days.")
 
     modes = ["baseline", "independent", "coordinated"] if args.mode == "all" else [args.mode]
 
@@ -432,11 +499,17 @@ def main():
     for mode in modes:
         print(f"\n[2/3] Rollout (mode={mode}, forecast={args.forecast_mode}) ...")
         t0 = time.time()
+        # RESEED before EVERY mode: the accept sampling uses the global RNG, so
+        # without this the result of a mode depended on which modes ran before
+        # it in the same process (--mode all vs a single-mode run diverged).
+        random.seed(args.seed); np.random.seed(args.seed)
+        torch.manual_seed(args.seed)
         # EV stagger is a coordination action → only in coordinated mode.
         results[mode] = rollout(houses_data, mode=mode,
                                 user_accept=args.user_accept,
                                 forecast_mode=args.forecast_mode,
-                                ev_smart=(args.ev_smart and mode == "coordinated"))
+                                ev_smart=(args.ev_smart and mode == "coordinated"),
+                                ev_seed=args.ev_seed)
         print(f"      elapsed {time.time()-t0:.0f}s")
 
     # Save raw results
@@ -464,7 +537,10 @@ def main():
                                          ensure_ascii=False, indent=2),
                              encoding="utf-8")
 
-    # Print quick stats
+    # Print quick stats.
+    # Energy: each sample is mean W over a 10-min slot → Wh = W·(1/6).
+    # (The old print divided W-step sums by 1e6 and labelled it MWh — a 6×
+    # overstatement that leaked into the docs as "20.96 MWh".)
     print(f"\n[3/3] Summary")
     for mode, r in results.items():
         total_demand = float(sum(r["demand_w"][h].sum() for h in r["houses"]))
@@ -472,12 +548,49 @@ def main():
         agg = np.stack([r["served_w"][h] for h in r["houses"]]).sum(axis=0)
         p95 = float(np.percentile(agg, 95))
         peak = float(agg.max())
-        n_rec = len(r["recommendations"])
-        print(f"  [{mode:12s}] demand={total_demand/1e6:.2f} MWh, "
-              f"served={total_served/1e6:.2f} MWh, "
+        n_dec = sum(1 for rr in r["recommendations"]
+                    if rr.event_type in ("new_defer", "declined_defer", "ev_advisory"))
+        print(f"  [{mode:12s}] demand={total_demand/6.0/1e6:.3f} MWh, "
+              f"served={total_served/6.0/1e6:.3f} MWh, "
               f"agg P95={p95/1000:.2f} kW, "
               f"peak={peak/1000:.2f} kW, "
-              f"recs={n_rec}")
+              f"decisions={n_dec} (surface msgs={len(r['recommendations'])})")
+
+    # Run manifest — every artifact batch is traceable to code + config + seeds.
+    import subprocess, sys as _sys
+    from multi_household.config import CLEAN_WINDOW, SPLIT_AT, CACHE_VERSION
+    from multi_household.aggregator.ev_coordinator import EV_ACCEPT_SEED
+    try:
+        commit = subprocess.run(["git", "rev-parse", "HEAD"],
+                                capture_output=True, text=True,
+                                cwd=Path(__file__).resolve().parents[2]
+                                ).stdout.strip() or None
+    except Exception:
+        commit = None
+    manifest = {
+        "run_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "git_commit": commit,
+        "modes": modes,
+        "houses": args.houses,
+        "seed": args.seed,
+        "ev_seed": args.ev_seed if args.ev_seed is not None else EV_ACCEPT_SEED,
+        "user_accept": args.user_accept,
+        "forecast_mode": args.forecast_mode,
+        "ev_smart": args.ev_smart,
+        "clean_window": list(CLEAN_WINDOW),
+        "split_at": SPLIT_AT,
+        "cache_version": CACHE_VERSION,
+        "grid_threshold_w": GRID_THRESHOLD_W,
+        "test_steps": T_actual,
+        "test_days": round(T_actual / 144.0, 3),
+        "versions": {"python": _sys.version.split()[0],
+                     "torch": torch.__version__,
+                     "numpy": np.__version__,
+                     "pandas": pd.__version__},
+    }
+    (out_dir / "run_manifest.json").write_text(
+        json.dumps(manifest, indent=2), encoding="utf-8")
+    print(f"  saved {out_dir / 'run_manifest.json'}")
 
 
 if __name__ == "__main__":

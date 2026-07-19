@@ -70,17 +70,25 @@ def _save_and_summarize(r: dict, mode: str, tag: str) -> dict:
         ensure_ascii=False, indent=2), encoding="utf-8")
 
     s, _ = compute_metrics(npz)
+    c = s.get("comfort") or {}
+    f4 = c.get("fairness") or {}
     return {
         "tag":           tag,
-        "user_saving":   s["user"]["avg_saving_pct"],
+        "user_saving":   s["user"]["mean_household_saving_pct"],
+        "user_saving_weighted": s["user"]["weighted_total_saving_pct"],
         "p95_reduction": s["grid"]["p95_reduction_pct"],
         "peak_kw":       s["grid"]["agg_served_peak_kw"],
         "rebound_mean":  s["rebound"]["off_peak_rebound_mean_kw"],
         "rebound_p95":   s["rebound"]["off_peak_rebound_p95_kw"],
-        "total_recs":    s["comfort"]["total_recommendations"],
-        "fairness":      s["comfort"]["fairness_jain"],
-        "defer_mean_min":s["comfort"]["defer_wait_mean_min"],
-        "n_defers":      s["comfort"]["n_defers_completed"],
+        # decision-level (surface trace messages are reported separately)
+        "total_recs":    c.get("total_decisions", 0),
+        "appliance_decisions": c.get("appliance_decisions", 0),
+        "ev_decisions":  c.get("ev_decisions", 0),
+        "surface_msgs":  c.get("surface_messages_total", 0),
+        "fairness":      f4.get("jain_total"),
+        "fairness_appliance": f4.get("jain_appliance"),
+        "defer_mean_min":c.get("release_chunk_wait_mean_min", 0.0),
+        "n_defers":      c.get("n_release_chunks", 0),
     }
 
 

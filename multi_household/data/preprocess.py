@@ -31,22 +31,20 @@ def reindex_to_common_grid(df: pd.DataFrame,
 
 def impute_missing(df: pd.DataFrame,
                    max_gap: int = MAX_INTERP_GAP_STEPS) -> pd.DataFrame:
-    """Fill ONLY short gaps. REFIT has multi-week outages; interpolating across
-    those fabricates data, so we limit filling to `max_gap` steps (≤6 h).
-    Anything still missing after that is dropped by the caller — we never invent
-    a month-long straight line. (The clean-window restriction means very little
-    is left to fill.)
+    """Causal constant forward-fill of SHORT gaps only (≤ `max_gap` steps = 6 h).
 
-    Causal by design: we forward-fill only (never backfill from FUTURE values),
-    so an imputed cell never peeks ahead. Leading NaNs before a house's first
-    reading are left as NaN and dropped by the caller.
+    Strictly causal: ffill uses only PAST values, never a future endpoint.
+    (An earlier version chained a linear interpolate after the ffill — that
+    filled up to 2×max_gap cells on long gaps and used the RIGHT/future
+    endpoint for the ramp; it has been removed.)
+
+    Anything still missing after the ffill is left as NaN and dropped by the
+    caller — we never bridge multi-day outages. Leading NaNs before a house's
+    first reading also stay NaN.
     """
     out = df.copy()
     numeric = out.select_dtypes(include=[np.number]).columns
-    out[numeric] = (out[numeric]
-                    .ffill(limit=max_gap)
-                    .interpolate(method="linear", limit=max_gap,
-                                 limit_direction="forward"))
+    out[numeric] = out[numeric].ffill(limit=max_gap)
     return out
 
 
@@ -109,8 +107,15 @@ FEATURE_COLS_BASE = [
 ]
 
 
-def prepare_house(house_id: int, train_frac: float = 0.80) -> dict:
+def prepare_house(house_id: int, train_frac: float = 0.80,
+                  inject_ev: bool = True) -> dict:
     """End-to-end: load, impute, feature engineer, split.
+
+    ORDER MATTERS: lag/rolling features are computed on the FULL common grid
+    (with residual NaNs still in place) BEFORE any row is dropped. A lag that
+    would reach across an unfilled outage is therefore NaN and the row is
+    dropped — lag1 can never silently point at a value days in the past
+    (which is what happened when lags were computed after the dropna).
 
     Returns a dict with:
         train_df, test_df            (full DataFrames with all columns)
@@ -118,19 +123,19 @@ def prepare_house(house_id: int, train_frac: float = 0.80) -> dict:
         target_col                   ('aggregate_w')
         meta                         (counts, first/last timestamp, etc.)
     """
-    df = load_house(house_id)
+    df = load_house(house_id, inject_ev=inject_ev)
     df = reindex_to_common_grid(df)            # shared grid → houses align
-    df = impute_missing(df)                     # fill the small (≤6 h) gaps
-    # The chosen window has ≤6 h gaps for every house, so nothing should remain;
-    # guard anyway by dropping any residual (keeps all houses on the same rows
-    # because the grid + gaps are shared).
-    df = df.dropna(subset=["aggregate_w"]).reset_index(drop=True)
+    df = impute_missing(df)                     # causal ffill of ≤6 h gaps
     df = add_time_features(df)
-    df = add_lag_features(df, "aggregate_w")
-    # Drop the first rows that have NaN lag features
-    df = df.dropna(subset=[c for c in df.columns
-                            if c.startswith("aggregate_w_lag")
-                            or c.startswith("aggregate_w_roll")]).reset_index(drop=True)
+    df = add_lag_features(df, "aggregate_w")    # gap-aware: NaN across outages
+    # Drop rows with NaN target, NaN class features, or any NaN lag/rolling
+    # feature (covers the 1-week warm-up AND post-outage warm-ups).
+    lag_cols = [c for c in df.columns
+                if c.startswith("aggregate_w_lag")
+                or c.startswith("aggregate_w_roll")]
+    df = df.dropna(subset=["aggregate_w", "deferable_w", "semi_deferable_w",
+                            "non_controllable_w"] + lag_cols)
+    df = df.reset_index(drop=True)
 
     if SPLIT_AT:
         # Fixed-timestamp split (seasonal windows): the clean test region stays

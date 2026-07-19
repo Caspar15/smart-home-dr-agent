@@ -88,8 +88,14 @@ def _toy_ev_night():
 def test_advisory_ev_full_accept_conserves_energy_and_staggers():
     from multi_household.aggregator.ev_coordinator import advisory_ev_schedule
     ev, ts = _toy_ev_night()
-    orig, shift, (n_reco, n_acc) = advisory_ev_schedule(ev, ts, accept_rate=1.0)
+    orig, shift, decisions = advisory_ev_schedule(ev, ts, accept_rate=1.0)
+    n_reco = len(decisions)
+    n_acc = sum(1 for d in decisions if d["accepted"])
     assert n_reco == 2 and n_acc == 2
+    # every decision is a fully-described loggable event
+    for d in decisions:
+        assert {"house", "night", "start_idx", "length_steps",
+                "accepted", "new_start_idx"} <= set(d)
     for h in ev:
         # accepted → the natural block is fully removed and fully re-placed
         assert orig[h].sum() == ev[h].sum()
@@ -103,8 +109,10 @@ def test_advisory_ev_full_accept_conserves_energy_and_staggers():
 def test_advisory_ev_zero_accept_touches_nothing():
     from multi_household.aggregator.ev_coordinator import advisory_ev_schedule
     ev, ts = _toy_ev_night()
-    orig, shift, (n_reco, n_acc) = advisory_ev_schedule(ev, ts, accept_rate=0.0)
-    assert n_reco == 2 and n_acc == 0
+    orig, shift, decisions = advisory_ev_schedule(ev, ts, accept_rate=0.0)
+    assert len(decisions) == 2
+    assert all(not d["accepted"] for d in decisions)
+    assert all(d["new_start_idx"] is None for d in decisions)
     for h in ev:
         # rejected → both applied arrays stay zero (EV stays in demand as-is)
         assert orig[h].sum() == 0.0

@@ -91,3 +91,34 @@ def test_make_windows_shape_and_alignment():
     # window i covers rows [i, i+L); the label is the NEXT step (row i+L)
     assert (Xw[0] == X[0:L]).all()
     assert yw[0] == y[L]
+
+
+def test_make_windows_skips_time_discontinuous_blocks():
+    """After outage rows are dropped, positionally adjacent rows can be hours
+    apart — windows spanning such a seam must be SKIPPED, not stacked."""
+    T, F, L = 40, 2, 6
+    X = np.zeros((T, F), dtype=np.float32)
+    y = np.arange(T, dtype=np.float32)
+    t = pd.date_range("2014-05-01", periods=T + 12, freq="10min")
+    # remove 12 grid rows in the middle → a 2 h seam between rows 19 and 20
+    times = np.concatenate([t[:20].values, t[32:].values])
+    Xw, yw = make_windows(X, y, lookback=L, times=times)
+    Xw_all, yw_all = make_windows(X, y, lookback=L)
+    # exactly the L window positions whose L+1 rows straddle the seam drop
+    assert len(Xw) == len(Xw_all) - L
+    # no label may come from a window whose L+1 rows straddle the seam
+    forbidden = set(range(20, 20 + L))        # labels 20..25 straddle it
+    assert forbidden.isdisjoint(set(int(v) for v in yw))
+
+
+def test_impute_is_strictly_causal_and_bounded():
+    """Pin the v2 behaviour: a long gap gets AT MOST max_gap constant-ffilled
+    cells and NOTHING computed from the future endpoint. (v1 chained a linear
+    interpolate that filled up to 2×max_gap cells with a future-anchored ramp.)"""
+    df = _df(60)
+    df.loc[20:39, "aggregate_w"] = np.nan          # 20-step gap
+    out = impute_missing(df, max_gap=6)
+    filled = out["aggregate_w"].iloc[20:40]
+    assert filled.iloc[:6].notna().all()           # first 6 cells ffilled
+    assert (filled.iloc[:6] == df["aggregate_w"].iloc[19]).all()   # constant, past value
+    assert filled.iloc[6:].isna().all()            # nothing beyond max_gap

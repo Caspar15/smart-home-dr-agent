@@ -28,7 +28,17 @@ MODEL      = "llama3.1:8b"
 
 @dataclass
 class Recommendation:
-    """The user-facing message for one timestep."""
+    """One logged event. `event_type` separates REAL user decision points from
+    engineering trace messages — mixing them inflated every comfort/fairness
+    metric (a deferred cycle used to emit one 'recommendation' per 10-min step).
+
+    event_type values:
+      new_defer      — a NEW appliance recommendation the user ACCEPTED (decision)
+      declined_defer — a NEW appliance recommendation the user REJECTED (decision)
+      ev_advisory    — a nightly EV reschedule recommendation (decision)
+      continuation   — bookkeeping step of an already-accepted cycle (NOT a decision)
+      force_release  — comfort-cap auto release notice (NOT a decision)
+    """
     house_id: int
     timestep: int
     hour: int
@@ -37,6 +47,11 @@ class Recommendation:
     saving_gbp: float
     appliance: str
     accepted: bool
+    event_type: str = ""
+
+
+# Event types that are REAL user decision points (for metrics).
+DECISION_EVENT_TYPES = ("new_defer", "declined_defer", "ev_advisory")
 
 
 def _appliance_pretty(col: str) -> str:
@@ -64,12 +79,24 @@ def template_recommendation(house_id: int, step: int,
 
     if decision.action == "defer":
         apl = _appliance_pretty(decision.target_appliance or "appliance")
+        is_continuation = decision.rationale.get("reason") == "continuing cycle defer"
+        if is_continuation:
+            # Bookkeeping step of an already-accepted cycle — NOT a new
+            # user-facing recommendation. Logged for the engineering trace only.
+            return Recommendation(
+                house_id=house_id, timestep=step, hour=h,
+                headline=f"(trace) continuing deferred {apl} cycle",
+                body="", saving_gbp=0.0,
+                appliance=decision.target_appliance or "",
+                accepted=True,
+                event_type="continuation",
+            )
         time_word = "Tonight" if h >= 17 else ("This morning" if h < 12 else "This afternoon")
         headline = (f"Peak alert: defer {apl} to save £{decision.expected_saving_gbp:.2f}")
         body = (
             f"{time_word} {h:02d}:00 is a peak event "
-            f"(grid forecast {broadcast.aggregate_forecast_w/1000:.1f} kW, "
-            f"{broadcast.overage_ratio*100:.0f}% over capacity). "
+            f"(grid nowcast {broadcast.aggregate_forecast_w/1000:.1f} kW, "
+            f"{broadcast.overage_ratio*100:.0f}% over threshold). "
             f"Price is now £{p_now:.2f}/kWh, off-peak {p_off:.2f}. "
             f"Suggest: hold {apl} until the next off-peak window."
         )
@@ -79,6 +106,7 @@ def template_recommendation(house_id: int, step: int,
             saving_gbp=decision.expected_saving_gbp,
             appliance=decision.target_appliance or "",
             accepted=True,
+            event_type="new_defer",
         )
 
     if decision.action == "no_op" and decision.rationale.get("user_accepted") is False:
@@ -91,6 +119,7 @@ def template_recommendation(house_id: int, step: int,
             saving_gbp=0.0,
             appliance=decision.target_appliance or "",
             accepted=False,
+            event_type="declined_defer",
         )
 
     if decision.action == "release" and decision.rationale.get("reason") == "comfort force release":
@@ -102,6 +131,7 @@ def template_recommendation(house_id: int, step: int,
             saving_gbp=0.0,
             appliance=decision.target_appliance or "",
             accepted=True,
+            event_type="force_release",
         )
     return None
 

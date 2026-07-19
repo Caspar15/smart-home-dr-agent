@@ -405,7 +405,17 @@ def consequence_of_action(choice: int, modified_hour: int | None,
 
 
 def log_user_choice(house_id: int, day: int, choice_dict: dict) -> Path:
-    """Append the user's decision to a persistent log."""
+    """Append the user's decision to a persistent log.
+
+    Provenance schema (v2): every entry carries a `recommendation_id`, the
+    rec's own `rec_hour` (the ONLY trusted time-of-day — never reconstructed
+    from step arithmetic), a `source` tag, and run/config provenance. The
+    closed-loop reader deduplicates on recommendation_id (last click wins)
+    and skips entries without `rec_hour` or with a non-"real" source — the
+    legacy log's 5 duplicate clicks on one rec can never again count as 5
+    independent samples.
+    """
+    from multi_household.config import CLEAN_WINDOW, SPLIT_AT, CACHE_VERSION
     log_path = REPORTS / "user_choices.json"
     log = []
     if log_path.exists():
@@ -413,9 +423,21 @@ def log_user_choice(house_id: int, day: int, choice_dict: dict) -> Path:
             log = json.loads(log_path.read_text(encoding="utf-8"))
         except Exception:
             log = []
+    run_id = None
+    mpath = REPORTS / "run_manifest.json"
+    if mpath.exists():
+        try:
+            run_id = json.loads(mpath.read_text(encoding="utf-8")).get("run_utc")
+        except Exception:
+            pass
     log.append({
+        "schema": "v2",
         "house": house_id, "day": day,
         "timestamp_logged": str(pd.Timestamp.now()),
+        "run_id": run_id,
+        "clean_window": list(CLEAN_WINDOW),
+        "split_at": SPLIT_AT,
+        "cache_version": CACHE_VERSION,
         **choice_dict,
     })
     log_path.write_text(json.dumps(log, ensure_ascii=False, indent=2),
@@ -524,11 +546,16 @@ def main():
                 print(f"║  {expl[i:i+56]:<58s} ║")
             print(f"╚" + "═" * 60 + "╝")
 
+            apl_short = cons.get("appliance") or ""
             log_path = log_user_choice(args.house, args.day, {
+                "recommendation_id": (f"h{args.house:02d}-t{rec['timestep']}"
+                                      f"-{apl_short}"),
                 "rec_step":       rec["timestep"],
-                "rec_appliance":  cons.get("appliance"),
+                "rec_hour":       rec.get("hour"),
+                "rec_appliance":  apl_short,
                 "user_choice":    user_choice,
                 "modified_hour":  modified_hour,
+                "source":         "demo-auto" if args.auto else "real",
                 "consequence":    cons,
                 "llm_predicted_accept_prob": (llm or {}).get("predicted_accept_prob"),
             })

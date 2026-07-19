@@ -53,14 +53,16 @@ def _load_recs(mode: str, base: Path = REPORTS) -> list[dict]:
         return []
 
 
-def _jain_index(values: np.ndarray) -> float:
-    """Jain's fairness index: 1 = perfectly equal; 1/N = totally concentrated."""
+def _jain_index(values) -> float | None:
+    """Jain's fairness index: 1 = perfectly equal; 1/N = totally concentrated.
+    Returns None (report as n/a) when there is nothing to distribute — a
+    zero-event mode is NOT 'perfectly fair', it is undefined."""
     v = np.asarray(values, dtype=float)
-    if (v == 0).all():
-        return 1.0
+    if len(v) == 0 or (v == 0).all():
+        return None
     num = v.sum() ** 2
     den = (len(v) * (v ** 2).sum())
-    return float(num / den) if den > 0 else 0.0
+    return float(num / den) if den > 0 else None
 
 
 def compute_metrics(npz_path: Path) -> dict:
@@ -108,49 +110,78 @@ def compute_metrics(npz_path: Path) -> dict:
     peak_win_mean_dem = float(demand_agg[is_peak].mean()) if is_peak.any() else 0.0
     peak_win_mean_ser = float(served_agg[is_peak].mean()) if is_peak.any() else 0.0
 
-    # ---------------- Defer duration metrics ------------------------------
-    # Companion files live NEXT TO the npz (so ablation runs can write to their
-    # own folder without clobbering the headline rollout_* files in REPORTS).
+    # ---------------- Release-chunk wait metrics --------------------------
+    # NOTE semantics: each wait-log entry is one banked ENERGY CHUNK (one
+    # 10-min slice of a deferred cycle) from banking to release. This is an
+    # engineering buffer-residency metric, NOT "how long a user waited for
+    # their appliance cycle" — do not present it as user wait time.
     wait_path = npz_path.parent / f"rollout_{mode}_waitlog.json"
-    defer_waits = []
+    chunk_waits = []
     if wait_path.exists():
         try:
             wait_logs = json.loads(wait_path.read_text(encoding="utf-8"))
             for h_str, log in wait_logs.items():
                 for entry in log:
                     if isinstance(entry, list) and len(entry) >= 1:
-                        defer_waits.append(entry[0])      # wait_steps
+                        chunk_waits.append(entry[0])      # wait_steps
         except Exception:
             pass
 
-    if defer_waits:
-        wait_arr = np.array(defer_waits, dtype=float)
-        defer_mean_min = float(wait_arr.mean() * 10.0)
-        defer_p95_min  = float(np.percentile(wait_arr, 95) * 10.0)
-        defer_max_min  = float(wait_arr.max() * 10.0)
+    if chunk_waits:
+        wait_arr = np.array(chunk_waits, dtype=float)
+        chunk_wait_mean_min = float(wait_arr.mean() * 10.0)
+        chunk_wait_p95_min  = float(np.percentile(wait_arr, 95) * 10.0)
+        chunk_wait_max_min  = float(wait_arr.max() * 10.0)
     else:
-        defer_mean_min = defer_p95_min = defer_max_min = 0.0
+        chunk_wait_mean_min = chunk_wait_p95_min = chunk_wait_max_min = 0.0
 
-    # ---------------- Comfort + fairness metrics --------------------------
+    # ---------------- Comfort + fairness metrics (DECISION-LEVEL) ---------
+    # Only typed decision events count: new_defer / declined_defer (appliance)
+    # and ev_advisory (nightly EV reschedule). continuation / force_release
+    # are trace messages — counting them used to inflate every number here
+    # (445 "recommendations" that were really 48 appliance decisions).
     recs = _load_recs(mode, base=npz_path.parent)
-    per_house_recs = {int(h): 0 for h in houses}
-    per_house_accepted = {int(h): 0 for h in houses}
-    for r in recs:
-        h = int(r.get("house_id", -1))
-        if h in per_house_recs:
-            per_house_recs[h] += 1
-            if r.get("accepted"):
-                per_house_accepted[h] += 1
-    rec_counts = np.array([per_house_recs[int(h)] for h in houses])
-    total_recs = int(rec_counts.sum())
-    accept_rate = (sum(per_house_accepted.values()) / total_recs) if total_recs else 0.0
-    fairness = _jain_index(rec_counts)
-    # Max recs at any single house (1 = no one is hammered more than others)
-    max_recs_per_house = int(rec_counts.max()) if len(rec_counts) else 0
-    avg_recs_per_house = float(rec_counts.mean()) if len(rec_counts) else 0.0
-    # Rough avg defer duration: each defer adds energy_wh, drains at
-    # pool/POOL_DRAIN_STEPS Wh per off-peak step. Mean residency ≈ steps
-    # between average defer time and next off-peak window.
+    surface_total = len(recs)
+    apl_dec = [r for r in recs
+               if r.get("event_type") in ("new_defer", "declined_defer")]
+    ev_dec = [r for r in recs if r.get("event_type") == "ev_advisory"]
+
+    def _per_house_counts(events):
+        cnt = {int(h): 0 for h in houses}
+        acc = {int(h): 0 for h in houses}
+        for r in events:
+            hh = int(r.get("house_id", -1))
+            if hh in cnt:
+                cnt[hh] += 1
+                if r.get("accepted"):
+                    acc[hh] += 1
+        return cnt, acc
+
+    apl_cnt, apl_acc = _per_house_counts(apl_dec)
+    ev_cnt,  ev_acc  = _per_house_counts(ev_dec)
+    tot_cnt = {h: apl_cnt[h] + ev_cnt[h] for h in apl_cnt}
+
+    n_apl, n_apl_acc = sum(apl_cnt.values()), sum(apl_acc.values())
+    n_ev,  n_ev_acc  = sum(ev_cnt.values()),  sum(ev_acc.values())
+    n_tot, n_tot_acc = n_apl + n_ev, n_apl_acc + n_ev_acc
+
+    # Four fairness scopes (Jain), each answering a different question:
+    #   appliance      — how evenly appliance recommendations spread (all houses)
+    #   ev             — how evenly EV advisories spread (EV owners only)
+    #   total          — all decision burden over all houses
+    #   total_active   — conditional on having ≥1 decision this window
+    ev_owner_counts   = ([ev_cnt[h] for h in ev_cnt if ev_cnt[h] > 0]
+                         if n_ev else [])
+    active_counts     = [c for c in tot_cnt.values() if c > 0]
+    fairness = {
+        "jain_appliance":      _jain_index(list(apl_cnt.values())),
+        "jain_ev":             _jain_index(ev_owner_counts),
+        "jain_total":          _jain_index(list(tot_cnt.values())),
+        "jain_total_active":   _jain_index(active_counts),
+    }
+    tot_counts_arr = np.array(list(tot_cnt.values()))
+    max_dec_per_house = int(tot_counts_arr.max()) if len(tot_counts_arr) else 0
+    avg_dec_per_house = float(tot_counts_arr.mean()) if len(tot_counts_arr) else 0.0
 
     # ---------------- Rebound distribution --------------------------------
     is_off = (hours >= OFFPEAK_HOURS[0]) & (hours < OFFPEAK_HOURS[1])
@@ -161,27 +192,52 @@ def compute_metrics(npz_path: Path) -> dict:
     rebound_p95_kw  = float(np.percentile(off_peak_rebound, 95)) if is_off.any() else 0.0
     rebound_max_kw  = float(off_peak_rebound.max()) if is_off.any() else 0.0
 
+    total_base_gbp  = sum(p["cost_baseline_gbp"] for p in per_house)
+    total_after_gbp = sum(p["cost_after_gbp"]    for p in per_house)
+    # Billing note: costs use the FIXED ToU tariff only — the coordinated
+    # surcharge is a control signal and is NOT billed. Both saving conventions
+    # are reported: household-mean (unweighted) and total-bill (weighted).
+    user_block = {
+        "total_cost_baseline_gbp":  round(total_base_gbp, 2),
+        "total_cost_after_gbp":     round(total_after_gbp, 2),
+        "mean_household_saving_pct": round(np.mean([p["saving_pct"] for p in per_house]), 2),
+        "weighted_total_saving_pct": round(100*(total_base_gbp - total_after_gbp)/total_base_gbp
+                                           if total_base_gbp > 0 else 0, 2),
+        "tariff_note": "fixed ToU only; dynamic surcharge not billed",
+        "per_house":                per_house,
+    }
+
+    if n_tot == 0:
+        comfort_block = None            # no decision events (e.g. baseline) → n/a
+    else:
+        comfort_block = {
+            "appliance_decisions":       n_apl,
+            "appliance_accepted":        n_apl_acc,
+            "appliance_accept_rate":     round(n_apl_acc/n_apl, 3) if n_apl else None,
+            "ev_decisions":              n_ev,
+            "ev_accepted":               n_ev_acc,
+            "ev_accept_rate":            round(n_ev_acc/n_ev, 3) if n_ev else None,
+            "total_decisions":           n_tot,
+            "total_accepted":            n_tot_acc,
+            "total_accept_rate":         round(n_tot_acc/n_tot, 3),
+            "surface_messages_total":    surface_total,   # incl. trace events
+            "avg_decisions_per_house":   round(avg_dec_per_house, 2),
+            "max_decisions_per_house":   max_dec_per_house,
+            "per_house_decisions":       {str(h): tot_cnt[h] for h in sorted(tot_cnt)},
+            "fairness":                  {k: (round(v, 4) if v is not None else None)
+                                          for k, v in fairness.items()},
+            "release_chunk_wait_mean_min": round(chunk_wait_mean_min, 1),
+            "release_chunk_wait_p95_min":  round(chunk_wait_p95_min, 1),
+            "release_chunk_wait_max_min":  round(chunk_wait_max_min, 1),
+            "n_release_chunks":            len(chunk_waits),
+        }
+
     summary = {
         "n_houses":  int(H),
         "n_steps":   int(T),
-        "days":      round(T/144, 1),
-        "user": {
-            "total_cost_baseline_gbp":  round(sum(p["cost_baseline_gbp"] for p in per_house), 2),
-            "total_cost_after_gbp":     round(sum(p["cost_after_gbp"]    for p in per_house), 2),
-            "avg_saving_pct":           round(np.mean([p["saving_pct"]   for p in per_house]), 2),
-            "per_house":                per_house,
-        },
-        "comfort": {
-            "total_recommendations":         total_recs,
-            "accept_rate":                   round(accept_rate, 3),
-            "avg_recs_per_house":            round(avg_recs_per_house, 2),
-            "max_recs_per_house":            max_recs_per_house,
-            "fairness_jain":                 round(fairness, 4),
-            "defer_wait_mean_min":           round(defer_mean_min, 1),
-            "defer_wait_p95_min":            round(defer_p95_min, 1),
-            "defer_wait_max_min":            round(defer_max_min, 1),
-            "n_defers_completed":            len(defer_waits),
-        },
+        "days":      round(T/144, 3),
+        "user": user_block,
+        "comfort": comfort_block,
         "rebound": {
             "off_peak_rebound_mean_kw":      round(rebound_mean_kw, 3),
             "off_peak_rebound_p95_kw":       round(rebound_p95_kw, 3),
@@ -280,8 +336,9 @@ def plot_rebound_check(metrics_by_mode: dict, out_path: Path):
     swamped by natural REFIT data spikes). Bar chart with peak-window reduction
     on one side, rebound on the other.
     """
-    modes  = [m for m in metrics_by_mode.keys() if m != "baseline"]
-    if not modes:
+    modes = [m for m, s in metrics_by_mode.items()
+             if m != "baseline" and isinstance(s, dict) and "grid" in s]
+    if not modes or "baseline" not in metrics_by_mode:
         return
     base_pk  = metrics_by_mode["baseline"]["grid"]["peak_window_mean_served_kw"]
 
@@ -338,13 +395,16 @@ def plot_daily_timeline(metrics_by_mode: dict, ts, out_path: Path):
         recs = _load_recs(mode)
         per_day = [0] * n_days
         for r in recs:
+            if r.get("event_type") not in ("new_defer", "declined_defer",
+                                           "ev_advisory"):
+                continue                     # decisions only, not trace msgs
             d_idx = r["timestep"] // 144
             if d_idx < n_days:
                 per_day[d_idx] += 1
         ax.bar(range(n_days), per_day, color=colors.get(mode, "#888"), alpha=0.7,
-               label=f"{mode} recs/day")
+               label=f"{mode} decisions/day")
     ax.set_xlabel("Day index")
-    ax.set_ylabel("Recommendations per day")
+    ax.set_ylabel("User decisions per day")
     ax.set_title("DR activity over the rollout window",
                  fontsize=12, fontweight="bold")
     ax.legend(fontsize=9)
@@ -354,24 +414,34 @@ def plot_daily_timeline(metrics_by_mode: dict, ts, out_path: Path):
 
 
 def plot_fairness(metrics_by_mode: dict, out_path: Path):
-    """Per-house recommendation count for coordinated mode + Jain index."""
+    """Per-house DECISION burden (appliance + EV, stacked) for coordinated
+    mode, with the four Jain scopes in the title."""
     if "coordinated" not in metrics_by_mode:
         return
     s = metrics_by_mode["coordinated"]
+    if not s.get("comfort"):
+        return
     rows = s["user"]["per_house"]
     houses = [r["house"] for r in rows]
-    # Per-house rec counts come from the recs JSON via _load_recs
     from collections import Counter
     recs = _load_recs("coordinated")
-    cnt = Counter(r["house_id"] for r in recs)
-    counts = [cnt.get(h, 0) for h in houses]
-    jain = s["comfort"]["fairness_jain"]
+    apl = Counter(r["house_id"] for r in recs
+                  if r.get("event_type") in ("new_defer", "declined_defer"))
+    ev = Counter(r["house_id"] for r in recs
+                 if r.get("event_type") == "ev_advisory")
+    apl_c = [apl.get(h, 0) for h in houses]
+    ev_c  = [ev.get(h, 0) for h in houses]
+    f4 = s["comfort"]["fairness"]
     fig, ax = plt.subplots(figsize=(10, 4))
-    ax.bar([f"H{h:02d}" for h in houses], counts, color="#2d6e6e")
-    ax.set_ylabel("Recommendations received")
-    ax.set_title(f"Per-household recommendation count — coordinated "
-                 f"(Jain fairness = {jain:.3f})",
-                 fontsize=12, fontweight="bold")
+    x = [f"H{h:02d}" for h in houses]
+    ax.bar(x, apl_c, color="#2d6e6e", label="Appliance decisions")
+    ax.bar(x, ev_c, bottom=apl_c, color="#c47a3d", label="EV advisory decisions")
+    ax.set_ylabel("User decisions received")
+    ax.set_title(f"Per-household decision burden — coordinated "
+                 f"(Jain appl={f4['jain_appliance']}, ev={f4['jain_ev']}, "
+                 f"total={f4['jain_total']})",
+                 fontsize=11, fontweight="bold")
+    ax.legend(fontsize=9)
     fig.tight_layout()
     fig.savefig(out_path, dpi=150)
     plt.close(fig)
@@ -442,24 +512,32 @@ def main():
         if mode == "data_quality":
             continue
         print(f"\n[{mode}]")
-        print(f"  user.avg_saving_pct       = {s['user']['avg_saving_pct']:.2f} %")
-        print(f"  grid.p95_reduction_pct    = {s['grid']['p95_reduction_pct']:.2f} %")
-        print(f"  grid.peak_window_reduce%  = {s['grid']['peak_window_reduction_pct']:.2f} %")
-        print(f"  grid.peak_kw              = {s['grid']['agg_served_peak_kw']:.2f} kW  "
+        print(f"  user.mean_household_saving  = {s['user']['mean_household_saving_pct']:.2f} %")
+        print(f"  user.weighted_total_saving  = {s['user']['weighted_total_saving_pct']:.2f} %")
+        print(f"  grid.p95_reduction_pct      = {s['grid']['p95_reduction_pct']:.2f} %")
+        print(f"  grid.peak_window_reduce%    = {s['grid']['peak_window_reduction_pct']:.2f} %")
+        print(f"  grid.peak_kw                = {s['grid']['agg_served_peak_kw']:.2f} kW  "
               f"(vs baseline {summaries['baseline']['grid']['agg_served_peak_kw']:.2f})"
               if 'baseline' in summaries else "")
-        print(f"  rebound.mean_kw           = {s['rebound']['off_peak_rebound_mean_kw']:+.3f} kW")
-        print(f"  rebound.p95_kw            = {s['rebound']['off_peak_rebound_p95_kw']:+.3f} kW")
-        print(f"  rebound.max_kw            = {s['rebound']['off_peak_rebound_max_kw']:+.3f} kW")
-        print(f"  comfort.total_recs        = {s['comfort']['total_recommendations']}")
-        print(f"  comfort.accept_rate       = {s['comfort']['accept_rate']:.2%}")
-        print(f"  comfort.max/avg_per_house = "
-              f"{s['comfort']['max_recs_per_house']} / {s['comfort']['avg_recs_per_house']:.1f}")
-        print(f"  comfort.fairness_jain     = {s['comfort']['fairness_jain']:.3f}")
-        print(f"  comfort.defer_wait_mean   = {s['comfort']['defer_wait_mean_min']:.1f} min")
-        print(f"  comfort.defer_wait_p95    = {s['comfort']['defer_wait_p95_min']:.1f} min")
-        print(f"  comfort.n_defers_done     = {s['comfort']['n_defers_completed']}")
-        print(f"  energy diff %             = {s['energy_conservation']['diff_pct']:+.3f} %")
+        print(f"  rebound.mean_kw             = {s['rebound']['off_peak_rebound_mean_kw']:+.3f} kW")
+        print(f"  rebound.p95_kw              = {s['rebound']['off_peak_rebound_p95_kw']:+.3f} kW")
+        c = s.get("comfort")
+        if c is None:
+            print(f"  comfort                     = n/a (no decision events)")
+        else:
+            print(f"  comfort.appliance_decisions = {c['appliance_decisions']} "
+                  f"(accept {c['appliance_accept_rate']})")
+            print(f"  comfort.ev_decisions        = {c['ev_decisions']} "
+                  f"(accept {c['ev_accept_rate']})")
+            print(f"  comfort.total_decisions     = {c['total_decisions']} "
+                  f"(surface msgs {c['surface_messages_total']})")
+            f4 = c["fairness"]
+            print(f"  comfort.jain a/ev/tot/act   = "
+                  f"{f4['jain_appliance']} / {f4['jain_ev']} / "
+                  f"{f4['jain_total']} / {f4['jain_total_active']}")
+            print(f"  comfort.chunk_wait_mean     = {c['release_chunk_wait_mean_min']:.1f} min "
+                  f"(buffer residency, not user wait)")
+        print(f"  energy diff %               = {s['energy_conservation']['diff_pct']:+.3f} %")
 
     # Figures
     if ts_ref is not None:

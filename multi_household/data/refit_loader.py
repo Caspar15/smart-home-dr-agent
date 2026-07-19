@@ -22,7 +22,7 @@ import numpy as np
 import pandas as pd
 
 from multi_household.config import (
-    REFIT_DIR, CACHE_DIR, RESAMPLE_FREQ, AGG_DEGLITCH_W,
+    REFIT_DIR, CACHE_DIR, RESAMPLE_FREQ, AGG_DEGLITCH_W, CACHE_VERSION,
 )
 from multi_household.data.appliance_map import (
     HOUSE_APPLIANCES, classify, appliance_summary,
@@ -90,17 +90,24 @@ def _safe_name(s: str) -> str:
     return s.strip("_")
 
 
-def _cache_path(house_id: int) -> Path:
-    return CACHE_DIR / f"refit_house_{house_id:02d}_{RESAMPLE_FREQ}.parquet"
+def _cache_path(house_id: int, inject_ev: bool = True) -> Path:
+    """Cache path carries the schema version + EV-scenario tag so stale caches
+    are never silently reused after cleaning/injection logic changes."""
+    ev_tag = "" if inject_ev else "_noev"
+    return (CACHE_DIR /
+            f"refit_house_{house_id:02d}_{RESAMPLE_FREQ}_{CACHE_VERSION}{ev_tag}.parquet")
 
 
-def load_house(house_id: int, force_rebuild: bool = False) -> pd.DataFrame:
+def load_house(house_id: int, force_rebuild: bool = False,
+               inject_ev: bool = True) -> pd.DataFrame:
     """Load one REFIT house at 10-min resolution.
 
     On first call, reads the raw CSV (~7M rows), downsamples to 10-min mean,
     and caches as parquet. Subsequent calls hit the cache (< 1s).
+    `inject_ev=False` builds the natural (no synthetic EV) variant — used by
+    the mechanism-decomposition factorial.
     """
-    cache = _cache_path(house_id)
+    cache = _cache_path(house_id, inject_ev)
     if cache.exists() and not force_rebuild:
         return pd.read_parquet(cache)
 
@@ -136,10 +143,11 @@ def load_house(house_id: int, force_rebuild: bool = False) -> pd.DataFrame:
     df10 = df10.rename(columns=appliance_cols)
     df10 = df10.rename(columns={"Aggregate": "aggregate_w"})
 
-    # Class-level totals
-    df10["deferable_w"]        = df10[deferable_cols].sum(axis=1) if deferable_cols else 0.0
-    df10["semi_deferable_w"]   = df10[semi_cols].sum(axis=1)      if semi_cols else 0.0
-    df10["non_controllable_w"] = df10[non_cols].sum(axis=1)       if non_cols else 0.0
+    # Class-level totals. min_count=1 keeps all-NaN rows (meter outage) as NaN
+    # instead of a fabricated 0 — downstream imputation handles them causally.
+    df10["deferable_w"]        = df10[deferable_cols].sum(axis=1, min_count=1) if deferable_cols else 0.0
+    df10["semi_deferable_w"]   = df10[semi_cols].sum(axis=1, min_count=1)      if semi_cols else 0.0
+    df10["non_controllable_w"] = df10[non_cols].sum(axis=1, min_count=1)       if non_cols else 0.0
 
     # Energy column (W → Wh per 10-min bucket)
     df10["aggregate_wh"] = df10["aggregate_w"] * (10.0 / 60.0)
@@ -148,8 +156,12 @@ def load_house(house_id: int, force_rebuild: bool = False) -> pd.DataFrame:
     df10 = df10.reset_index().rename(columns={"Time": "time"})
 
     # Synthetic EV injection (BEFORE caching so it persists)
-    df10 = _inject_synthetic_ev(df10, house_id)
-    # If EV was added, re-bucket it into deferable_w and recompute class totals
+    if inject_ev:
+        df10 = _inject_synthetic_ev(df10, house_id)
+    # If EV was added, re-bucket it into deferable_w. On meter-outage rows the
+    # base deferable_w is NaN and stays NaN (NaN + EV = NaN) — consistent with
+    # the aggregate, which is also NaN there; we never fabricate a 7 kW value
+    # for a slot whose real appliances are unknown.
     if "appliance_synthetic_ev_w" in df10.columns:
         df10["deferable_w"] = df10["deferable_w"] + df10["appliance_synthetic_ev_w"]
 

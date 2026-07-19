@@ -12,7 +12,7 @@ if sys.platform == "win32":
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--days", type=int, default=60)
+    ap.add_argument("--days", type=int, default=14)
     ap.add_argument("--accept", type=float, default=0.85)
     ap.add_argument("--skip-summary", action="store_true")
     args = ap.parse_args()

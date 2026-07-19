@@ -58,16 +58,32 @@ class CNNLSTM(nn.Module):
 
 # --- windowing --------------------------------------------------------------
 
-def make_windows(X: np.ndarray, y: np.ndarray, lookback: int):
-    """X: (T, F), y: (T,) → (N, L, F), (N,) where N = T - L."""
+def make_windows(X: np.ndarray, y: np.ndarray, lookback: int,
+                 times: np.ndarray | None = None):
+    """X: (T, F), y: (T,) → (N, L, F), (N,) with N ≤ T - L.
+
+    If `times` (datetime64 array aligned with rows) is given, windows whose
+    L+1 rows are NOT contiguous 10-min steps are SKIPPED. After outage rows
+    are dropped upstream, positionally adjacent rows can be hours apart —
+    stacking across such a seam would feed the model a time-discontinuous
+    history. On gap-free data this changes nothing.
+    """
     N = len(X) - lookback
     if N <= 0:
         raise ValueError("series shorter than lookback")
-    Xw = np.empty((N, lookback, X.shape[1]), dtype=np.float32)
-    yw = np.empty((N,), dtype=np.float32)
-    for i in range(N):
-        Xw[i] = X[i:i+lookback]
-        yw[i] = y[i+lookback]
+    if times is not None:
+        t = np.asarray(times).astype("datetime64[s]").astype(np.int64)
+        step = 600  # 10 min
+        valid = [i for i in range(N) if t[i + lookback] - t[i] == lookback * step]
+    else:
+        valid = list(range(N))
+    if not valid:
+        raise ValueError("no time-contiguous windows available")
+    Xw = np.empty((len(valid), lookback, X.shape[1]), dtype=np.float32)
+    yw = np.empty((len(valid),), dtype=np.float32)
+    for k, i in enumerate(valid):
+        Xw[k] = X[i:i+lookback]
+        yw[k] = y[i+lookback]
     return Xw, yw
 
 
@@ -75,17 +91,26 @@ def make_windows(X: np.ndarray, y: np.ndarray, lookback: int):
 
 def train_one_house(house_id: int,
                     lookback: int = 48,
-                    epochs: int = 15,
+                    epochs: int = 30,
                     batch_size: int = 128,
                     lr: float = 1e-3,
                     device: str | None = None,
                     val_frac: float = 0.15,
                     patience: int = 5,
+                    train_seed: int = 42,
                     verbose: bool = True) -> dict:
     """Train + save model for one house with validation-based early stopping.
-    Returns dict with paths + metrics."""
+    Returns dict with paths + metrics.
+
+    Training is SEEDED (seed = train_seed + house_id) so retraining is
+    reproducible; the seed is stored in both the checkpoint and the meta.
+    """
     if device is None:
         device = "cuda" if torch.cuda.is_available() else "cpu"
+
+    seed = int(train_seed) + int(house_id)
+    torch.manual_seed(seed)
+    np.random.seed(seed)
 
     data = prepare_house(house_id)
     train_df = data["train_df"]
@@ -112,9 +137,13 @@ def train_one_house(house_id: int,
     Xva, yva = _scale(val_part)
     Xte, yte = _scale(test_df)
 
-    Xtrw, ytrw = make_windows(Xtr, ytr, lookback)
-    Xvaw, yvaw = make_windows(Xva, yva, lookback) if len(Xva) > lookback else (None, None)
-    Xtew, ytew = make_windows(Xte, yte, lookback)
+    t_tr = tr_part["time"].values
+    t_va = val_part["time"].values
+    t_te = test_df["time"].values
+    Xtrw, ytrw = make_windows(Xtr, ytr, lookback, times=t_tr)
+    Xvaw, yvaw = (make_windows(Xva, yva, lookback, times=t_va)
+                  if len(Xva) > lookback else (None, None))
+    Xtew, ytew = make_windows(Xte, yte, lookback, times=t_te)
 
     model = CNNLSTM(n_features=len(fcols), lookback=lookback).to(device)
     opt = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=1e-5)
@@ -198,6 +227,7 @@ def train_one_house(house_id: int,
     # Save model + scaler stats + meta
     model_path = MODEL_DIR / f"house_{house_id:02d}.pt"
     meta_path  = MODEL_DIR / f"house_{house_id:02d}_meta.json"
+    from multi_household.config import CLEAN_WINDOW, SPLIT_AT, CACHE_VERSION
     torch.save({
         "model_state": model.state_dict(),
         "n_features": len(fcols),
@@ -208,6 +238,11 @@ def train_one_house(house_id: int,
         "ty_scale": float(ty_scaler.scale_[0]),
         "feature_cols": fcols,
         "target_col": tcol,
+        "train_seed": seed,
+        "clean_window": list(CLEAN_WINDOW),
+        "split_at": SPLIT_AT,
+        "cache_version": CACHE_VERSION,
+        "epochs_requested": epochs,
     }, model_path)
 
     meta = {
@@ -216,8 +251,11 @@ def train_one_house(house_id: int,
         "n_test_windows":  len(Xtew),
         "lookback": lookback,
         "epochs": epochs,
-        "mae_wh":   round(mae, 2),
-        "rmse_wh":  round(rmse, 2),
+        "train_seed": seed,
+        # NOTE: units are WATTS (target is aggregate_w) — the old keys were
+        # mislabelled *_wh.
+        "mae_w":    round(mae, 2),
+        "rmse_w":   round(rmse, 2),
         "r2":       round(r2, 4),
         "final_train_loss": round(history[-1][0], 4),
         "final_val_loss":   round(history[-1][1], 4) if not np.isnan(history[-1][1]) else None,

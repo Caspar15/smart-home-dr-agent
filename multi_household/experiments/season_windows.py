@@ -42,8 +42,14 @@ WINDOWS = {
     "autumn": ("2014-08-02", "2014-10-15 12:00", "2014-10-01 12:00"),
     "winter": ("2014-12-16", "2015-02-28 12:00", "2015-02-14 12:00"),
     # true spring — completes all four seasons (the headline test window
-    # Jun-30..Jul-14 is SUMMER; its training months are spring)
-    "spring": ("2015-02-06", "2015-04-21 12:00", "2015-04-07 12:00"),
+    # Jun-30..Jul-14 is SUMMER; its training months are spring).
+    # NOTE: this is a 12-DAY test window (Apr-14..Apr-26), not 14 — under the
+    # v2 quality bar (no aggregate OR appliance-class gap >6 h for ANY house,
+    # incl. the 7-day lag warm-up) no 14-day window exists anywhere in
+    # Mar–May 2015: a REFIT IAM outage around Apr-10..14 rules the rest out.
+    # The old Apr-07..21 window passed only because v1 fabricated zero-valued
+    # class features across that outage. Disclose the shorter span.
+    "spring": ("2015-02-13", "2015-04-26 12:00", "2015-04-14 12:00"),
 }
 SEED = 42
 ACCEPT = 0.85
@@ -71,7 +77,11 @@ def runner(tag: str) -> None:
     from multi_household.experiments.rollout import compute_all_forecasts, rollout
 
     print(f"[runner:{tag}] window={CLEAN_WINDOW} split_at={SPLIT_AT}")
-    hd = compute_all_forecasts(CLEAN_HOUSES, n_test_steps=DAYS * 144)
+    # Test length follows the window definition (spring is 12 d, others 14 d).
+    import pandas as _pd
+    n_steps = int((_pd.Timestamp(CLEAN_WINDOW[1]) - _pd.Timestamp(SPLIT_AT))
+                  / _pd.Timedelta(minutes=10))
+    hd = compute_all_forecasts(CLEAN_HOUSES, n_test_steps=n_steps)
 
     def agg(r):
         s = np.stack([r["served_w"][h] for h in r["houses"]]).sum(0) / 1000.0
@@ -130,13 +140,30 @@ def orchestrate(tags: list[str], epochs: int, lookback: int) -> None:
         if r.returncode != 0:
             print(f"[{tag}] runner FAILED")
 
-    # summary table incl. the spring headline
+    # summary table incl. the headline — read LIVE from the headline metrics
+    # (a hardcoded copy here silently went stale whenever the headline moved).
     rows = []
-    headline = {"tag": "summer (headline)", "window": ["2014-04-30", "2014-07-14"],
-                "baseline": {"peak_kw": 40.50, "p95_kw": 27.99},
-                "coordinated": {"peak_kw": 32.74, "p95_kw": 19.99},
-                "peak_red_pct": 19.2, "p95_red_pct": 28.6}
-    rows.append(headline)
+    msum = REPRO / "reports" / "multi_household" / "metrics_summary.json"
+    if msum.exists():
+        try:
+            m = json.loads(msum.read_text(encoding="utf-8"))
+            gb, gc = m["baseline"]["grid"], m["coordinated"]["grid"]
+            from multi_household.config import CLEAN_WINDOW as _CW
+            rows.append({
+                "tag": "summer (headline)", "window": list(_CW),
+                "baseline": {"peak_kw": gb["agg_served_peak_kw"],
+                             "p95_kw": gb["agg_served_p95_kw"]},
+                "coordinated": {"peak_kw": gc["agg_served_peak_kw"],
+                                "p95_kw": gc["agg_served_p95_kw"]},
+                "peak_red_pct": round(100 * (gb["agg_served_peak_kw"]
+                                             - gc["agg_served_peak_kw"])
+                                      / gb["agg_served_peak_kw"], 1),
+                "p95_red_pct": round(100 * (gb["agg_served_p95_kw"]
+                                            - gc["agg_served_p95_kw"])
+                                     / gb["agg_served_p95_kw"], 1),
+            })
+        except Exception as e:                       # noqa: BLE001
+            print(f"(headline row skipped: {e})")
     for tag in WINDOWS:
         p = SEASON_DIR / f"{tag}.json"
         if p.exists():
