@@ -1,0 +1,196 @@
+"""LLM interface characterization — numbers for the paper's LLM section.
+
+Positioning (per AGENT_DESIGN decision A): the LLM is an INTERFACE-layer
+application, not a contribution claim. This harness quantifies exactly what
+the paper may state about it, on the real decision events of the headline
+window:
+
+  • JSON schema success rate      (parse + required keys, first attempt)
+  • fact-citation precision       (numbers in the message that exist in facts)
+  • hallucinated-number rate      (numbers in the message NOT in facts)
+  • unit-error rate               (kWh/MWh where Wh expected — validate_units)
+  • latency per call              (wall clock, local Ollama)
+
+Input events = the decision-level events (new_defer / declined_defer /
+ev_advisory) from rollout_coordinated_recs.json — i.e. the actual 102 user
+decision points, not synthetic prompts.
+
+Run:  python -m multi_household.experiments.llm_eval [--model llama3.1:8b]
+      (requires a local Ollama server)
+Writes: reports/multi_household/llm_eval_<model>.json
+"""
+from __future__ import annotations
+import sys, json, time, re, argparse, urllib.request
+if sys.platform == "win32":
+    try: sys.stdout.reconfigure(encoding="utf-8")
+    except Exception: pass
+
+from multi_household.experiments.rollout import REPORTS
+from multi_household.llm.advisor import OLLAMA_URL, validate_units
+
+DECISION_TYPES = ("new_defer", "declined_defer", "ev_advisory")
+
+SCHEMA = {
+    "type": "object",
+    "required": ["message_zh", "cited_numbers"],
+    "properties": {
+        "message_zh":    {"type": "string"},
+        "cited_numbers": {"type": "array", "items": {"type": "string"}},
+    },
+}
+
+SYSTEM = """你是住戶能源顧問。任務:把「事實」JSON 包裝成 1-2 句給住戶的繁體中文訊息。
+規則:
+1. 禁止編造輸入沒有的數字;你只能引用事實 JSON 裡的數字。
+2. cited_numbers 列出你在訊息中用到的每一個數字(字串)。
+3. 能量單位一律 Wh,金額一律英鎊(£),不得使用 kWh/MWh。
+4. 直接輸出 JSON,不要 markdown。"""
+
+_NUM = re.compile(r"\d+(?:\.\d+)?")
+
+
+def _fact_numbers(facts: dict) -> set[str]:
+    """All numeric literals present in the facts (with rounding variants).
+
+    Hour facts additionally allow their 12-hour-clock rendering ("hour": 21 →
+    「晚上 9 點」) and zero-padded form — a first version flagged those as
+    hallucinations, which inflated the rate ~7× (34% → ~5%): the model was
+    CORRECTLY converting the hour, not inventing numbers."""
+    out: set[str] = set()
+    for k, v in facts.items():
+        if isinstance(v, (int, float)):
+            f = float(v)
+            for s in (f"{f:g}", f"{f:.0f}", f"{f:.1f}", f"{f:.2f}", f"{f:.3f}"):
+                out.add(s)
+                if s.endswith(".0"):
+                    out.add(s[:-2])
+            if k == "hour":
+                h = int(v)
+                out.add(str(h % 12 or 12))       # 12-hour clock
+                out.add(f"{h:02d}")              # zero-padded (22:00 → "22")
+                out.add("00")                    # the ":00" minutes token
+    return out
+
+
+def _event_facts(r: dict) -> dict:
+    base = {"house_id": r["house_id"], "hour": r["hour"]}
+    if r["event_type"] == "ev_advisory":
+        # length in minutes appears in the body text ("... N min EV charge")
+        m = re.search(r"(\d+) min", r.get("body", ""))
+        base.update({"ev_charge_min": int(m.group(1)) if m else 240,
+                     "accepted": r["accepted"], "kind": "ev_reschedule"})
+    else:
+        base.update({"appliance": r["appliance"].replace("appliance_", "")
+                     .replace("_w", ""),
+                     "saving_gbp": r["saving_gbp"],
+                     "accepted": r["accepted"], "kind": "appliance_defer"})
+    return base
+
+
+def _call(model: str, facts: dict, timeout_s: int = 120) -> tuple[dict | None, float, str]:
+    body = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": SYSTEM},
+            {"role": "user", "content": "事實:\n```json\n"
+             + json.dumps(facts, ensure_ascii=False) + "\n```\n直接輸出 JSON。"},
+        ],
+        "stream": False,
+        "format": SCHEMA,
+        "options": {"temperature": 0.2, "seed": 20260719, "num_predict": 300},
+    }
+    t0 = time.time()
+    try:
+        req = urllib.request.Request(
+            OLLAMA_URL, data=json.dumps(body).encode("utf-8"),
+            headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=timeout_s) as resp:
+            obj = json.loads(resp.read().decode("utf-8"))
+        dt = time.time() - t0
+        content = obj["message"]["content"]
+        try:
+            return json.loads(content), dt, content
+        except json.JSONDecodeError:
+            return None, dt, content
+    except Exception as e:                       # noqa: BLE001
+        return None, time.time() - t0, f"<error: {e}>"
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--model", default="llama3.1:8b")
+    ap.add_argument("--limit", type=int, default=None,
+                    help="cap number of events (debug)")
+    args = ap.parse_args()
+
+    recs = json.loads((REPORTS / "rollout_coordinated_recs.json")
+                      .read_text(encoding="utf-8"))
+    events = [r for r in recs if r.get("event_type") in DECISION_TYPES]
+    if args.limit:
+        events = events[:args.limit]
+    print(f"model={args.model}  events={len(events)}")
+
+    rows = []
+    n_ok = n_cited_ok = n_halluc_msg = n_unit_bad = 0
+    latencies = []
+    for i, r in enumerate(events):
+        facts = _event_facts(r)
+        parsed, dt, raw = _call(args.model, facts)
+        latencies.append(dt)
+        ok = (parsed is not None and isinstance(parsed.get("message_zh"), str)
+              and isinstance(parsed.get("cited_numbers"), list))
+        row = {"i": i, "event_type": r["event_type"], "house": r["house_id"],
+               "latency_s": round(dt, 2), "schema_ok": bool(ok)}
+        if ok:
+            n_ok += 1
+            allowed = _fact_numbers(facts)
+            msg_nums = set(_NUM.findall(parsed["message_zh"]))
+            halluc = sorted(n for n in msg_nums if n not in allowed)
+            cited = set()
+            for c in parsed["cited_numbers"]:
+                cited |= set(_NUM.findall(str(c)))
+            cited_bad = sorted(n for n in cited if n not in allowed)
+            units = validate_units(parsed["message_zh"], "Wh")
+            row.update({"hallucinated_numbers": halluc,
+                        "cited_not_in_facts": cited_bad,
+                        "unit_issues": units,
+                        "message_zh": parsed["message_zh"]})
+            if not cited_bad:
+                n_cited_ok += 1
+            if halluc:
+                n_halluc_msg += 1
+            if units:
+                n_unit_bad += 1
+        else:
+            row["raw"] = raw[:200]
+        rows.append(row)
+        if (i + 1) % 20 == 0:
+            print(f"  {i+1}/{len(events)} done "
+                  f"(schema {n_ok}/{i+1}, halluc msgs {n_halluc_msg})", flush=True)
+
+    lat = sorted(latencies)
+    n = len(events)
+    summary = {
+        "model": args.model,
+        "n_events": n,
+        "schema_success_rate": round(n_ok / n, 4) if n else None,
+        "citation_precision_rate": round(n_cited_ok / n_ok, 4) if n_ok else None,
+        "hallucinated_number_msg_rate": round(n_halluc_msg / n_ok, 4) if n_ok else None,
+        "unit_error_msg_rate": round(n_unit_bad / n_ok, 4) if n_ok else None,
+        "latency_s": {"mean": round(sum(lat) / n, 2) if n else None,
+                      "p50": round(lat[n // 2], 2) if n else None,
+                      "p95": round(lat[int(n * 0.95)] if n else 0, 2)},
+        "note": ("interface characterization only — the LLM makes no control "
+                 "decisions; grid results are attributed to the coordination "
+                 "mechanism (see mechanism_decomposition.json)"),
+    }
+    safe = args.model.replace(":", "_").replace("/", "_")
+    dst = REPORTS / f"llm_eval_{safe}.json"
+    dst.write_text(json.dumps({"summary": summary, "rows": rows},
+                              ensure_ascii=False, indent=2), encoding="utf-8")
+    print(json.dumps(summary, ensure_ascii=False, indent=2))
+    print(f"saved {dst}")
+
+
+if __name__ == "__main__":
+    main()

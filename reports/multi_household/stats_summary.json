@@ -1,0 +1,255 @@
+{
+  "n_seeds": 10,
+  "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "baseline": {
+    "peak_kw": 40.37,
+    "p95_kw": 26.79
+  },
+  "accept_levels": {
+    "accept=0.00": {
+      "peak_kw": {
+        "mean": 40.37,
+        "std": 0.0,
+        "ci95": [
+          40.37,
+          40.37
+        ]
+      },
+      "peak_reduction_kw_boot_ci95": [
+        0.0,
+        0.0
+      ],
+      "p95_kw": {
+        "mean": 26.79,
+        "std": 0.0,
+        "ci95": [
+          26.79,
+          26.79
+        ]
+      },
+      "p95_reduction_kw_boot_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "accept=0.50": {
+      "peak_kw": {
+        "mean": 35.86,
+        "std": 3.153,
+        "ci95": [
+          33.6,
+          38.12
+        ]
+      },
+      "peak_reduction_kw_boot_ci95": [
+        2.63,
+        6.15
+      ],
+      "p95_kw": {
+        "mean": 23.41,
+        "std": 1.673,
+        "ci95": [
+          22.21,
+          24.6
+        ]
+      },
+      "p95_reduction_kw_boot_ci95": [
+        2.43,
+        4.41
+      ]
+    },
+    "accept=0.85": {
+      "peak_kw": {
+        "mean": 28.96,
+        "std": 2.11,
+        "ci95": [
+          27.45,
+          30.47
+        ]
+      },
+      "peak_reduction_kw_boot_ci95": [
+        10.06,
+        12.56
+      ],
+      "p95_kw": {
+        "mean": 20.09,
+        "std": 0.398,
+        "ci95": [
+          19.81,
+          20.38
+        ]
+      },
+      "p95_reduction_kw_boot_ci95": [
+        6.45,
+        6.92
+      ]
+    },
+    "accept=1.00": {
+      "peak_kw": {
+        "mean": 28.53,
+        "std": 0.0,
+        "ci95": [
+          28.53,
+          28.53
+        ]
+      },
+      "peak_reduction_kw_boot_ci95": [
+        11.84,
+        11.84
+      ],
+      "p95_kw": {
+        "mean": 19.13,
+        "std": 0.0,
+        "ci95": [
+          19.13,
+          19.13
+        ]
+      },
+      "p95_reduction_kw_boot_ci95": [
+        7.66,
+        7.66
+      ]
+    }
+  },
+  "sensitivity": {
+    "seed": 42,
+    "accept": 0.85,
+    "days": 14,
+    "cohorts": [
+      {
+        "tag": "cohort_15_primary",
+        "houses": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          20
+        ],
+        "status": "ok",
+        "baseline": {
+          "peak_kw": 40.37,
+          "p95_kw": 26.79
+        },
+        "coordinated": {
+          "peak_kw": 32.41,
+          "p95_kw": 19.44
+        },
+        "peak_red_pct": 19.72,
+        "p95_red_pct": 27.45
+      },
+      {
+        "tag": "cohort_16_with_H3",
+        "houses": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          20
+        ],
+        "status": "ok",
+        "baseline": {
+          "peak_kw": 40.5,
+          "p95_kw": 26.98
+        },
+        "coordinated": {
+          "peak_kw": 32.74,
+          "p95_kw": 19.7
+        },
+        "peak_red_pct": 19.17,
+        "p95_red_pct": 26.98
+      },
+      {
+        "tag": "cohort_17_all_nonsolar",
+        "houses": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          12,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "status": "ok",
+        "baseline": {
+          "peak_kw": 40.68,
+          "p95_kw": 27.11
+        },
+        "coordinated": {
+          "peak_kw": 33.4,
+          "p95_kw": 19.83
+        },
+        "peak_red_pct": 17.9,
+        "p95_red_pct": 26.84
+      }
+    ],
+    "training_seeds": [
+      {
+        "tag": "train_seed_42 (headline)",
+        "status": "ok",
+        "coordinated": {
+          "peak_kw": null,
+          "p95_kw": null,
+          "note": "see metrics_summary"
+        }
+      },
+      {
+        "tag": "train_seed_7",
+        "status": "ok",
+        "coordinated": {
+          "peak_kw": 32.41,
+          "p95_kw": 19.52
+        }
+      },
+      {
+        "tag": "train_seed_123",
+        "status": "ok",
+        "coordinated": {
+          "peak_kw": 32.41,
+          "p95_kw": 19.54
+        }
+      }
+    ]
+  }
+}

@@ -67,7 +67,10 @@ def run(days: int, seeds: list[int], accepts: list[float]) -> dict:
             "p95_kw_std":   round(float(np.std(p95s)), 3),
             "peak_red_pct_mean": round(100 * (base_peak - float(np.mean(peaks))) / base_peak, 2),
             "p95_red_pct_mean":  round(100 * (base_p95 - float(np.mean(p95s))) / base_p95, 2),
+            # raw per-seed values so downstream stats (95% CI, bootstrap) can
+            # work from the data instead of just mean±std
             "peaks": [round(p, 2) for p in peaks],
+            "p95s":  [round(p, 2) for p in p95s],
         }
         print(f"      {key}: peak {results[key]['peak_kw_mean']}±{results[key]['peak_kw_std']} kW"
               f"  P95 {results[key]['p95_kw_mean']}±{results[key]['p95_kw_std']} kW")
