@@ -232,7 +232,9 @@ def rollout(houses_data: dict,
             rejection_override: dict[str, float] | None = None,
             fairness_budget: int | None = None,
             appliance_agent: bool = True,
-            exclude_ev_from_agent: bool = False) -> dict:
+            exclude_ev_from_agent: bool = False,
+            ev_strategy: str = "stagger",
+            grid_threshold_w: float | None = None) -> dict:
     """Step through the test period for all houses simultaneously.
 
     Returns a dict with:
@@ -287,7 +289,8 @@ def rollout(houses_data: dict,
             # decisions contribute to the error bars.
             ev_kwargs = {} if ev_seed is None else {"seed": ev_seed}
             oa, sa, ev_decisions = advisory_ev_schedule(
-                ev_houses, timestamps, accept_rate=user_accept, **ev_kwargs)
+                ev_houses, timestamps, accept_rate=user_accept,
+                strategy=ev_strategy, **ev_kwargs)
             ev_orig.update(oa)
             ev_shift.update(sa)
             if verbose:
@@ -354,8 +357,10 @@ def rollout(houses_data: dict,
         # Step 1: aggregator
         if mode == "coordinated":
             forecasts = [forecast_w[h][t] for h in houses]
+            g_kwargs = ({} if grid_threshold_w is None
+                        else {"grid_threshold_w": grid_threshold_w})
             bc = aggregate_and_price(forecasts, timestep=t, hour=hour,
-                                     prev_served_w=prev_agg_served)
+                                     prev_served_w=prev_agg_served, **g_kwargs)
         elif mode == "independent":
             # Independent: every house reacts to the FIXED ToU price.
             # peak_event is on whenever ToU is in the peak tier (17:00-22:00).
@@ -401,10 +406,15 @@ def rollout(houses_data: dict,
                     + float(ev_shift[h][t]), 0.0)
                 continue
 
+            # forecast_high wants the NEXT-step forecast ŷ(t+1) vs actual y(t).
+            # forecast_w[t+1] is causal at time t (computed from data ≤ t);
+            # at the window's final step there is no t+1 → reuse ŷ(t) (inert:
+            # last-step new defers have no room anyway).
+            nxt_fc = float(forecast_w[h][t + 1]) if t + 1 < T else float(forecast_w[h][t])
             decision = decide_step(
                 state=agents[h],
                 appliance_loads_w=current_apps,
-                forecast_w=float(forecast_w[h][t]),
+                forecast_w=nxt_fc,
                 broadcast=bc,
                 step=t,
                 accept_rate=user_accept,

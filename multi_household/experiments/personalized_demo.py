@@ -55,9 +55,13 @@ def build_user_history(house_id: int, current_day: int) -> dict:
     recs_path = REPORTS / "rollout_coordinated_recs.json"
     house_recs = []
     if recs_path.exists():
+        from multi_household.llm.advisor import DECISION_EVENT_TYPES
         all_recs = json.loads(recs_path.read_text(encoding="utf-8"))
+        # decision events only — trace messages (continuation/force_release)
+        # are not user history and inflated every per-appliance accept stat
         house_recs = [r for r in all_recs if r["house_id"] == house_id
-                      and r["timestep"] < current_day * 144]
+                      and r["timestep"] < current_day * 144
+                      and r.get("event_type") in DECISION_EVENT_TYPES]
 
     n_total = len(house_recs)
     n_accepted = sum(1 for r in house_recs if r.get("accepted"))
@@ -456,7 +460,8 @@ def main():
     print(f"[1/4] Build daily facts (incl. REAL 24h forecast) ...")
     facts = compute_daily_facts(args.house, args.day)
     tf = facts.get("tomorrow_forecast", {})
-    print(f"      tomorrow source: {tf.get('source')}")
+    if tf:
+        print(f"      tomorrow source: {tf.get('source')}")
 
     print(f"\n[2/4] Build user history ...")
     hist = build_user_history(args.house, args.day)

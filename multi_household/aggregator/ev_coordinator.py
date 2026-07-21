@@ -50,11 +50,15 @@ def _detect_blocks(ev: np.ndarray) -> list[tuple[int, int]]:
 EV_ACCEPT_SEED = 20260710
 
 
+TROUGH_STEPS = 60            # 10 h overnight placement span for baselines
+
+
 def advisory_ev_schedule(ev_orig_by_house: dict[int, np.ndarray],
                          timestamps: pd.DatetimeIndex,
                          accept_rate: float = 1.0,
                          stagger_steps: int = STAGGER_STEPS,
-                         seed: int = EV_ACCEPT_SEED):
+                         seed: int = EV_ACCEPT_SEED,
+                         strategy: str = "stagger"):
     """Advisory (human-in-the-loop) EV stagger. accept_rate=1.0 is the fully
     automatic schedule; below that, each night's reschedule is user-gated.
 
@@ -75,8 +79,23 @@ def advisory_ev_schedule(ev_orig_by_house: dict[int, np.ndarray],
         {house, night, start_idx, length_steps, accepted, new_start_idx}.
         These are real user decision events and MUST be logged by the caller
         (they were previously invisible to all comfort/fairness metrics).
+
+    Baseline strategies (`strategy` param) share the IDENTICAL accept-draw
+    stream (one uniform per block from `rng`, drawn unconditionally), so
+    stagger / random / edf comparisons are PAIRED — the same nightly
+    recommendations get accepted in every arm; only placement differs:
+      • "stagger" (ours): fixed 2 h offsets from the night's earliest plug-in
+      • "random":  uniform placement in the 10 h overnight span (separate rng)
+      • "edf":     earliest-deadline-first greedy — deadline = natural start
+                   + 8 h comfort cap; pick the earliest slot minimising
+                   overlap with already-placed blocks that still finishes by
+                   the deadline
     """
+    if strategy not in ("stagger", "random", "edf"):
+        raise ValueError(f"unknown strategy {strategy}")
     rng = np.random.default_rng(seed)
+    place_rng = np.random.default_rng(seed + 1)   # placement only — keeps the
+    #                                               accept stream untouched
     houses = sorted(ev_orig_by_house)
     T = len(timestamps)
     ev_orig_app  = {h: np.zeros(T, dtype=np.float32) for h in houses}
@@ -88,13 +107,29 @@ def advisory_ev_schedule(ev_orig_by_house: dict[int, np.ndarray],
             power = float(ev_orig_by_house[h][start])
             night_blocks[timestamps[start].date()].append((h, start, length, power))
 
+    MAX_DEFER = 48                                # 8 h comfort cap (steps)
     decisions: list[dict] = []
     for night, blocks in night_blocks.items():
         blocks.sort(key=lambda b: b[1])
         anchor = blocks[0][1]
+        occupancy = np.zeros(T + TROUGH_STEPS + MAX_DEFER, dtype=np.int32)
         for rank, (h, start, length, power) in enumerate(blocks):
             accepted = rng.random() < accept_rate
-            new_start = anchor + rank * stagger_steps
+            if strategy == "stagger":
+                new_start = anchor + rank * stagger_steps
+            elif strategy == "random":
+                span = max(TROUGH_STEPS - length, 1)
+                new_start = anchor + int(place_rng.integers(0, span))
+            else:                                 # edf greedy
+                deadline_start = start + MAX_DEFER            # latest allowed start
+                best, best_ov = anchor, None
+                for cand in range(anchor, min(deadline_start, anchor + TROUGH_STEPS) + 1):
+                    ov = int(occupancy[cand:cand + length].max())
+                    if best_ov is None or ov < best_ov:
+                        best, best_ov = cand, ov
+                    if ov == 0:
+                        break
+                new_start = best
             new_start = max(0, min(new_start, T - length)) if length <= T else 0
             decisions.append({
                 "house": int(h),
@@ -106,6 +141,7 @@ def advisory_ev_schedule(ev_orig_by_house: dict[int, np.ndarray],
             })
             if not accepted:
                 continue                        # rejected → EV stays natural
+            occupancy[new_start:new_start + length] += 1
             end = min(new_start + length, T)
             ev_orig_app[h][start:min(start + length, T)] = power   # remove natural
             ev_shift_app[h][new_start:end] = power                 # add staggered

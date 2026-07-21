@@ -39,7 +39,8 @@ SCHEMA = {
     },
 }
 
-SYSTEM = """你是住戶能源顧問。任務:把「事實」JSON 包裝成 1-2 句給住戶的繁體中文訊息。
+SYSTEM = """你是住戶能源顧問。任務:把「事實」JSON 包裝成 1-2 句給住戶的繁體中文**建議訊息**
+(徵詢住戶是否接受這項調整;住戶尚未決定,不要寫成已接受/已拒絕的通知)。
 規則:
 1. 禁止編造輸入沒有的數字;你只能引用事實 JSON 裡的數字。
 2. cited_numbers 列出你在訊息中用到的每一個數字(字串)。
@@ -73,17 +74,22 @@ def _fact_numbers(facts: dict) -> set[str]:
 
 
 def _event_facts(r: dict) -> dict:
+    """PRE-DECISION facts only. The user's eventual accept/reject outcome is
+    deliberately EXCLUDED: in deployment the recommendation message is written
+    BEFORE the user decides, so an eval whose facts contain the outcome would
+    characterize post-hoc notifications, not the advisory interface the paper
+    claims. (A first version included `accepted` — scope now corrected.)"""
     base = {"house_id": r["house_id"], "hour": r["hour"]}
     if r["event_type"] == "ev_advisory":
         # length in minutes appears in the body text ("... N min EV charge")
         m = re.search(r"(\d+) min", r.get("body", ""))
         base.update({"ev_charge_min": int(m.group(1)) if m else 240,
-                     "accepted": r["accepted"], "kind": "ev_reschedule"})
+                     "kind": "ev_reschedule"})
     else:
         base.update({"appliance": r["appliance"].replace("appliance_", "")
                      .replace("_w", ""),
                      "saving_gbp": r["saving_gbp"],
-                     "accepted": r["accepted"], "kind": "appliance_defer"})
+                     "kind": "appliance_defer"})
     return base
 
 
@@ -139,7 +145,10 @@ def main():
         latencies.append(dt)
         ok = (parsed is not None and isinstance(parsed.get("message_zh"), str)
               and isinstance(parsed.get("cited_numbers"), list))
+        # facts + raw citations are stored per row so a third party can
+        # re-verify every metric from this JSON alone.
         row = {"i": i, "event_type": r["event_type"], "house": r["house_id"],
+               "facts": facts,
                "latency_s": round(dt, 2), "schema_ok": bool(ok)}
         if ok:
             n_ok += 1
@@ -151,7 +160,8 @@ def main():
                 cited |= set(_NUM.findall(str(c)))
             cited_bad = sorted(n for n in cited if n not in allowed)
             units = validate_units(parsed["message_zh"], "Wh")
-            row.update({"hallucinated_numbers": halluc,
+            row.update({"cited_numbers_raw": parsed["cited_numbers"],
+                        "hallucinated_numbers": halluc,
                         "cited_not_in_facts": cited_bad,
                         "unit_issues": units,
                         "message_zh": parsed["message_zh"]})
@@ -170,13 +180,17 @@ def main():
 
     lat = sorted(latencies)
     n = len(events)
+    # Metric names are MESSAGE-LEVEL rates (share of messages), not
+    # per-number precision — named accordingly.
     summary = {
         "model": args.model,
+        "scope": ("pre-decision recommendation messages (facts exclude the "
+                  "user's eventual accept/reject outcome)"),
         "n_events": n,
         "schema_success_rate": round(n_ok / n, 4) if n else None,
-        "citation_precision_rate": round(n_cited_ok / n_ok, 4) if n_ok else None,
-        "hallucinated_number_msg_rate": round(n_halluc_msg / n_ok, 4) if n_ok else None,
-        "unit_error_msg_rate": round(n_unit_bad / n_ok, 4) if n_ok else None,
+        "msg_all_citations_grounded_rate": round(n_cited_ok / n_ok, 4) if n_ok else None,
+        "msg_with_ungrounded_number_rate": round(n_halluc_msg / n_ok, 4) if n_ok else None,
+        "msg_with_unit_error_rate": round(n_unit_bad / n_ok, 4) if n_ok else None,
         "latency_s": {"mean": round(sum(lat) / n, 2) if n else None,
                       "p50": round(lat[n // 2], 2) if n else None,
                       "p95": round(lat[int(n * 0.95)] if n else 0, 2)},

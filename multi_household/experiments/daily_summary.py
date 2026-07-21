@@ -28,8 +28,15 @@ from multi_household.forecasting.per_house_lstm import (
 )
 
 
-def compute_daily_facts(house_id: int, day_index: int) -> dict:
-    """Build the facts JSON for one house × one day from saved rollout."""
+def compute_daily_facts(house_id: int, day_index: int,
+                        include_experimental_24h: bool = False) -> dict:
+    """Build the facts JSON for one house × one day from saved rollout.
+
+    `include_experimental_24h` gates the recursive tomorrow-forecast. It is
+    OFF by default and excluded from all formal outputs: the recursive rollout
+    FREEZES the time/rolling features at the start step (known defect, see
+    predict_24h_recursive), so its output must not be presented as a fact.
+    """
     data = np.load(REPORTS / "rollout_coordinated.npz", allow_pickle=True)
     houses = data["houses"]
     if house_id not in houses:
@@ -54,11 +61,16 @@ def compute_daily_facts(house_id: int, day_index: int) -> dict:
     cost_baseline = cost_gbp(d_demand, d_hours)
     cost_after    = cost_gbp(d_served, d_hours)
 
-    # Recommendations for this house + day
+    # Recommendations for this house + day — DECISION events only.
+    # continuation/force_release are engineering trace messages; counting them
+    # told the resident "you received 15 recommendations today" when the true
+    # number of decisions was 2.
+    from multi_household.llm.advisor import DECISION_EVENT_TYPES
     all_recs = json.loads((REPORTS / "rollout_coordinated_recs.json").read_text(encoding="utf-8"))
     day_recs = [r for r in all_recs
                 if r["house_id"] == house_id
-                and s <= r["timestep"] < e]
+                and s <= r["timestep"] < e
+                and r.get("event_type") in DECISION_EVENT_TYPES]
 
     # Peak-window mean
     is_peak = (d_hours >= PEAK_HOURS_LOCAL[0]) & (d_hours < PEAK_HOURS_LOCAL[1])
@@ -82,7 +94,11 @@ def compute_daily_facts(house_id: int, day_index: int) -> dict:
         "peak_window_reduction_pct": round(100*(pw_dem-pw_ser)/pw_dem if pw_dem>0 else 0, 2),
     }
 
-    # --- REAL 24-hour-ahead forecast (recursive, replaces fake "tomorrow") --
+    # --- EXPERIMENTAL 24h recursive forecast (excluded from formal outputs:
+    # the recursion freezes time/rolling features at the seed step — a known
+    # defect — so it is only computed when explicitly requested) -------------
+    if not include_experimental_24h:
+        return facts
     try:
         full = prepare_house(house_id)
         full_test = full["test_df"]
@@ -131,10 +147,14 @@ def main():
     ap.add_argument("--day",   type=int, default=1)
     ap.add_argument("--no-ollama", action="store_true",
                     help="skip the LLM call (offline test)")
+    ap.add_argument("--experimental-24h", action="store_true",
+                    help="include the EXPERIMENTAL recursive 24h forecast "
+                         "(known defect: frozen time features; never cite)")
     args = ap.parse_args()
 
     print(f"[1/3] Computing daily facts for House {args.house}, day {args.day} ...")
-    facts = compute_daily_facts(args.house, args.day)
+    facts = compute_daily_facts(args.house, args.day,
+                                include_experimental_24h=args.experimental_24h)
     print(json.dumps(facts, ensure_ascii=False, indent=2))
 
     if args.no_ollama:

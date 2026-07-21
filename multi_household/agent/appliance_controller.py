@@ -165,6 +165,9 @@ def decide_step(state: HouseAgentState,
                 current_demand_w: float = 0.0) -> AgentDecision:
     """One agent step.
 
+    `forecast_w` = this house's forecast for the NEXT 10-min step, ŷ(t+1)
+    (used only by the forecast_high trigger against current_demand_w = y(t)).
+
     Order of operations:
       1. Force release any cycle that has been held too long (comfort cap).
       2. Auto release pool during off-peak — UNLESS the aggregator broadcast
@@ -249,11 +252,12 @@ def decide_step(state: HouseAgentState,
         )
 
     # ---- 4. NEW defer on cycle edge under peak event ----------------------
-    # Forecast-aware augmentation: fire locally if THIS house's own next-step
-    # forecast is notably higher than its current whole-house demand. We compare
-    # ŷ(t+1) against current_demand_w (the whole house), NOT against the sum of
-    # submetered appliances — that earlier comparison was almost always true and
-    # silently bypassed the peak_event gate.
+    # Forecast-aware augmentation: fire locally if THIS house's own NEXT-STEP
+    # forecast ŷ(t+1) is notably higher than the current actual demand y(t).
+    # The caller MUST pass the t+1 forecast (rollout does) — an earlier version
+    # passed the nowcast ŷ(t), which turned this into an over-prediction-error
+    # detector rather than a "spike incoming" trigger. ŷ(t+1) is computed from
+    # data through t, so the comparison is causal.
     forecast_high = (current_demand_w > 0.0
                      and forecast_w > current_demand_w * 1.15)
 
