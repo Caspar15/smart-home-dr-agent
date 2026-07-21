@@ -12,9 +12,9 @@
   },
   "coordinated": {
     "peak_kw": 31.31,
-    "p95_kw": 20.8
+    "p95_kw": 21.04
   },
   "peak_red_pct": 23.2,
-  "p95_red_pct": 22.9,
-  "energy_drift_pct": 0.037
+  "p95_red_pct": 22.0,
+  "energy_drift_pct": 0.06
 }

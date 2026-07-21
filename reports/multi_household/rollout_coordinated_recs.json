@@ -484,94 +484,6 @@
     "event_type": "ev_advisory"
   },
   {
-    "house_id": 15,
-    "timestep": 23,
-    "hour": 15,
-    "headline": "Peak alert: defer Washing Machine to save £0.01",
-    "body": "This afternoon 15:00 is a peak event (grid nowcast 11.0 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
-    "saving_gbp": 0.009,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "new_defer"
-  },
-  {
-    "house_id": 15,
-    "timestep": 24,
-    "hour": 16,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 15,
-    "timestep": 25,
-    "hour": 16,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 15,
-    "timestep": 26,
-    "hour": 16,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 15,
-    "timestep": 59,
-    "hour": 21,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 15,
-    "timestep": 60,
-    "hour": 22,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 15,
-    "timestep": 61,
-    "hour": 22,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 15,
-    "timestep": 62,
-    "hour": 22,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
     "house_id": 10,
     "timestep": 124,
     "hour": 8,
@@ -671,6 +583,39 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 6,
+    "timestep": 141,
+    "hour": 11,
+    "headline": "Peak alert: defer Washing Machine to save £0.09",
+    "body": "This morning 11:00 is a peak event (grid nowcast 5.9 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.094,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 6,
+    "timestep": 142,
+    "hour": 11,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 6,
+    "timestep": 143,
+    "hour": 11,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 2,
     "timestep": 144,
     "hour": 12,
@@ -682,6 +627,17 @@
     "event_type": "new_defer"
   },
   {
+    "house_id": 6,
+    "timestep": 144,
+    "hour": 12,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 2,
     "timestep": 145,
     "hour": 12,
@@ -689,6 +645,17 @@
     "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 6,
+    "timestep": 145,
+    "hour": 12,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "continuation"
   },
@@ -704,6 +671,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 6,
+    "timestep": 146,
+    "hour": 12,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 2,
     "timestep": 147,
     "hour": 12,
@@ -711,6 +689,17 @@
     "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 6,
+    "timestep": 147,
+    "hour": 12,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "continuation"
   },
@@ -726,6 +715,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 6,
+    "timestep": 148,
+    "hour": 12,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 2,
     "timestep": 149,
     "hour": 12,
@@ -733,6 +733,17 @@
     "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 6,
+    "timestep": 149,
+    "hour": 12,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "continuation"
   },
@@ -913,6 +924,39 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 6,
+    "timestep": 177,
+    "hour": 17,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 6,
+    "timestep": 178,
+    "hour": 17,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 6,
+    "timestep": 179,
+    "hour": 17,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 2,
     "timestep": 180,
     "hour": 18,
@@ -920,6 +964,17 @@
     "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 6,
+    "timestep": 180,
+    "hour": 18,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "force_release"
   },
@@ -935,6 +990,17 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 6,
+    "timestep": 181,
+    "hour": 18,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 2,
     "timestep": 182,
     "hour": 18,
@@ -942,6 +1008,17 @@
     "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 6,
+    "timestep": 182,
+    "hour": 18,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "force_release"
   },
@@ -957,6 +1034,17 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 6,
+    "timestep": 183,
+    "hour": 18,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 2,
     "timestep": 184,
     "hour": 18,
@@ -968,6 +1056,17 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 6,
+    "timestep": 184,
+    "hour": 18,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 2,
     "timestep": 185,
     "hour": 18,
@@ -975,6 +1074,17 @@
     "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 6,
+    "timestep": 185,
+    "hour": 18,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "force_release"
   },
@@ -1254,17 +1364,6 @@
     "event_type": "force_release"
   },
   {
-    "house_id": 10,
-    "timestep": 260,
-    "hour": 7,
-    "headline": "Suggestion declined: continue using Washing Machine",
-    "body": "You declined the suggestion to defer Washing Machine. Estimated additional cost £0.01.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": false,
-    "event_type": "declined_defer"
-  },
-  {
     "house_id": 5,
     "timestep": 262,
     "hour": 7,
@@ -1329,6 +1428,17 @@
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 269,
+    "hour": 8,
+    "headline": "Suggestion declined: continue using Washing Machine 2",
+    "body": "You declined the suggestion to defer Washing Machine 2. Estimated additional cost £0.01.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": false,
+    "event_type": "declined_defer"
   },
   {
     "house_id": 10,
@@ -1474,6 +1584,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 16,
+    "timestep": 326,
+    "hour": 18,
+    "headline": "Peak alert: defer Dishwasher to save £0.21",
+    "body": "Tonight 18:00 is a peak event (grid nowcast 7.9 kW, 0% over threshold). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.21,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
     "house_id": 10,
     "timestep": 327,
     "hour": 18,
@@ -1483,6 +1604,28 @@
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 327,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 327,
+    "hour": 18,
+    "headline": "Peak alert: defer Dishwasher to save £0.20",
+    "body": "Tonight 18:00 is a peak event (grid nowcast 8.2 kW, 0% over threshold). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.202,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "new_defer"
   },
   {
     "house_id": 10,
@@ -1496,6 +1639,28 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 16,
+    "timestep": 328,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 328,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 10,
     "timestep": 329,
     "hour": 18,
@@ -1507,6 +1672,28 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 16,
+    "timestep": 329,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 329,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 10,
     "timestep": 330,
     "hour": 19,
@@ -1516,6 +1703,28 @@
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 330,
+    "hour": 19,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 330,
+    "hour": 19,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
   },
   {
     "house_id": 4,
@@ -1540,6 +1749,28 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 16,
+    "timestep": 331,
+    "hour": 19,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 331,
+    "hour": 19,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 10,
     "timestep": 332,
     "hour": 19,
@@ -1549,6 +1780,17 @@
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "force_release"
+  },
+  {
+    "house_id": 20,
+    "timestep": 332,
+    "hour": 19,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
   },
   {
     "house_id": 2,
@@ -1617,6 +1859,105 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 16,
+    "timestep": 362,
+    "hour": 0,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 363,
+    "hour": 0,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 20,
+    "timestep": 363,
+    "hour": 0,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 364,
+    "hour": 0,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 20,
+    "timestep": 364,
+    "hour": 0,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 365,
+    "hour": 0,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 20,
+    "timestep": 365,
+    "hour": 0,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 366,
+    "hour": 1,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 20,
+    "timestep": 366,
+    "hour": 1,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 5,
     "timestep": 367,
     "hour": 1,
@@ -1628,6 +1969,28 @@
     "event_type": "new_defer"
   },
   {
+    "house_id": 16,
+    "timestep": 367,
+    "hour": 1,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 20,
+    "timestep": 367,
+    "hour": 1,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 5,
     "timestep": 368,
     "hour": 1,
@@ -1637,6 +2000,17 @@
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 368,
+    "hour": 1,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
   },
   {
     "house_id": 5,
@@ -1926,52 +2300,107 @@
   },
   {
     "house_id": 10,
+    "timestep": 437,
+    "hour": 12,
+    "headline": "Peak alert: defer Washing Machine to save £0.01",
+    "body": "This afternoon 12:00 is a peak event (grid nowcast 7.7 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.008,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 10,
     "timestep": 438,
     "hour": 13,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
     "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
     "house_id": 10,
     "timestep": 439,
     "hour": 13,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
     "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
     "house_id": 10,
     "timestep": 440,
     "hour": 13,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
     "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
     "house_id": 10,
     "timestep": 441,
     "hour": 13,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
     "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
     "house_id": 10,
     "timestep": 442,
     "hour": 13,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 443,
+    "hour": 13,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 444,
+    "hour": 14,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 445,
+    "hour": 14,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 446,
+    "hour": 14,
     "headline": "Releasing held Dishwasher",
     "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
@@ -1981,8 +2410,52 @@
   },
   {
     "house_id": 10,
-    "timestep": 443,
-    "hour": 13,
+    "timestep": 447,
+    "hour": 14,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 448,
+    "hour": 14,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 449,
+    "hour": 14,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 450,
+    "hour": 15,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 451,
+    "hour": 15,
     "headline": "Releasing held Dishwasher",
     "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
@@ -2123,6 +2596,94 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 10,
+    "timestep": 476,
+    "hour": 19,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 477,
+    "hour": 19,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 478,
+    "hour": 19,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 479,
+    "hour": 19,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 480,
+    "hour": 20,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 481,
+    "hour": 20,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 482,
+    "hour": 20,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 483,
+    "hour": 20,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 4,
     "timestep": 484,
     "hour": 20,
@@ -2132,6 +2693,17 @@
     "appliance": "appliance_washing_machine_2_w",
     "accepted": true,
     "event_type": "new_defer"
+  },
+  {
+    "house_id": 10,
+    "timestep": 484,
+    "hour": 20,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
   },
   {
     "house_id": 4,
@@ -2544,100 +3116,12 @@
     "house_id": 10,
     "timestep": 554,
     "hour": 8,
-    "headline": "Peak alert: defer Washing Machine to save £0.01",
-    "body": "This morning 08:00 is a peak event (grid nowcast 6.2 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
-    "saving_gbp": 0.008,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "new_defer"
-  },
-  {
-    "house_id": 10,
-    "timestep": 555,
-    "hour": 8,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
+    "headline": "Suggestion declined: continue using Washing Machine",
+    "body": "You declined the suggestion to defer Washing Machine. Estimated additional cost £0.01.",
     "saving_gbp": 0.0,
     "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 10,
-    "timestep": 556,
-    "hour": 8,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 10,
-    "timestep": 557,
-    "hour": 8,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 10,
-    "timestep": 558,
-    "hour": 9,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 10,
-    "timestep": 559,
-    "hour": 9,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 10,
-    "timestep": 560,
-    "hour": 9,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 10,
-    "timestep": 561,
-    "hour": 9,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 10,
-    "timestep": 562,
-    "hour": 9,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "continuation"
+    "accepted": false,
+    "event_type": "declined_defer"
   },
   {
     "house_id": 10,
@@ -2717,103 +3201,92 @@
     "event_type": "continuation"
   },
   {
-    "house_id": 10,
-    "timestep": 590,
-    "hour": 14,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "house_id": 16,
+    "timestep": 609,
+    "hour": 17,
+    "headline": "Peak alert: defer Washing Machine to save £0.29",
+    "body": "Tonight 17:00 is a peak event (grid nowcast 9.4 kW, 0% over threshold). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.292,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 16,
+    "timestep": 610,
+    "hour": 17,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 611,
+    "hour": 17,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 612,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
   },
   {
     "house_id": 10,
-    "timestep": 591,
-    "hour": 14,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "timestep": 613,
+    "hour": 18,
+    "headline": "Peak alert: defer Washing Machine to save £0.02",
+    "body": "Tonight 18:00 is a peak event (grid nowcast 9.0 kW, 0% over threshold). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.023,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 16,
+    "timestep": 613,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
     "house_id": 10,
-    "timestep": 592,
-    "hour": 14,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "timestep": 614,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
-    "house_id": 10,
-    "timestep": 593,
-    "hour": 14,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "house_id": 16,
+    "timestep": 614,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 10,
-    "timestep": 594,
-    "hour": 15,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 10,
-    "timestep": 595,
-    "hour": 15,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 10,
-    "timestep": 596,
-    "hour": 15,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 10,
-    "timestep": 597,
-    "hour": 15,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 10,
-    "timestep": 598,
-    "hour": 15,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
     "house_id": 2,
@@ -2827,7 +3300,40 @@
     "event_type": "new_defer"
   },
   {
+    "house_id": 10,
+    "timestep": 615,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 615,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 2,
+    "timestep": 616,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
     "timestep": 616,
     "hour": 18,
     "headline": "(trace) continuing deferred Washing Machine cycle",
@@ -2850,6 +3356,17 @@
   },
   {
     "house_id": 2,
+    "timestep": 617,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
     "timestep": 617,
     "hour": 18,
     "headline": "(trace) continuing deferred Washing Machine cycle",
@@ -2882,18 +3399,227 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 10,
+    "timestep": 618,
+    "hour": 19,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 619,
+    "hour": 19,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 620,
+    "hour": 19,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 621,
+    "hour": 19,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 5,
     "timestep": 642,
     "hour": 23,
-    "headline": "Suggestion declined: continue using Dishwasher",
-    "body": "You declined the suggestion to defer Dishwasher. Estimated additional cost £0.01.",
+    "headline": "Peak alert: defer Dishwasher to save £0.01",
+    "body": "Tonight 23:00 is a peak event (grid nowcast 13.2 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.012,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 5,
+    "timestep": 643,
+    "hour": 23,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
-    "accepted": false,
-    "event_type": "declined_defer"
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 5,
+    "timestep": 644,
+    "hour": 23,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 5,
+    "timestep": 645,
+    "hour": 23,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 645,
+    "hour": 23,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 5,
+    "timestep": 646,
+    "hour": 23,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 646,
+    "hour": 23,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 5,
+    "timestep": 647,
+    "hour": 23,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 647,
+    "hour": 23,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 648,
+    "hour": 0,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 649,
+    "hour": 0,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 649,
+    "hour": 0,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 650,
+    "hour": 0,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 650,
+    "hour": 0,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
   },
   {
     "house_id": 2,
+    "timestep": 651,
+    "hour": 0,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 651,
+    "hour": 0,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
     "timestep": 651,
     "hour": 0,
     "headline": "Releasing held Washing Machine",
@@ -2915,7 +3641,29 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 10,
+    "timestep": 652,
+    "hour": 0,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 2,
+    "timestep": 653,
+    "hour": 0,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
     "timestep": 653,
     "hour": 0,
     "headline": "Releasing held Washing Machine",
@@ -2933,6 +3681,105 @@
     "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 654,
+    "hour": 1,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 655,
+    "hour": 1,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 656,
+    "hour": 1,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 657,
+    "hour": 1,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 5,
+    "timestep": 679,
+    "hour": 5,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 5,
+    "timestep": 680,
+    "hour": 5,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 5,
+    "timestep": 681,
+    "hour": 5,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 5,
+    "timestep": 682,
+    "hour": 5,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 5,
+    "timestep": 683,
+    "hour": 5,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "force_release"
   },
@@ -3113,20 +3960,20 @@
     "event_type": "force_release"
   },
   {
-    "house_id": 5,
-    "timestep": 799,
-    "hour": 1,
-    "headline": "Peak alert: defer Dishwasher to save £0.02",
-    "body": "This morning 01:00 is a peak event (grid nowcast 23.7 kW, 34% over threshold). Price is now £0.13/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
-    "saving_gbp": 0.021,
+    "house_id": 16,
+    "timestep": 748,
+    "hour": 16,
+    "headline": "Peak alert: defer Dishwasher to save £0.06",
+    "body": "This afternoon 16:00 is a peak event (grid nowcast 9.1 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.063,
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "new_defer"
   },
   {
-    "house_id": 5,
-    "timestep": 800,
-    "hour": 1,
+    "house_id": 16,
+    "timestep": 749,
+    "hour": 16,
     "headline": "(trace) continuing deferred Dishwasher cycle",
     "body": "",
     "saving_gbp": 0.0,
@@ -3135,9 +3982,9 @@
     "event_type": "continuation"
   },
   {
-    "house_id": 5,
-    "timestep": 801,
-    "hour": 1,
+    "house_id": 16,
+    "timestep": 750,
+    "hour": 17,
     "headline": "(trace) continuing deferred Dishwasher cycle",
     "body": "",
     "saving_gbp": 0.0,
@@ -3146,9 +3993,9 @@
     "event_type": "continuation"
   },
   {
-    "house_id": 5,
-    "timestep": 802,
-    "hour": 1,
+    "house_id": 16,
+    "timestep": 751,
+    "hour": 17,
     "headline": "(trace) continuing deferred Dishwasher cycle",
     "body": "",
     "saving_gbp": 0.0,
@@ -3157,9 +4004,9 @@
     "event_type": "continuation"
   },
   {
-    "house_id": 5,
-    "timestep": 803,
-    "hour": 1,
+    "house_id": 16,
+    "timestep": 752,
+    "hour": 17,
     "headline": "(trace) continuing deferred Dishwasher cycle",
     "body": "",
     "saving_gbp": 0.0,
@@ -3168,15 +4015,92 @@
     "event_type": "continuation"
   },
   {
-    "house_id": 5,
-    "timestep": 804,
-    "hour": 2,
+    "house_id": 16,
+    "timestep": 753,
+    "hour": 17,
     "headline": "(trace) continuing deferred Dishwasher cycle",
     "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 784,
+    "hour": 22,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 785,
+    "hour": 22,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 786,
+    "hour": 23,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 787,
+    "hour": 23,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 788,
+    "hour": 23,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 789,
+    "hour": 23,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 5,
+    "timestep": 799,
+    "hour": 1,
+    "headline": "Suggestion declined: continue using Dishwasher",
+    "body": "You declined the suggestion to defer Dishwasher. Estimated additional cost £0.02.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": false,
+    "event_type": "declined_defer"
   },
   {
     "house_id": 8,
@@ -3245,116 +4169,6 @@
     "event_type": "continuation"
   },
   {
-    "house_id": 5,
-    "timestep": 835,
-    "hour": 7,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 5,
-    "timestep": 836,
-    "hour": 7,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 2,
-    "timestep": 837,
-    "hour": 7,
-    "headline": "Peak alert: defer Dishwasher to save £0.13",
-    "body": "This morning 07:00 is a peak event (grid nowcast 9.1 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
-    "saving_gbp": 0.129,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "new_defer"
-  },
-  {
-    "house_id": 5,
-    "timestep": 837,
-    "hour": 7,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 2,
-    "timestep": 838,
-    "hour": 7,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 5,
-    "timestep": 838,
-    "hour": 7,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 2,
-    "timestep": 839,
-    "hour": 7,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 5,
-    "timestep": 839,
-    "hour": 7,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 2,
-    "timestep": 840,
-    "hour": 8,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 5,
-    "timestep": 840,
-    "hour": 8,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
     "house_id": 16,
     "timestep": 843,
     "hour": 8,
@@ -3377,6 +4191,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 1,
+    "timestep": 845,
+    "hour": 8,
+    "headline": "Peak alert: defer Washing Machine to save £0.08",
+    "body": "This morning 08:00 is a peak event (grid nowcast 7.4 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.084,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
     "house_id": 16,
     "timestep": 845,
     "hour": 8,
@@ -3388,8 +4213,63 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 1,
+    "timestep": 846,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 16,
     "timestep": 846,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 1,
+    "timestep": 847,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 1,
+    "timestep": 848,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 1,
+    "timestep": 849,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 1,
+    "timestep": 850,
     "hour": 9,
     "headline": "(trace) continuing deferred Washing Machine cycle",
     "body": "",
@@ -3410,6 +4290,17 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 1,
+    "timestep": 851,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 8,
     "timestep": 851,
     "hour": 9,
@@ -3419,6 +4310,17 @@
     "appliance": "appliance_dryer_w",
     "accepted": true,
     "event_type": "force_release"
+  },
+  {
+    "house_id": 1,
+    "timestep": 852,
+    "hour": 10,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
   },
   {
     "house_id": 8,
@@ -3432,6 +4334,28 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 9,
+    "timestep": 852,
+    "hour": 10,
+    "headline": "Peak alert: defer Washing Machine to save £0.01",
+    "body": "This morning 10:00 is a peak event (grid nowcast 6.3 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.011,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 1,
+    "timestep": 853,
+    "hour": 10,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 8,
     "timestep": 853,
     "hour": 10,
@@ -3441,6 +4365,17 @@
     "appliance": "appliance_dryer_w",
     "accepted": true,
     "event_type": "force_release"
+  },
+  {
+    "house_id": 9,
+    "timestep": 853,
+    "hour": 10,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
   },
   {
     "house_id": 8,
@@ -3454,6 +4389,17 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 9,
+    "timestep": 854,
+    "hour": 10,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 8,
     "timestep": 855,
     "hour": 10,
@@ -3465,48 +4411,81 @@
     "event_type": "force_release"
   },
   {
-    "house_id": 2,
-    "timestep": 873,
-    "hour": 13,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "house_id": 9,
+    "timestep": 855,
+    "hour": 10,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
     "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
-    "house_id": 2,
-    "timestep": 874,
-    "hour": 13,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "house_id": 9,
+    "timestep": 856,
+    "hour": 10,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
     "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
-    "house_id": 2,
-    "timestep": 875,
-    "hour": 13,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "house_id": 9,
+    "timestep": 857,
+    "hour": 10,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
     "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
-    "house_id": 2,
-    "timestep": 876,
-    "hour": 14,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "house_id": 9,
+    "timestep": 858,
+    "hour": 11,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
     "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 9,
+    "timestep": 859,
+    "hour": 11,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 9,
+    "timestep": 860,
+    "hour": 11,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 15,
+    "timestep": 868,
+    "hour": 12,
+    "headline": "Suggestion declined: continue using Tumble Dryer",
+    "body": "You declined the suggestion to defer Tumble Dryer. Estimated additional cost £0.12.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": false,
+    "event_type": "declined_defer"
   },
   {
     "house_id": 16,
@@ -3531,9 +4510,31 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 1,
+    "timestep": 881,
+    "hour": 14,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 16,
     "timestep": 881,
     "hour": 14,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 1,
+    "timestep": 882,
+    "hour": 15,
     "headline": "Releasing held Washing Machine",
     "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
@@ -3553,6 +4554,149 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 1,
+    "timestep": 883,
+    "hour": 15,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 1,
+    "timestep": 884,
+    "hour": 15,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 1,
+    "timestep": 885,
+    "hour": 15,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 1,
+    "timestep": 886,
+    "hour": 15,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 1,
+    "timestep": 887,
+    "hour": 15,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 1,
+    "timestep": 888,
+    "hour": 16,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 9,
+    "timestep": 888,
+    "hour": 16,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 1,
+    "timestep": 889,
+    "hour": 16,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 9,
+    "timestep": 889,
+    "hour": 16,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 9,
+    "timestep": 890,
+    "hour": 16,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 9,
+    "timestep": 891,
+    "hour": 16,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 9,
+    "timestep": 892,
+    "hour": 16,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 9,
+    "timestep": 893,
+    "hour": 16,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 10,
     "timestep": 893,
     "hour": 16,
@@ -3562,6 +4706,17 @@
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "new_defer"
+  },
+  {
+    "house_id": 9,
+    "timestep": 894,
+    "hour": 17,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
   },
   {
     "house_id": 10,
@@ -3575,6 +4730,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 9,
+    "timestep": 895,
+    "hour": 17,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 10,
     "timestep": 895,
     "hour": 17,
@@ -3584,6 +4750,17 @@
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "continuation"
+  },
+  {
+    "house_id": 9,
+    "timestep": 896,
+    "hour": 17,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
   },
   {
     "house_id": 10,
@@ -3615,6 +4792,105 @@
     "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 2,
+    "timestep": 912,
+    "hour": 20,
+    "headline": "Peak alert: defer Washing Machine to save £0.46",
+    "body": "Tonight 20:00 is a peak event (grid nowcast 9.0 kW, 0% over threshold). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.456,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 2,
+    "timestep": 913,
+    "hour": 20,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 2,
+    "timestep": 914,
+    "hour": 20,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 2,
+    "timestep": 915,
+    "hour": 20,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 2,
+    "timestep": 916,
+    "hour": 20,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 2,
+    "timestep": 917,
+    "hour": 20,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 2,
+    "timestep": 918,
+    "hour": 21,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 2,
+    "timestep": 919,
+    "hour": 21,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 2,
+    "timestep": 920,
+    "hour": 21,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "continuation"
   },
@@ -3686,6 +4962,105 @@
   },
   {
     "house_id": 2,
+    "timestep": 948,
+    "hour": 2,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 2,
+    "timestep": 949,
+    "hour": 2,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 2,
+    "timestep": 950,
+    "hour": 2,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 2,
+    "timestep": 951,
+    "hour": 2,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 2,
+    "timestep": 952,
+    "hour": 2,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 2,
+    "timestep": 953,
+    "hour": 2,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 2,
+    "timestep": 954,
+    "hour": 3,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 2,
+    "timestep": 955,
+    "hour": 3,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 2,
+    "timestep": 956,
+    "hour": 3,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 2,
     "timestep": 987,
     "hour": 8,
     "headline": "Peak alert: defer Washing Machine to save £0.01",
@@ -3740,15 +5115,70 @@
     "event_type": "continuation"
   },
   {
-    "house_id": 10,
-    "timestep": 1013,
-    "hour": 12,
-    "headline": "Suggestion declined: continue using Dishwasher",
-    "body": "You declined the suggestion to defer Dishwasher. Estimated additional cost £0.02.",
+    "house_id": 20,
+    "timestep": 1003,
+    "hour": 11,
+    "headline": "Peak alert: defer Tumble Dryer to save £0.03",
+    "body": "This morning 11:00 is a peak event (grid nowcast 5.6 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Tumble Dryer until the next off-peak window.",
+    "saving_gbp": 0.028,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1004,
+    "hour": 11,
+    "headline": "(trace) continuing deferred Tumble Dryer cycle",
+    "body": "",
     "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": false,
-    "event_type": "declined_defer"
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1005,
+    "hour": 11,
+    "headline": "(trace) continuing deferred Tumble Dryer cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1006,
+    "hour": 11,
+    "headline": "(trace) continuing deferred Tumble Dryer cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1007,
+    "hour": 11,
+    "headline": "(trace) continuing deferred Tumble Dryer cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1008,
+    "hour": 12,
+    "headline": "(trace) continuing deferred Tumble Dryer cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "continuation"
   },
   {
     "house_id": 2,
@@ -3806,6 +5236,160 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 20,
+    "timestep": 1027,
+    "hour": 15,
+    "headline": "Releasing held Tumble Dryer",
+    "body": "Tumble Dryer cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1028,
+    "hour": 15,
+    "headline": "Releasing held Tumble Dryer",
+    "body": "Tumble Dryer cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1029,
+    "hour": 15,
+    "headline": "Releasing held Tumble Dryer",
+    "body": "Tumble Dryer cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1030,
+    "hour": 15,
+    "headline": "Releasing held Tumble Dryer",
+    "body": "Tumble Dryer cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1031,
+    "hour": 15,
+    "headline": "Releasing held Tumble Dryer",
+    "body": "Tumble Dryer cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1032,
+    "hour": 16,
+    "headline": "Releasing held Tumble Dryer",
+    "body": "Tumble Dryer cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1043,
+    "hour": 17,
+    "headline": "Peak alert: defer Dishwasher to save £0.02",
+    "body": "Tonight 17:00 is a peak event (grid nowcast 7.3 kW, 0% over threshold). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.021,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1044,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1045,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1046,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1047,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1048,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1079,
+    "hour": 23,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1080,
+    "hour": 0,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 5,
     "timestep": 1081,
     "hour": 0,
@@ -3815,6 +5399,17 @@
     "appliance": "appliance_tumble_dryer_w",
     "accepted": true,
     "event_type": "new_defer"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1081,
+    "hour": 0,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
   },
   {
     "house_id": 5,
@@ -3828,6 +5423,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 10,
+    "timestep": 1082,
+    "hour": 0,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 5,
     "timestep": 1083,
     "hour": 0,
@@ -3839,6 +5445,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 10,
+    "timestep": 1083,
+    "hour": 0,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 5,
     "timestep": 1084,
     "hour": 0,
@@ -3848,6 +5465,17 @@
     "appliance": "appliance_tumble_dryer_w",
     "accepted": true,
     "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1084,
+    "hour": 0,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
   },
   {
     "house_id": 5,
@@ -3927,6 +5555,39 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 20,
+    "timestep": 1125,
+    "hour": 7,
+    "headline": "Peak alert: defer Dishwasher to save £0.04",
+    "body": "This morning 07:00 is a peak event (grid nowcast 6.1 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.036,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1126,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1127,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 10,
     "timestep": 1128,
     "hour": 8,
@@ -3936,6 +5597,17 @@
     "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "new_defer"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1128,
+    "hour": 8,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
   },
   {
     "house_id": 10,
@@ -3949,6 +5621,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 20,
+    "timestep": 1129,
+    "hour": 8,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 10,
     "timestep": 1130,
     "hour": 8,
@@ -3956,6 +5639,17 @@
     "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1130,
+    "hour": 8,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "continuation"
   },
@@ -4026,6 +5720,39 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 20,
+    "timestep": 1161,
+    "hour": 13,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1162,
+    "hour": 13,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1163,
+    "hour": 13,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 10,
     "timestep": 1164,
     "hour": 14,
@@ -4033,6 +5760,17 @@
     "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1164,
+    "hour": 14,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "force_release"
   },
@@ -4048,6 +5786,17 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 20,
+    "timestep": 1165,
+    "hour": 14,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 10,
     "timestep": 1166,
     "hour": 14,
@@ -4055,6 +5804,17 @@
     "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 20,
+    "timestep": 1166,
+    "hour": 14,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "force_release"
   },
@@ -4125,6 +5885,17 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 16,
+    "timestep": 1198,
+    "hour": 19,
+    "headline": "Peak alert: defer Dishwasher to save £0.06",
+    "body": "Tonight 19:00 is a peak event (grid nowcast 7.7 kW, 0% over threshold). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.057,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
     "house_id": 2,
     "timestep": 1264,
     "hour": 6,
@@ -4147,6 +5918,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 4,
+    "timestep": 1265,
+    "hour": 6,
+    "headline": "Peak alert: defer Washing Machine 2 to save £0.08",
+    "body": "This morning 06:00 is a peak event (grid nowcast 7.6 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine 2 until the next off-peak window.",
+    "saving_gbp": 0.082,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
     "house_id": 2,
     "timestep": 1266,
     "hour": 7,
@@ -4154,6 +5936,17 @@
     "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1266,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
     "accepted": true,
     "event_type": "continuation"
   },
@@ -4169,6 +5962,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 4,
+    "timestep": 1267,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 2,
     "timestep": 1268,
     "hour": 7,
@@ -4180,6 +5984,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 4,
+    "timestep": 1268,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 2,
     "timestep": 1269,
     "hour": 7,
@@ -4187,6 +6002,50 @@
     "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1269,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1270,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1271,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1272,
+    "hour": 8,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
     "accepted": true,
     "event_type": "continuation"
   },
@@ -4213,6 +6072,17 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 4,
+    "timestep": 1301,
+    "hour": 12,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 2,
     "timestep": 1302,
     "hour": 13,
@@ -4220,6 +6090,17 @@
     "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1302,
+    "hour": 13,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
     "accepted": true,
     "event_type": "force_release"
   },
@@ -4235,6 +6116,17 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 4,
+    "timestep": 1303,
+    "hour": 13,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 2,
     "timestep": 1304,
     "hour": 13,
@@ -4242,6 +6134,17 @@
     "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1304,
+    "hour": 13,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
     "accepted": true,
     "event_type": "force_release"
   },
@@ -4257,20 +6160,174 @@
     "event_type": "force_release"
   },
   {
-    "house_id": 18,
-    "timestep": 1337,
-    "hour": 18,
-    "headline": "Peak alert: defer Dishwasher to save £0.07",
-    "body": "Tonight 18:00 is a peak event (grid nowcast 9.3 kW, 0% over threshold). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
-    "saving_gbp": 0.066,
+    "house_id": 4,
+    "timestep": 1305,
+    "hour": 13,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1306,
+    "hour": 13,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1307,
+    "hour": 13,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1308,
+    "hour": 14,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1318,
+    "hour": 15,
+    "headline": "Peak alert: defer Dishwasher to save £0.03",
+    "body": "This afternoon 15:00 is a peak event (grid nowcast 6.0 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.029,
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "new_defer"
   },
   {
-    "house_id": 18,
-    "timestep": 1373,
-    "hour": 0,
+    "house_id": 10,
+    "timestep": 1319,
+    "hour": 15,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1320,
+    "hour": 16,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1321,
+    "hour": 16,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1322,
+    "hour": 16,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1323,
+    "hour": 16,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1354,
+    "hour": 21,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1355,
+    "hour": 21,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1356,
+    "hour": 22,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1357,
+    "hour": 22,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1358,
+    "hour": 22,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1359,
+    "hour": 22,
     "headline": "Releasing held Dishwasher",
     "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
@@ -4282,8 +6339,217 @@
     "house_id": 5,
     "timestep": 1376,
     "hour": 1,
+    "headline": "Peak alert: defer Dishwasher to save £0.01",
+    "body": "This morning 01:00 is a peak event (grid nowcast 18.8 kW, 6% over threshold). Price is now £0.09/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.01,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 5,
+    "timestep": 1377,
+    "hour": 1,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 5,
+    "timestep": 1378,
+    "hour": 1,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 5,
+    "timestep": 1379,
+    "hour": 1,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 5,
+    "timestep": 1380,
+    "hour": 2,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 5,
+    "timestep": 1381,
+    "hour": 2,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1407,
+    "hour": 6,
+    "headline": "Peak alert: defer Washing Machine 2 to save £0.08",
+    "body": "This morning 06:00 is a peak event (grid nowcast 6.4 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine 2 until the next off-peak window.",
+    "saving_gbp": 0.078,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1408,
+    "hour": 6,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1409,
+    "hour": 6,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1410,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1411,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1412,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 5,
+    "timestep": 1412,
+    "hour": 7,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1413,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 5,
+    "timestep": 1413,
+    "hour": 7,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 5,
+    "timestep": 1414,
+    "hour": 7,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 5,
+    "timestep": 1415,
+    "hour": 7,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 5,
+    "timestep": 1416,
+    "hour": 8,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 5,
+    "timestep": 1417,
+    "hour": 8,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 6,
+    "timestep": 1432,
+    "hour": 10,
     "headline": "Suggestion declined: continue using Dishwasher",
-    "body": "You declined the suggestion to defer Dishwasher. Estimated additional cost £0.01.",
+    "body": "You declined the suggestion to defer Dishwasher. Estimated additional cost £0.00.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
     "accepted": false,
@@ -4291,12 +6557,23 @@
   },
   {
     "house_id": 4,
-    "timestep": 1413,
-    "hour": 7,
-    "headline": "Peak alert: defer Washing Machine 2 to save £0.01",
-    "body": "This morning 07:00 is a peak event (grid nowcast 6.8 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine 2 until the next off-peak window.",
-    "saving_gbp": 0.012,
+    "timestep": 1443,
+    "hour": 12,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
     "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1443,
+    "hour": 12,
+    "headline": "Peak alert: defer Washing Machine to save £0.01",
+    "body": "This afternoon 12:00 is a peak event (grid nowcast 6.2 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.006,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "new_defer"
   },
@@ -4312,6 +6589,28 @@
     "event_type": "new_defer"
   },
   {
+    "house_id": 4,
+    "timestep": 1444,
+    "hour": 12,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1444,
+    "hour": 12,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 2,
     "timestep": 1445,
     "hour": 12,
@@ -4319,6 +6618,28 @@
     "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1445,
+    "hour": 12,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1445,
+    "hour": 12,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "continuation"
   },
@@ -4334,6 +6655,28 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 4,
+    "timestep": 1446,
+    "hour": 13,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1446,
+    "hour": 13,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 2,
     "timestep": 1447,
     "hour": 13,
@@ -4341,6 +6684,28 @@
     "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1447,
+    "hour": 13,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1447,
+    "hour": 13,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "continuation"
   },
@@ -4354,6 +6719,17 @@
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1448,
+    "hour": 13,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
   },
   {
     "house_id": 2,
@@ -4378,48 +6754,15 @@
     "event_type": "force_release"
   },
   {
-    "house_id": 17,
-    "timestep": 1477,
-    "hour": 18,
-    "headline": "Peak alert: defer Washing Machine to save £0.02",
-    "body": "Tonight 18:00 is a peak event (grid nowcast 7.4 kW, 0% over threshold). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
-    "saving_gbp": 0.018,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "new_defer"
-  },
-  {
-    "house_id": 17,
-    "timestep": 1478,
-    "hour": 18,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
     "house_id": 16,
     "timestep": 1479,
     "hour": 18,
-    "headline": "Peak alert: defer Washing Machine to save £0.02",
-    "body": "Tonight 18:00 is a peak event (grid nowcast 7.3 kW, 0% over threshold). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
-    "saving_gbp": 0.02,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "new_defer"
-  },
-  {
-    "house_id": 17,
-    "timestep": 1479,
-    "hour": 18,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "continuation"
+    "event_type": "force_release"
   },
   {
     "house_id": 2,
@@ -4436,12 +6779,12 @@
     "house_id": 16,
     "timestep": 1480,
     "hour": 18,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "continuation"
+    "event_type": "force_release"
   },
   {
     "house_id": 2,
@@ -4458,12 +6801,12 @@
     "house_id": 16,
     "timestep": 1481,
     "hour": 18,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "continuation"
+    "event_type": "force_release"
   },
   {
     "house_id": 2,
@@ -4480,12 +6823,12 @@
     "house_id": 16,
     "timestep": 1482,
     "hour": 19,
-    "headline": "(trace) continuing deferred Washing Machine cycle",
-    "body": "",
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_washing_machine_w",
     "accepted": true,
-    "event_type": "continuation"
+    "event_type": "force_release"
   },
   {
     "house_id": 2,
@@ -4495,6 +6838,17 @@
     "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1483,
+    "hour": 19,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "force_release"
   },
@@ -4521,81 +6875,37 @@
     "event_type": "force_release"
   },
   {
-    "house_id": 17,
-    "timestep": 1513,
-    "hour": 0,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
+    "house_id": 1,
+    "timestep": 1504,
+    "hour": 22,
+    "headline": "Peak alert: defer Tumble Dryer to save £0.05",
+    "body": "Tonight 22:00 is a peak event (grid nowcast 12.3 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Tumble Dryer until the next off-peak window.",
+    "saving_gbp": 0.049,
+    "appliance": "appliance_tumble_dryer_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "new_defer"
   },
   {
-    "house_id": 17,
-    "timestep": 1514,
-    "hour": 0,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "house_id": 1,
+    "timestep": 1505,
+    "hour": 22,
+    "headline": "(trace) continuing deferred Tumble Dryer cycle",
+    "body": "",
     "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
+    "appliance": "appliance_tumble_dryer_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
-    "house_id": 16,
-    "timestep": 1515,
-    "hour": 0,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "house_id": 1,
+    "timestep": 1506,
+    "hour": 23,
+    "headline": "(trace) continuing deferred Tumble Dryer cycle",
+    "body": "",
     "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
+    "appliance": "appliance_tumble_dryer_w",
     "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 17,
-    "timestep": 1515,
-    "hour": 0,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 16,
-    "timestep": 1516,
-    "hour": 0,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 16,
-    "timestep": 1517,
-    "hour": 0,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 16,
-    "timestep": 1518,
-    "hour": 1,
-    "headline": "Releasing held Washing Machine",
-    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_washing_machine_w",
-    "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
     "house_id": 5,
@@ -4664,6 +6974,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 1,
+    "timestep": 1528,
+    "hour": 2,
+    "headline": "Releasing held Tumble Dryer",
+    "body": "Tumble Dryer cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 5,
     "timestep": 1528,
     "hour": 2,
@@ -4675,6 +6996,17 @@
     "event_type": "new_defer"
   },
   {
+    "house_id": 1,
+    "timestep": 1529,
+    "hour": 2,
+    "headline": "Releasing held Tumble Dryer",
+    "body": "Tumble Dryer cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 5,
     "timestep": 1529,
     "hour": 2,
@@ -4684,6 +7016,17 @@
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "continuation"
+  },
+  {
+    "house_id": 1,
+    "timestep": 1530,
+    "hour": 3,
+    "headline": "Releasing held Tumble Dryer",
+    "body": "Tumble Dryer cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "force_release"
   },
   {
     "house_id": 5,
@@ -4909,67 +7252,12 @@
     "house_id": 10,
     "timestep": 1588,
     "hour": 12,
-    "headline": "Peak alert: defer Dishwasher to save £0.01",
-    "body": "This afternoon 12:00 is a peak event (grid nowcast 7.1 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
-    "saving_gbp": 0.006,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "new_defer"
-  },
-  {
-    "house_id": 10,
-    "timestep": 1589,
-    "hour": 12,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
+    "headline": "Suggestion declined: continue using Dishwasher",
+    "body": "You declined the suggestion to defer Dishwasher. Estimated additional cost £0.01.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 10,
-    "timestep": 1590,
-    "hour": 13,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 10,
-    "timestep": 1591,
-    "hour": 13,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 10,
-    "timestep": 1592,
-    "hour": 13,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 10,
-    "timestep": 1593,
-    "hour": 13,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
+    "accepted": false,
+    "event_type": "declined_defer"
   },
   {
     "house_id": 2,
@@ -5038,42 +7326,75 @@
     "event_type": "force_release"
   },
   {
-    "house_id": 10,
+    "house_id": 16,
+    "timestep": 1622,
+    "hour": 18,
+    "headline": "Peak alert: defer Dishwasher to save £0.20",
+    "body": "Tonight 18:00 is a peak event (grid nowcast 8.0 kW, 0% over threshold). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.203,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1623,
+    "hour": 18,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
     "timestep": 1624,
     "hour": 18,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
-    "house_id": 10,
+    "house_id": 16,
     "timestep": 1625,
     "hour": 18,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
-    "house_id": 10,
+    "house_id": 16,
     "timestep": 1626,
     "hour": 19,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
-    "house_id": 10,
+    "house_id": 16,
     "timestep": 1627,
     "hour": 19,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1658,
+    "hour": 0,
     "headline": "Releasing held Dishwasher",
     "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
@@ -5082,9 +7403,9 @@
     "event_type": "force_release"
   },
   {
-    "house_id": 10,
-    "timestep": 1628,
-    "hour": 19,
+    "house_id": 16,
+    "timestep": 1659,
+    "hour": 0,
     "headline": "Releasing held Dishwasher",
     "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
@@ -5093,9 +7414,42 @@
     "event_type": "force_release"
   },
   {
-    "house_id": 10,
-    "timestep": 1629,
-    "hour": 19,
+    "house_id": 16,
+    "timestep": 1660,
+    "hour": 0,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1661,
+    "hour": 0,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1662,
+    "hour": 1,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1663,
+    "hour": 1,
     "headline": "Releasing held Dishwasher",
     "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
@@ -5137,6 +7491,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 16,
+    "timestep": 1694,
+    "hour": 6,
+    "headline": "Peak alert: defer Washing Machine to save £0.03",
+    "body": "This morning 06:00 is a peak event (grid nowcast 6.1 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.025,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
     "house_id": 2,
     "timestep": 1695,
     "hour": 6,
@@ -5144,6 +7509,17 @@
     "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1695,
+    "hour": 6,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "continuation"
   },
@@ -5159,6 +7535,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 16,
+    "timestep": 1696,
+    "hour": 6,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 2,
     "timestep": 1697,
     "hour": 6,
@@ -5166,6 +7553,237 @@
     "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1697,
+    "hour": 6,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1698,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1699,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1700,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1701,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1702,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1704,
+    "hour": 8,
+    "headline": "Peak alert: defer Washing Machine to save £0.01",
+    "body": "This morning 08:00 is a peak event (grid nowcast 6.3 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine until the next off-peak window.",
+    "saving_gbp": 0.008,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1705,
+    "hour": 8,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1706,
+    "hour": 8,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1707,
+    "hour": 8,
+    "headline": "Peak alert: defer Washing Machine 2 to save £0.09",
+    "body": "This morning 08:00 is a peak event (grid nowcast 6.6 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine 2 until the next off-peak window.",
+    "saving_gbp": 0.091,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1707,
+    "hour": 8,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1708,
+    "hour": 8,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1708,
+    "hour": 8,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1709,
+    "hour": 8,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1709,
+    "hour": 8,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1710,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1710,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1711,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1711,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1712,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1712,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Washing Machine cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "continuation"
   },
@@ -5203,6 +7821,17 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 16,
+    "timestep": 1730,
+    "hour": 12,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 2,
     "timestep": 1731,
     "hour": 12,
@@ -5210,6 +7839,17 @@
     "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1731,
+    "hour": 12,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "force_release"
   },
@@ -5225,6 +7865,17 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 16,
+    "timestep": 1732,
+    "hour": 12,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 2,
     "timestep": 1733,
     "hour": 12,
@@ -5234,6 +7885,292 @@
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1733,
+    "hour": 12,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1734,
+    "hour": 13,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1735,
+    "hour": 13,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1736,
+    "hour": 13,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1737,
+    "hour": 13,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1738,
+    "hour": 13,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1740,
+    "hour": 14,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1741,
+    "hour": 14,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1742,
+    "hour": 14,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1743,
+    "hour": 14,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1743,
+    "hour": 14,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1744,
+    "hour": 14,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1744,
+    "hour": 14,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1745,
+    "hour": 14,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1745,
+    "hour": 14,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1746,
+    "hour": 15,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1746,
+    "hour": 15,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1747,
+    "hour": 15,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1747,
+    "hour": 15,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1748,
+    "hour": 15,
+    "headline": "Releasing held Washing Machine 2",
+    "body": "Washing Machine 2 cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 10,
+    "timestep": 1748,
+    "hour": 15,
+    "headline": "Releasing held Washing Machine",
+    "body": "Washing Machine cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1777,
+    "hour": 20,
+    "headline": "Peak alert: defer Dishwasher to save £0.21",
+    "body": "Tonight 20:00 is a peak event (grid nowcast 9.5 kW, 0% over threshold). Price is now £0.30/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "saving_gbp": 0.21,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1778,
+    "hour": 20,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1779,
+    "hour": 20,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1780,
+    "hour": 20,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1782,
+    "hour": 21,
+    "headline": "(trace) continuing deferred Dishwasher cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "continuation"
   },
   {
     "house_id": 5,
@@ -5368,6 +8305,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 16,
+    "timestep": 1813,
+    "hour": 2,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 9,
     "timestep": 1814,
     "hour": 2,
@@ -5377,6 +8325,17 @@
     "appliance": "appliance_washer_dryer_w",
     "accepted": true,
     "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1814,
+    "hour": 2,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
   },
   {
     "house_id": 9,
@@ -5390,6 +8349,17 @@
     "event_type": "continuation"
   },
   {
+    "house_id": 16,
+    "timestep": 1815,
+    "hour": 2,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
+  },
+  {
     "house_id": 9,
     "timestep": 1816,
     "hour": 2,
@@ -5399,6 +8369,17 @@
     "appliance": "appliance_washer_dryer_w",
     "accepted": true,
     "event_type": "continuation"
+  },
+  {
+    "house_id": 16,
+    "timestep": 1816,
+    "hour": 2,
+    "headline": "Releasing held Dishwasher",
+    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_dishwasher_w",
+    "accepted": true,
+    "event_type": "force_release"
   },
   {
     "house_id": 9,
@@ -5437,12 +8418,12 @@
     "house_id": 10,
     "timestep": 1832,
     "hour": 5,
-    "headline": "Peak alert: defer Dishwasher to save £0.00",
-    "body": "This morning 05:00 is a peak event (grid nowcast 4.9 kW, 0% over threshold). Price is now £0.08/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "headline": "Suggestion declined: continue using Dishwasher",
+    "body": "You declined the suggestion to defer Dishwasher. Estimated additional cost £0.00.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "new_defer"
+    "accepted": false,
+    "event_type": "declined_defer"
   },
   {
     "house_id": 9,
@@ -5456,39 +8437,6 @@
     "event_type": "continuation"
   },
   {
-    "house_id": 10,
-    "timestep": 1833,
-    "hour": 5,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 10,
-    "timestep": 1834,
-    "hour": 5,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 10,
-    "timestep": 1835,
-    "hour": 5,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
     "house_id": 5,
     "timestep": 1836,
     "hour": 6,
@@ -5498,17 +8446,6 @@
     "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "force_release"
-  },
-  {
-    "house_id": 10,
-    "timestep": 1836,
-    "hour": 6,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
   },
   {
     "house_id": 5,
@@ -5529,17 +8466,6 @@
     "body": "",
     "saving_gbp": 0.0,
     "appliance": "appliance_washer_dryer_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 10,
-    "timestep": 1837,
-    "hour": 6,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
     "accepted": true,
     "event_type": "continuation"
   },
@@ -5742,17 +8668,6 @@
     "event_type": "new_defer"
   },
   {
-    "house_id": 10,
-    "timestep": 1868,
-    "hour": 11,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
     "house_id": 2,
     "timestep": 1869,
     "hour": 11,
@@ -5762,61 +8677,6 @@
     "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "continuation"
-  },
-  {
-    "house_id": 10,
-    "timestep": 1869,
-    "hour": 11,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 10,
-    "timestep": 1870,
-    "hour": 11,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 10,
-    "timestep": 1871,
-    "hour": 11,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 10,
-    "timestep": 1872,
-    "hour": 12,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "force_release"
-  },
-  {
-    "house_id": 10,
-    "timestep": 1873,
-    "hour": 12,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "force_release"
   },
   {
     "house_id": 2,
@@ -5954,67 +8814,12 @@
     "house_id": 9,
     "timestep": 1977,
     "hour": 5,
-    "headline": "Peak alert: defer Dishwasher to save £0.00",
-    "body": "This morning 05:00 is a peak event (grid nowcast 5.3 kW, 0% over threshold). Price is now £0.08/kWh, off-peak 0.08. Suggest: hold Dishwasher until the next off-peak window.",
+    "headline": "Suggestion declined: continue using Dishwasher",
+    "body": "You declined the suggestion to defer Dishwasher. Estimated additional cost £0.00.",
     "saving_gbp": 0.0,
     "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "new_defer"
-  },
-  {
-    "house_id": 9,
-    "timestep": 1978,
-    "hour": 5,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 9,
-    "timestep": 1979,
-    "hour": 5,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 9,
-    "timestep": 1980,
-    "hour": 6,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 9,
-    "timestep": 1981,
-    "hour": 6,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
-  },
-  {
-    "house_id": 9,
-    "timestep": 1982,
-    "hour": 6,
-    "headline": "(trace) continuing deferred Dishwasher cycle",
-    "body": "",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
-    "accepted": true,
-    "event_type": "continuation"
+    "accepted": false,
+    "event_type": "declined_defer"
   },
   {
     "house_id": 8,
@@ -6050,6 +8855,17 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 4,
+    "timestep": 1989,
+    "hour": 7,
+    "headline": "Peak alert: defer Washing Machine 2 to save £0.02",
+    "body": "This morning 07:00 is a peak event (grid nowcast 6.1 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Washing Machine 2 until the next off-peak window.",
+    "saving_gbp": 0.019,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
     "house_id": 8,
     "timestep": 1989,
     "hour": 7,
@@ -6059,6 +8875,17 @@
     "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1990,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
   },
   {
     "house_id": 8,
@@ -6072,6 +8899,17 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 4,
+    "timestep": 1991,
+    "hour": 7,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 8,
     "timestep": 1991,
     "hour": 7,
@@ -6081,6 +8919,17 @@
     "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1992,
+    "hour": 8,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
   },
   {
     "house_id": 8,
@@ -6094,6 +8943,17 @@
     "event_type": "force_release"
   },
   {
+    "house_id": 4,
+    "timestep": 1993,
+    "hour": 8,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
     "house_id": 8,
     "timestep": 1993,
     "hour": 8,
@@ -6103,6 +8963,17 @@
     "appliance": "appliance_washing_machine_w",
     "accepted": true,
     "event_type": "force_release"
+  },
+  {
+    "house_id": 4,
+    "timestep": 1994,
+    "hour": 8,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_washing_machine_2_w",
+    "accepted": true,
+    "event_type": "continuation"
   },
   {
     "house_id": 8,
@@ -6116,36 +8987,124 @@
     "event_type": "force_release"
   },
   {
-    "house_id": 9,
-    "timestep": 2013,
-    "hour": 11,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "house_id": 4,
+    "timestep": 1995,
+    "hour": 8,
+    "headline": "(trace) continuing deferred Washing Machine 2 cycle",
+    "body": "",
     "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
+    "appliance": "appliance_washing_machine_2_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
   },
   {
-    "house_id": 9,
-    "timestep": 2014,
-    "hour": 11,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
-    "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
+    "house_id": 20,
+    "timestep": 1999,
+    "hour": 9,
+    "headline": "Peak alert: defer Tumble Dryer to save £0.08",
+    "body": "This morning 09:00 is a peak event (grid nowcast 7.0 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Tumble Dryer until the next off-peak window.",
+    "saving_gbp": 0.083,
+    "appliance": "appliance_tumble_dryer_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "new_defer"
   },
   {
-    "house_id": 9,
-    "timestep": 2015,
-    "hour": 11,
-    "headline": "Releasing held Dishwasher",
-    "body": "Dishwasher cycle held for too long, releasing now to keep things on time.",
+    "house_id": 20,
+    "timestep": 2000,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Tumble Dryer cycle",
+    "body": "",
     "saving_gbp": 0.0,
-    "appliance": "appliance_dishwasher_w",
+    "appliance": "appliance_tumble_dryer_w",
     "accepted": true,
-    "event_type": "force_release"
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 2001,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Tumble Dryer cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 2002,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Tumble Dryer cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 2003,
+    "hour": 9,
+    "headline": "(trace) continuing deferred Tumble Dryer cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 2004,
+    "hour": 10,
+    "headline": "(trace) continuing deferred Tumble Dryer cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 2008,
+    "hour": 10,
+    "headline": "Peak alert: defer Tumble Dryer to save £0.04",
+    "body": "This morning 10:00 is a peak event (grid nowcast 5.0 kW, 0% over threshold). Price is now £0.15/kWh, off-peak 0.08. Suggest: hold Tumble Dryer until the next off-peak window.",
+    "saving_gbp": 0.045,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "new_defer"
+  },
+  {
+    "house_id": 20,
+    "timestep": 2009,
+    "hour": 10,
+    "headline": "(trace) continuing deferred Tumble Dryer cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 2010,
+    "hour": 11,
+    "headline": "(trace) continuing deferred Tumble Dryer cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "continuation"
+  },
+  {
+    "house_id": 20,
+    "timestep": 2011,
+    "hour": 11,
+    "headline": "(trace) continuing deferred Tumble Dryer cycle",
+    "body": "",
+    "saving_gbp": 0.0,
+    "appliance": "appliance_tumble_dryer_w",
+    "accepted": true,
+    "event_type": "continuation"
   }
 ]

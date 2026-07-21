@@ -29,10 +29,10 @@
       },
       "coordinated": {
         "peak_kw": 32.41,
-        "p95_kw": 19.44
+        "p95_kw": 19.48
       },
       "peak_red_pct": 19.72,
-      "p95_red_pct": 27.45
+      "p95_red_pct": 27.28
     },
     {
       "tag": "cohort_16_with_H3",
@@ -61,10 +61,10 @@
       },
       "coordinated": {
         "peak_kw": 32.74,
-        "p95_kw": 19.7
+        "p95_kw": 19.75
       },
       "peak_red_pct": 19.17,
-      "p95_red_pct": 26.98
+      "p95_red_pct": 26.8
     },
     {
       "tag": "cohort_17_all_nonsolar",
@@ -115,7 +115,7 @@
       "status": "ok",
       "coordinated": {
         "peak_kw": 32.41,
-        "p95_kw": 19.52
+        "p95_kw": 19.64
       }
     },
     {
@@ -123,7 +123,7 @@
       "status": "ok",
       "coordinated": {
         "peak_kw": 32.41,
-        "p95_kw": 19.54
+        "p95_kw": 19.52
       }
     }
   ]
