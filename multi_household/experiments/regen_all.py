@@ -99,19 +99,42 @@ def main():
             print("stopping — fix the failing step, then rerun.")
             break
 
-    # SHA256 manifest of every artifact
+    # SHA256 manifest: outputs (deterministic vs volatile) + INPUTS
+    # (model checkpoints, data caches) so a checker can verify the whole
+    # provenance chain, not just the results.
+    # Idempotency contract: rerunning on the same commit must reproduce every
+    # hash in `outputs` bit-for-bit (all sampling is seeded); `volatile`
+    # entries (wall-clock timestamps, per-call latencies, LLM generations)
+    # are hashed for the record but expected to differ between runs.
+    VOLATILE = ("run_manifest.json", "llm_eval_")
     manifest = {"commit": commit, "dirty_tree": dirty,
                 "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                 "elapsed_s": round(time.time() - t_all, 1),
-                "steps": results, "files": {}}
+                "steps": results,
+                "inputs": {}, "outputs": {}, "volatile": {}}
+
+    def _h(p: Path) -> str:
+        return hashlib.sha256(p.read_bytes()).hexdigest()
+
+    for root in (REPRO / "multi_household" / "models",
+                 REPRO / "multi_household" / "cache"):
+        if root.exists():
+            for p in sorted(root.glob("*")):
+                if p.is_file():
+                    rel = str(p.relative_to(REPRO)).replace("\\", "/")
+                    manifest["inputs"][rel] = _h(p)
     for root in (REPORTS, FIGS):
         for p in sorted(root.rglob("*")):
             if p.is_file() and "legacy" not in p.parts[-2]:
                 rel = str(p.relative_to(REPRO)).replace("\\", "/")
-                manifest["files"][rel] = hashlib.sha256(p.read_bytes()).hexdigest()
+                bucket = ("volatile" if any(v in p.name for v in VOLATILE)
+                          else "outputs")
+                manifest[bucket][rel] = _h(p)
     dst = REPORTS / "artifact_manifest.json"
     dst.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-    print(f"\nsaved {dst}  ({len(manifest['files'])} files hashed)")
+    print(f"\nsaved {dst}  (inputs {len(manifest['inputs'])}, "
+          f"outputs {len(manifest['outputs'])}, "
+          f"volatile {len(manifest['volatile'])})")
     ok = all(v == "ok" for k, v in results.items() if not str(v).startswith("skipped"))
     print("ALL OK" if ok else "SOME STEPS FAILED — see above")
     return 0 if ok else 1

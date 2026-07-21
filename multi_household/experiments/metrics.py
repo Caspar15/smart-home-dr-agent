@@ -260,6 +260,15 @@ def compute_metrics(npz_path: Path) -> dict:
             "demand_total_mwh":  round(demand_agg.sum()*(10/60)/1e6, 3),
             "served_total_mwh":  round(served_agg.sum()*(10/60)/1e6, 3),
             "diff_pct":          round(100*(served_agg.sum() - demand_agg.sum())/demand_agg.sum(), 3),
+            # The deficit is TERMINAL BUFFER DEBT, not a conservation bug:
+            # energy banked by deferrals near the horizon end that has not yet
+            # been re-released when the window closes (comfort caps guarantee
+            # release within 8 h — the horizon just ends first). Report it
+            # explicitly so the small negative diff is never mistaken for
+            # energy vanishing mid-simulation.
+            "terminal_buffer_debt_kwh": round(
+                (demand_agg.sum() - served_agg.sum())*(10/60)/1e3, 3),
+            "note": "deficit = un-released deferred energy at horizon end",
         },
     }
     return summary, (ts, served, demand, served_agg, demand_agg, hours)

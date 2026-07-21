@@ -9,14 +9,22 @@ window, creating a rebound peak.
 
 What this does (honest scope)
 -----------------------------
-A fixed-interval STAGGER heuristic: for each night, EV blocks are offset by
-STAGGER_STEPS (2 h) from the earliest plug-in. Because the stagger interval
-(2 h) is SHORTER than the charge duration (4 h), adjacent accepted blocks
-still overlap by up to 2 h (≤14 kW EV concurrency by design) — the heuristic
-reduces the pile-up, it does NOT eliminate overlap. It is not a
-constraint-aware scheduler: no SoC, arrival/departure, deadline, charger
-efficiency or transformer limit is modelled. Total energy per EV is preserved
-exactly — the block is moved in time, not resized.
+Advisory placement of each night's EV blocks, respecting the ARRIVAL
+constraint (never before plug-in) and an 8 h comfort cap on start delay.
+Three strategies (paired accept stream, see advisory_ev_schedule):
+
+  • "edf" (DEFAULT, the promoted main method): earliest-deadline-first
+    greedy — earliest feasible slot minimising overlap with already-placed
+    blocks. Promoted after the feasibility-constrained ladder showed it
+    beats the stagger on P95 at identical peak.
+  • "stagger": fixed 2 h offsets from the night's earliest plug-in
+    (the original heuristic; kept as a baseline). Interval (2 h) < charge
+    duration (4 h), so adjacent blocks may still overlap by up to 2 h.
+  • "random": uniform feasible placement — sanity baseline.
+
+None of these is a full constraint-aware scheduler: no SoC, departure time,
+charger efficiency or transformer limit is modelled. Total energy per EV is
+preserved exactly — the block is moved in time, not resized.
 
 The non-EV appliances are still handled by the per-house rule agent.
 """
@@ -115,15 +123,19 @@ def advisory_ev_schedule(ev_orig_by_house: dict[int, np.ndarray],
         occupancy = np.zeros(T + TROUGH_STEPS + MAX_DEFER, dtype=np.int32)
         for rank, (h, start, length, power) in enumerate(blocks):
             accepted = rng.random() < accept_rate
+            # FEASIBILITY: an EV cannot charge before it is plugged in —
+            # every strategy must satisfy new_start ≥ start (arrival). An
+            # earlier version let random/EDF place blocks up to 160 min
+            # before arrival (stagger happened to never violate it here).
             if strategy == "stagger":
-                new_start = anchor + rank * stagger_steps
+                new_start = max(start, anchor + rank * stagger_steps)
             elif strategy == "random":
-                span = max(TROUGH_STEPS - length, 1)
-                new_start = anchor + int(place_rng.integers(0, span))
+                hi = max(start + 1, anchor + TROUGH_STEPS - length)
+                new_start = int(place_rng.integers(start, hi))
             else:                                 # edf greedy
                 deadline_start = start + MAX_DEFER            # latest allowed start
-                best, best_ov = anchor, None
-                for cand in range(anchor, min(deadline_start, anchor + TROUGH_STEPS) + 1):
+                best, best_ov = start, None
+                for cand in range(start, deadline_start + 1):
                     ov = int(occupancy[cand:cand + length].max())
                     if best_ov is None or ov < best_ov:
                         best, best_ov = cand, ov

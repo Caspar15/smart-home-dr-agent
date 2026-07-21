@@ -93,11 +93,18 @@ def template_recommendation(house_id: int, step: int,
             )
         time_word = "Tonight" if h >= 17 else ("This morning" if h < 12 else "This afternoon")
         headline = (f"Peak alert: defer {apl} to save £{decision.expected_saving_gbp:.2f}")
+        # Word the message by the ACTUAL trigger — a forecast_high-triggered
+        # recommendation must not claim a grid peak event that never happened.
+        if decision.rationale.get("reason") == "peak event":
+            situation = (f"{time_word} {h:02d}:00 is a grid peak event "
+                         f"(grid nowcast {broadcast.aggregate_forecast_w/1000:.1f} kW, "
+                         f"{broadcast.overage_ratio*100:.0f}% over threshold). ")
+        else:
+            situation = (f"{time_word} {h:02d}:00 — your home's own forecast "
+                         f"expects a demand spike in the next 10 minutes. ")
         body = (
-            f"{time_word} {h:02d}:00 is a peak event "
-            f"(grid nowcast {broadcast.aggregate_forecast_w/1000:.1f} kW, "
-            f"{broadcast.overage_ratio*100:.0f}% over threshold). "
-            f"Price is now £{p_now:.2f}/kWh, off-peak {p_off:.2f}. "
+            situation
+            + f"Price is now £{p_now:.2f}/kWh, off-peak {p_off:.2f}. "
             f"Suggest: hold {apl} until the next off-peak window."
         )
         return Recommendation(

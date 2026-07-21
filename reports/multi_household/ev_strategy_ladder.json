@@ -10,15 +10,15 @@
     },
     "random": {
       "peak_kw": 40.43,
-      "p95_kw": 24.82,
+      "p95_kw": 24.79,
       "peak_red_pct": -0.15,
-      "p95_red_pct": 7.35
+      "p95_red_pct": 7.47
     },
     "edf": {
       "peak_kw": 32.41,
-      "p95_kw": 19.09,
+      "p95_kw": 18.65,
       "peak_red_pct": 19.72,
-      "p95_red_pct": 28.74
+      "p95_red_pct": 30.38
     },
     "stagger": {
       "peak_kw": 32.41,

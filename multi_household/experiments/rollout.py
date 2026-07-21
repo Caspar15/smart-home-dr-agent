@@ -233,7 +233,7 @@ def rollout(houses_data: dict,
             fairness_budget: int | None = None,
             appliance_agent: bool = True,
             exclude_ev_from_agent: bool = False,
-            ev_strategy: str = "stagger",
+            ev_strategy: str = "edf",
             grid_threshold_w: float | None = None) -> dict:
     """Step through the test period for all houses simultaneously.
 

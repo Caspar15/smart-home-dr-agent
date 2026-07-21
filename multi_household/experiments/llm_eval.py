@@ -138,13 +138,24 @@ def main():
 
     rows = []
     n_ok = n_cited_ok = n_halluc_msg = n_unit_bad = 0
+    n_transport_fail = n_schema_fail = n_retried = 0
     latencies = []
     for i, r in enumerate(events):
         facts = _event_facts(r)
         parsed, dt, raw = _call(args.model, facts)
+        if raw.startswith("<error:"):
+            # One documented retry on transport error/timeout (environmental,
+            # e.g. GPU cold start) — retries are counted and disclosed.
+            n_retried += 1
+            parsed, dt, raw = _call(args.model, facts)
         latencies.append(dt)
+        transport_ok = not raw.startswith("<error:")
         ok = (parsed is not None and isinstance(parsed.get("message_zh"), str)
               and isinstance(parsed.get("cited_numbers"), list))
+        if not transport_ok:
+            n_transport_fail += 1
+        elif not ok:
+            n_schema_fail += 1
         # facts + raw citations are stored per row so a third party can
         # re-verify every metric from this JSON alone.
         row = {"i": i, "event_type": r["event_type"], "house": r["house_id"],
@@ -181,13 +192,21 @@ def main():
     lat = sorted(latencies)
     n = len(events)
     # Metric names are MESSAGE-LEVEL rates (share of messages), not
-    # per-number precision — named accordingly.
+    # per-number precision — named accordingly. Transport failures (timeouts —
+    # environmental) are separated from schema violations (model behaviour):
+    # conflating them once reported "schema 91.1%" when every completed call
+    # was schema-valid and all failures were 122 s timeouts.
+    n_completed = n - n_transport_fail
     summary = {
         "model": args.model,
         "scope": ("pre-decision recommendation messages (facts exclude the "
                   "user's eventual accept/reject outcome)"),
         "n_events": n,
-        "schema_success_rate": round(n_ok / n, 4) if n else None,
+        "call_completion_rate": round(n_completed / n, 4) if n else None,
+        "n_transport_failures": n_transport_fail,
+        "n_retried_once": n_retried,
+        "schema_valid_rate_of_completed": round(
+            (n_completed - n_schema_fail) / n_completed, 4) if n_completed else None,
         "msg_all_citations_grounded_rate": round(n_cited_ok / n_ok, 4) if n_ok else None,
         "msg_with_ungrounded_number_rate": round(n_halluc_msg / n_ok, 4) if n_ok else None,
         "msg_with_unit_error_rate": round(n_unit_bad / n_ok, 4) if n_ok else None,
