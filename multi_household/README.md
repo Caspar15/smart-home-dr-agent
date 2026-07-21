@@ -69,10 +69,10 @@ multi_household/
 
 | Metric | Baseline | Independent | **Coordinated (85% accept)** |
 |---|---|---|---|
-| Peak (kW) | 40.37 | 35.56 (−11.9%) | **32.41 (−19.7%)** |
-| P95 (kW) | 26.79 | 25.06 (−6.5%) | **19.44 (−27.4%)** |
+| Peak (kW) | 40.37 | 34.91 (−13.5%) | **32.41 (−19.7%)** |
+| P95 (kW) | 26.79 | 24.73 (−7.7%) | **18.65 (−30.4%)** |
 | Energy (MWh) | 3.474 | 3.473 (−0.01%) | 3.473 (−0.01%) |
-| User decisions | n/a | 148 appliance | **58 appliance (91.4% acc) + 44 EV (88.6%) = 102** |
+| User decisions | n/a | 162 appliance | **80 appliance (88.7% acc) + 44 EV (88.6%) = 124** |
 
 Decision-level metrics only (trace messages counted separately). Full acceptance
 (100%) → peak **28.53 kW**. The EV reschedule is **advisory** (accept-gated):

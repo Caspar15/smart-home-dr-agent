@@ -3,14 +3,17 @@
     "model": "llama3.1:8b",
     "scope": "pre-decision recommendation messages (facts exclude the user's eventual accept/reject outcome)",
     "n_events": 124,
-    "schema_success_rate": 0.9113,
-    "msg_all_citations_grounded_rate": 0.9823,
-    "msg_with_ungrounded_number_rate": 0.0442,
+    "call_completion_rate": 1.0,
+    "n_transport_failures": 0,
+    "n_retried_once": 0,
+    "schema_valid_rate_of_completed": 1.0,
+    "msg_all_citations_grounded_rate": 0.9839,
+    "msg_with_ungrounded_number_rate": 0.0484,
     "msg_with_unit_error_rate": 0.0,
     "latency_s": {
-      "mean": 15.08,
-      "p50": 3.7,
-      "p95": 122.07
+      "mean": 3.62,
+      "p50": 3.6,
+      "p95": 3.84
     },
     "note": "interface characterization only — the LLM makes no control decisions; grid results are attributed to the coordination mechanism (see mechanism_decomposition.json)"
   },
@@ -25,9 +28,17 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 122.1,
-      "schema_ok": false,
-      "raw": "<error: timed out>"
+      "latency_s": 6.36,
+      "schema_ok": true,
+      "cited_numbers_raw": [
+        "5",
+        "23",
+        "240"
+      ],
+      "hallucinated_numbers": [],
+      "cited_not_in_facts": [],
+      "unit_issues": [],
+      "message_zh": "您是否願意將您的電動車充電時間調整至明晚 23:00?"
     },
     {
       "i": 1,
@@ -39,9 +50,16 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 122.09,
-      "schema_ok": false,
-      "raw": "<error: timed out>"
+      "latency_s": 3.42,
+      "schema_ok": true,
+      "cited_numbers_raw": [
+        "21",
+        "240"
+      ],
+      "hallucinated_numbers": [],
+      "cited_not_in_facts": [],
+      "unit_issues": [],
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 9 點?"
     },
     {
       "i": 2,
@@ -53,9 +71,16 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 122.05,
-      "schema_ok": false,
-      "raw": "<error: timed out>"
+      "latency_s": 3.56,
+      "schema_ok": true,
+      "cited_numbers_raw": [
+        "21",
+        "240"
+      ],
+      "hallucinated_numbers": [],
+      "cited_not_in_facts": [],
+      "unit_issues": [],
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 9 點?"
     },
     {
       "i": 3,
@@ -67,9 +92,16 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 122.07,
-      "schema_ok": false,
-      "raw": "<error: timed out>"
+      "latency_s": 3.51,
+      "schema_ok": true,
+      "cited_numbers_raw": [
+        "22",
+        "240"
+      ],
+      "hallucinated_numbers": [],
+      "cited_not_in_facts": [],
+      "unit_issues": [],
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 10 點?"
     },
     {
       "i": 4,
@@ -81,9 +113,17 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 122.08,
-      "schema_ok": false,
-      "raw": "<error: timed out>"
+      "latency_s": 3.68,
+      "schema_ok": true,
+      "cited_numbers_raw": [
+        "18",
+        "23",
+        "240"
+      ],
+      "hallucinated_numbers": [],
+      "cited_not_in_facts": [],
+      "unit_issues": [],
+      "message_zh": "您是否願意將您的電動車充電時間調整至明晚 23:00?"
     },
     {
       "i": 5,
@@ -95,9 +135,16 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 122.07,
-      "schema_ok": false,
-      "raw": "<error: timed out>"
+      "latency_s": 3.53,
+      "schema_ok": true,
+      "cited_numbers_raw": [
+        "23",
+        "240"
+      ],
+      "hallucinated_numbers": [],
+      "cited_not_in_facts": [],
+      "unit_issues": [],
+      "message_zh": "您是否願意將您的電動車充電時間調整至明晚 23:00?"
     },
     {
       "i": 6,
@@ -109,9 +156,17 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 122.06,
-      "schema_ok": false,
-      "raw": "<error: timed out>"
+      "latency_s": 3.54,
+      "schema_ok": true,
+      "cited_numbers_raw": [
+        "9",
+        "21",
+        "240"
+      ],
+      "hallucinated_numbers": [],
+      "cited_not_in_facts": [],
+      "unit_issues": [],
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 21:00?"
     },
     {
       "i": 7,
@@ -123,9 +178,17 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 122.08,
-      "schema_ok": false,
-      "raw": "<error: timed out>"
+      "latency_s": 3.58,
+      "schema_ok": true,
+      "cited_numbers_raw": [
+        "18",
+        "22",
+        "240"
+      ],
+      "hallucinated_numbers": [],
+      "cited_not_in_facts": [],
+      "unit_issues": [],
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 22 時?"
     },
     {
       "i": 8,
@@ -137,9 +200,16 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 122.08,
-      "schema_ok": false,
-      "raw": "<error: timed out>"
+      "latency_s": 3.6,
+      "schema_ok": true,
+      "cited_numbers_raw": [
+        "23",
+        "240"
+      ],
+      "hallucinated_numbers": [],
+      "cited_not_in_facts": [],
+      "unit_issues": [],
+      "message_zh": "您是否願意將您的電動車充電時間調整至明晚 23:00?"
     },
     {
       "i": 9,
@@ -151,9 +221,19 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 122.05,
-      "schema_ok": false,
-      "raw": "<error: timed out>"
+      "latency_s": 3.79,
+      "schema_ok": true,
+      "cited_numbers_raw": [
+        "23",
+        "240"
+      ],
+      "hallucinated_numbers": [
+        "0",
+        "1"
+      ],
+      "cited_not_in_facts": [],
+      "unit_issues": [],
+      "message_zh": "您是否願意將您的電動車充電時間調整至明天凌晨 0:00 至 1:00?"
     },
     {
       "i": 10,
@@ -165,9 +245,16 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 122.06,
-      "schema_ok": false,
-      "raw": "<error: timed out>"
+      "latency_s": 3.49,
+      "schema_ok": true,
+      "cited_numbers_raw": [
+        "21",
+        "240"
+      ],
+      "hallucinated_numbers": [],
+      "cited_not_in_facts": [],
+      "unit_issues": [],
+      "message_zh": "您是否願意將您的電動車充電時間調整至今晚 9 點?"
     },
     {
       "i": 11,
@@ -179,7 +266,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 115.5,
+      "latency_s": 3.54,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -200,7 +287,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.53,
+      "latency_s": 3.61,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -221,7 +308,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.7,
+      "latency_s": 3.56,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
@@ -242,7 +329,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.63,
+      "latency_s": 3.6,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
@@ -263,7 +350,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.59,
+      "latency_s": 3.53,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -284,7 +371,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.56,
+      "latency_s": 3.71,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -305,7 +392,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.61,
+      "latency_s": 3.7,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
@@ -326,7 +413,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.51,
+      "latency_s": 3.59,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -347,7 +434,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.55,
+      "latency_s": 3.6,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -368,7 +455,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.57,
+      "latency_s": 3.5,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -389,7 +476,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.58,
+      "latency_s": 3.48,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -410,7 +497,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.57,
+      "latency_s": 3.44,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -431,7 +518,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.57,
+      "latency_s": 3.53,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -452,7 +539,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.8,
+      "latency_s": 3.67,
       "schema_ok": true,
       "cited_numbers_raw": [
         "18",
@@ -474,7 +561,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.58,
+      "latency_s": 3.55,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -495,7 +582,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.57,
+      "latency_s": 3.58,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -516,7 +603,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.62,
+      "latency_s": 3.52,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
@@ -537,7 +624,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.66,
+      "latency_s": 3.76,
       "schema_ok": true,
       "cited_numbers_raw": [
         "18",
@@ -559,7 +646,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.64,
+      "latency_s": 3.57,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
@@ -580,7 +667,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.56,
+      "latency_s": 3.53,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -601,7 +688,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.68,
+      "latency_s": 3.7,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -622,7 +709,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.61,
+      "latency_s": 3.49,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -643,7 +730,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.67,
+      "latency_s": 3.64,
       "schema_ok": true,
       "cited_numbers_raw": [
         "18",
@@ -665,7 +752,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.57,
+      "latency_s": 3.59,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -686,7 +773,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.74,
+      "latency_s": 3.73,
       "schema_ok": true,
       "cited_numbers_raw": [
         "9",
@@ -708,7 +795,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.57,
+      "latency_s": 3.62,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -729,7 +816,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.67,
+      "latency_s": 3.49,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -750,7 +837,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.83,
+      "latency_s": 3.77,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
@@ -774,7 +861,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.72,
+      "latency_s": 3.62,
       "schema_ok": true,
       "cited_numbers_raw": [
         "13",
@@ -796,7 +883,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.85,
+      "latency_s": 3.77,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
@@ -820,7 +907,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.68,
+      "latency_s": 3.56,
       "schema_ok": true,
       "cited_numbers_raw": [
         "18",
@@ -842,7 +929,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.67,
+      "latency_s": 3.63,
       "schema_ok": true,
       "cited_numbers_raw": [
         "13",
@@ -864,7 +951,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.71,
+      "latency_s": 3.6,
       "schema_ok": true,
       "cited_numbers_raw": [
         "18",
@@ -887,7 +974,7 @@
         "saving_gbp": 0.009,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.49,
+      "latency_s": 3.4,
       "schema_ok": true,
       "cited_numbers_raw": [
         "8",
@@ -909,7 +996,7 @@
         "saving_gbp": 0.094,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.95,
+      "latency_s": 3.81,
       "schema_ok": true,
       "cited_numbers_raw": [
         "6",
@@ -932,7 +1019,7 @@
         "saving_gbp": 0.005,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.95,
+      "latency_s": 3.77,
       "schema_ok": true,
       "cited_numbers_raw": [
         "2",
@@ -955,7 +1042,7 @@
         "saving_gbp": 0.005,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.74,
+      "latency_s": 3.62,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0",
@@ -1000,7 +1087,7 @@
         "saving_gbp": 0.161,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.77,
+      "latency_s": 3.68,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.161"
@@ -1021,7 +1108,7 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.7,
+      "latency_s": 3.61,
       "schema_ok": true,
       "cited_numbers_raw": [
         "8",
@@ -1043,7 +1130,7 @@
         "saving_gbp": 0.006,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.51,
+      "latency_s": 3.5,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.006"
@@ -1064,7 +1151,7 @@
         "saving_gbp": 0.046,
         "kind": "appliance_defer"
       },
-      "latency_s": 4.0,
+      "latency_s": 3.75,
       "schema_ok": true,
       "cited_numbers_raw": [
         "13",
@@ -1088,7 +1175,7 @@
         "saving_gbp": 0.005,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.92,
+      "latency_s": 3.77,
       "schema_ok": true,
       "cited_numbers_raw": [
         "15",
@@ -1110,7 +1197,7 @@
         "saving_gbp": 0.21,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.95,
+      "latency_s": 3.87,
       "schema_ok": true,
       "cited_numbers_raw": [
         "16",
@@ -1133,7 +1220,7 @@
         "saving_gbp": 0.202,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.36,
+      "latency_s": 3.44,
       "schema_ok": true,
       "cited_numbers_raw": [
         "18",
@@ -1155,7 +1242,7 @@
         "saving_gbp": 0.058,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.84,
+      "latency_s": 3.75,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.058"
@@ -1176,7 +1263,7 @@
         "saving_gbp": 0.011,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.66,
+      "latency_s": 3.53,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.011"
@@ -1197,7 +1284,7 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.3,
+      "latency_s": 3.22,
       "schema_ok": true,
       "cited_numbers_raw": [
         "3"
@@ -1218,7 +1305,7 @@
         "saving_gbp": 0.007,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.84,
+      "latency_s": 3.73,
       "schema_ok": true,
       "cited_numbers_raw": [
         "7",
@@ -1240,7 +1327,7 @@
         "saving_gbp": 0.005,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.7,
+      "latency_s": 3.64,
       "schema_ok": true,
       "cited_numbers_raw": [
         "2",
@@ -1263,7 +1350,7 @@
         "saving_gbp": 0.008,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.79,
+      "latency_s": 3.65,
       "schema_ok": true,
       "cited_numbers_raw": [
         "10",
@@ -1286,7 +1373,7 @@
         "saving_gbp": 0.012,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.38,
+      "latency_s": 3.48,
       "schema_ok": true,
       "cited_numbers_raw": [
         "18",
@@ -1308,7 +1395,7 @@
         "saving_gbp": 0.451,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.95,
+      "latency_s": 3.78,
       "schema_ok": true,
       "cited_numbers_raw": [
         "4",
@@ -1331,7 +1418,7 @@
         "saving_gbp": 0.021,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.58,
+      "latency_s": 3.51,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -1353,7 +1440,7 @@
         "saving_gbp": 0.031,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.77,
+      "latency_s": 3.66,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.031"
@@ -1374,7 +1461,7 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.29,
+      "latency_s": 3.25,
       "schema_ok": true,
       "cited_numbers_raw": [
         "4"
@@ -1395,7 +1482,7 @@
         "saving_gbp": 0.048,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.86,
+      "latency_s": 3.72,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0",
@@ -1418,7 +1505,7 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.31,
+      "latency_s": 3.28,
       "schema_ok": true,
       "cited_numbers_raw": [
         "8"
@@ -1439,7 +1526,7 @@
         "saving_gbp": 0.026,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.89,
+      "latency_s": 3.72,
       "schema_ok": true,
       "cited_numbers_raw": [
         "13",
@@ -1462,7 +1549,7 @@
         "saving_gbp": 0.292,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.92,
+      "latency_s": 3.8,
       "schema_ok": true,
       "cited_numbers_raw": [
         "16",
@@ -1485,7 +1572,7 @@
         "saving_gbp": 0.023,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.77,
+      "latency_s": 3.72,
       "schema_ok": true,
       "cited_numbers_raw": [
         "18",
@@ -1507,7 +1594,7 @@
         "saving_gbp": 0.024,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.85,
+      "latency_s": 3.84,
       "schema_ok": true,
       "cited_numbers_raw": [
         "2",
@@ -1530,7 +1617,7 @@
         "saving_gbp": 0.012,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.51,
+      "latency_s": 3.39,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.012"
@@ -1551,7 +1638,7 @@
         "saving_gbp": 0.005,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.96,
+      "latency_s": 3.89,
       "schema_ok": true,
       "cited_numbers_raw": [
         "2",
@@ -1574,7 +1661,7 @@
         "saving_gbp": 0.021,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.8,
+      "latency_s": 3.62,
       "schema_ok": true,
       "cited_numbers_raw": [
         "13",
@@ -1597,7 +1684,7 @@
         "saving_gbp": 0.063,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.58,
+      "latency_s": 3.57,
       "schema_ok": true,
       "cited_numbers_raw": [
         "16",
@@ -1619,7 +1706,7 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.25,
+      "latency_s": 3.31,
       "schema_ok": true,
       "cited_numbers_raw": [
         "1"
@@ -1640,7 +1727,7 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.29,
+      "latency_s": 3.32,
       "schema_ok": true,
       "cited_numbers_raw": [
         "5",
@@ -1662,7 +1749,7 @@
         "saving_gbp": 0.007,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.82,
+      "latency_s": 3.85,
       "schema_ok": true,
       "cited_numbers_raw": [
         "16",
@@ -1685,7 +1772,7 @@
         "saving_gbp": 0.084,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.75,
+      "latency_s": 3.71,
       "schema_ok": true,
       "cited_numbers_raw": [
         "8",
@@ -1707,7 +1794,7 @@
         "saving_gbp": 0.011,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.6,
+      "latency_s": 3.55,
       "schema_ok": true,
       "cited_numbers_raw": [
         "9",
@@ -1730,7 +1817,7 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.4,
+      "latency_s": 3.37,
       "schema_ok": true,
       "cited_numbers_raw": [
         "12"
@@ -1751,7 +1838,7 @@
         "saving_gbp": 0.007,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.62,
+      "latency_s": 3.52,
       "schema_ok": true,
       "cited_numbers_raw": [
         "16",
@@ -1773,7 +1860,7 @@
         "saving_gbp": 0.456,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.88,
+      "latency_s": 3.83,
       "schema_ok": true,
       "cited_numbers_raw": [
         "20",
@@ -1795,7 +1882,7 @@
         "saving_gbp": 0.008,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.35,
+      "latency_s": 3.33,
       "schema_ok": true,
       "cited_numbers_raw": [
         "8"
@@ -1816,7 +1903,7 @@
         "saving_gbp": 0.028,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.74,
+      "latency_s": 3.65,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.028",
@@ -1838,7 +1925,7 @@
         "saving_gbp": 0.021,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.42,
+      "latency_s": 3.44,
       "schema_ok": true,
       "cited_numbers_raw": [
         "17",
@@ -1860,7 +1947,7 @@
         "saving_gbp": 0.016,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.65,
+      "latency_s": 3.59,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0",
@@ -1882,7 +1969,7 @@
         "saving_gbp": 0.036,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.86,
+      "latency_s": 3.65,
       "schema_ok": true,
       "cited_numbers_raw": [
         "7",
@@ -1904,7 +1991,7 @@
         "saving_gbp": 0.008,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.41,
+      "latency_s": 3.5,
       "schema_ok": true,
       "cited_numbers_raw": [
         "8"
@@ -1925,7 +2012,7 @@
         "saving_gbp": 0.057,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.4,
+      "latency_s": 3.43,
       "schema_ok": true,
       "cited_numbers_raw": [
         "19",
@@ -1947,7 +2034,7 @@
         "saving_gbp": 0.004,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.92,
+      "latency_s": 3.88,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.004",
@@ -1971,7 +2058,7 @@
         "saving_gbp": 0.082,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.59,
+      "latency_s": 3.4,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.082"
@@ -1992,7 +2079,7 @@
         "saving_gbp": 0.029,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.52,
+      "latency_s": 3.43,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.029"
@@ -2013,7 +2100,7 @@
         "saving_gbp": 0.01,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.77,
+      "latency_s": 3.74,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.01"
@@ -2034,7 +2121,7 @@
         "saving_gbp": 0.078,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.79,
+      "latency_s": 3.7,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.078",
@@ -2056,7 +2143,7 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.58,
+      "latency_s": 3.48,
       "schema_ok": true,
       "cited_numbers_raw": [
         "6",
@@ -2078,7 +2165,7 @@
         "saving_gbp": 0.006,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.67,
+      "latency_s": 3.61,
       "schema_ok": true,
       "cited_numbers_raw": [
         "12",
@@ -2100,7 +2187,7 @@
         "saving_gbp": 0.004,
         "kind": "appliance_defer"
       },
-      "latency_s": 4.1,
+      "latency_s": 3.94,
       "schema_ok": true,
       "cited_numbers_raw": [
         "2",
@@ -2123,7 +2210,7 @@
         "saving_gbp": 0.049,
         "kind": "appliance_defer"
       },
-      "latency_s": 4.01,
+      "latency_s": 3.77,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0",
@@ -2146,7 +2233,7 @@
         "saving_gbp": 0.177,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.81,
+      "latency_s": 3.65,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.177"
@@ -2167,7 +2254,7 @@
         "saving_gbp": 0.064,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.55,
+      "latency_s": 3.44,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.064"
@@ -2188,7 +2275,7 @@
         "saving_gbp": 0.005,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.54,
+      "latency_s": 3.47,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.005"
@@ -2209,7 +2296,7 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.23,
+      "latency_s": 3.17,
       "schema_ok": true,
       "cited_numbers_raw": [
         "12"
@@ -2230,7 +2317,7 @@
         "saving_gbp": 0.203,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.9,
+      "latency_s": 3.81,
       "schema_ok": true,
       "cited_numbers_raw": [
         "18",
@@ -2252,7 +2339,7 @@
         "saving_gbp": 0.005,
         "kind": "appliance_defer"
       },
-      "latency_s": 4.01,
+      "latency_s": 3.84,
       "schema_ok": true,
       "cited_numbers_raw": [
         "2",
@@ -2275,7 +2362,7 @@
         "saving_gbp": 0.025,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.92,
+      "latency_s": 3.72,
       "schema_ok": true,
       "cited_numbers_raw": [
         "16",
@@ -2298,7 +2385,7 @@
         "saving_gbp": 0.008,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.41,
+      "latency_s": 3.3,
       "schema_ok": true,
       "cited_numbers_raw": [
         "8"
@@ -2319,7 +2406,7 @@
         "saving_gbp": 0.091,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.61,
+      "latency_s": 3.51,
       "schema_ok": true,
       "cited_numbers_raw": [
         "8",
@@ -2341,7 +2428,7 @@
         "saving_gbp": 0.21,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.56,
+      "latency_s": 3.44,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.21"
@@ -2383,7 +2470,7 @@
         "saving_gbp": 0.122,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.81,
+      "latency_s": 3.69,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.122"
@@ -2404,7 +2491,7 @@
         "saving_gbp": 0.017,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.91,
+      "latency_s": 3.76,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.017",
@@ -2426,7 +2513,7 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.72,
+      "latency_s": 3.55,
       "schema_ok": true,
       "cited_numbers_raw": [
         "5"
@@ -2447,7 +2534,7 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.61,
+      "latency_s": 3.55,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0"
@@ -2468,7 +2555,7 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.72,
+      "latency_s": 3.62,
       "schema_ok": true,
       "cited_numbers_raw": [
         "2",
@@ -2490,7 +2577,7 @@
         "saving_gbp": 0.009,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.92,
+      "latency_s": 3.77,
       "schema_ok": true,
       "cited_numbers_raw": [
         "2",
@@ -2513,7 +2600,7 @@
         "saving_gbp": 0.099,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.86,
+      "latency_s": 3.68,
       "schema_ok": true,
       "cited_numbers_raw": [
         "8",
@@ -2536,7 +2623,7 @@
         "saving_gbp": 0.004,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.54,
+      "latency_s": 3.59,
       "schema_ok": true,
       "cited_numbers_raw": [
         "2",
@@ -2558,7 +2645,7 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.74,
+      "latency_s": 3.62,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0",
@@ -2580,7 +2667,7 @@
         "saving_gbp": 0.019,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.96,
+      "latency_s": 3.82,
       "schema_ok": true,
       "cited_numbers_raw": [
         "4",
@@ -2605,7 +2692,7 @@
         "saving_gbp": 0.083,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.66,
+      "latency_s": 3.53,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.083"
@@ -2626,7 +2713,7 @@
         "saving_gbp": 0.045,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.84,
+      "latency_s": 3.73,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0",

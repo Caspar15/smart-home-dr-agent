@@ -154,7 +154,9 @@
     "energy_conservation": {
       "demand_total_mwh": 3.474,
       "served_total_mwh": 3.474,
-      "diff_pct": 0.0
+      "diff_pct": 0.0,
+      "terminal_buffer_debt_kwh": 0.0,
+      "note": "deficit = un-released deferred energy at horizon end"
     }
   },
   "independent": {
@@ -352,7 +354,9 @@
     "energy_conservation": {
       "demand_total_mwh": 3.474,
       "served_total_mwh": 3.471,
-      "diff_pct": -0.062
+      "diff_pct": -0.062,
+      "terminal_buffer_debt_kwh": 2.139,
+      "note": "deficit = un-released deferred energy at horizon end"
     }
   },
   "coordinated": {
@@ -361,9 +365,9 @@
     "days": 14.0,
     "user": {
       "total_cost_baseline_gbp": 540.39,
-      "total_cost_after_gbp": 532.15,
-      "mean_household_saving_pct": 1.1,
-      "weighted_total_saving_pct": 1.52,
+      "total_cost_after_gbp": 539.81,
+      "mean_household_saving_pct": 0.15,
+      "weighted_total_saving_pct": 0.11,
       "tariff_note": "fixed ToU only; dynamic surcharge not billed",
       "per_house": [
         {
@@ -395,8 +399,8 @@
           "demand_kwh": 535.049875,
           "served_kwh": 535.049875,
           "cost_baseline_gbp": 75.72,
-          "cost_after_gbp": 76.46,
-          "saving_pct": -0.97
+          "cost_after_gbp": 75.21,
+          "saving_pct": 0.68
         },
         {
           "house": 6,
@@ -411,24 +415,24 @@
           "demand_kwh": 411.1628333333333,
           "served_kwh": 411.1628333333333,
           "cost_baseline_gbp": 54.69,
-          "cost_after_gbp": 50.18,
-          "saving_pct": 8.23
+          "cost_after_gbp": 54.77,
+          "saving_pct": -0.15
         },
         {
           "house": 8,
           "demand_kwh": 193.72941666666665,
           "served_kwh": 193.72941666666665,
           "cost_baseline_gbp": 26.3,
-          "cost_after_gbp": 26.39,
-          "saving_pct": -0.35
+          "cost_after_gbp": 26.38,
+          "saving_pct": -0.29
         },
         {
           "house": 9,
           "demand_kwh": 387.544875,
           "served_kwh": 387.544875,
           "cost_baseline_gbp": 58.94,
-          "cost_after_gbp": 56.78,
-          "saving_pct": 3.67
+          "cost_after_gbp": 60.29,
+          "saving_pct": -2.29
         },
         {
           "house": 10,
@@ -443,8 +447,8 @@
           "demand_kwh": 378.1139583333333,
           "served_kwh": 378.1139583333333,
           "cost_baseline_gbp": 59.82,
-          "cost_after_gbp": 57.97,
-          "saving_pct": 3.09
+          "cost_after_gbp": 57.56,
+          "saving_pct": 3.77
         },
         {
           "house": 15,
@@ -473,10 +477,10 @@
         {
           "house": 18,
           "demand_kwh": 394.69325,
-          "served_kwh": 394.69325,
+          "served_kwh": 394.6932083333333,
           "cost_baseline_gbp": 53.44,
-          "cost_after_gbp": 53.85,
-          "saving_pct": -0.76
+          "cost_after_gbp": 55.08,
+          "saving_pct": -3.06
         },
         {
           "house": 20,
@@ -498,7 +502,7 @@
       "total_decisions": 124,
       "total_accepted": 110,
       "total_accept_rate": 0.887,
-      "surface_messages_total": 828,
+      "surface_messages_total": 821,
       "avg_decisions_per_house": 8.27,
       "max_decisions_per_house": 23,
       "per_house_decisions": {
@@ -524,33 +528,35 @@
         "jain_total": 0.6351,
         "jain_total_active": 0.6805
       },
-      "release_chunk_wait_mean_min": 314.3,
+      "release_chunk_wait_mean_min": 292.8,
       "release_chunk_wait_p95_min": 360.0,
       "release_chunk_wait_max_min": 440.0,
-      "n_release_chunks": 513
+      "n_release_chunks": 611
     },
     "rebound": {
-      "off_peak_rebound_mean_kw": 1.006,
-      "off_peak_rebound_p95_kw": 14.0,
-      "off_peak_rebound_max_kw": 14.376
+      "off_peak_rebound_mean_kw": -0.266,
+      "off_peak_rebound_p95_kw": 7.109,
+      "off_peak_rebound_max_kw": 14.0
     },
     "grid": {
       "agg_demand_p95_kw": 26.79,
-      "agg_served_p95_kw": 19.48,
-      "p95_reduction_pct": 27.28,
+      "agg_served_p95_kw": 18.65,
+      "p95_reduction_pct": 30.39,
       "agg_demand_peak_kw": 40.37,
       "agg_served_peak_kw": 32.41,
       "peak_window_mean_demand_kw": 9.54,
-      "peak_window_mean_served_kw": 9.35,
-      "peak_window_reduction_pct": 2.04,
+      "peak_window_mean_served_kw": 9.36,
+      "peak_window_reduction_pct": 1.87,
       "off_peak_max_demand_kw": 40.37,
-      "off_peak_max_served_kw": 29.62,
-      "rebound_increase_kw": -10.75
+      "off_peak_max_served_kw": 26.33,
+      "rebound_increase_kw": -14.03
     },
     "energy_conservation": {
       "demand_total_mwh": 3.474,
       "served_total_mwh": 3.472,
-      "diff_pct": -0.051
+      "diff_pct": -0.051,
+      "terminal_buffer_debt_kwh": 1.775,
+      "note": "deficit = un-released deferred energy at horizon end"
     }
   },
   "data_quality": {

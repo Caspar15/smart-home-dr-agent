@@ -43,25 +43,25 @@
     },
     "coord_only": {
       "peak_kw": 32.41,
-      "p95_kw": 19.49,
+      "p95_kw": 18.58,
       "appliance_decisions": 0,
       "ev_decisions": 44,
       "ev": true,
       "agent": "off",
       "coordinator": "on",
       "peak_red_pct": 19.7,
-      "p95_red_pct": 27.2
+      "p95_red_pct": 30.6
     },
     "full": {
       "peak_kw": 32.41,
-      "p95_kw": 19.48,
+      "p95_kw": 18.65,
       "appliance_decisions": 80,
       "ev_decisions": 44,
       "ev": true,
       "agent": "on (excl. EV)",
       "coordinator": "on",
       "peak_red_pct": 19.7,
-      "p95_red_pct": 27.3
+      "p95_red_pct": 30.4
     }
   }
 }

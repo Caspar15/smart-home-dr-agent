@@ -42,17 +42,21 @@ REFIT 16 UK houses (10-min, cleaned + time-aligned)
    ▼ evaluation                    peak / P95 / valley-fill / Jain fairness / energy conservation
 ```
 
-**Validated result** (v2 pipeline: 15 non-solar houses, noon-anchored exact
-14.0-day test, 85% accept, seed-42 + fixed EV seed, train-derived threshold
-17.7 kW): coordinated peak **40.37 → 32.41 kW (−19.7%)**, P95 **26.79 → 19.44 kW
-(−27.4%)**, energy conserved (−0.01%). Decision-level events: 58 appliance
-(91.4% accepted) + 44 EV advisories (88.6%) = **102 user decisions** (trace
+**Validated result** (final freeze @6062100: 15 non-solar houses, noon-anchored
+exact 14.0-day test, 85% accept, arrival-feasible EDF advisory coordinator,
+train-derived threshold 17.7 kW): coordinated peak **40.37 → 32.41 kW (−19.7%)**,
+P95 **26.79 → 18.65 kW (−30.4%)**; terminal buffer debt 1.78 kWh (−0.051%,
+disclosed — not a conservation bug). Decision-level events: 80 appliance
+(88.7% accepted) + 44 EV advisories (88.6%) = **124 user decisions** (trace
 messages reported separately). Mechanism decomposition (factorial): the EV
-advisory stagger alone delivers −19.7% peak / −27.2% P95; the appliance layer
-alone ~0.2pp — the paper presents this semi-synthetic EV scenario decomposition
-explicitly. Multi-seed (5 seeds): peak 29.40±2.77 kW. Cross-season P95
-−22.9…−35.2%. 64 unit tests pass. Full provenance in
-`reports/multi_household/run_manifest.json`; audit trail in `../AUDIT_2026-07-19.md`.
+advisory coordinator ALONE delivers −19.7% peak / −30.6% P95; the appliance
+layer alone ~0. Scheduling is simple and replaceable (EDF beats the 2 h
+stagger; random is useless) — the contribution is the acceptance-gated
+advisory mechanism, with an honest grid-vs-bill trade-off reported (EDF grid-
+optimal, near-zero bill saving; stagger bill-friendly, −27.3% P95). Multi-seed
+(10 seeds): peak 27.94±2.46 kW. Cross-season P95 −28.5…−37.0%. 64 unit tests
+pass. Provenance: `reports/multi_household/artifact_manifest.json`
+(inputs/outputs/volatile SHA256); audit trail in `../AUDIT_2026-07-19.md`.
 
 ### How to run it
 
