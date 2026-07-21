@@ -31,12 +31,12 @@ reproduction/                       ← run multi_household commands from here
 ## The multi-household system (current focus)
 
 ```
-REFIT 16 UK houses (10-min, cleaned + time-aligned)
+REFIT 15 non-solar UK houses (10-min, cleaned + time-aligned)
    │
    ▼ per-house CNN-LSTM            next-step / 24h baseload forecast
    ▼ aggregator (price broadcast)  sum forecasts → dynamic ToU + peak flag + hold-release
    ▼ appliance-aware controller    defer flexible cycles (washer…), comfort cap, off-peak drain
-   ▼ EV advisory coordinator       stagger the 5 EVs across the overnight trough (accept-gated)
+   ▼ EV advisory coordinator       arrival-feasible EDF placement of the 5 EVs (accept-gated)
    ▼ LLM advisory v2               facts → Llama 3.1 (local) → validate (no hallucinated units)
    ▼ closed-loop learning          accept/reject/modify → suppress rejected patterns
    ▼ evaluation                    peak / P95 / valley-fill / Jain fairness / energy conservation
@@ -70,7 +70,10 @@ ollama pull llama3.1:8b
 python -m multi_household.experiments.pre_cache
 python -m multi_household.experiments.train_all
 
-# 2. end-to-end rollout (baseline / independent / coordinated)
+# 2. ⭐ ONE command → all formal artifacts + SHA256 manifest (paper numbers)
+python -m multi_household.experiments.regen_all     # --skip-seasons / --skip-llm
+
+# 2b. or individually: end-to-end rollout (baseline / independent / coordinated)
 python -m multi_household.experiments.rollout --days 14 --mode all --user-accept 0.85
 
 # 3. metrics + ablations
@@ -78,7 +81,7 @@ python -m multi_household.experiments.metrics          # incl. per-house NaN dis
 python -m multi_household.experiments.ablations --days 14   # forecast / accept / closed-loop
 
 # 3b. rigor + baselines
-python -m multi_household.experiments.multiseed --days 14        # error bars (5 seeds)
+python -m multi_household.experiments.multiseed --days 14        # error bars (10 seeds)
 python -m multi_household.experiments.mpc_baseline --days 14     # controller ladder (MPC bound)
 python -m multi_household.experiments.fairness_sweep --days 14   # Jain vs shaving trade-off
 
@@ -87,7 +90,7 @@ python -m multi_household.experiments.personalized_demo --house 7 --day 5
 python -m multi_household.experiments.daily_summary     --house 7 --day 5
 
 # tests
-python -m pytest multi_household/tests/ -q          # 61 tests
+python -m pytest multi_household/tests/ -q          # 64 tests
 ```
 
 **Where results go** (not just the terminal — they persist as files):

@@ -21,7 +21,7 @@ REFIT 15 non-solar houses (10-min, deglitched + clean-window + common-grid align
    │                    + hold-release (anti-rebound, broadcast to all houses)
    ▼ agent/             appliance_controller: rising-edge defer, per-appliance
    │                    cooldown, comfort cap (force-run), off-peak trickle drain
-   ▼ aggregator/        ev_coordinator: stagger the 5 EVs across the overnight trough
+   ▼ aggregator/        ev_coordinator: arrival-feasible EDF placement of the 5 EVs
    │                    — ADVISORY (accept-gated), the dominant peak lever
    ▼ llm/               advisor: facts → Llama 3.1 (local Ollama) → validate
    │                    (fact citations + kWh/MWh unit check) → personalized zh
@@ -41,7 +41,7 @@ multi_household/
 ├── forecasting/per_house_lstm.py    CNN-LSTM (train-only scaler, chronological split)
 ├── aggregator/
 │   ├── price_broadcast.py    aggregate + dynamic price + peak/hold-release
-│   └── ev_coordinator.py     EV advisory stagger (accept-gated; the big peak lever)
+│   └── ev_coordinator.py     EV advisory placement — EDF default, stagger/random baselines
 ├── agent/appliance_controller.py    the rule controller (defer/release/cooldown)
 ├── llm/advisor.py            Llama 3.1 personalized advice + validators + closed loop
 ├── experiments/              pre_cache · train_all · rollout · metrics · ablations
@@ -59,7 +59,7 @@ multi_household/
 - [x] Appliance-aware rule controller (rising-edge, cooldown, comfort cap, drain)
 - [x] LLM advisory v2 — personalized, Llama 3.1 (local), fact-citation + unit validation
 - [x] Closed-loop learning (accept/reject/modify → pattern suppression)
-- [x] EV advisory coordinator (accept-gated stagger of the 5 EVs → the big peak lever)
+- [x] EV advisory coordinator (accept-gated, arrival-feasible EDF; stagger/random baselines)
 - [x] 64 unit tests passing
 - [x] Ablations on clean data (LSTM vs persistence, accept-rate sweep, seeded)
 - [ ] Controller baselines (MPC/RL — reuse `conference/src/agent/`) — next
@@ -75,27 +75,32 @@ multi_household/
 | User decisions | n/a | 162 appliance | **80 appliance (88.7% acc) + 44 EV (88.6%) = 124** |
 
 Decision-level metrics only (trace messages counted separately). Full acceptance
-(100%) → peak **28.53 kW**. The EV reschedule is **advisory** (accept-gated):
-P95 cut 0% / 16.7% / 27.5% / 28.6% at accept 0 / 50 / 85 / 100%.
+(100%) → peak **26.84 kW / P95 18.11**. The EV reschedule is **advisory**
+(accept-gated): P95 cut 0% / 7.7% / 30.4% / 32.4% at accept 0 / 50 / 85 / 100%.
+Grid-vs-bill trade-off disclosed: EDF is grid-optimal but bills stay ~flat
+(EVs placed at arrival-time tariffs); the stagger baseline saves 1.1–1.5% on
+bills at −27.3% P95.
 
 **Mechanism decomposition (factorial, `mechanism_decomposition.py`):** the EV
-advisory stagger ALONE gives −19.7% peak / −27.2% P95; the appliance layer alone
-~0.2pp; natural no-EV demand is 25.82 / 11.62 kW. The system is presented as a
+advisory coordinator ALONE gives −19.7% peak / −30.6% P95; the appliance layer
+alone ~0; natural no-EV demand is 25.82 / 11.62 kW. The system is presented as a
 **semi-synthetic REFIT + deterministic EV-adoption scenario**, decomposed openly.
+Scheduling is replaceable (EDF > stagger > random, all arrival-feasible, paired
+accept stream) — the contribution is the acceptance-gated advisory mechanism.
 
 **Rigor + baselines (v2, 2026-07-19):**
-- Multi-seed (5 seeds incl. EV accept): 85% peak **29.40±2.77 kW**, P95 19.99±0.35.
+- Multi-seed (10 seeds incl. EV accept): 85% peak **27.94±2.46 kW**, P95 19.21±0.49.
   The fixed-EV-seed headline 32.41 sits at the high (conservative) end.
 - Controller ladder: No-DR 40.37 | Rule@85% 32.41 (**50% of bound**) | Rule@100%
-  28.53 (**74%**) | **MPC perfect-foresight bound 24.45 kW**.
+  26.84 (**85%**) | **MPC perfect-foresight bound 24.45 kW**.
 - Grid threshold: train-window p85 = **17.7 kW**, frozen (`derive_threshold.py`);
   legacy 18 kW kept only as a sensitivity point.
 - Data quality: mean NaN **0.50%** (worst house 1.21%); causal ffill ≤6 h only.
-- Closed-loop stress: reject-all appliance history → appliance decisions
-  suppressed (61), P95 27.45→27.27% — the appliance layer contributes +0.2pp.
-- Fairness (decision-level): Jain appliance 0.384 / EV 0.988 / total 0.509;
-  a B=1 daily budget skips 15 decisions at zero grid cost (low event rate:
-  ~0.5 decisions/house/day, so the budget binds only weakly).
+- Closed-loop stress: reject-all appliance history → 84 appliance decisions
+  suppressed, P95 red 30.39→30.64% — the appliance layer's grid margin is ~0.
+- Fairness (decision-level): Jain appliance 0.512 / EV 0.988 / total 0.635;
+  a B=1 daily budget skips 22 decisions at zero grid cost (low event rate:
+  ~0.6 decisions/house/day, so the budget binds only weakly).
 - Forecast honesty: CNN-LSTM one-step MAE **loses to persistence** (263 vs
   192 W per-house; wins 2/15) — DR results are insensitive to this (the EV
   coordinator uses no forecast); the LSTM is NOT a claimed contribution.
