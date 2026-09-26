@@ -1,0 +1,246 @@
+{
+  "note": "peak = single 10-min maximum; it is bimodal across acceptance seeds because it depends on whether rejections coincide on one night. P95 summarises the top 5% of slots and is stable.",
+  "par": {
+    "baseline": {
+      "peak_kw": 40.37,
+      "mean_kw": 10.34,
+      "par": 3.9,
+      "load_factor": 0.256
+    },
+    "independent": {
+      "peak_kw": 34.91,
+      "mean_kw": 10.33,
+      "par": 3.38,
+      "load_factor": 0.296
+    },
+    "coordinated": {
+      "peak_kw": 32.41,
+      "mean_kw": 10.33,
+      "par": 3.14,
+      "load_factor": 0.319
+    },
+    "par_reduction_pct": 19.68
+  },
+  "ten_seed_peak": {
+    "seeds": [
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+    ],
+    "n_low_mode": 8,
+    "low_min_kw": 26.33,
+    "low_max_kw": 26.84,
+    "low_reduction_pct_range": [
+      33.5,
+      34.8
+    ],
+    "n_high_mode": 2,
+    "high_values_kw": [
+      32.76,
+      32.92
+    ],
+    "high_reduction_pct_range": [
+      18.5,
+      18.9
+    ],
+    "p95_mean_kw": 19.21,
+    "p95_sd_kw": 0.491,
+    "p95_sd_pct_of_mean": 2.6,
+    "peak_sd_pct_of_mean": 8.8
+  },
+  "bound_share_pct": {
+    "full_acceptance": 85.0,
+    "low_mode": [
+      85.0,
+      88.2
+    ],
+    "ten_seed_mean": 78.1,
+    "reference_run": 50.0
+  },
+  "reference_night": {
+    "peak_kw": 32.41,
+    "peak_time": "2014-07-12 21:50",
+    "night": "2014-07-12",
+    "houses_above_6kw_at_peak": [
+      5,
+      7,
+      13
+    ],
+    "proposals_that_night": [
+      {
+        "house": 5,
+        "plug_in": "21:00",
+        "accepted": true
+      },
+      {
+        "house": 7,
+        "plug_in": "21:30",
+        "accepted": false
+      },
+      {
+        "house": 13,
+        "plug_in": "21:30",
+        "accepted": false
+      },
+      {
+        "house": 18,
+        "plug_in": "23:20",
+        "accepted": true
+      }
+    ],
+    "ev_proposals_total": 44,
+    "ev_proposals_rejected": 5
+  },
+  "ev_only_by_seed": [
+    {
+      "seed": 41,
+      "peak_kw": 26.84,
+      "p95_kw": 19.37,
+      "peak_night": "2014-07-01",
+      "rejections_on_peak_night": 0,
+      "peak_time": "07-02 05:20",
+      "base_kw_at_peak": 12.84,
+      "ev_kw_at_peak": 14.0,
+      "max_vehicles_charging_at_once": 3,
+      "vehicles_charging_at_peak": 2,
+      "of_which_rejected_at_peak": 0
+    },
+    {
+      "seed": 42,
+      "peak_kw": 26.38,
+      "p95_kw": 19.01,
+      "peak_night": "2014-07-11",
+      "rejections_on_peak_night": 0,
+      "peak_time": "07-12 07:00",
+      "base_kw_at_peak": 12.38,
+      "ev_kw_at_peak": 14.0,
+      "max_vehicles_charging_at_once": 3,
+      "vehicles_charging_at_peak": 2,
+      "of_which_rejected_at_peak": 0
+    },
+    {
+      "seed": 43,
+      "peak_kw": 32.84,
+      "p95_kw": 19.3,
+      "peak_night": "2014-07-10",
+      "rejections_on_peak_night": 3,
+      "peak_time": "07-10 23:00",
+      "base_kw_at_peak": 4.84,
+      "ev_kw_at_peak": 28.0,
+      "max_vehicles_charging_at_once": 4,
+      "vehicles_charging_at_peak": 4,
+      "of_which_rejected_at_peak": 3
+    },
+    {
+      "seed": 44,
+      "peak_kw": 32.19,
+      "p95_kw": 19.08,
+      "peak_night": "2014-07-05",
+      "rejections_on_peak_night": 3,
+      "peak_time": "07-05 23:10",
+      "base_kw_at_peak": 4.19,
+      "ev_kw_at_peak": 28.0,
+      "max_vehicles_charging_at_once": 4,
+      "vehicles_charging_at_peak": 4,
+      "of_which_rejected_at_peak": 3
+    },
+    {
+      "seed": 45,
+      "peak_kw": 26.84,
+      "p95_kw": 18.69,
+      "peak_night": "2014-07-01",
+      "rejections_on_peak_night": 0,
+      "peak_time": "07-02 05:20",
+      "base_kw_at_peak": 12.84,
+      "ev_kw_at_peak": 14.0,
+      "max_vehicles_charging_at_once": 2,
+      "vehicles_charging_at_peak": 2,
+      "of_which_rejected_at_peak": 0
+    },
+    {
+      "seed": 46,
+      "peak_kw": 26.51,
+      "p95_kw": 18.73,
+      "peak_night": "2014-07-01",
+      "rejections_on_peak_night": 1,
+      "peak_time": "07-02 02:00",
+      "base_kw_at_peak": 5.51,
+      "ev_kw_at_peak": 21.0,
+      "max_vehicles_charging_at_once": 3,
+      "vehicles_charging_at_peak": 3,
+      "of_which_rejected_at_peak": 1
+    },
+    {
+      "seed": 47,
+      "peak_kw": 26.82,
+      "p95_kw": 20.18,
+      "peak_night": "2014-07-03",
+      "rejections_on_peak_night": 2,
+      "peak_time": "07-03 22:50",
+      "base_kw_at_peak": 5.82,
+      "ev_kw_at_peak": 21.0,
+      "max_vehicles_charging_at_once": 3,
+      "vehicles_charging_at_peak": 3,
+      "of_which_rejected_at_peak": 2
+    },
+    {
+      "seed": 48,
+      "peak_kw": 26.82,
+      "p95_kw": 19.01,
+      "peak_night": "2014-07-03",
+      "rejections_on_peak_night": 3,
+      "peak_time": "07-03 22:50",
+      "base_kw_at_peak": 5.82,
+      "ev_kw_at_peak": 21.0,
+      "max_vehicles_charging_at_once": 3,
+      "vehicles_charging_at_peak": 3,
+      "of_which_rejected_at_peak": 3
+    },
+    {
+      "seed": 49,
+      "peak_kw": 26.84,
+      "p95_kw": 18.81,
+      "peak_night": "2014-07-01",
+      "rejections_on_peak_night": 0,
+      "peak_time": "07-02 05:20",
+      "base_kw_at_peak": 12.84,
+      "ev_kw_at_peak": 14.0,
+      "max_vehicles_charging_at_once": 3,
+      "vehicles_charging_at_peak": 2,
+      "of_which_rejected_at_peak": 0
+    },
+    {
+      "seed": 50,
+      "peak_kw": 26.79,
+      "p95_kw": 19.36,
+      "peak_night": "2014-07-13",
+      "rejections_on_peak_night": 2,
+      "peak_time": "07-14 01:10",
+      "base_kw_at_peak": 5.79,
+      "ev_kw_at_peak": 21.0,
+      "max_vehicles_charging_at_once": 3,
+      "vehicles_charging_at_peak": 3,
+      "of_which_rejected_at_peak": 2
+    },
+    {
+      "seed": 20260710,
+      "peak_kw": 32.41,
+      "p95_kw": 18.58,
+      "peak_night": "2014-07-12",
+      "rejections_on_peak_night": 2,
+      "peak_time": "07-12 21:50",
+      "base_kw_at_peak": 11.41,
+      "ev_kw_at_peak": 21.0,
+      "max_vehicles_charging_at_once": 3,
+      "vehicles_charging_at_peak": 3,
+      "of_which_rejected_at_peak": 2
+    }
+  ]
+}

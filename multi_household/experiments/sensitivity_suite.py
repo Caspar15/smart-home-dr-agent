@@ -103,8 +103,11 @@ def run_training_seed(base_seed: int) -> dict:
     tag = f"train_seed_{base_seed}"
     mdir = REPRO / "multi_household" / f"models_ts{base_seed}"
     print(f"\n=== {tag} (models → {mdir.name}) ===", flush=True)
-    env = dict(**__import__("os").environ, MH_MODEL_DIR=str(mdir),
-               PYTHONIOENCODING="utf-8")
+    # NOTE: build by copy-then-update. dict(**os.environ, KEY=...) raises
+    # TypeError when the caller already exports that variable (regen_all does
+    # export PYTHONIOENCODING), which silently broke this whole step.
+    env = __import__("os").environ.copy()
+    env.update(MH_MODEL_DIR=str(mdir), PYTHONIOENCODING="utf-8")
     t0 = time.time()
     r = subprocess.run([sys.executable, "-m",
                         "multi_household.experiments.train_all",

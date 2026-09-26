@@ -59,6 +59,13 @@ def _fact_numbers(facts: dict) -> set[str]:
     CORRECTLY converting the hour, not inventing numbers."""
     out: set[str] = set()
     for k, v in facts.items():
+        if isinstance(v, str):
+            # An index carried by a string fact is still a fact. Without this,
+            # "appliance": "washing_machine_2" made every message that named
+            # the appliance correctly look like it invented the number 2 —
+            # 7 of 20 flagged messages were this false positive.
+            out |= set(_NUM.findall(v))
+            continue
         if isinstance(v, (int, float)):
             f = float(v)
             for s in (f"{f:g}", f"{f:.0f}", f"{f:.1f}", f"{f:.2f}", f"{f:.3f}"):
@@ -122,32 +129,49 @@ def _call(model: str, facts: dict, timeout_s: int = 120) -> tuple[dict | None, f
         return None, time.time() - t0, f"<error: {e}>"
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--model", default="llama3.1:8b")
-    ap.add_argument("--limit", type=int, default=None,
-                    help="cap number of events (debug)")
-    args = ap.parse_args()
+def _server_env(model: str) -> dict:
+    """Which Ollama build and which model blob produced this run.
 
-    recs = json.loads((REPORTS / "rollout_coordinated_recs.json")
-                      .read_text(encoding="utf-8"))
-    events = [r for r in recs if r.get("event_type") in DECISION_TYPES]
-    if args.limit:
-        events = events[:args.limit]
-    print(f"model={args.model}  events={len(events)}")
+    The tag alone is not a specification. Two runs of this harness, both
+    `llama3.1:8b`, both seed 20260719, gave grounded-message rates of 0.9839
+    (July) and 0.9435 (September) while the blob digest was provably
+    unchanged — so the difference came from the server, not the weights.
+    Record both so a future reader can tell the cases apart.
+    """
+    env: dict = {"model_tag": model}
+    try:
+        with urllib.request.urlopen("http://localhost:11434/api/version", timeout=5) as r:
+            env["ollama_version"] = json.load(r).get("version")
+    except Exception as exc:
+        env["ollama_version"] = f"<unavailable: {exc}>"
+    try:
+        with urllib.request.urlopen("http://localhost:11434/api/tags", timeout=5) as r:
+            for m in json.load(r).get("models", []):
+                if m.get("name") == model:
+                    env["model_digest"] = m.get("digest")
+                    env["model_modified_at"] = m.get("modified_at")
+                    env["quantization"] = (m.get("details") or {}).get("quantization_level")
+                    env["parameter_size"] = (m.get("details") or {}).get("parameter_size")
+                    break
+    except Exception as exc:
+        env["model_digest"] = f"<unavailable: {exc}>"
+    return env
 
+
+def _evaluate(model: str, events: list) -> tuple[dict, list]:
+    """One full pass over `events`. Returns (summary, rows)."""
     rows = []
     n_ok = n_cited_ok = n_halluc_msg = n_unit_bad = 0
     n_transport_fail = n_schema_fail = n_retried = 0
     latencies = []
     for i, r in enumerate(events):
         facts = _event_facts(r)
-        parsed, dt, raw = _call(args.model, facts)
+        parsed, dt, raw = _call(model, facts)
         if raw.startswith("<error:"):
             # One documented retry on transport error/timeout (environmental,
             # e.g. GPU cold start) — retries are counted and disclosed.
             n_retried += 1
-            parsed, dt, raw = _call(args.model, facts)
+            parsed, dt, raw = _call(model, facts)
         latencies.append(dt)
         transport_ok = not raw.startswith("<error:")
         ok = (parsed is not None and isinstance(parsed.get("message_zh"), str)
@@ -198,7 +222,7 @@ def main():
     # was schema-valid and all failures were 122 s timeouts.
     n_completed = n - n_transport_fail
     summary = {
-        "model": args.model,
+        "model": model,
         "scope": ("pre-decision recommendation messages (facts exclude the "
                   "user's eventual accept/reject outcome)"),
         "n_events": n,
@@ -217,11 +241,72 @@ def main():
                  "decisions; grid results are attributed to the coordination "
                  "mechanism (see mechanism_decomposition.json)"),
     }
+    return summary, rows
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--model", default="llama3.1:8b")
+    ap.add_argument("--limit", type=int, default=None,
+                    help="cap number of events (debug)")
+    ap.add_argument("--repeats", type=int, default=1,
+                    help="repeat the whole evaluation N times. Three repeats "
+                         "in one session came back bit-identical, so at a fixed "
+                         "seed the harness IS deterministic against a given "
+                         "server. It is not stable across sessions: the same "
+                         "model digest and seed gave 0.9839 in July and 0.9435 "
+                         "in September. Repeats establish which of the two you "
+                         "are looking at; `server_env` in the output records "
+                         "the build and blob that produced it.")
+    args = ap.parse_args()
+
+    recs = json.loads((REPORTS / "rollout_coordinated_recs.json")
+                      .read_text(encoding="utf-8"))
+    events = [r for r in recs if r.get("event_type") in DECISION_TYPES]
+    if args.limit:
+        events = events[:args.limit]
+    print(f"model={args.model}  events={len(events)}  repeats={args.repeats}")
+
+    runs = []
+    for k in range(args.repeats):
+        if args.repeats > 1:
+            print(f"--- repeat {k + 1}/{args.repeats}")
+        summary, rows = _evaluate(args.model, events)
+        runs.append({"summary": summary, "rows": rows})
+
+    out = {"summary": runs[-1]["summary"], "rows": runs[-1]["rows"],
+           "server_env": _server_env(args.model)}
+    if args.repeats > 1:
+        # Report the spread, not just the last pass — a single figure would
+        # look more reproducible than the interface actually is.
+        keys = ("call_completion_rate", "schema_valid_rate_of_completed",
+                "msg_all_citations_grounded_rate",
+                "msg_with_ungrounded_number_rate", "msg_with_unit_error_rate")
+        spread = {}
+        for key in keys:
+            vals = [r["summary"][key] for r in runs
+                    if r["summary"].get(key) is not None]
+            if vals:
+                spread[key] = {
+                    "n_runs": len(vals), "values": vals,
+                    "mean": round(sum(vals) / len(vals), 4),
+                    "min": min(vals), "max": max(vals),
+                }
+        out["repeatability"] = {
+            "n_repeats": args.repeats,
+            "note": ("same model, same decoding options and seed; the spread "
+                     "below is run-to-run variance of the local server, not "
+                     "sampling over events"),
+            "per_metric": spread,
+        }
+        out["summary"] = dict(out["summary"], n_repeats=args.repeats)
+        out["all_runs"] = [r["summary"] for r in runs]
+
     safe = args.model.replace(":", "_").replace("/", "_")
     dst = REPORTS / f"llm_eval_{safe}.json"
-    dst.write_text(json.dumps({"summary": summary, "rows": rows},
-                              ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps(summary, ensure_ascii=False, indent=2))
+    dst.write_text(json.dumps(out, ensure_ascii=False, indent=2),
+                   encoding="utf-8")
+    print(json.dumps(out.get("repeatability", out["summary"]),
+                     ensure_ascii=False, indent=2))
     print(f"saved {dst}")
 
 

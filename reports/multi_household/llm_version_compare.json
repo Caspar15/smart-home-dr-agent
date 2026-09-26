@@ -1,0 +1,122 @@
+{
+  "note": "both runs re-scored with the CURRENT llm_contract checks, so the comparison reflects the generated text and not a change of scorer; figures each run's own harness printed are not comparable across scorer versions",
+  "baseline_ref": "HEAD",
+  "model": "llama3.1:8b",
+  "baseline_server": null,
+  "current_server": {
+    "model_tag": "llama3.1:8b",
+    "ollama_version": "0.34.3",
+    "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+    "model_modified_at": "2026-06-27T15:32:24.4228566+08:00",
+    "quantization": "Q4_K_M",
+    "parameter_size": "8.0B",
+    "recorded": "queried from the same running server minutes after the run; the capture was added to llm_eval.py after this evaluation had already started"
+  },
+  "messages_compared": 124,
+  "messages_with_different_text": 104,
+  "messages_with_different_text_pct": 83.9,
+  "baseline": {
+    "n_messages": 124,
+    "per_check": {
+      "schema_ok": {
+        "passed": 124,
+        "applicable": 124,
+        "rate": 1.0
+      },
+      "numbers_grounded": {
+        "passed": 120,
+        "applicable": 124,
+        "rate": 0.9677
+      },
+      "citations_grounded": {
+        "passed": 122,
+        "applicable": 124,
+        "rate": 0.9839
+      },
+      "citation_coverage": {
+        "passed": 92,
+        "applicable": 124,
+        "rate": 0.7419
+      },
+      "units_ok": {
+        "passed": 124,
+        "applicable": 124,
+        "rate": 1.0
+      },
+      "currency_scale_ok": {
+        "passed": 79,
+        "applicable": 80,
+        "rate": 0.9875
+      },
+      "time_explicit": {
+        "passed": 20,
+        "applicable": 44,
+        "rate": 0.4545
+      },
+      "wording_is_proposal": {
+        "passed": 124,
+        "applicable": 124,
+        "rate": 1.0
+      }
+    },
+    "all_checks_passed": 90,
+    "all_checks_pass_rate": 0.7258
+  },
+  "current": {
+    "n_messages": 124,
+    "per_check": {
+      "schema_ok": {
+        "passed": 124,
+        "applicable": 124,
+        "rate": 1.0
+      },
+      "numbers_grounded": {
+        "passed": 111,
+        "applicable": 124,
+        "rate": 0.8952
+      },
+      "citations_grounded": {
+        "passed": 122,
+        "applicable": 124,
+        "rate": 0.9839
+      },
+      "citation_coverage": {
+        "passed": 109,
+        "applicable": 124,
+        "rate": 0.879
+      },
+      "units_ok": {
+        "passed": 124,
+        "applicable": 124,
+        "rate": 1.0
+      },
+      "currency_scale_ok": {
+        "passed": 69,
+        "applicable": 80,
+        "rate": 0.8625
+      },
+      "time_explicit": {
+        "passed": 29,
+        "applicable": 44,
+        "rate": 0.6591
+      },
+      "wording_is_proposal": {
+        "passed": 124,
+        "applicable": 124,
+        "rate": 1.0
+      }
+    },
+    "all_checks_passed": 92,
+    "all_checks_pass_rate": 0.7419
+  },
+  "rate_change_current_minus_baseline": {
+    "schema_ok": 0.0,
+    "numbers_grounded": -0.0725,
+    "citations_grounded": 0.0,
+    "citation_coverage": 0.1371,
+    "units_ok": 0.0,
+    "currency_scale_ok": -0.125,
+    "time_explicit": 0.2046,
+    "wording_is_proposal": 0.0
+  }
+}

@@ -16,5 +16,18 @@
   },
   "peak_red_pct": 25.2,
   "p95_red_pct": 37.0,
-  "energy_drift_pct": 0.0
+  "energy_drift_pct": 0.0,
+  "first_12d": {
+    "test_slots": 1728,
+    "baseline": {
+      "peak_kw": 40.12,
+      "p95_kw": 29.43
+    },
+    "coordinated": {
+      "peak_kw": 30.74,
+      "p95_kw": 19.55
+    },
+    "peak_red_pct": 23.4,
+    "p95_red_pct": 33.6
+  }
 }

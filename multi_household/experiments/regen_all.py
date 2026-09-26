@@ -5,17 +5,23 @@ this script on a clean commit — no mixed-batch artifacts, ever again.
 
 Order (later steps read earlier steps' outputs):
     1. rollout --mode all + metrics        (headline npz/json/figures)
-    2. mechanism_decomposition             (factorial)
-    3. multiseed (10 seeds)                (error bars; raw peaks/p95s)
-    4. ablations                           (forecast / accept / closed-loop)
-    5. fairness_sweep                      (budget sweep)
-    6. mpc_baseline                        (perfect-foresight bound)
-    7. threshold_sweep                     (trigger sensitivity)
-    8. ev_strategy_ladder                  (random / EDF / stagger, paired)
-    9. sensitivity_suite + stats_summary   (cohorts, training seeds, CIs)
-   10. llm_eval                            (needs Ollama; skipped if down)
-   11. seasons (train + eval x4)           (--skip-seasons to omit)
-   12. artifact_manifest.json              (SHA256 of every report/figure +
+    2. forecast_eval                       (CNN-LSTM vs persistence MAE)
+    3. mechanism_decomposition             (factorial)
+    4. multiseed (10 seeds)                (error bars; raw peaks/p95s)
+    5. ablations                           (forecast / accept / closed-loop)
+    6. fairness_sweep                      (budget sweep)
+    7. mpc_baseline                        (perfect-foresight bound)
+    8. threshold_sweep                     (trigger sensitivity)
+    9. ev_strategy_ladder                  (random / EDF / stagger, paired)
+   10. ev_factorial                        (360 paired EV scenarios)
+   11. sensitivity_suite + stats_summary   (cohorts, training seeds, CIs)
+       + peak_analysis                     (PAR; what sets the peak per seed)
+   12. llm_eval x3 + llm_contract          (needs Ollama; skipped if down)
+       + llm_version_compare              (re-scores the archived run)
+   13. seasons (train + eval x4)           (--skip-seasons to omit)
+   14. paper_numbers                       (every citable value + its source;
+                                            MUST be last — it reads 1-13)
+   15. artifact_manifest.json              (SHA256 of every report/figure +
                                             git commit + dirty flag)
 
 Run:  python -m multi_household.experiments.regen_all [--skip-seasons] [--skip-llm]
@@ -36,6 +42,7 @@ STEPS = [
     ("rollout",        ["-m", "multi_household.experiments.rollout",
                         "--days", "14", "--mode", "all", "--user-accept", "0.85"]),
     ("metrics",        ["-m", "multi_household.experiments.metrics"]),
+    ("forecast_eval",  ["-m", "multi_household.experiments.forecast_eval"]),
     ("decomposition",  ["-m", "multi_household.experiments.mechanism_decomposition"]),
     ("multiseed",      ["-m", "multi_household.experiments.multiseed", "--days", "14",
                         "--seeds", "41", "42", "43", "44", "45",
@@ -45,8 +52,10 @@ STEPS = [
     ("mpc_baseline",   ["-m", "multi_household.experiments.mpc_baseline", "--days", "14"]),
     ("threshold_sweep",["-m", "multi_household.experiments.threshold_sweep", "--days", "14"]),
     ("ev_ladder",      ["-m", "multi_household.experiments.ev_strategy_ladder", "--days", "14"]),
+    ("ev_factorial",   ["-m", "multi_household.experiments.ev_factorial"]),
     ("sensitivity",    ["-m", "multi_household.experiments.sensitivity_suite"]),
     ("stats",          ["-m", "multi_household.experiments.stats_summary"]),
+    ("peak_analysis",  ["-m", "multi_household.experiments.peak_analysis"]),
 ]
 
 
@@ -81,13 +90,23 @@ def main():
     steps = list(STEPS)
     if not args.skip_llm:
         if _ollama_up():
-            steps.append(("llm_eval", ["-m", "multi_household.experiments.llm_eval"]))
+            steps.append(("llm_eval", ["-m", "multi_household.experiments.llm_eval",
+                                       "--repeats", "3"]))
+            steps.append(("llm_contract",
+                          ["-m", "multi_household.experiments.llm_contract"]))
+            steps.append(("llm_version_compare",
+                          ["-m", "multi_household.experiments.llm_version_compare"]))
         else:
             print("  (Ollama down — llm_eval skipped; rerun it separately)")
             results["llm_eval"] = "skipped: ollama down"
     if not args.skip_seasons:
         steps.append(("seasons", ["-m", "multi_household.experiments.season_windows",
                                   "--epochs", "30", "--lookback", "48"]))
+
+    # LAST: paper_numbers reads every artifact above, including llm_eval and
+    # the season outputs, which are appended after STEPS. Running it inside
+    # STEPS made it collect stale LLM and season values.
+    steps.append(("paper_numbers", ["-m", "multi_household.experiments.paper_numbers"]))
 
     for name, argv in steps:
         t0 = time.time()

@@ -7,15 +7,16 @@
     "n_transport_failures": 0,
     "n_retried_once": 0,
     "schema_valid_rate_of_completed": 1.0,
-    "msg_all_citations_grounded_rate": 0.9839,
-    "msg_with_ungrounded_number_rate": 0.0484,
+    "msg_all_citations_grounded_rate": 0.9435,
+    "msg_with_ungrounded_number_rate": 0.1613,
     "msg_with_unit_error_rate": 0.0,
     "latency_s": {
-      "mean": 3.62,
-      "p50": 3.6,
-      "p95": 3.84
+      "mean": 3.26,
+      "p50": 3.2,
+      "p95": 3.51
     },
-    "note": "interface characterization only — the LLM makes no control decisions; grid results are attributed to the coordination mechanism (see mechanism_decomposition.json)"
+    "note": "interface characterization only — the LLM makes no control decisions; grid results are attributed to the coordination mechanism (see mechanism_decomposition.json)",
+    "n_repeats": 3
   },
   "rows": [
     {
@@ -28,10 +29,9 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 6.36,
+      "latency_s": 3.2,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "5",
         "23",
         "240"
       ],
@@ -50,7 +50,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.42,
+      "latency_s": 3.24,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -59,7 +59,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 9 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 21:00?"
     },
     {
       "i": 2,
@@ -71,7 +71,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.56,
+      "latency_s": 3.08,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -80,7 +80,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 9 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至21點?"
     },
     {
       "i": 3,
@@ -92,7 +92,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.51,
+      "latency_s": 3.19,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -101,7 +101,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 10 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至明晚 22:00?"
     },
     {
       "i": 4,
@@ -113,10 +113,9 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.68,
+      "latency_s": 3.23,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "18",
         "23",
         "240"
       ],
@@ -135,7 +134,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.53,
+      "latency_s": 3.19,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
@@ -156,17 +155,16 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.54,
+      "latency_s": 3.1,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "9",
         "21",
         "240"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 21:00?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至21點?"
     },
     {
       "i": 7,
@@ -178,10 +176,9 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.58,
+      "latency_s": 3.15,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "18",
         "22",
         "240"
       ],
@@ -200,7 +197,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.6,
+      "latency_s": 3.17,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
@@ -221,19 +218,16 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.79,
+      "latency_s": 3.21,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
         "240"
       ],
-      "hallucinated_numbers": [
-        "0",
-        "1"
-      ],
+      "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至明天凌晨 0:00 至 1:00?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至明晚 23:00?"
     },
     {
       "i": 10,
@@ -245,7 +239,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.49,
+      "latency_s": 3.19,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -254,7 +248,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至今晚 9 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 21 小時?"
     },
     {
       "i": 11,
@@ -266,7 +260,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.54,
+      "latency_s": 3.19,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -275,7 +269,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 9 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 21:00?"
     },
     {
       "i": 12,
@@ -287,7 +281,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.61,
+      "latency_s": 3.13,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -296,7 +290,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 10 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 22 時?"
     },
     {
       "i": 13,
@@ -308,7 +302,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.56,
+      "latency_s": 3.22,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
@@ -329,7 +323,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.6,
+      "latency_s": 3.17,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
@@ -350,7 +344,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.53,
+      "latency_s": 3.2,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -359,7 +353,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 9 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 21:00?"
     },
     {
       "i": 16,
@@ -371,7 +365,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.71,
+      "latency_s": 3.14,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -380,7 +374,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 10 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 22:00?"
     },
     {
       "i": 17,
@@ -392,7 +386,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.7,
+      "latency_s": 3.18,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
@@ -413,7 +407,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.59,
+      "latency_s": 3.17,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -422,7 +416,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至今晚 9 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 21 小時?"
     },
     {
       "i": 19,
@@ -434,7 +428,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.6,
+      "latency_s": 3.15,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -443,7 +437,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 10 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 22 時?"
     },
     {
       "i": 20,
@@ -455,7 +449,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.5,
+      "latency_s": 3.22,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -464,7 +458,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 10 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 22:00?"
     },
     {
       "i": 21,
@@ -476,7 +470,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.48,
+      "latency_s": 3.17,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -485,7 +479,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至今晚 9 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 21 小時?"
     },
     {
       "i": 22,
@@ -497,7 +491,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.44,
+      "latency_s": 3.19,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -506,7 +500,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 10 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 22 時?"
     },
     {
       "i": 23,
@@ -518,7 +512,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.53,
+      "latency_s": 3.18,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -527,7 +521,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 10 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 22:00?"
     },
     {
       "i": 24,
@@ -539,10 +533,9 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.67,
+      "latency_s": 3.19,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "18",
         "23",
         "240"
       ],
@@ -561,7 +554,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.55,
+      "latency_s": 3.2,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -570,7 +563,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 9 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 21:00?"
     },
     {
       "i": 26,
@@ -582,7 +575,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.58,
+      "latency_s": 3.16,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -591,7 +584,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 10 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 22 時?"
     },
     {
       "i": 27,
@@ -603,7 +596,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.52,
+      "latency_s": 3.18,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
@@ -624,10 +617,9 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.76,
+      "latency_s": 3.17,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "18",
         "23",
         "240"
       ],
@@ -646,7 +638,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.57,
+      "latency_s": 3.16,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
@@ -667,7 +659,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.53,
+      "latency_s": 3.19,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -676,7 +668,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至今晚 9 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 21 小時?"
     },
     {
       "i": 31,
@@ -688,7 +680,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.7,
+      "latency_s": 3.09,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -697,7 +689,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 9 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至21點?"
     },
     {
       "i": 32,
@@ -709,7 +701,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.49,
+      "latency_s": 3.22,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -718,7 +710,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 9 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 21:00?"
     },
     {
       "i": 33,
@@ -730,10 +722,9 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.64,
+      "latency_s": 3.26,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "18",
         "23",
         "240"
       ],
@@ -752,7 +743,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.59,
+      "latency_s": 3.21,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -761,7 +752,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 9 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 21:00?"
     },
     {
       "i": 35,
@@ -773,17 +764,16 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.73,
+      "latency_s": 3.1,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "9",
         "21",
         "240"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 21 小時?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至21點?"
     },
     {
       "i": 36,
@@ -795,7 +785,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.62,
+      "latency_s": 3.14,
       "schema_ok": true,
       "cited_numbers_raw": [
         "22",
@@ -804,7 +794,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 10 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 22 時?"
     },
     {
       "i": 37,
@@ -816,7 +806,7 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.49,
+      "latency_s": 3.16,
       "schema_ok": true,
       "cited_numbers_raw": [
         "21",
@@ -825,7 +815,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 9 點?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至晚上 21 小時?"
     },
     {
       "i": 38,
@@ -837,19 +827,16 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.77,
+      "latency_s": 3.2,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
         "240"
       ],
-      "hallucinated_numbers": [
-        "0",
-        "1"
-      ],
+      "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至明天凌晨 0:00 至 1:00?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至明晚 23:00?"
     },
     {
       "i": 39,
@@ -861,10 +848,9 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.62,
+      "latency_s": 3.2,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "13",
         "22",
         "240"
       ],
@@ -883,19 +869,16 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.77,
+      "latency_s": 3.16,
       "schema_ok": true,
       "cited_numbers_raw": [
         "23",
         "240"
       ],
-      "hallucinated_numbers": [
-        "0",
-        "1"
-      ],
+      "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的電動車充電時間調整至明天凌晨 0:00 至 1:00?"
+      "message_zh": "您是否願意將您的電動車充電時間調整至明晚 23:00?"
     },
     {
       "i": 41,
@@ -907,10 +890,9 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.56,
+      "latency_s": 3.17,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "18",
         "23",
         "240"
       ],
@@ -929,10 +911,9 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.63,
+      "latency_s": 3.18,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "13",
         "22",
         "240"
       ],
@@ -951,10 +932,9 @@
         "ev_charge_min": 240,
         "kind": "ev_reschedule"
       },
-      "latency_s": 3.6,
+      "latency_s": 3.27,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "18",
         "23",
         "240"
       ],
@@ -974,7 +954,7 @@
         "saving_gbp": 0.009,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.4,
+      "latency_s": 3.33,
       "schema_ok": true,
       "cited_numbers_raw": [
         "8",
@@ -983,7 +963,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停洗衣機於08:00時?"
+      "message_zh": "您是否願意暫停洗衣機於 8 點時段，節省 £0.009?"
     },
     {
       "i": 45,
@@ -996,17 +976,16 @@
         "saving_gbp": 0.094,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.81,
+      "latency_s": 3.4,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "6",
-        "11",
-        "0.094"
+        "0.094",
+        "11"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延後至下午 11 點以節省 £0.094?"
+      "message_zh": "您是否願意將洗衣機的使用時間延遲至 11 點以節省 £0.094?"
     },
     {
       "i": 46,
@@ -1019,17 +998,16 @@
         "saving_gbp": 0.005,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.77,
+      "latency_s": 3.21,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "2",
         "12",
         "0.005"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停您的洗碗機在每週第 12 小時運作，節省 £0.005?"
+      "message_zh": "您是否願意暫停您的洗碗機於下午 12 時?"
     },
     {
       "i": 47,
@@ -1042,18 +1020,16 @@
         "saving_gbp": 0.005,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.62,
+      "latency_s": 3.45,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "0",
-        "5"
+        "0.005",
+        "16"
       ],
       "hallucinated_numbers": [],
-      "cited_not_in_facts": [
-        "5"
-      ],
+      "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延後至晚上 16 點以節省 £0.005?"
+      "message_zh": "您是否願意將洗衣機的使用時間延遲至晚上 16 點以節省 £0.005?"
     },
     {
       "i": 48,
@@ -1066,7 +1042,7 @@
         "saving_gbp": 0.421,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.52,
+      "latency_s": 3.17,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.421"
@@ -1087,7 +1063,7 @@
         "saving_gbp": 0.161,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.68,
+      "latency_s": 3.39,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.161"
@@ -1095,7 +1071,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的洗碗機延遲至下一小時運行，從而節省 £0.161?"
+      "message_zh": "您是否願意將您的洗碗機延遲至下一小時運作，從而節省 £0.161?"
     },
     {
       "i": 50,
@@ -1108,16 +1084,20 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.61,
+      "latency_s": 3.3,
       "schema_ok": true,
       "cited_numbers_raw": [
         "8",
-        "0"
+        "2"
       ],
-      "hallucinated_numbers": [],
-      "cited_not_in_facts": [],
+      "hallucinated_numbers": [
+        "2"
+      ],
+      "cited_not_in_facts": [
+        "2"
+      ],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機延遲使用至下午8點以節省£0?"
+      "message_zh": "您是否願意將洗衣機 2 號的使用時間延遲至晚上 8 點?"
     },
     {
       "i": 51,
@@ -1130,15 +1110,16 @@
         "saving_gbp": 0.006,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.5,
+      "latency_s": 3.2,
       "schema_ok": true,
       "cited_numbers_raw": [
+        "12",
         "0.006"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停您的洗碗機以節省 £0.006?"
+      "message_zh": "您是否願意暫停您的洗碗機於下午 12 點?"
     },
     {
       "i": 52,
@@ -1151,18 +1132,20 @@
         "saving_gbp": 0.046,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.75,
+      "latency_s": 3.45,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "13",
-        "0.046"
+        "0.046",
+        "2"
       ],
       "hallucinated_numbers": [
         "2"
       ],
-      "cited_not_in_facts": [],
+      "cited_not_in_facts": [
+        "2"
+      ],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機 2 的使用時間延遲至下一個時段，從而節省 £0.046?"
+      "message_zh": "您是否願意將洗衣機 2 的使用時間延遲至下一個時間段，從而節省 £0.046?"
     },
     {
       "i": 53,
@@ -1175,7 +1158,7 @@
         "saving_gbp": 0.005,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.77,
+      "latency_s": 3.2,
       "schema_ok": true,
       "cited_numbers_raw": [
         "15",
@@ -1184,7 +1167,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的洗碗機延遲使用，從而節省每天 £0.005 的能源費用?"
+      "message_zh": "您是否願意將您的洗碗機暫停於每週 15 小時?"
     },
     {
       "i": 54,
@@ -1197,17 +1180,16 @@
         "saving_gbp": 0.21,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.87,
+      "latency_s": 3.5,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "16",
         "18",
         "0.21"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的洗碗機延遲使用，從每週 18 個小時節省 £0.21?"
+      "message_zh": "您是否願意將您的洗碗機延遲至晚上 18:00 進行使用，從而節省 £0.21?"
     },
     {
       "i": 55,
@@ -1220,16 +1202,15 @@
         "saving_gbp": 0.202,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.44,
+      "latency_s": 3.13,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "18",
         "0.202"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意延遲使用洗碗機?"
+      "message_zh": "您是否願意延遲使用洗碗機以節省 £0.202?"
     },
     {
       "i": 56,
@@ -1242,7 +1223,7 @@
         "saving_gbp": 0.058,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.75,
+      "latency_s": 3.17,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.058"
@@ -1250,7 +1231,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的洗碗機延遲至下一小時運行，從而節省 £0.058?"
+      "message_zh": "您是否願意暫停使用洗碗機以節省 0.058 英鎊?"
     },
     {
       "i": 57,
@@ -1263,7 +1244,7 @@
         "saving_gbp": 0.011,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.53,
+      "latency_s": 3.44,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.011"
@@ -1271,7 +1252,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延後至下一小時，節省 £0.011?"
+      "message_zh": "您是否願意將洗衣機的使用時間延後至下一小時,以節省 £0.011 的能源費用?"
     },
     {
       "i": 58,
@@ -1284,15 +1265,16 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.22,
+      "latency_s": 3.12,
       "schema_ok": true,
       "cited_numbers_raw": [
+        "3",
         "3"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意延遲洗衣機的使用時間?"
+      "message_zh": "您是否願意暫停洗衣機於每週三 3 點?"
     },
     {
       "i": 59,
@@ -1305,16 +1287,16 @@
         "saving_gbp": 0.007,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.73,
+      "latency_s": 3.32,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "7",
-        "0.007"
+        "0.007",
+        "7"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停您的洗碗機在每週七點運作，節省約 £0.007?"
+      "message_zh": "您是否願意暫停您的洗碗機於每週七點時段，節省 £0.007?"
     },
     {
       "i": 60,
@@ -1327,17 +1309,15 @@
         "saving_gbp": 0.005,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.64,
+      "latency_s": 3.15,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "2",
-        "9",
         "0.005"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停您的洗碗機於每天早上9點?"
+      "message_zh": "您是否願意暫停使用洗碗機以節省 0.005 英鎊?"
     },
     {
       "i": 61,
@@ -1350,17 +1330,16 @@
         "saving_gbp": 0.008,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.65,
+      "latency_s": 3.21,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "10",
         "12",
         "0.008"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延後至下午 12 點?"
+      "message_zh": "您是否願意將洗衣機的使用時間延遲至下午 12 點?"
     },
     {
       "i": 62,
@@ -1373,16 +1352,15 @@
         "saving_gbp": 0.012,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.48,
+      "latency_s": 3.17,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "18",
         "0.012"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意延遲使用洗碗機?"
+      "message_zh": "您是否願意延遲使用洗碗機以節省 £0.012?"
     },
     {
       "i": 63,
@@ -1395,17 +1373,22 @@
         "saving_gbp": 0.451,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.78,
+      "latency_s": 3.48,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "4",
+        "0.451",
         "20",
-        "0.451"
+        "2"
       ],
-      "hallucinated_numbers": [],
-      "cited_not_in_facts": [],
+      "hallucinated_numbers": [
+        "2",
+        "21"
+      ],
+      "cited_not_in_facts": [
+        "2"
+      ],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延遲至晚上 20 點以節省 £0.451?"
+      "message_zh": "您是否願意將洗衣機 2 的使用時間延遲至 21:00 以節省 £0.451?"
     },
     {
       "i": 64,
@@ -1418,16 +1401,17 @@
         "saving_gbp": 0.021,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.51,
+      "latency_s": 3.22,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "21",
         "0.021"
       ],
-      "hallucinated_numbers": [],
+      "hallucinated_numbers": [
+        "2.1"
+      ],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意延遲使用洗碗機以節省 £0.021?"
+      "message_zh": "您是否願意延遲使用洗碗機以節省 2.1 英鎊?"
     },
     {
       "i": 65,
@@ -1440,15 +1424,17 @@
         "saving_gbp": 0.031,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.66,
+      "latency_s": 3.21,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.031"
       ],
-      "hallucinated_numbers": [],
+      "hallucinated_numbers": [
+        "3.1"
+      ],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的洗碗機延遲至下一小時運行，從而節省 £0.031?"
+      "message_zh": "您是否願意暫停使用洗碗機以節省 3.1 英鎊?"
     },
     {
       "i": 66,
@@ -1461,15 +1447,15 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.25,
+      "latency_s": 3.23,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "4"
+        "0.0"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意延遲洗衣機的使用時間?"
+      "message_zh": "您是否願意延遲洗衣機的使用時間，節省 0.0 英鎊?"
     },
     {
       "i": 67,
@@ -1482,17 +1468,21 @@
         "saving_gbp": 0.048,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.72,
+      "latency_s": 3.54,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "0",
+        "0.048",
         "6",
-        "0.048"
+        "2"
       ],
-      "hallucinated_numbers": [],
-      "cited_not_in_facts": [],
+      "hallucinated_numbers": [
+        "2"
+      ],
+      "cited_not_in_facts": [
+        "2"
+      ],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延遲至晚上6點以節省£0.048?"
+      "message_zh": "您是否願意將洗衣機 2 的使用時間延遲至晚上 6 點以節省 £0.048?"
     },
     {
       "i": 68,
@@ -1505,15 +1495,16 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.28,
+      "latency_s": 3.48,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "8"
+        "8",
+        "0.0"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意延遲洗衣機的使用時間?"
+      "message_zh": "您是否願意延遲洗衣機的使用時間，從每週 8 小時延遲使用 0.0 英鎊。"
     },
     {
       "i": 69,
@@ -1526,17 +1517,16 @@
         "saving_gbp": 0.026,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.72,
+      "latency_s": 3.35,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "13",
         "12",
         "0.026"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延後至下午 12 點以節省 £0.026?"
+      "message_zh": "您是否願意將洗衣機的使用時間延遲至下午 12 點以節省 £0.026?"
     },
     {
       "i": 70,
@@ -1549,17 +1539,15 @@
         "saving_gbp": 0.292,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.8,
+      "latency_s": 3.19,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "16",
-        "17",
         "0.292"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延後至晚上 17:00 以節省 £0.292?"
+      "message_zh": "您是否願意將洗衣機延遲使用，節省 0.292 英鎊的能量費用？"
     },
     {
       "i": 71,
@@ -1572,7 +1560,7 @@
         "saving_gbp": 0.023,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.72,
+      "latency_s": 3.43,
       "schema_ok": true,
       "cited_numbers_raw": [
         "18",
@@ -1581,7 +1569,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延遲至晚上18點以節省£0.023?"
+      "message_zh": "您是否願意將洗衣機的使用時間延遲至晚上 18:00 以節省 £0.023?"
     },
     {
       "i": 72,
@@ -1594,17 +1582,16 @@
         "saving_gbp": 0.024,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.84,
+      "latency_s": 3.39,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "2",
         "18",
         "0.024"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延遲至晚上18點以節省£0.024?"
+      "message_zh": "您是否願意將洗衣機的使用時間延遲至晚上 18:00 以節省 £0.024?"
     },
     {
       "i": 73,
@@ -1617,15 +1604,17 @@
         "saving_gbp": 0.012,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.39,
+      "latency_s": 3.22,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.012"
       ],
-      "hallucinated_numbers": [],
+      "hallucinated_numbers": [
+        "12"
+      ],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意延遲使用洗碗機以節省 £0.012?"
+      "message_zh": "您是否願意將您的洗碗機延遲使用，節省 12p 的電費?"
     },
     {
       "i": 74,
@@ -1638,17 +1627,16 @@
         "saving_gbp": 0.005,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.89,
+      "latency_s": 3.17,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "2",
         "6",
         "0.005"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停您的洗碗機在每週六早上6點的運作，節省£0.005?"
+      "message_zh": "您是否願意暫停您的洗碗機於每天早上6點?"
     },
     {
       "i": 75,
@@ -1661,17 +1649,16 @@
         "saving_gbp": 0.021,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.62,
+      "latency_s": 3.35,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "13",
-        "10",
-        "0.021"
+        "0.021",
+        "10"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延後至晚上,以節省 £0.021?"
+      "message_zh": "您是否願意將洗衣機的使用時間延遲至 10 點以節省 £0.021?"
     },
     {
       "i": 76,
@@ -1684,16 +1671,17 @@
         "saving_gbp": 0.063,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.57,
+      "latency_s": 3.18,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "16",
         "0.063"
       ],
-      "hallucinated_numbers": [],
+      "hallucinated_numbers": [
+        "6.3"
+      ],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意延遲使用洗碗機以節省 £0.063?"
+      "message_zh": "您是否願意延遲使用洗碗機以節省 6.3 英鎊?"
     },
     {
       "i": 77,
@@ -1706,15 +1694,16 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.31,
+      "latency_s": 3.03,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "1"
+        "1",
+        "0.0"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停使用洗碗機?"
+      "message_zh": "您是否願意延遲使用洗碗機?"
     },
     {
       "i": 78,
@@ -1727,11 +1716,11 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.32,
+      "latency_s": 3.0,
       "schema_ok": true,
       "cited_numbers_raw": [
         "5",
-        "0"
+        "0.0"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
@@ -1749,17 +1738,19 @@
         "saving_gbp": 0.007,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.85,
+      "latency_s": 3.31,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "16",
-        "8",
-        "0.007"
+        "7"
       ],
-      "hallucinated_numbers": [],
-      "cited_not_in_facts": [],
+      "hallucinated_numbers": [
+        "7"
+      ],
+      "cited_not_in_facts": [
+        "7"
+      ],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機延遲使用至下午 8 時以節省 £0.007?"
+      "message_zh": "您是否願意將洗衣機延遲使用，從而節省每天 7 英鎊的能量費用？"
     },
     {
       "i": 80,
@@ -1772,7 +1763,7 @@
         "saving_gbp": 0.084,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.71,
+      "latency_s": 3.47,
       "schema_ok": true,
       "cited_numbers_raw": [
         "8",
@@ -1781,7 +1772,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延遲至晚上8點以節省£0.084?"
+      "message_zh": "您是否願意延遲洗衣機的使用時間，從每週 8 小時延遲使用，節省 £0.084"
     },
     {
       "i": 81,
@@ -1794,17 +1785,16 @@
         "saving_gbp": 0.011,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.55,
+      "latency_s": 3.17,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "9",
-        "10",
-        "0.011"
+        "0.011",
+        "10"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停洗衣機於每天早上10點?"
+      "message_zh": "您是否願意暫停洗衣機於 10 點時段以節省 £0.011?"
     },
     {
       "i": 82,
@@ -1817,15 +1807,16 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.37,
+      "latency_s": 3.43,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "12"
+        "12",
+        "0.0"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停使用 tumble_dryer 在下午 12 時?"
+      "message_zh": "您是否願意將您的 tumble_dryer 避免在下午 12 時運轉,可節省 £0.0"
     },
     {
       "i": 83,
@@ -1838,16 +1829,19 @@
         "saving_gbp": 0.007,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.52,
+      "latency_s": 3.08,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "16",
-        "0.007"
+        "7"
       ],
-      "hallucinated_numbers": [],
-      "cited_not_in_facts": [],
+      "hallucinated_numbers": [
+        "7"
+      ],
+      "cited_not_in_facts": [
+        "7"
+      ],
       "unit_issues": [],
-      "message_zh": "您是否願意延遲使用洗碗機以節省 £0.007?"
+      "message_zh": "您是否願意延遲使用洗碗機以節省 7p?"
     },
     {
       "i": 84,
@@ -1860,7 +1854,7 @@
         "saving_gbp": 0.456,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.83,
+      "latency_s": 3.51,
       "schema_ok": true,
       "cited_numbers_raw": [
         "20",
@@ -1869,7 +1863,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延遲至晚上 20 點以節省 £0.456 電費?"
+      "message_zh": "您是否願意延遲洗衣機的使用時間，從每週 20 小時延遲使用 0.456 英鎊"
     },
     {
       "i": 85,
@@ -1882,15 +1876,16 @@
         "saving_gbp": 0.008,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.33,
+      "latency_s": 3.45,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "8"
+        "8",
+        "0.008"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停洗衣機於08:00時?"
+      "message_zh": "您是否願意將洗衣機的使用時間延遲至 8 點以節省 £0.008 的能源費用?"
     },
     {
       "i": 86,
@@ -1903,16 +1898,16 @@
         "saving_gbp": 0.028,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.65,
+      "latency_s": 3.36,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "0.028",
-        "11"
+        "11",
+        "0.028"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意延遲使用 tumble_dryer 至下午 11 時以節省 £0.028?"
+      "message_zh": "您是否願意將您的 tumble_dryer 避免在 11 點使用，節省 £0.028?"
     },
     {
       "i": 87,
@@ -1925,16 +1920,18 @@
         "saving_gbp": 0.021,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.44,
+      "latency_s": 3.53,
       "schema_ok": true,
       "cited_numbers_raw": [
         "17",
         "0.021"
       ],
-      "hallucinated_numbers": [],
+      "hallucinated_numbers": [
+        "2.1"
+      ],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意延遲使用洗碗機?"
+      "message_zh": "您是否願意將您的洗碗機延遲使用，從每週 17 小時節省 2.1 英鎊?"
     },
     {
       "i": 88,
@@ -1947,7 +1944,7 @@
         "saving_gbp": 0.016,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.59,
+      "latency_s": 3.44,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0",
@@ -1956,7 +1953,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫時關閉 tumble_dryer 以節省 £0.016?"
+      "message_zh": "您是否願意將您的 tumble_dryer 避免在凌晨 0 小時運轉，從而節省 £0.016?"
     },
     {
       "i": 89,
@@ -1969,16 +1966,17 @@
         "saving_gbp": 0.036,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.65,
+      "latency_s": 3.17,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "7",
         "0.036"
       ],
-      "hallucinated_numbers": [],
+      "hallucinated_numbers": [
+        "3.6"
+      ],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的洗碗機延遲使用，從而節省每天 £0.036 電力?"
+      "message_zh": "您是否願意暫停您的洗碗機以節省 3.6 英鎊?"
     },
     {
       "i": 90,
@@ -1991,15 +1989,16 @@
         "saving_gbp": 0.008,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.5,
+      "latency_s": 3.36,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "8"
+        "8",
+        "0.008"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延後至晚上?"
+      "message_zh": "您是否願意將洗衣機的使用時間延遲至晚上 8 點以節省 £0.008?"
     },
     {
       "i": 91,
@@ -2012,7 +2011,7 @@
         "saving_gbp": 0.057,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.43,
+      "latency_s": 3.55,
       "schema_ok": true,
       "cited_numbers_raw": [
         "19",
@@ -2021,7 +2020,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意延遲使用洗碗機?"
+      "message_zh": "您是否願意將您的洗碗機延遲至晚上 19:00 使用，節省 £0.057 電費?"
     },
     {
       "i": 92,
@@ -2034,18 +2033,16 @@
         "saving_gbp": 0.004,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.88,
+      "latency_s": 3.29,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "0.004",
-        "6"
+        "6",
+        "0.004"
       ],
-      "hallucinated_numbers": [
-        "4"
-      ],
+      "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停您的洗碗機在每週六早上6點的運作，節省約4便士?"
+      "message_zh": "您是否願意暫停您的洗碗機於每天早上6點?"
     },
     {
       "i": 93,
@@ -2058,15 +2055,18 @@
         "saving_gbp": 0.082,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.4,
+      "latency_s": 3.46,
       "schema_ok": true,
       "cited_numbers_raw": [
+        "6",
         "0.082"
       ],
-      "hallucinated_numbers": [],
+      "hallucinated_numbers": [
+        "2"
+      ],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機延遲使用，節省 £0.082?"
+      "message_zh": "您是否願意將洗衣機 2 的使用時間延遲至晚上 6 點以節省 £0.082?"
     },
     {
       "i": 94,
@@ -2079,15 +2079,17 @@
         "saving_gbp": 0.029,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.43,
+      "latency_s": 3.18,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.029"
       ],
-      "hallucinated_numbers": [],
+      "hallucinated_numbers": [
+        "2.9"
+      ],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停您的洗碗機以節省 £0.029?"
+      "message_zh": "您是否願意暫停使用洗碗機以節省 2.9 英鎊?"
     },
     {
       "i": 95,
@@ -2100,7 +2102,7 @@
         "saving_gbp": 0.01,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.74,
+      "latency_s": 3.12,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.01"
@@ -2108,7 +2110,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的洗碗機延遲至下一小時運行，節省 £0.01?"
+      "message_zh": "您是否願意暫停使用洗碗機以節省 1p?"
     },
     {
       "i": 96,
@@ -2121,16 +2123,18 @@
         "saving_gbp": 0.078,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.7,
+      "latency_s": 3.41,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "0.078",
-        "6"
+        "6",
+        "0.078"
       ],
-      "hallucinated_numbers": [],
+      "hallucinated_numbers": [
+        "2"
+      ],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延後至晚上6點以節省£0.078?"
+      "message_zh": "您是否願意將洗衣機 2 的使用時間延遲至晚上 6 點以節省 £0.078?"
     },
     {
       "i": 97,
@@ -2143,16 +2147,15 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.48,
+      "latency_s": 3.24,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "6",
-        "10"
+        "0.0"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停您的洗碗機於今天上午 10 點?"
+      "message_zh": "您是否願意將您的洗碗機延遲使用，節省 0.0 英鎊?"
     },
     {
       "i": 98,
@@ -2165,7 +2168,7 @@
         "saving_gbp": 0.006,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.61,
+      "latency_s": 3.36,
       "schema_ok": true,
       "cited_numbers_raw": [
         "12",
@@ -2174,7 +2177,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延後至下午 12 點?"
+      "message_zh": "您是否願意將洗衣機的使用時間延遲至下午 12 點以節省 £0.006?"
     },
     {
       "i": 99,
@@ -2187,17 +2190,16 @@
         "saving_gbp": 0.004,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.94,
+      "latency_s": 3.15,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "2",
         "12",
         "0.004"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停您的洗碗機在下午 12 點的運作，節省 £0.004 的能源費用?"
+      "message_zh": "您是否願意暫停您的洗碗機於下午 12 點?"
     },
     {
       "i": 100,
@@ -2210,10 +2212,9 @@
         "saving_gbp": 0.049,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.77,
+      "latency_s": 3.48,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "0",
         "22",
         "0.049"
       ],
@@ -2233,15 +2234,17 @@
         "saving_gbp": 0.177,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.65,
+      "latency_s": 3.09,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.177"
       ],
-      "hallucinated_numbers": [],
+      "hallucinated_numbers": [
+        "17"
+      ],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的洗碗機延遲至下一小時運行，從而節省 £0.177?"
+      "message_zh": "您是否願意暫停使用洗碗機以節省 17p?"
     },
     {
       "i": 102,
@@ -2254,7 +2257,7 @@
         "saving_gbp": 0.064,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.44,
+      "latency_s": 3.2,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.064"
@@ -2262,7 +2265,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停您的洗碗機以節省 £0.064?"
+      "message_zh": "您是否願意將您的洗碗機延遲使用，從而節省 £0.064?"
     },
     {
       "i": 103,
@@ -2275,7 +2278,7 @@
         "saving_gbp": 0.005,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.47,
+      "latency_s": 3.32,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.005"
@@ -2283,7 +2286,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停您的洗碗機以節省 £0.005?"
+      "message_zh": "您是否願意暫停使用您的洗碗機以節省 0.005 英鎊?"
     },
     {
       "i": 104,
@@ -2296,15 +2299,15 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.17,
+      "latency_s": 3.18,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "12"
+        "0.0"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意延遲使用洗碗機?"
+      "message_zh": "您是否願意暫停您的洗碗機以節省 0.0 英鎊?"
     },
     {
       "i": 105,
@@ -2317,16 +2320,17 @@
         "saving_gbp": 0.203,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.81,
+      "latency_s": 3.23,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "18",
         "0.203"
       ],
-      "hallucinated_numbers": [],
+      "hallucinated_numbers": [
+        "20.3"
+      ],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的洗碗機延遲至晚上 18:00 使用，節省 £0.203 電費?"
+      "message_zh": "您是否願意延遲使用洗碗機以節省 20.3 英鎊?"
     },
     {
       "i": 106,
@@ -2339,17 +2343,16 @@
         "saving_gbp": 0.005,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.84,
+      "latency_s": 3.18,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "2",
         "6",
         "0.005"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停您的洗碗機在每週六早上6點的運作，節省£0.005?"
+      "message_zh": "您是否願意暫停您的洗碗機於每天早上6點?"
     },
     {
       "i": 107,
@@ -2362,17 +2365,16 @@
         "saving_gbp": 0.025,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.72,
+      "latency_s": 3.44,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "16",
-        "6",
-        "0.025"
+        "0.025",
+        "6"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延後至晚上 6 點以節省 £0.025?"
+      "message_zh": "您是否願意將洗衣機的使用時間延遲至晚上 6 點以節省 £0.025?"
     },
     {
       "i": 108,
@@ -2385,15 +2387,16 @@
         "saving_gbp": 0.008,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.3,
+      "latency_s": 3.42,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "8"
+        "8",
+        "0.008"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延後至晚上?"
+      "message_zh": "您是否願意將洗衣機的使用時間延遲至晚上 8 點以節省 £0.008?"
     },
     {
       "i": 109,
@@ -2406,16 +2409,18 @@
         "saving_gbp": 0.091,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.51,
+      "latency_s": 3.43,
       "schema_ok": true,
       "cited_numbers_raw": [
         "8",
         "0.091"
       ],
-      "hallucinated_numbers": [],
+      "hallucinated_numbers": [
+        "2"
+      ],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機延遲使用，節省 £0.091?"
+      "message_zh": "您是否願意將洗衣機 2 的使用時間延遲至晚上 8 點以節省 £0.091?"
     },
     {
       "i": 110,
@@ -2428,15 +2433,17 @@
         "saving_gbp": 0.21,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.44,
+      "latency_s": 3.06,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.21"
       ],
-      "hallucinated_numbers": [],
+      "hallucinated_numbers": [
+        "21"
+      ],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫停您的洗碗機以節省 £0.21?"
+      "message_zh": "您是否願意暫停您的洗碗機以節省 21p?"
     },
     {
       "i": 111,
@@ -2449,15 +2456,16 @@
         "saving_gbp": 0.456,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.51,
+      "latency_s": 3.72,
       "schema_ok": true,
       "cited_numbers_raw": [
+        "23",
         "0.456"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意延遲使用洗碗機以節省 £0.456?"
+      "message_zh": "您是否願意將您的洗碗機延遲使用，從每晚 23:00 延遲到隔日 23:00，節省 £0.456 電費?"
     },
     {
       "i": 112,
@@ -2470,7 +2478,7 @@
         "saving_gbp": 0.122,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.69,
+      "latency_s": 3.14,
       "schema_ok": true,
       "cited_numbers_raw": [
         "0.122"
@@ -2478,7 +2486,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的洗碗機延遲至下一小時運行，從而節省 £0.122?"
+      "message_zh": "您是否願意暫停使用洗碗機以節省 £0.122?"
     },
     {
       "i": 113,
@@ -2491,16 +2499,15 @@
         "saving_gbp": 0.017,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.76,
+      "latency_s": 3.46,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "0.017",
-        "1"
+        "0.017"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機/乾衣機的使用時間延遲至下一小時，節省 £0.017?"
+      "message_zh": "您是否願意將洗衣機/乾衣機的使用時間延遲至下一小時,以節省 £0.017?"
     },
     {
       "i": 114,
@@ -2513,15 +2520,16 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.55,
+      "latency_s": 3.57,
       "schema_ok": true,
       "cited_numbers_raw": [
+        "0.0",
         "5"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機/乾衣機的使用時間延遲至晚上 5 點?"
+      "message_zh": "您是否願意將洗衣機/乾衣機的使用時間延遲至下午 5 時以節省 0.0 英鎊?"
     },
     {
       "i": 115,
@@ -2534,15 +2542,16 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.55,
+      "latency_s": 3.49,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "0"
+        "5",
+        "0.0"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的洗碗機延遲使用，節省每週 £0.00 電力?"
+      "message_zh": "您是否願意將您的洗碗機延遲至第 5 小時運行，從而節省 0.0 英鎊?"
     },
     {
       "i": 116,
@@ -2555,16 +2564,15 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.62,
+      "latency_s": 3.11,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "2",
         "7"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意延遲洗衣機的使用時間，從早上 7 點改為晚上?"
+      "message_zh": "您是否願意將洗衣機的使用時間延遲至晚上 7 時?"
     },
     {
       "i": 117,
@@ -2577,17 +2585,16 @@
         "saving_gbp": 0.009,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.77,
+      "latency_s": 3.29,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "2",
-        "11",
-        "0.009"
+        "0.009",
+        "11"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延後至下午 11 點以節省 £0.009?"
+      "message_zh": "您是否願意將洗衣機延遲使用至下午 11 時以節省 £0.009?"
     },
     {
       "i": 118,
@@ -2600,17 +2607,15 @@
         "saving_gbp": 0.099,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.68,
+      "latency_s": 3.41,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "8",
-        "1",
         "0.099"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延後至下一小時，節省 £0.099?"
+      "message_zh": "您是否願意將洗衣機的使用時間延後至下一小時,以節省 0.099 英鎊的能源費用?"
     },
     {
       "i": 119,
@@ -2623,7 +2628,7 @@
         "saving_gbp": 0.004,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.59,
+      "latency_s": 3.52,
       "schema_ok": true,
       "cited_numbers_raw": [
         "2",
@@ -2632,7 +2637,7 @@
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機的使用時間延後至晚上?"
+      "message_zh": "您是否願意將洗衣機的使用時間延遲至 2 小時以節省 0.004 英鎊?"
     },
     {
       "i": 120,
@@ -2645,16 +2650,16 @@
         "saving_gbp": 0.0,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.62,
+      "latency_s": 3.04,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "0",
-        "5"
+        "5",
+        "0.0"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意將您的洗碗機延遲使用，節省每週 £0.00 電力?"
+      "message_zh": "您是否願意延遲使用洗碗機?"
     },
     {
       "i": 121,
@@ -2667,19 +2672,20 @@
         "saving_gbp": 0.019,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.82,
+      "latency_s": 3.19,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "4",
         "7",
-        "0.019"
+        "2"
       ],
       "hallucinated_numbers": [
         "2"
       ],
-      "cited_not_in_facts": [],
+      "cited_not_in_facts": [
+        "2"
+      ],
       "unit_issues": [],
-      "message_zh": "您是否願意將洗衣機 2 的使用時間延遲至下午 7 時以節省 £0.019?"
+      "message_zh": "您是否願意將洗衣機 2 的使用時間延遲至 7 點?"
     },
     {
       "i": 122,
@@ -2692,15 +2698,16 @@
         "saving_gbp": 0.083,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.53,
+      "latency_s": 3.42,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "0.083"
+        "0.083",
+        "9"
       ],
       "hallucinated_numbers": [],
       "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫時延遲使用 tumble_dryer 的時間，節省 £0.083?"
+      "message_zh": "您是否願意將您的 tumble_dryer 的使用時間延遲至 9 點以節省 £0.083?"
     },
     {
       "i": 123,
@@ -2713,20 +2720,142 @@
         "saving_gbp": 0.045,
         "kind": "appliance_defer"
       },
-      "latency_s": 3.73,
+      "latency_s": 3.46,
       "schema_ok": true,
       "cited_numbers_raw": [
-        "0",
-        "10",
-        "20",
-        "45"
+        "0.045",
+        "10"
       ],
       "hallucinated_numbers": [],
-      "cited_not_in_facts": [
-        "45"
-      ],
+      "cited_not_in_facts": [],
       "unit_issues": [],
-      "message_zh": "您是否願意暫時延遲使用 tumble_dryer 的時間，節省 £0.045?"
+      "message_zh": "您是否願意將您的 tumble_dryer 的使用時間延遲至 10 小時以節省 £0.045?"
     }
-  ]
+  ],
+  "repeatability": {
+    "n_repeats": 3,
+    "note": "same model, same decoding options and seed; the spread below is run-to-run variance of the local server, not sampling over events",
+    "per_metric": {
+      "call_completion_rate": {
+        "n_runs": 3,
+        "values": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "schema_valid_rate_of_completed": {
+        "n_runs": 3,
+        "values": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "msg_all_citations_grounded_rate": {
+        "n_runs": 3,
+        "values": [
+          0.9435,
+          0.9435,
+          0.9435
+        ],
+        "mean": 0.9435,
+        "min": 0.9435,
+        "max": 0.9435
+      },
+      "msg_with_ungrounded_number_rate": {
+        "n_runs": 3,
+        "values": [
+          0.1613,
+          0.1613,
+          0.1613
+        ],
+        "mean": 0.1613,
+        "min": 0.1613,
+        "max": 0.1613
+      },
+      "msg_with_unit_error_rate": {
+        "n_runs": 3,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    }
+  },
+  "all_runs": [
+    {
+      "model": "llama3.1:8b",
+      "scope": "pre-decision recommendation messages (facts exclude the user's eventual accept/reject outcome)",
+      "n_events": 124,
+      "call_completion_rate": 1.0,
+      "n_transport_failures": 0,
+      "n_retried_once": 0,
+      "schema_valid_rate_of_completed": 1.0,
+      "msg_all_citations_grounded_rate": 0.9435,
+      "msg_with_ungrounded_number_rate": 0.1613,
+      "msg_with_unit_error_rate": 0.0,
+      "latency_s": {
+        "mean": 3.27,
+        "p50": 3.21,
+        "p95": 3.54
+      },
+      "note": "interface characterization only — the LLM makes no control decisions; grid results are attributed to the coordination mechanism (see mechanism_decomposition.json)"
+    },
+    {
+      "model": "llama3.1:8b",
+      "scope": "pre-decision recommendation messages (facts exclude the user's eventual accept/reject outcome)",
+      "n_events": 124,
+      "call_completion_rate": 1.0,
+      "n_transport_failures": 0,
+      "n_retried_once": 0,
+      "schema_valid_rate_of_completed": 1.0,
+      "msg_all_citations_grounded_rate": 0.9435,
+      "msg_with_ungrounded_number_rate": 0.1613,
+      "msg_with_unit_error_rate": 0.0,
+      "latency_s": {
+        "mean": 3.28,
+        "p50": 3.22,
+        "p95": 3.52
+      },
+      "note": "interface characterization only — the LLM makes no control decisions; grid results are attributed to the coordination mechanism (see mechanism_decomposition.json)"
+    },
+    {
+      "model": "llama3.1:8b",
+      "scope": "pre-decision recommendation messages (facts exclude the user's eventual accept/reject outcome)",
+      "n_events": 124,
+      "call_completion_rate": 1.0,
+      "n_transport_failures": 0,
+      "n_retried_once": 0,
+      "schema_valid_rate_of_completed": 1.0,
+      "msg_all_citations_grounded_rate": 0.9435,
+      "msg_with_ungrounded_number_rate": 0.1613,
+      "msg_with_unit_error_rate": 0.0,
+      "latency_s": {
+        "mean": 3.26,
+        "p50": 3.2,
+        "p95": 3.51
+      },
+      "note": "interface characterization only — the LLM makes no control decisions; grid results are attributed to the coordination mechanism (see mechanism_decomposition.json)"
+    }
+  ],
+  "server_env": {
+    "model_tag": "llama3.1:8b",
+    "ollama_version": "0.34.3",
+    "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+    "model_modified_at": "2026-06-27T15:32:24.4228566+08:00",
+    "quantization": "Q4_K_M",
+    "parameter_size": "8.0B",
+    "recorded": "queried from the same running server minutes after the run; the capture was added to llm_eval.py after this evaluation had already started"
+  }
 }

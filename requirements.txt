@@ -4,7 +4,7 @@
 # Core numerics / data
 numpy==1.26.4
 pandas==2.2.2
-pyarrow==22.0.0          # parquet backend for the REFIT cache
+pyarrow==16.1.0          # parquet backend for the REFIT cache (22.x requires numpy>=2)
 scipy==1.12.0            # mpc_baseline LP (scipy.optimize.linprog)
 
 # ML

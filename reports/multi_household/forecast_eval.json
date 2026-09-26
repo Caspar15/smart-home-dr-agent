@@ -1,0 +1,149 @@
+{
+  "note": "one-step-ahead aggregate forecast on the headline test window; the first lookback steps are excluded because the rollout fills them with persistence for both arms",
+  "n_houses": 15,
+  "test_steps": 2016,
+  "scored_steps_per_house": 1968,
+  "lookback_steps_excluded": 48,
+  "mean_mae_lstm_w": 263.43,
+  "mean_mae_persistence_w": 192.22,
+  "mean_rmse_lstm_w": 561.83,
+  "mean_rmse_persistence_w": 551.23,
+  "lstm_wins_n_houses": 2,
+  "per_house": [
+    {
+      "house": 1,
+      "n_scored": 1968,
+      "mae_lstm_w": 169.77,
+      "mae_persistence_w": 171.82,
+      "rmse_lstm_w": 501.17,
+      "rmse_persistence_w": 591.53,
+      "lstm_wins": true
+    },
+    {
+      "house": 2,
+      "n_scored": 1968,
+      "mae_lstm_w": 374.86,
+      "mae_persistence_w": 259.75,
+      "rmse_lstm_w": 727.87,
+      "rmse_persistence_w": 843.2,
+      "lstm_wins": false
+    },
+    {
+      "house": 4,
+      "n_scored": 1968,
+      "mae_lstm_w": 162.43,
+      "mae_persistence_w": 140.35,
+      "rmse_lstm_w": 252.23,
+      "rmse_persistence_w": 272.08,
+      "lstm_wins": false
+    },
+    {
+      "house": 5,
+      "n_scored": 1968,
+      "mae_lstm_w": 593.69,
+      "mae_persistence_w": 265.54,
+      "rmse_lstm_w": 1352.47,
+      "rmse_persistence_w": 829.75,
+      "lstm_wins": false
+    },
+    {
+      "house": 6,
+      "n_scored": 1968,
+      "mae_lstm_w": 107.44,
+      "mae_persistence_w": 87.6,
+      "rmse_lstm_w": 201.5,
+      "rmse_persistence_w": 221.1,
+      "lstm_wins": false
+    },
+    {
+      "house": 7,
+      "n_scored": 1968,
+      "mae_lstm_w": 306.02,
+      "mae_persistence_w": 252.58,
+      "rmse_lstm_w": 774.77,
+      "rmse_persistence_w": 808.11,
+      "lstm_wins": false
+    },
+    {
+      "house": 8,
+      "n_scored": 1968,
+      "mae_lstm_w": 367.67,
+      "mae_persistence_w": 287.59,
+      "rmse_lstm_w": 738.02,
+      "rmse_persistence_w": 717.74,
+      "lstm_wins": false
+    },
+    {
+      "house": 9,
+      "n_scored": 1968,
+      "mae_lstm_w": 379.19,
+      "mae_persistence_w": 259.85,
+      "rmse_lstm_w": 830.75,
+      "rmse_persistence_w": 852.59,
+      "lstm_wins": false
+    },
+    {
+      "house": 10,
+      "n_scored": 1968,
+      "mae_lstm_w": 262.39,
+      "mae_persistence_w": 200.3,
+      "rmse_lstm_w": 423.89,
+      "rmse_persistence_w": 439.97,
+      "lstm_wins": false
+    },
+    {
+      "house": 13,
+      "n_scored": 1968,
+      "mae_lstm_w": 342.3,
+      "mae_persistence_w": 219.99,
+      "rmse_lstm_w": 735.41,
+      "rmse_persistence_w": 732.43,
+      "lstm_wins": false
+    },
+    {
+      "house": 15,
+      "n_scored": 1968,
+      "mae_lstm_w": 50.14,
+      "mae_persistence_w": 51.01,
+      "rmse_lstm_w": 170.88,
+      "rmse_persistence_w": 181.96,
+      "lstm_wins": true
+    },
+    {
+      "house": 16,
+      "n_scored": 1968,
+      "mae_lstm_w": 171.57,
+      "mae_persistence_w": 149.11,
+      "rmse_lstm_w": 313.77,
+      "rmse_persistence_w": 350.51,
+      "lstm_wins": false
+    },
+    {
+      "house": 17,
+      "n_scored": 1968,
+      "mae_lstm_w": 209.22,
+      "mae_persistence_w": 166.16,
+      "rmse_lstm_w": 389.55,
+      "rmse_persistence_w": 430.57,
+      "lstm_wins": false
+    },
+    {
+      "house": 18,
+      "n_scored": 1968,
+      "mae_lstm_w": 302.07,
+      "mae_persistence_w": 251.56,
+      "rmse_lstm_w": 765.1,
+      "rmse_persistence_w": 740.01,
+      "lstm_wins": false
+    },
+    {
+      "house": 20,
+      "n_scored": 1968,
+      "mae_lstm_w": 152.75,
+      "mae_persistence_w": 120.11,
+      "rmse_lstm_w": 250.01,
+      "rmse_persistence_w": 256.91,
+      "lstm_wins": false
+    }
+  ]
+}

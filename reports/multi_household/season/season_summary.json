@@ -14,7 +14,20 @@
       "p95_kw": 18.65
     },
     "peak_red_pct": 19.7,
-    "p95_red_pct": 30.4
+    "p95_red_pct": 30.4,
+    "first_12d": {
+      "test_slots": 1728,
+      "baseline": {
+        "peak_kw": 40.37,
+        "p95_kw": 26.44
+      },
+      "coordinated": {
+        "peak_kw": 26.33,
+        "p95_kw": 18.43
+      },
+      "peak_red_pct": 34.8,
+      "p95_red_pct": 30.3
+    }
   },
   {
     "tag": "autumn",
@@ -34,7 +47,20 @@
     },
     "peak_red_pct": 25.2,
     "p95_red_pct": 37.0,
-    "energy_drift_pct": 0.0
+    "energy_drift_pct": 0.0,
+    "first_12d": {
+      "test_slots": 1728,
+      "baseline": {
+        "peak_kw": 40.12,
+        "p95_kw": 29.43
+      },
+      "coordinated": {
+        "peak_kw": 30.74,
+        "p95_kw": 19.55
+      },
+      "peak_red_pct": 23.4,
+      "p95_red_pct": 33.6
+    }
   },
   {
     "tag": "winter",
@@ -54,7 +80,20 @@
     },
     "peak_red_pct": 27.3,
     "p95_red_pct": 33.8,
-    "energy_drift_pct": 0.059
+    "energy_drift_pct": 0.059,
+    "first_12d": {
+      "test_slots": 1728,
+      "baseline": {
+        "peak_kw": 41.67,
+        "p95_kw": 32.64
+      },
+      "coordinated": {
+        "peak_kw": 30.3,
+        "p95_kw": 21.81
+      },
+      "peak_red_pct": 27.3,
+      "p95_red_pct": 33.2
+    }
   },
   {
     "tag": "spring",
@@ -74,6 +113,19 @@
     },
     "peak_red_pct": 24.9,
     "p95_red_pct": 28.5,
-    "energy_drift_pct": 0.06
+    "energy_drift_pct": 0.06,
+    "first_12d": {
+      "test_slots": 1728,
+      "baseline": {
+        "peak_kw": 40.79,
+        "p95_kw": 26.97
+      },
+      "coordinated": {
+        "peak_kw": 30.63,
+        "p95_kw": 19.29
+      },
+      "peak_red_pct": 24.9,
+      "p95_red_pct": 28.5
+    }
   }
 ]

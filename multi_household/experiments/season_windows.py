@@ -109,6 +109,23 @@ def runner(tag: str) -> None:
                              / np.percentile(sb, 95), 1),
         "energy_drift_pct": round(100 * abs(sc.sum() - dc.sum()) / dc.sum(), 3),
     }
+
+    # Matched-length comparison. Spring is the only Mar-May span where every
+    # house clears the gap bar, and it is 12 days; the other windows are 14.
+    # Comparing 14 d against 12 d lets window LENGTH move the max, so also
+    # report every window truncated to its first 12 days (1728 steps).
+    m = min(1728, len(sc))
+    sb12, sc12 = sb[:m], sc[:m]
+    pb, pc = float(np.percentile(sb12, 95)), float(np.percentile(sc12, 95))
+    out["first_12d"] = {
+        "test_slots": int(m),
+        "baseline": {"peak_kw": round(float(sb12.max()), 2),
+                     "p95_kw": round(pb, 2)},
+        "coordinated": {"peak_kw": round(float(sc12.max()), 2),
+                        "p95_kw": round(pc, 2)},
+        "peak_red_pct": round(100 * (sb12.max() - sc12.max()) / sb12.max(), 1),
+        "p95_red_pct": round(100 * (pb - pc) / pb, 1),
+    }
     SEASON_DIR.mkdir(parents=True, exist_ok=True)
     (SEASON_DIR / f"{tag}.json").write_text(json.dumps(out, indent=2),
                                             encoding="utf-8")
@@ -116,6 +133,71 @@ def runner(tag: str) -> None:
           f"{out['coordinated']['peak_kw']} kW ({out['peak_red_pct']}%)  "
           f"P95 {out['baseline']['p95_kw']} -> {out['coordinated']['p95_kw']} "
           f"({out['p95_red_pct']}%)  drift {out['energy_drift_pct']}%")
+
+
+def write_summary() -> None:
+    """Assemble season_summary.json from the per-season JSONs on disk."""
+    # summary table incl. the headline — read LIVE from the headline metrics
+    # (a hardcoded copy here silently went stale whenever the headline moved).
+    rows = []
+    msum = REPRO / "reports" / "multi_household" / "metrics_summary.json"
+    if msum.exists():
+        try:
+            m = json.loads(msum.read_text(encoding="utf-8"))
+            gb, gc = m["baseline"]["grid"], m["coordinated"]["grid"]
+            from multi_household.config import CLEAN_WINDOW as _CW
+            rows.append({
+                "tag": "summer (headline)", "window": list(_CW),
+                "baseline": {"peak_kw": gb["agg_served_peak_kw"],
+                             "p95_kw": gb["agg_served_p95_kw"]},
+                "coordinated": {"peak_kw": gc["agg_served_peak_kw"],
+                                "p95_kw": gc["agg_served_p95_kw"]},
+                "peak_red_pct": round(100 * (gb["agg_served_peak_kw"]
+                                             - gc["agg_served_peak_kw"])
+                                      / gb["agg_served_peak_kw"], 1),
+                "p95_red_pct": round(100 * (gb["agg_served_p95_kw"]
+                                            - gc["agg_served_p95_kw"])
+                                     / gb["agg_served_p95_kw"], 1),
+            })
+            # Matched 12-day slice for the headline too, straight from the
+            # rollout arrays. Without it the summer row is the only one in
+            # the table with no comparable-length figure.
+            try:
+                import numpy as _np
+                RP = REPRO / "reports" / "multi_household"
+                sb = _np.load(RP / "rollout_baseline.npz")["served"].sum(0) / 1000.0
+                sc = _np.load(RP / "rollout_coordinated.npz")["served"].sum(0) / 1000.0
+                mm = min(1728, len(sc))
+                b12, c12 = sb[:mm], sc[:mm]
+                pb = float(_np.percentile(b12, 95)); pc = float(_np.percentile(c12, 95))
+                rows[-1]["first_12d"] = {
+                    "test_slots": int(mm),
+                    "baseline": {"peak_kw": round(float(b12.max()), 2),
+                                 "p95_kw": round(pb, 2)},
+                    "coordinated": {"peak_kw": round(float(c12.max()), 2),
+                                    "p95_kw": round(pc, 2)},
+                    "peak_red_pct": round(100 * (b12.max() - c12.max()) / b12.max(), 1),
+                    "p95_red_pct": round(100 * (pb - pc) / pb, 1),
+                }
+            except Exception as e:                   # noqa: BLE001
+                print(f"(headline first_12d skipped: {e})")
+        except Exception as e:                       # noqa: BLE001
+            print(f"(headline row skipped: {e})")
+    for tag in WINDOWS:
+        p = SEASON_DIR / f"{tag}.json"
+        if p.exists():
+            rows.append(json.loads(p.read_text(encoding="utf-8")))
+    (SEASON_DIR / "season_summary.json").write_text(
+        json.dumps(rows, indent=2), encoding="utf-8")
+    print("\n=== Cross-season summary (same system, same params, seed 42) ===")
+    print(f"{'season':<20}{'No-DR peak':>11}{'coord peak':>11}{'peak%':>8}"
+          f"{'P95%':>8}")
+    for r in rows:
+        print(f"{r['tag']:<20}{r['baseline']['peak_kw']:>11.2f}"
+              f"{r['coordinated']['peak_kw']:>11.2f}"
+              f"{r['peak_red_pct']:>+8.1f}{r['p95_red_pct']:>+8.1f}")
+    print(f"saved {SEASON_DIR / 'season_summary.json'}")
+
 
 
 # ----------------------------------------------------------- orchestrator ----
@@ -140,44 +222,7 @@ def orchestrate(tags: list[str], epochs: int, lookback: int) -> None:
         if r.returncode != 0:
             print(f"[{tag}] runner FAILED")
 
-    # summary table incl. the headline — read LIVE from the headline metrics
-    # (a hardcoded copy here silently went stale whenever the headline moved).
-    rows = []
-    msum = REPRO / "reports" / "multi_household" / "metrics_summary.json"
-    if msum.exists():
-        try:
-            m = json.loads(msum.read_text(encoding="utf-8"))
-            gb, gc = m["baseline"]["grid"], m["coordinated"]["grid"]
-            from multi_household.config import CLEAN_WINDOW as _CW
-            rows.append({
-                "tag": "summer (headline)", "window": list(_CW),
-                "baseline": {"peak_kw": gb["agg_served_peak_kw"],
-                             "p95_kw": gb["agg_served_p95_kw"]},
-                "coordinated": {"peak_kw": gc["agg_served_peak_kw"],
-                                "p95_kw": gc["agg_served_p95_kw"]},
-                "peak_red_pct": round(100 * (gb["agg_served_peak_kw"]
-                                             - gc["agg_served_peak_kw"])
-                                      / gb["agg_served_peak_kw"], 1),
-                "p95_red_pct": round(100 * (gb["agg_served_p95_kw"]
-                                            - gc["agg_served_p95_kw"])
-                                     / gb["agg_served_p95_kw"], 1),
-            })
-        except Exception as e:                       # noqa: BLE001
-            print(f"(headline row skipped: {e})")
-    for tag in WINDOWS:
-        p = SEASON_DIR / f"{tag}.json"
-        if p.exists():
-            rows.append(json.loads(p.read_text(encoding="utf-8")))
-    (SEASON_DIR / "season_summary.json").write_text(
-        json.dumps(rows, indent=2), encoding="utf-8")
-    print("\n=== Cross-season summary (same system, same params, seed 42) ===")
-    print(f"{'season':<20}{'No-DR peak':>11}{'coord peak':>11}{'peak%':>8}"
-          f"{'P95%':>8}")
-    for r in rows:
-        print(f"{r['tag']:<20}{r['baseline']['peak_kw']:>11.2f}"
-              f"{r['coordinated']['peak_kw']:>11.2f}"
-              f"{r['peak_red_pct']:>+8.1f}{r['p95_red_pct']:>+8.1f}")
-    print(f"saved {SEASON_DIR / 'season_summary.json'}")
+    write_summary()
 
 
 def main():

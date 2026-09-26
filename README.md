@@ -84,14 +84,26 @@ python -m multi_household.experiments.ablations --days 14   # forecast / accept 
 python -m multi_household.experiments.multiseed --days 14        # error bars (10 seeds)
 python -m multi_household.experiments.mpc_baseline --days 14     # controller ladder (MPC bound)
 python -m multi_household.experiments.fairness_sweep --days 14   # Jain vs shaving trade-off
+python -m multi_household.experiments.forecast_eval              # CNN-LSTM vs persistence MAE
+python -m multi_household.experiments.ev_factorial               # 360 EV scenarios (external validity)
+python -m multi_household.experiments.peak_analysis              # PAR; what sets the peak, per acceptance seed
+python -m multi_household.experiments.paper_numbers              # every citable number + its source
 
 # 4. LLM advisory demos (House 7, a day in the test window 0–13)
+python -m multi_household.experiments.llm_eval --repeats 3   # interface metrics + run-to-run spread
+python -m multi_household.experiments.llm_contract          # output contract (post-hoc, no LLM calls)
+python -m multi_household.experiments.llm_version_compare   # re-score the archived run under the same checks
 python -m multi_household.experiments.personalized_demo --house 7 --day 5
 python -m multi_household.experiments.daily_summary     --house 7 --day 5
 
 # tests
 python -m pytest multi_household/tests/ -q          # 64 tests
 ```
+
+> **Cite numbers from `reports/multi_household/paper_numbers.md`, not from a
+> draft.** It is generated straight from the result JSONs and prints the source
+> file and JSON path next to every value. Hand-transcription has already cost us
+> a headline P95 that was really the `coord_only` ablation row.
 
 **Where results go** (not just the terminal — they persist as files):
 
@@ -104,6 +116,12 @@ python -m pytest multi_household/tests/ -q          # 64 tests
 | Controller ladder (MPC bound) | `reports/multi_household/mpc_ladder.json` |
 | Fairness trade-off | `reports/multi_household/fairness_sweep.json` + `figures/multi_household/fairness_tradeoff.png` |
 | LLM advisory / closed loop | `reports/multi_household/personalized/`, `daily/`, `user_choices.json` |
+| Forecast accuracy | `reports/multi_household/forecast_eval.json` |
+| EV factorial (360 scenarios) | `reports/multi_household/ev_factorial.json` + `figures/multi_household/ev_factorial.png` |
+| LLM output contract | `reports/multi_household/llm_contract.json` |
+| LLM server-version comparison | `reports/multi_household/llm_version_compare.json` |
+| Peak analysis (PAR, per-seed peak mechanism) | `reports/multi_household/peak_analysis.json` |
+| **Paper numbers (cite from here)** | `reports/multi_household/paper_numbers.md` |
 | Figures | `figures/multi_household/*.png` |
 
 ## The conference system (archived)

@@ -128,7 +128,13 @@ def advisory_ev_schedule(ev_orig_by_house: dict[int, np.ndarray],
             # earlier version let random/EDF place blocks up to 160 min
             # before arrival (stagger happened to never violate it here).
             if strategy == "stagger":
+                # The rank offset alone is unbounded: at high EV penetration
+                # rank*2 h runs past the 8 h comfort cap (found by the EV
+                # factorial at 10 EVs/night — 51 steps). Clamp to the same
+                # cap EDF already respects. No-op at the reference 5 EVs,
+                # where the largest offset is exactly MAX_DEFER.
                 new_start = max(start, anchor + rank * stagger_steps)
+                new_start = min(new_start, start + MAX_DEFER)
             elif strategy == "random":
                 hi = max(start + 1, anchor + TROUGH_STEPS - length)
                 new_start = int(place_rng.integers(start, hi))

@@ -47,6 +47,9 @@ multi_household/
 ├── experiments/              pre_cache · train_all · rollout · metrics · ablations
 │                             · multiseed (error bars) · mpc_baseline (ladder bound)
 │                             · fairness_sweep · daily_summary · personalized_demo · run_full
+│                             · forecast_eval (LSTM vs persistence) · ev_factorial (360
+│                             EV scenarios) · llm_contract (output contract, post-hoc)
+│                             · paper_numbers (citable values + sources)
 └── tests/                    64 tests (data causality, energy conservation, cycle edge, cooldown, loop, EV advisory)
 ```
 
@@ -60,6 +63,10 @@ multi_household/
 - [x] LLM advisory v2 — personalized, Llama 3.1 (local), fact-citation + unit validation
 - [x] Closed-loop learning (accept/reject/modify → pattern suppression)
 - [x] EV advisory coordinator (accept-gated, arrival-feasible EDF; stagger/random baselines)
+- [x] Forecast accuracy artifact (`forecast_eval.py`) — CNN-LSTM 263.43 W vs
+      persistence 192.22 W per house; LSTM wins 2/15
+- [x] EV factorial (`ev_factorial.py`) — 360 paired scenarios over EV count,
+      power, duration and arrival spread
 - [x] 64 unit tests passing
 - [x] Ablations on clean data (LSTM vs persistence, accept-rate sweep, seeded)
 - [ ] Controller baselines (MPC/RL — reuse `conference/src/agent/`) — next
@@ -87,6 +94,34 @@ alone ~0; natural no-EV demand is 25.82 / 11.62 kW. The system is presented as a
 **semi-synthetic REFIT + deterministic EV-adoption scenario**, decomposed openly.
 Scheduling is replaceable (EDF > stagger > random, all arrival-feasible, paired
 accept stream) — the contribution is the acceptance-gated advisory mechanism.
+
+**External validity — EV factorial (360 paired scenarios, `ev_factorial.py`):**
+3/5/10 EVs per night x 3.6/7.0 kW x 2/4 h x clustered (21-24 h) / dispersed
+(17-24 h) arrivals, five load seeds x three accept seeds, p = 0.85. Mean paired
+P95 reduction: random 10.34% | stagger 19.95% | **EDF 21.04%**. Every one of the
+360 scenarios improves P95 under EDF and stagger (random makes 23 worse); EDF
+raises the max in 14/360, worst case +22.38%. The effect grows with EV
+penetration: P95 reduction 7.94% / 20.02% / **35.16%** at 3 / 5 / 10 EVs.
+Building this experiment also surfaced a real defect: the `stagger` strategy's
+rank offset was unbounded and broke the 8 h comfort cap at 10 EVs/night. Fixed
+by clamping to `start + MAX_DEFER`; a no-op at the reference 5 EVs, where the
+largest offset is exactly the cap, so all published numbers are unchanged.
+
+**LLM interface: deterministic within a session, not across sessions.** Three
+repeats in one process came back bit-identical (grounded-message rate 0.9435
+x3), so at `temperature 0.2` and `seed 20260719` the harness is deterministic
+against a given server. It is not stable over time: the committed July run
+scored 0.9839 / ungrounded 0.0484 and the September re-run 0.9435 / 0.1613,
+with the model blob digest provably unchanged
+(`46e0c10c...`, modified 2026-06-27) — so the difference came from the Ollama
+build, not the weights. `llm_eval.py --repeats N` (regen_all uses 3) reports
+the spread and `server_env` records the build and digest. Cite the figure from
+the artifact you actually shipped, and state the server version next to it;
+the model tag alone does not pin the result down. `llm_contract.py` then re-scores those same saved
+messages against the full output contract (number grounding, citation
+coverage, units, explicit recommended time, consent wording) without any new
+generation — the first four checks are mechanical, the last two are keyword
+heuristics and a pass means only that the implemented check held.
 
 **Rigor + baselines (v2, 2026-07-19):**
 - Multi-seed (10 seeds incl. EV accept): 85% peak **27.94±2.46 kW**, P95 19.21±0.49.
