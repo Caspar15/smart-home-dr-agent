@@ -132,6 +132,42 @@ def seed_mechanism() -> list:
     return rows
 
 
+def appliance_layer_effect() -> dict:
+    """What the appliance layer adds on top of EV coordination in the
+    reference run: where in the day it moves energy, and why the 95th
+    percentile rises slightly (18.58 -> 18.65 kW) when it is switched on."""
+    z = np.load(REPORTS / "rollout_baseline.npz", allow_pickle=True)
+    houses = [int(h) for h in z["houses"]]
+    ts = pd.DatetimeIndex(pd.to_datetime(z["timestamps"]))[:T]
+    base, ev = {}, {}
+    for i, h in enumerate(houses):
+        b = prepare_house(h, inject_ev=False)["test_df"]["aggregate_w"].to_numpy(float)[:T]
+        base[h] = b
+        e = np.clip(z["demand"][i][:T] - b, 0, None)
+        e = np.where(e > 1000, e, 0.0).astype(np.float32)
+        if e.sum() > 0:
+            ev[h] = e
+    ev_only = sum(base.values()).copy()
+    oa, sa, _ = advisory_ev_schedule(ev, ts, accept_rate=0.85, seed=EV_ACCEPT_SEED, strategy="edf")
+    for h, v in ev.items():
+        ev_only = ev_only + v - oa[h] + sa[h]
+    full = np.load(REPORTS / "rollout_coordinated.npz", allow_pickle=True)["served"].sum(0)[:T]
+    d = (full - ev_only) / 1000.0                  # kW the appliance layer adds (+) or removes (-)
+    hr = ts.hour
+    bands = {"00-06 (0.08 GBP)": hr < 6, "06-17 (0.15 GBP)": (hr >= 6) & (hr < 17),
+             "17-22 (0.30 GBP)": (hr >= 17) & (hr < 22), "22-24 (0.15 GBP)": hr >= 22}
+    top = full >= np.percentile(full, 95)
+    return {
+        "ev_only_p95_kw": round(float(np.percentile(ev_only, 95) / 1000), 2),
+        "full_p95_kw": round(float(np.percentile(full, 95) / 1000), 2),
+        "kwh_change_by_tariff_band": {k: round(float(d[m].sum() / 6), 1) for k, m in bands.items()},
+        "top5pct_slots": int(top.sum()),
+        "top5pct_slots_where_layer_adds_load": int((d[top] > 0).sum()),
+        "top5pct_slot_hours": {int(k): int(v) for k, v in
+                               pd.Series(hr[top]).value_counts().sort_index().items()},
+    }
+
+
 def main() -> None:
     ms = _load("multiseed_results.json")["coordinated"]
     mpc = _load("mpc_ladder.json")
@@ -173,6 +209,7 @@ def main() -> None:
         },
         "reference_night": reference_night(),
         "ev_only_by_seed": seed_mechanism(),
+        "appliance_layer": appliance_layer_effect(),
     }
     dst = REPORTS / "peak_analysis.json"
     dst.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -193,6 +230,10 @@ def main() -> None:
               f"{row['rejections_on_peak_night']}  | max EVs at once "
               f"{row['max_vehicles_charging_at_once']}  at peak {row['vehicles_charging_at_peak']}"
               f" ({row['of_which_rejected_at_peak']} rejected)")
+    a = out["appliance_layer"]
+    print(f"appliance layer: P95 {a['ev_only_p95_kw']} -> {a['full_p95_kw']} kW; kWh by band "
+          f"{a['kwh_change_by_tariff_band']}; adds load in {a['top5pct_slots_where_layer_adds_load']}"
+          f"/{a['top5pct_slots']} top-5% slots")
     print(f"saved {dst}")
 
 

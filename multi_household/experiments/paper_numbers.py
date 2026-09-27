@@ -249,6 +249,18 @@ def collect() -> list[dict]:
               "bound_share_pct/ten_seed_mean")
         t.add("peak", "reference run share of the bound", bs.get("reference_run"), "%", f,
               "bound_share_pct/reference_run")
+        al = pa.get("appliance_layer") or {}
+        t.add("peak", "EV-only coordination P95", al.get("ev_only_p95_kw"), "kW", f,
+              "appliance_layer/ev_only_p95_kw")
+        t.add("peak", "EV coordination + appliance layer P95", al.get("full_p95_kw"), "kW", f,
+              "appliance_layer/full_p95_kw")
+        for band, v in (al.get("kwh_change_by_tariff_band") or {}).items():
+            t.add("peak", f"appliance layer energy change {band}", v, "kWh", f,
+                  f"appliance_layer/kwh_change_by_tariff_band/{band}")
+        t.add("peak", "top-5% slots", al.get("top5pct_slots"), "", f, "appliance_layer/top5pct_slots")
+        t.add("peak", "top-5% slots where the appliance layer adds load",
+              al.get("top5pct_slots_where_layer_adds_load"), "", f,
+              "appliance_layer/top5pct_slots_where_layer_adds_load")
         rn = pa.get("reference_night") or {}
         t.add("peak", "reference peak time", rn.get("peak_time"), "", f,
               "reference_night/peak_time")

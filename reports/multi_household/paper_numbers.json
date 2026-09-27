@@ -1513,6 +1513,70 @@
   },
   {
     "section": "peak",
+    "label": "EV-only coordination P95",
+    "value": 18.58,
+    "unit": "kW",
+    "source": "peak_analysis.json",
+    "path": "appliance_layer/ev_only_p95_kw"
+  },
+  {
+    "section": "peak",
+    "label": "EV coordination + appliance layer P95",
+    "value": 18.65,
+    "unit": "kW",
+    "source": "peak_analysis.json",
+    "path": "appliance_layer/full_p95_kw"
+  },
+  {
+    "section": "peak",
+    "label": "appliance layer energy change 00-06 (0.08 GBP)",
+    "value": 2.2,
+    "unit": "kWh",
+    "source": "peak_analysis.json",
+    "path": "appliance_layer/kwh_change_by_tariff_band/00-06 (0.08 GBP)"
+  },
+  {
+    "section": "peak",
+    "label": "appliance layer energy change 06-17 (0.15 GBP)",
+    "value": -3.0,
+    "unit": "kWh",
+    "source": "peak_analysis.json",
+    "path": "appliance_layer/kwh_change_by_tariff_band/06-17 (0.15 GBP)"
+  },
+  {
+    "section": "peak",
+    "label": "appliance layer energy change 17-22 (0.30 GBP)",
+    "value": -2.0,
+    "unit": "kWh",
+    "source": "peak_analysis.json",
+    "path": "appliance_layer/kwh_change_by_tariff_band/17-22 (0.30 GBP)"
+  },
+  {
+    "section": "peak",
+    "label": "appliance layer energy change 22-24 (0.15 GBP)",
+    "value": 1.0,
+    "unit": "kWh",
+    "source": "peak_analysis.json",
+    "path": "appliance_layer/kwh_change_by_tariff_band/22-24 (0.15 GBP)"
+  },
+  {
+    "section": "peak",
+    "label": "top-5% slots",
+    "value": 101,
+    "unit": "",
+    "source": "peak_analysis.json",
+    "path": "appliance_layer/top5pct_slots"
+  },
+  {
+    "section": "peak",
+    "label": "top-5% slots where the appliance layer adds load",
+    "value": 45,
+    "unit": "",
+    "source": "peak_analysis.json",
+    "path": "appliance_layer/top5pct_slots_where_layer_adds_load"
+  },
+  {
+    "section": "peak",
     "label": "reference peak time",
     "value": "2014-07-12 21:50",
     "unit": "",

@@ -242,5 +242,32 @@
       "vehicles_charging_at_peak": 3,
       "of_which_rejected_at_peak": 2
     }
-  ]
+  ],
+  "appliance_layer": {
+    "ev_only_p95_kw": 18.58,
+    "full_p95_kw": 18.65,
+    "kwh_change_by_tariff_band": {
+      "00-06 (0.08 GBP)": 2.2,
+      "06-17 (0.15 GBP)": -3.0,
+      "17-22 (0.30 GBP)": -2.0,
+      "22-24 (0.15 GBP)": 1.0
+    },
+    "top5pct_slots": 101,
+    "top5pct_slots_where_layer_adds_load": 45,
+    "top5pct_slot_hours": {
+      "0": 21,
+      "1": 9,
+      "2": 6,
+      "3": 1,
+      "4": 7,
+      "5": 9,
+      "6": 7,
+      "7": 4,
+      "8": 3,
+      "16": 1,
+      "21": 4,
+      "22": 11,
+      "23": 18
+    }
+  }
 }

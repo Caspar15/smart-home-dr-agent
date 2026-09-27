@@ -233,6 +233,14 @@ Regenerate with `python -m multi_household.experiments.paper_numbers`.
 | full acceptance share of the bound | 85.0 | % | `peak_analysis.json` | `bound_share_pct/full_acceptance` |
 | ten-seed mean share of the bound | 78.1 | % | `peak_analysis.json` | `bound_share_pct/ten_seed_mean` |
 | reference run share of the bound | 50.0 | % | `peak_analysis.json` | `bound_share_pct/reference_run` |
+| EV-only coordination P95 | 18.58 | kW | `peak_analysis.json` | `appliance_layer/ev_only_p95_kw` |
+| EV coordination + appliance layer P95 | 18.65 | kW | `peak_analysis.json` | `appliance_layer/full_p95_kw` |
+| appliance layer energy change 00-06 (0.08 GBP) | 2.2 | kWh | `peak_analysis.json` | `appliance_layer/kwh_change_by_tariff_band/00-06 (0.08 GBP)` |
+| appliance layer energy change 06-17 (0.15 GBP) | -3.0 | kWh | `peak_analysis.json` | `appliance_layer/kwh_change_by_tariff_band/06-17 (0.15 GBP)` |
+| appliance layer energy change 17-22 (0.30 GBP) | -2.0 | kWh | `peak_analysis.json` | `appliance_layer/kwh_change_by_tariff_band/17-22 (0.30 GBP)` |
+| appliance layer energy change 22-24 (0.15 GBP) | 1.0 | kWh | `peak_analysis.json` | `appliance_layer/kwh_change_by_tariff_band/22-24 (0.15 GBP)` |
+| top-5% slots | 101 |  | `peak_analysis.json` | `appliance_layer/top5pct_slots` |
+| top-5% slots where the appliance layer adds load | 45 |  | `peak_analysis.json` | `appliance_layer/top5pct_slots_where_layer_adds_load` |
 | reference peak time | 2014-07-12 21:50 |  | `peak_analysis.json` | `reference_night/peak_time` |
 | reference night proposals rejected | 2 |  | `peak_analysis.json` | `derived: count of reference_night/proposals_that_night with accepted=false` |
 
